@@ -1,5 +1,5 @@
 ﻿---
-title: Harmony 3 Aerospace Package
+title: Harmony 3 Wireless Package
 nav_order: 1
 ---
 
