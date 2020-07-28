@@ -1,7 +1,7 @@
 ---
 grand_parent: Services
-parent: Wi-Fi Service
-title: Wi-Fi System Service Configuration
+parent: Wi-Fi provisioning Service
+title: Wi-Fi provisioning System Service Configuration
 has_toc: true
 nav_order: 1
 ---

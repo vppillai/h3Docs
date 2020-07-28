@@ -1,12 +1,12 @@
 ---
 parent: Services
-title: Wi-Fi Service
+title: Wi-Fi provisioning Service
 has_children: true
 has_toc: false
 nav_order: 1
 
 family: PIC32MZW1
-function: Wi-Fi System Service
+function: Wi-Fi provisioning System Service
 ---
 
 # Wi-Fi System Service
