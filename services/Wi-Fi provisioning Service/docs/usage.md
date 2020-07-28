@@ -13,14 +13,14 @@ User can follow below commands for Wi-Fi Provisioning,
 
 Information on command parameters, 
 
-| Parameter       | Sub Parameter  |
-| ----------------| ---------------|
-| bootmode             | <ul><li>0 - Station(STA) mode.</li></ul><ul><li> 1- Access point(AP) mode.</li></ul>     |
-| save config     |<ul><li>0 - Do not save configuration in NVM(Program Flash Memory).</li></ul><ul><li> 1- Save configuration in NVM .</li></ul>     |
-| Channel         |    In Station mode value range from 0-13,<ul><li>0 - select all the channels.</li></ul><ul><li>1-13 - select specified channel.</li></ul> In Access point mode value range from 1-13. |
-|auto connect(only applicable in STA mode)| <ul><li>0 - Don't connect to AP, wait for client request.</li></ul><ul><li> 1 - Connect to AP. </li></ul>     |
-|ssid visibility (only applicable in AP mode)| <ul><li>0 - Hidden SSID.</li></ul><ul><li> 1 - Broadcast SSID . </li></ul>     |
-|authtype(Security type) | <ul><li>1 - OPEN Mode.</li></ul><ul><li> 3 - WPAWPA2 (Mixed) mode. </li></ul><ul><li> 4 - WPA2 mode. </li></ul>     |
+| Parameter       | Sub Parameter                                          |
+| ----------------| -----------------------------------------------------  |
+| bootmode        | 0 - Station(STA) mode.1- Access point(AP) mode.        |
+| save config     | 0 - Do not save configuration in NVM(Program Flash Memory). 1- Save configuration in NVM .                                    |
+| Channel         | In Station mode value range from 0-13, 0 - select all the channels.1-13 - select specified channel. In Access point mode value range from 1-13.                                                           |
+|auto connect(only applicable in STA mode)| 0 - Don't connect to AP, wait for client request.1 - Connect to AP.                                      |
+|ssid visibility (only applicable in AP mode)| 0 - Hidden SSID.1 - Broadcast SSID .                                                           |
+|authtype(Security type) | 1 - OPEN Mode. 3 - WPAWPA2 (Mixed) mode. 4 - WPA2 mode.                                                                 |
 |ssid(ssid name)   | SSID name |
 |psk name(password)| Password/passphrase  |
 |||
@@ -49,16 +49,16 @@ Example:
 Details of JSON Parameters, 
 | Parameter       | Sub Parameter  |               Value Details     |
 | ----------------| ---------------|-------------------------------  |
-| mode            |                | <ul><li>0 - Station(STA) mode.</li></ul><ul><li> 1- Access point(AP) mode.</li></ul>     |
-| save_config     |                | <ul><li>0 - Do not save configuration in NVM.</li></ul><ul><li> 1- Save configuration in NVM .</li></ul>     |
-| STA             | ch (Channel)   |    In Station mode value range from 0-13,<ul><li>0 - select all the channels.</li></ul><ul><li>1-13 - select specified channel.</li></ul>|
-|                 |auto(auto connect)| <ul><li>0 - Don't connect to AP, wait for client request.</li></ul><ul><li> 1 - Connect to AP. </li></ul>     |
-|                 |Auth(Security type) | <ul><li>1 - OPEN Mode.</li></ul><ul><li> 3 - WPAWPA2 (Mixed) mode. </li></ul><ul><li> 4 - WPA2 mode. </li></ul>     |
+| mode            |                | 0 - Station(STA) mode. 1- Access point(AP) mode.|
+| save_config     |                | 0 - Do not save configuration in NVM. 1- Save configuration in NVM . |
+| STA             | ch (Channel)   |    In Station mode value range from 0-13,0 - select all the channels.1-13 - select specified channel. |
+|                 |auto(auto connect)| 0 - Don't connect to AP, wait for client request. 1 - Connect to AP.  |
+|                 |Auth(Security type) | 1 - OPEN Mode.3 - WPAWPA2 (Mixed) mode.  4 - WPA2 mode. |
 |                 |SSID(ssid name)   | SSID name |
 |                 |PWD(password)     | Password/passphrase  |
 | AP              |ch (Channel)      | In Access point mode value range from 1-13   |
-|                 |ssidv(ssid visibility)        | <ul><li>0 - Hidden SSID.</li></ul><ul><li> 1 - Broadcast SSID . </li></ul>  |
-|                 |Auth(Security type) | <ul><li>1 - OPEN Mode.</li></ul><ul><li> 3 - WPAWPA2 (Mixed) mode. </li></ul><ul><li> 4 - WPA2 mode. </li></ul>     |
+|                 |ssidv(ssid visibility)        | 0 - Hidden SSID. 1 - Broadcast SSID .  |
+|                 |Auth(Security type) | 1 - OPEN Mode. 3 - WPAWPA2 (Mixed) mode. 4 - WPA2 mode. |
 |                 |SSID(ssid name)   | SSID name |
 |                 |PWD(password)     | Password/passphrase  |
 |||
