@@ -6,19 +6,33 @@ has_toc: false
 nav_order: 1
 
 family: PIC32MZW1
-function: MIL-STD-1553B
+function: Wi-Fi System Service
 ---
 
-# IP1553 Peripheral Library
+# Wi-Fi System Service
 
-The IP1553 peripheral module is an interface commonly used in space applications. It features one nominal bus and one redundant
-bus to obtain reliable transfers and it can carry out data transfers at a bit rate of 1 Mbits/sec. A typical
-network is made of a Bus Controller (BC), a Bus Monitor (BM) and up to 31 Remote Terminals (RT).
-The IP1553 interface embeds three configurations of the Bus Controller, Remote Terminal and Bus Monitor as defined
-in the MIL-STD-1553B standard.
+Wi-Fi System Service Library provides an application programming interface (API) through which user can request Wi-Fi connectivity functionalities.The Wi-Fi System Service use Wi-Fi driver APIs.
 
+Key Features:
+- Configuration of Station mode(STA) 
+    - Security Support:
+        - Open - No security 
+        - WPA2 
+        - WPAWPA2(Mixed) mode
+        - WPA3 
+    - Self Healing
+        The connection for some reason breaks, the service shall take care of reconnecting the same internally. 
+- Configuration of Soft Access point mode(AP) 
+    - Security Support: 
+        - Open - No security 
+        - WPA2
+        - WPAWPA2(Mixed) 
+        - WPA3
+        - Hidden Access Point(AP)  
 
-* [Configuring the library](usage.md/#configuring-the-library)
+The Wi-Fi System Service provides simple API's to enable Station(STA) or Access Point(AP) functionalities. Multiple clients can request the Wi-Fi system service functionalities like connection request,disconnect request,scan request,etc. User is not required to have Wi-Fi domain knowledge to developed station(STA) or access point(AP) application using Wi-Fi System Service.
+
+* [Configuring the library](configuration.md/#configuring-the-library)
 
 * [Using the library](usage.md/#using-the-library)
 
