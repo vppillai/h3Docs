@@ -7,7 +7,7 @@ nav_order: 3
 
 # Peripheral libraries
 
-## SAMRH71
+## PIC32MZW1
 * [Wi-Fi Service](./Wi-Fi Service/docs/readme.md)
 * [Wi-Fi provisioning Service](./Wi-Fi provisioning Service/docs/readme.md)
 * [FLEXRAMECC](./flexramecc_44124/docs/readme.md)
