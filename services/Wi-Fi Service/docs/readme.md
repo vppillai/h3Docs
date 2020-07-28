@@ -1,6 +1,6 @@
 ---
 parent: Services
-title: WiFi as a service
+title: Wi-Fi Service
 has_children: true
 has_toc: false
 nav_order: 1
