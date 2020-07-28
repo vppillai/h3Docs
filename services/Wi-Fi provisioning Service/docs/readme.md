@@ -9,28 +9,16 @@ family: PIC32MZW1
 function: Wi-Fi provisioning System Service
 ---
 
-# Wi-Fi System Service
+# Wi-Fi provisioning System Service
 
-Wi-Fi System Service Library provides an application programming interface (API) through which user can request Wi-Fi connectivity functionalities.The Wi-Fi System Service use Wi-Fi driver APIs.
+Wi-Fi Provisioning System Service Library is used to enable Wi-Fi provisioning method. Wi-Fi Provisioning is the process of configuring desired Wi-Fi SSID and related security credentials into the device. This system service provides different methods that can be used to provide this information to the core stack. 
 
-Key Features:
-- Configuration of Station mode(STA) 
-    - Security Support:
-        - Open - No security 
-        - WPA2 
-        - WPAWPA2(Mixed) mode
-        - WPA3 
-    - Self Healing
-        The connection for some reason breaks, the service shall take care of reconnecting the same internally. 
-- Configuration of Soft Access point mode(AP) 
-    - Security Support: 
-        - Open - No security 
-        - WPA2
-        - WPAWPA2(Mixed) 
-        - WPA3
-        - Hidden Access Point(AP)  
+### Key Features:
+- Wi-Fi Provisioning using command line. 
+- Wi-Fi Provisioning using TCP socket.
+- Wi-Fi Provisioning using mobile Application.
+- Wi-Fi Provisioning using webpage.
 
-The Wi-Fi System Service provides simple API's to enable Station(STA) or Access Point(AP) functionalities. Multiple clients can request the Wi-Fi system service functionalities like connection request,disconnect request,scan request,etc. User is not required to have Wi-Fi domain knowledge to developed station(STA) or access point(AP) application using Wi-Fi System Service.
 
 * [Configuring the library](configuration.md/#configuring-the-library)
 

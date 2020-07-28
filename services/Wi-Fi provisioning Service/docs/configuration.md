@@ -6,66 +6,39 @@ has_toc: true
 nav_order: 1
 ---
 
-# Wi-Fi System Service Configuration
-The Wi-Fi System Service library should be configured through MHC(MPLAB Harmony Configurator). The following figure shows the MHC configuration window for configuring the Wi-Fi System Service and a brief description of various configuration options. 
+# Wi-Fi provisioning System Service Configuration
 
-When user select the Wi-Fi System Service library, all the required dependencies are added automatically into the MHC configuration. In the Wi-Fi System Service library, user can select the operating device mode as station(STA) or access point(AP) and make a required changes in the selected mode. 
+The Wi-Fi Provisioning System Service library should be configured through MHC(MPLAB Harmony Configurator). The following figure shows the MHC configuration window for configuring the Wi-Fi Provisioning System Service and a brief description of various configuration options. 
 
-![](./images/image4.png)
+ 
+
+The Wi-Fi Provisioning System Service library MHC menu provide option to enable required Wi-Fi Provisioning methods base on user application requirements. User can select Command line and Socket mode as shown in below diagram. 
+
+
+![](./images/SYS_WiFi_Provision_MHC_diagram.png)
 
 ## Configuration Options:
 
- Using MHC menu,user can select required device mode as a station(STA)
-or access point(AP)
+- WiFi Configuration Stored at NVM Address(Program Flash memory): 
+    - NVM Address for storing Wi-Fi Configuration. 
+    - User can change this configuration value with program flash memory page aligned address. 
+    - User has to make sure this NVM address(Program Flash memory) page is not overwritten by application code. 
+- WiFi Provisioning Enable in STA mode 
+    - Configuration for Wi-Fi Provisioning in STA mode. 
+    - Enables this configuration only when Wi-Fi system service STA mode is enabled. 
+- WiFi Provisioning Enable in AP mode 
+    - Configuration for Wi-Fi Provisioning in AP mode. 
+    - Enables this configuration only when Wi-Fi system service AP mode is enabled. 
+- WiFi Provisioning with Command Line: 
+    - Enable/Disable Wi-Fi Provision using command line. 
+- WiFi Provisioning with TCP socket: 
+    -  Enable/Disable Wi-Fi Provision using TCP Socket. 
+    -  TCP Socket Number: 
+        - User configuration for TCP Server Socket. 
+ 
 
-  - Device Mode:
-      - Indicates the device operation mode(STA\\AP).
-  - Save Configuration in the NVM(Program flash memory):
-      - Indicates the Wi-Fi configuration storing in the NVM.
-      - This configuration is only valid when "Enable Wi-Fi Provisioning
-        service" is enabled.
-  - Number of User Register Callback:
-      - Indicates the maximum number of user register callback.
-  - Enable Wi-Fi Provisioning service:
-      - Enables/Disables Wi-Fi Provisioning System Service functionality
-        along with Wi-Fi System Service.
-      - When this configuration is disabled, removed the Wi-Fi
-        Provisioning System Service from MHC project graph.
-  - STA Mode Configuration:
-      - SSID:
-          - Access Point (AP/Router) SSID to connect.
-      - Security:
-          - Indicates the security being used by the AP with which
-            device should connect – OPEN / WPA2 / WPAWPA2 (Mixed)/ WPA3. 
-      - Password:
-          - Password to be used while connecting to the AP. This is
-            mandatory is security mode is set to anything other than
-            OPEN. It will be ignored if security mode is set to OPEN.
-      - Auto Connect:
-          - Indicate whether to auto connect to AP (enable) or wait for
-            user input (disable).
-      - Channel
-          - Channel configuration details:
-              - value : 0 - AP search in all the channels.
-              - value : 1-13 : AP only search in specified channel.
-  - AP Mode Configuration:
-      - SSID:
-          - Indicate AP mode SSID.
-      - Security:
-          - Indicate AP mode security: 
-            - OPEN
-            - WPA2
-            - WPAWPA2(Mixed)
-            - WPA3
-            
-      - Password:
-          - Indicate AP mode password(passphrase).
-      - SSID Visibility:
-          - Indicate AP mode SSID visibility.
-      - Channel:
-          - Indicate operating channel of AP mode.
+When user want to enable Wi-Fi Provisioning service along with Wi-Fi System Service, then MHC configuration options "Enable Wi-Fi Provisioning service" and "Save Configuration in NVM" should be enabled. 
 
-### Building The Library
+![](./images/Wi-Fi_system_MHC_block_diagram.png)
+ 
 
-All of the required files are automatically added into the MPLAB X IDE
-project by the MHC when the library is selected for use.
