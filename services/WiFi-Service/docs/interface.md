@@ -18,12 +18,7 @@ nav_order: 2
 ---
 
 
-## Included Files Summary
-
-| Name | Description |
-|-|-|
-
-## Data Types Summary
+## Data Types and Constants Summary
 
 | Name | Description |
 |-|-|
@@ -35,21 +30,29 @@ nav_order: 2
 | [SYS_WIFI_CONFIG](#SYS_WIFI_CONFIG) | Configuration of device configuration parameters. |
 | [SYS_WIFI_STATUS](#SYS_WIFI_STATUS) | Result of a Wi-Fi service client interface get status operation(SYS_WIFI_GetStatus()). |
 | [SYS_WIFI_RESULT](#SYS_WIFI_RESULT) | Result of a Wi-Fi system service client interface operation. |
-Pointer to a Wi-Fi system service callback function. |
+| [void](#void) | Pointer to a Wi-Fi system service callback function. |
 
-## System Interface Functions Summary
+## Initialization functions Summary
 
 | Name | Description |
 |-|-|
-| [System interface functions are called by system code to initialize the](#System interface functions are called by system code to initialize the) | | [SYS_WIFI_Initialize](#SYS_WIFI_Initialize) | Initializes the System Wi-Fi module. |
+| [SYS_WIFI_Initialize](#SYS_WIFI_Initialize) | Initializes the System Wi-Fi module. |
 | [SYS_WIFI_Deinitialize](#SYS_WIFI_Deinitialize) | Deinitializes the module instance of the system Wi-Fi service |
+
+## Status functions Summary
+
+| Name | Description |
+|-|-|
 | [SYS_WIFI_GetStatus](#SYS_WIFI_GetStatus) | Returns Wi-Fi system service status. |
+
+## Setup functions Summary
+
+| Name | Description |
+|-|-|
 | [SYS_WIFI_Tasks](#SYS_WIFI_Tasks) | Maintains the Wi-Fi System tasks and functionalities. |
 | [SYS_WIFI_CtrlMsg](#SYS_WIFI_CtrlMsg) | Returns success/ failure for the connect/disconnect/scan operation asked by client. |
 
-## Included Files
-
-## Data Types
+## Data Types and Constants
 
 
 ### SYS_WIFI_AUTH 
@@ -346,12 +349,12 @@ SYS_WIFI_OBJ_INVALID=255
 ```
 
 
-### 
+### void
 
 **Function**
 
 ```c
-void (*SYS_WIFI_CALLBACK )(uint32_t event, void * data,void *cookie )
+typedef void (*SYS_WIFI_CALLBACK )(uint32_t event, void * data,void *cookie )
 ```
 
 **Summary**
@@ -438,12 +441,7 @@ None.
 typedef void (*SYS_WIFI_CALLBACK )(uint32_t event, void * data,void *cookie );
 
 ```
-## System Interface Functions
-
-
-### System interface functions are called by system code to initialize the
-
-module and maintain proper operation of it.
+## Initialization functions
 
 
 ### SYS_WIFI_Initialize
@@ -543,6 +541,10 @@ if (SYS_WIFI_SUCCESS == SYS_WIFI_Deinitialize (sysObj.syswifi))
 **Remarks**
 
 Deinitialize should be called if the WiFi service is no longer going to be used. 
+## Status functions
+
+
+
 
 ### SYS_WIFI_GetStatus
 
@@ -584,6 +586,10 @@ if (SYS_WIFI_STATUS_TCPIP_READY == SYS_WIFI_GetStatus (sysObj.syswifi))
 **Remarks**
 
 None 
+## Setup functions
+
+
+
 
 ### SYS_WIFI_Tasks
 
