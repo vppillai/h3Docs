@@ -13,7 +13,7 @@ User can follow below commands for Wi-Fi Provisioning,
 
 Information on command parameters, 
 
-----------------------------------------------------------------------------
+
 | Parameter       | Sub Parameter                                          |
 | ----------------| -----------------------------------------------------  |
 | bootmode        | 0 - Station(STA) mode.1- Access point(AP) mode.        |
@@ -49,7 +49,7 @@ Example:
 
 Details of JSON Parameters, 
 
-----------------------------------------------------------------------
+
 | Parameter       | Sub Parameter  |               Value Details     |
 | ----------------| ---------------|-------------------------------  |
 | mode            |                | 0 - Station(STA) mode. 1- Access point(AP) mode.|
