@@ -6,7 +6,7 @@ has_toc: true
 nav_order: 1
 ---
 
-# System Service Interface
+# Wi-Fi System Service Interface
 {: .no_toc }
 
 ### Table of contents

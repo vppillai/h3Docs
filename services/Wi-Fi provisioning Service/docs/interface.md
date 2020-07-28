@@ -6,7 +6,7 @@ has_toc: true
 nav_order: 1
 ---
 
-# System Service Interface
+# Wi-Fi provisioning System Service Interface
 {: .no_toc }
 
 ### Table of contents
@@ -22,40 +22,40 @@ nav_order: 1
 
 | Name | Description |
 |-|-|
-| [SYS_WIFI_AUTH ](#SYS_WIFI_AUTH ) | Identifies the type of Authentication requested. |
-| [SYS_WIFI_CTRLMSG ](#SYS_WIFI_CTRLMSG ) | Identifies the control message for which the client has called the SYS_WIFI_CtrlMsg(). |
-| [SYS_WIFI_MODE ](#SYS_WIFI_MODE ) | Identifies the Wi-Fi operating mode. |
-| [SYS_WIFI_STA_CONFIG](#SYS_WIFI_STA_CONFIG) | Configuration of station parameters. |
-| [SYS_WIFI_AP_CONFIG](#SYS_WIFI_AP_CONFIG) | Configuration of access point mode parameters. |
-| [SYS_WIFI_CONFIG](#SYS_WIFI_CONFIG) | Configuration of device configuration parameters. |
-| [SYS_WIFI_STATUS](#SYS_WIFI_STATUS) | Result of a Wi-Fi service client interface get status operation(SYS_WIFI_GetStatus()). |
-| [SYS_WIFI_RESULT](#SYS_WIFI_RESULT) | Result of a Wi-Fi system service client interface operation. |
-| [void](#void) | Pointer to a Wi-Fi system service callback function. |
+| [SYS_WIFIPROV_AUTH ](#SYS_WIFIPROV_AUTH ) | Identifies the type of Authentication requested. |
+| [SYS_WIFIPROV_CTRLMSG ](#SYS_WIFIPROV_CTRLMSG ) | Identifies the control message for which the client has called the SYS_WIFIPROV_CtrlMsg(). |
+| [SYS_WIFIPROV_MODE ](#SYS_WIFIPROV_MODE ) | Identifies the Wi-Fi operating mode. |
+| [SYS_WIFIPROV_STA_CONFIG](#SYS_WIFIPROV_STA_CONFIG) | Configuration of station parameters. |
+| [SYS_WIFIPROV_AP_CONFIG](#SYS_WIFIPROV_AP_CONFIG) | Configuration of access point mode parameters. |
+| [SYS_WIFIPROV_CONFIG](#SYS_WIFIPROV_CONFIG) | Configuration of device configuration parameters. |
+| [SYS_WIFIPROV_STATUS](#SYS_WIFIPROV_STATUS) | Result of a Wi-Fi Provisioning system service client interface get operation(SYS_WIFIPROV_GetStatus()). |
+| [SYS_WIFIPROV_RESULT](#SYS_WIFIPROV_RESULT) | Result of a Wi-Fi Provisioning system service client interface operation. |
+| [void](#void) | Pointer to a Wi-Fi Provisioning system service callback function. |
 
 ## Initialization functions Summary
 
 | Name | Description |
 |-|-|
-| [SYS_WIFI_Initialize](#SYS_WIFI_Initialize) | Initializes the System Wi-Fi module. |
-| [SYS_WIFI_Deinitialize](#SYS_WIFI_Deinitialize) | Deinitializes the module instance of the system Wi-Fi service |
+| [SYS_WIFIPROV_Initialize](#SYS_WIFIPROV_Initialize) | Initializes the System Wi-Fi Provisioning module. |
+| [SYS_WIFIPROV_Deinitialize](#SYS_WIFIPROV_Deinitialize) | Deinitializes the module instance of the SYS WIFIPROV module |
 
 ## Status functions Summary
 
 | Name | Description |
 |-|-|
-| [SYS_WIFI_GetStatus](#SYS_WIFI_GetStatus) | Returns Wi-Fi system service status. |
+| [SYS_WIFIPROV_GetStatus](#SYS_WIFIPROV_GetStatus) | Returns System Wi-Fi Provisioning service status. |
 
 ## Setup functions Summary
 
 | Name | Description |
 |-|-|
-| [SYS_WIFI_Tasks](#SYS_WIFI_Tasks) | Maintains the Wi-Fi System tasks and functionalities. |
-| [SYS_WIFI_CtrlMsg](#SYS_WIFI_CtrlMsg) | Returns success/ failure for the connect/disconnect/scan operation asked by client. |
+| [SYS_WIFIPROV_Tasks](#SYS_WIFIPROV_Tasks) | Maintains the Wi-Fi Provisioning System tasks and functionalities. |
+| [SYS_WIFIPROV_CtrlMsg](#SYS_WIFIPROV_CtrlMsg) | Request Wi-Fi Provisioning system service control request interface |
 
 ## Data Types and Constants
 
 
-### SYS_WIFI_AUTH 
+### SYS_WIFIPROV_AUTH 
 
 **Summary**
 
@@ -72,30 +72,30 @@ None.
 typedef enum
 {
 // Requesting a Open Authentication types
-SYS_WIFI_OPEN = 1,
+SYS_WIFIPROV_OPEN = 1,
 
 // Requesting a WEP Authentication types
-SYS_WIFI_WEP,
+SYS_WIFIPROV_WEP,
 
 // Requesting a WPA/WPA2(Mixed) Authentication types
-SYS_WIFI_WPAWPA2MIXED,
+SYS_WIFIPROV_WPAWPA2MIXED,
 
 // Requesting a WPA2 Authentication types
-SYS_WIFI_WPA2
+SYS_WIFIPROV_WPA2
 
-} SYS_WIFI_AUTH ;
+} SYS_WIFIPROV_AUTH ;
 ```
 
-### SYS_WIFI_CTRLMSG 
+### SYS_WIFIPROV_CTRLMSG 
 
 
 **Summary**
 
-Identifies the control message for which the client has called the SYS_WIFI_CtrlMsg().  
+Identifies the control message for which the client has called the SYS_WIFIPROV_CtrlMsg().  
 
 **Description**
 
-Identifies the control message for which the client has called the SYS_WIFI_CtrlMsg().  
+Identifies the control message for which the client has called the SYS_WIFIPROV_CtrlMsg().  
 
 **Remarks**
 
@@ -103,25 +103,19 @@ The different control messages which can be invoked by the client.
 ```c
 typedef enum
 {
-//Control message type for requesting a Wi-Fi Configuration set(for connect)
-SYS_WIFI_CONNECT = 0,
+// Requesting a Wi-Fi Configuration set(for connect)
+SYS_WIFIPROV_SETCONFIG = 0,
 
-//Control message type for requesting a Wi-Fi device disconnect
-SYS_WIFI_DISCONNECT,
+// Requesting a Wi-Fi configuration get
+SYS_WIFIPROV_GETCONFIG,
 
-//Control message type for requesting a Wi-Fi configuration information
-SYS_WIFI_GETCONFIG,
+// Updating Wi-Fi Connect status for enabling Wi-Fi Provisioning service
+SYS_WIFIPROV_CONNECT,
 
-//Control message type for registering a Wi-Fi system service client callback
-SYS_WIFI_REGCALLBACK,
-
-//Control message type for requesting a Wi-Fi scan.In Scan request, client can set channel number and type of scan(active/passive).
-SYS_WIFI_SCANREQ
-
-} SYS_WIFI_CTRLMSG ;
+} SYS_WIFIPROV_CTRLMSG ;
 ```
 
-### SYS_WIFI_MODE 
+### SYS_WIFIPROV_MODE 
 
 
 **Summary**
@@ -134,20 +128,20 @@ Identifies the Wi-Fi operating mode.
 
 **Remarks**
 
-Client need to manually reboot device after switching mode. For example, changing operating mode to STA to AP or AP to STA. 
+Client need to manually reboot device after switching mode. For example changing operating mode from STA to AP or AP to STA. 
 ```c
 typedef enum
 {
-// Requesting a operating mode a station
-SYS_WIFI_STA = 0,
+// Requesting a operating mode as a station
+SYS_WIFIPROV_STA = 0,
 
-// Requesting a operating mode a AP access point.
-SYS_WIFI_AP
+// Requesting a operating mode as a access point.
+SYS_WIFIPROV_AP
 
-} SYS_WIFI_MODE ;
+} SYS_WIFIPROV_MODE ;
 ```
 
-### SYS_WIFI_STA_CONFIG
+### SYS_WIFIPROV_STA_CONFIG
 
 
 **Summary**
@@ -161,7 +155,6 @@ Configuration of station parameters.
 **Remarks**
 
 None. 
-
 ```c
 typedef struct
 {
@@ -172,7 +165,7 @@ uint8_t ssid[32];
 uint8_t psk[64];
 
 //Wi-Fi station mode authentication type
-SYS_WIFI_AUTH auth_type;
+SYS_WIFIPROV_AUTH auth_type;
 
 //Wi-Fi station mode channel number.
 //values of channel:
@@ -182,13 +175,13 @@ uint8_t channel;
 
 //Wi-Fi station mode auto connect flag.
 //value 0- Don't connect to AP, wait for client request.
-//value 1- Connect to AP immediately
+//value 1- Connect to AP
 bool auto_connect;
 
-} SYS_WIFI_STA_CONFIG;
+} SYS_WIFIPROV_STA_CONFIG;
 ```
 
-### SYS_WIFI_AP_CONFIG
+### SYS_WIFIPROV_AP_CONFIG
 
 
 **Summary**
@@ -213,7 +206,7 @@ uint8_t ssid[32];
 uint8_t psk[64];
 
 //Wi-Fi access point mode authentication type
-SYS_WIFI_AUTH auth_type;
+SYS_WIFIPROV_AUTH auth_type;
 
 //Wi-Fi access point mode channel number.
 //values of channel:
@@ -221,15 +214,15 @@ SYS_WIFI_AUTH auth_type;
 uint8_t channel;
 
 //Wi-Fi access point mode SSID visibility
-//value of ssid_visibility:
+//Value of ssid_visibility:
 //0 - Hidden SSID
 //1 - broadcast the SSID
 bool ssid_visibility;
 
-} SYS_WIFI_AP_CONFIG;
+} SYS_WIFIPROV_AP_CONFIG;
 ```
 
-### SYS_WIFI_CONFIG
+### SYS_WIFIPROV_CONFIG
 
 
 **Summary**
@@ -246,80 +239,69 @@ None.
 ```c
 typedef struct
 {
-//Operating mode of the device
-SYS_WIFI_MODE mode;
+//Operating mode of device
+SYS_WIFIPROV_MODE mode;
 
 //Flag to identify if configuration needs to be saved in NVM. 0 – Do not save configuration in NVM. 1 – Save configuration in NVM.
 uint8_t save_config;
 
-//Wi-Fi station mode configuration structure
-SYS_WIFI_STA_CONFIG staconfig;
+//Wi-Fi station mode configuration
+SYS_WIFIPROV_STA_CONFIG staconfig;
 
-//Wi-Fi access point mode configuration structure
-SYS_WIFI_AP_CONFIG apconfig;
-
-}SYS_WIFI_CONFIG;
+//Wi-Fi access point mode configuration
+SYS_WIFIPROV_AP_CONFIG apconfig;
+}SYS_WIFIPROV_CONFIG;
 ```
 
-### SYS_WIFI_STATUS
+### SYS_WIFIPROV_STATUS
 
 
 **Summary**
 
-Result of a Wi-Fi service client interface get status operation(SYS_WIFI_GetStatus()).  
+Result of a Wi-Fi Provisioning system service client interface get operation(SYS_WIFIPROV_GetStatus()).  
 
 **Description**
 
-Result of a Wi-Fi service client interface get status operation(SYS_WIFI_GetStatus()).  
+Result of a Wi-Fi Provisioning system service client interface get operation(SYS_WIFIPROV_GetStatus()).  
 
 **Remarks**
 
 None. 
+
 ```c
 typedef enum
 {
-//Wi-Fi system service is in init status
-SYS_WIFI_STATUS_INIT = 1,
+//Wi-Fi Provisioning system service is in NVM read state
+SYS_WIFIPROV_STATUS_NVM_READ=1,
 
-//Wi-Fi system service is in driver open status
-SYS_WIFI_STATUS_WDRV_OPEN_REQ,
+//Wi-Fi Provisioning system service is in NVM read Wi-Fi Configuration checking state
+SYS_WIFIPROV_STATUS_CONFIG_CHECK,
 
-//Wi-Fi system service is in auto connect wait status
-SYS_WIFI_STATUS_AUTOCONNECT_WAIT,
+//Wi-Fi Provisioning system service is in NVM erase state
+SYS_WIFIPROV_STATUS_NVM_ERASE,
 
-//Wi-Fi system service is in wait for TCPIP stack init status
-SYS_WIFI_STATUS_TCPIP_WAIT_FOR_TCPIP_INIT,
+//Wi-Fi Provisioning system service is in NVM write state
+SYS_WIFIPROV_STATUS_NVM_WRITE,
 
-//Wi-Fi system service is in Wi-Fi connect request status
-SYS_WIFI_STATUS_CONNECT_REQ,
+//Wi-Fi Provisioning system service is in client request state
+SYS_WIFIPROV_STATUS_WAITFORREQ,
 
-//In AP mode,Wi-Fi system service is in wait for AP IP address
-SYS_WIFI_STATUS_WAIT_FOR_AP_IP,
+//Wi-Fi Provisioning system service is in invalid state
+SYS_WIFIPROV_STATUS_NONE =255
 
-//In AP mode,Wi-Fi system service is in wait for connecting STA IP address
-SYS_WIFI_STATUS_WAIT_FOR_STA_IP,
-
-//Wi-Fi system service is in TCPIP ready status, waiting for client request.
-SYS_WIFI_STATUS_TCPIP_READY,
-
-//Wi-Fi system service is in TCPIP error status
-SYS_WIFI_STATUS_TCPIP_ERROR,
-
-//Wi-Fi system service is in not in valid status
-SYS_WIFI_STATUS_NONE =255
-} SYS_WIFI_STATUS;
+} SYS_WIFIPROV_STATUS;
 ```
 
-### SYS_WIFI_RESULT
+### SYS_WIFIPROV_RESULT
 
 
 **Summary**
 
-Result of a Wi-Fi system service client interface operation.  
+Result of a Wi-Fi Provisioning system service client interface operation.  
 
 **Description**
 
-Identifies the result of Wi-Fi service operations  
+Identifies the result of Wi-Fi Provisioning service operations  
 
 **Remarks**
 
@@ -328,24 +310,15 @@ None.
 typedef enum{
 
 // Operation completed with success
-SYS_WIFI_SUCCESS = 0,
+SYS_WIFIPROV_SUCCESS = 0,
 
-//Operation Failed.
-SYS_WIFI_FAILURE,
-
-//Wi-Fi configuration request failed
-SYS_WIFI_CONFIG_FAILURE,
-
-//Wi-Fi Connect request failed
-SYS_WIFI_CONNECT_FAILURE,
-
-//Wi-Fi Save request failed
-SYS_WIFI_SAVE_FAILURE,
+//Operation failed.
+SYS_WIFIPROV_FAILURE,
 
 //Operation request object is invalid
-SYS_WIFI_OBJ_INVALID=255
+SYS_WIFIPROV_OBJ_INVALID=255
 
-}SYS_WIFI_RESULT;
+}SYS_WIFIPROV_RESULT;
 ```
 
 
@@ -354,26 +327,26 @@ SYS_WIFI_OBJ_INVALID=255
 **Function**
 
 ```c
-typedef void (*SYS_WIFI_CALLBACK )(uint32_t event, void * data,void *cookie )
+typedef void (*SYS_WIFIPROV_CALLBACK )(uint32_t event, void * data,void *cookie )
 ```
 
 **Summary**
 
-Pointer to a Wi-Fi system service callback function.  
+Pointer to a Wi-Fi Provisioning system service callback function.  
 
 **Description**
 
-This data type defines a pointer to a Wi-Fi service callback function. Callback functions can be registered by client at initialization or using control message type.  
+This data type defines a pointer to a Wi-Fi Provisioning service callback function. Callback functions can be registered by client at initializing.  
 
 **Precondition**
 
-The Wi-Fi service must have been initialized using the SYS_WIFI_Initialize function if client registering callback using control message.  
+None  
 
 **Parameters**
 
-*event* - A event value, event can be any of SYS_WIFI_CTRLMSG types. 
+*event* - A event value, event can be any of SYS_WIFIPROV_CTRLMSG types. 
 
-*data* - Wi-Fi service Data. 
+*data* - Wi-Fi Provisioning service Data. 
 
 *cookie* - Client register cookie.  
 
@@ -384,91 +357,60 @@ None.
 **Example**
 
 ```c
-APP_DATA appData;
-void WiFiServCallback (uint32_t event, void * data,void *cookie )
+void WiFiProvServCallback (uint32_t event, void * data,void *cookie )
 {
-IPV4_ADDR *IPAddr;
 switch(event)
 {
-case SYS_WIFI_CONNECT:
-IPAddr = (IPV4_ADDR *)data;
-SYS_CONSOLE_PRINT("IP address obtained = %d.%d.%d.%d \\r\\n",IPAddr->v[0], IPAddr->v[1], IPAddr->v[2], IPAddr->v[3]);
+case SYS_WIFIPROV_SETCONFIG:
+SYS_WIFIPROV_CONFIG* wifiprovconfig = (SYS_WIFIPROV_CONFIG *) data;
+//Provisioning service updated data
+SYS_CONSOLE_PRINT("%s:%d Device mode=%d\\r\\n",__func__,__LINE__,wifiprovconfig->mode);
 break;
-case SYS_WIFI_DISCONNECT:
-SYS_CONSOLE_PRINT("Device DISCONNECTED \\r\\n");
-break;
-case SYS_WIFI_GETCONFIG:
-SYS_WIFI_CONFIG *wificonfig;
-
-wificonfig = (SYS_WIFI_CONFIG *) data;
-SYS_CONSOLE_PRINT("%s:%d Device mode=%d\\r\\n",__func__,__LINE__,wificonfig->mode);
-break;
-
-}
-}
-void APP_Initialize(void) {
-appData.state = APP_STATE_INIT;
-}
-
-void APP_Tasks(void) {
-
-switch (appData.state) {
-case APP_STATE_INIT:
-{
-SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_REGCALLBACK,WiFiServCallback,sizeof(uint8_t *));
-appData.state=APP_STATE_SERVICE_TASKS;
-break;
-}
-
-case APP_STATE_SERVICE_TASKS:
-{
-
-break;
-}
-default:
-{
+case SYS_WIFIPROV_GETCONFIG:
+SYS_WIFIPROV_CONFIG* wifiprovconfig = (SYS_WIFIPROV_CONFIG *) data;
+//client requested get Wi-Fi Configuration
+SYS_CONSOLE_PRINT("%s:%d Device mode=%d\\r\\n",__func__,__LINE__,wifiprovconfig->mode);
 break;
 }
 }
-}
-
 ```
+
 **Remarks**
 
 None. 
 
 ```c
-typedef void (*SYS_WIFI_CALLBACK )(uint32_t event, void * data,void *cookie );
+typedef void (*SYS_WIFIPROV_CALLBACK )(uint32_t event, void * data,void *cookie );
 
 ```
 ## Initialization functions
 
 
-### SYS_WIFI_Initialize
+### SYS_WIFIPROV_Initialize
 
 **Function**
 
 ```c
-SYS_MODULE_OBJ SYS_WIFI_Initialize( SYS_WIFI_CONFIG *config,
-SYS_WIFI_CALLBACK callback,
+SYS_MODULE_OBJ SYS_WIFIPROV_Initialize(SYS_WIFIPROV_CONFIG *config,
+SYS_WIFIPROV_CALLBACK callback,
 void *cookie)
 ```
 
 **Summary**
 
-Initializes the System Wi-Fi module.  
+Initializes the System Wi-Fi Provisioning module.  
 
 **Description**
 
-Wi-Fi service supports only one single instance of Wi-Fi.  
+Wi-Fi Provisioning service supports only single instance.  
 
 **Parameters**
 
-*config* - Wi-Fi device configuration structure. 
+*config* - Wi-Fi Provisioning device configuration structure. 
 
 *callback* - The client callback function pointer. 
 
-*cookie* - The pointer which will be passed to the customer application when the customer callback function is invoked.  
+*cookie* - The pointer which will be passed to the client application when the client callback function is invoked.  
 
 **Returns**
 
@@ -480,18 +422,19 @@ If successful, returns a valid handle to an object. Otherwise, it returns SYS_MO
 #define WIFI_DEV_SSID "DEMO_AP"
 #define WIFI_DEV_PSK "password"
 
-SYS_WIFI_CONFIG 	wificonfig;
+SYS_WIFIPROV_CONFIG 	wifiprovconfig;
+SYS_MODULE_OBJ 		 WiFiprovServHandle;
 
-wificonfig.mode = SYS_WIFI_STA; // Set mode as STA
-wificonfig.save_config = false; // Disable saving wifi configuration
-wificonfig.staconfig.auth_type = SYS_WIFI_WPA2; // Set the auth type to SYS_WIFI_WPA2
-wificonfig.staconfig.channel = 0; // Enable all the channels(0).
-wificonfig.staconfig.auto_connect = 1; // Device doesn't wait for user request.
-memcpy(wificonfig.staconfig.ssid,WIFI_DEV_SSID,sizeof(WIFI_DEV_SSID)); // Set SSID
-memcpy(wificonfig.staconfig.psk,WIFI_DEV_PSK,sizeof(WIFI_DEV_PSK)); // Se PSK
+wifiprovconfig.mode = SYS_WIFI_STA; // Set mode as STA
+wifiprovconfig.save_config = false; // Disable saving wifi configuration
+wifiprovconfig.staconfig.auth_type = SYS_WIFI_WPA2; // Set the auth type to SYS_WIFI_WPA2
+wifiprovconfig.staconfig.channel = 0; // Enable all the channels(0).
+wifiprovconfig.staconfig.auto_connect = 1; // Device doesn't wait for user request.
+memcpy(wifiprovconfig.staconfig.ssid,WIFI_DEV_SSID,sizeof(WIFI_DEV_SSID)); // Set SSID
+memcpy(wifiprovconfig.staconfig.psk,WIFI_DEV_PSK,sizeof(WIFI_DEV_PSK)); // Set PSK
 
-sysObj.syswifi = SYS_WIFI_Initialize(&wificonfig, WiFiServCallback, 0);
-if (sysObj.syswifi == SYS_MODULE_OBJ_INVALID)
+WiFiprovServHandle = SYS_WIFIPROV_Initialize(&wifiprovconfig, WiFiProvServCallback, 0);
+if (WiFiprovServHandle == SYS_MODULE_OBJ_INVALID)
 {
 // Handle error
 }
@@ -499,19 +442,19 @@ if (sysObj.syswifi == SYS_MODULE_OBJ_INVALID)
 
 **Remarks**
 
-This routine can only be called once during system initialization. If the Wi-Fi system service is enabled using MHC, then auto generated code will take care of system wi-fi initialization. 
+Client can auto enable the Provisioning service functionality by selecting MHC configuration option of Wi-Fi Service. 
 
-### SYS_WIFI_Deinitialize
+### SYS_WIFIPROV_Deinitialize
 
 **Function**
 
 ```c
-SYS_WIFI_RESULT SYS_WIFI_Deinitialize (SYS_MODULE_OBJ object)
+SYS_WIFIPROV_RESULT SYS_WIFIPROV_Deinitialize (SYS_MODULE_OBJ object)
 ```
 
 **Summary**
 
-Deinitializes the module instance of the system Wi-Fi service  
+Deinitializes the module instance of the SYS WIFIPROV module  
 
 **Description**
 
@@ -519,20 +462,20 @@ This function deinitializes the module instance disabling its operation. Resets 
 
 **Precondition**
 
-The SYS_WIFI_Initialize function should have been called before calling this function.  
+The SYS_WIFIPROV_Initialize function should have been called before calling this function.  
 
 **Parameters**
 
-*object* - SYS WIFI object handle, returned from SYS_WIFI_Initialize  
+*object* - SYS WIFIPROV object handle, returned from SYS_WIFIPROV_Initialize  
 
 **Returns**
 
-return SYS_WIFI_RESULT  
+return SYS_WIFIPROV_RESULT  
 
 **Example**
 
 ```c
-if (SYS_WIFI_SUCCESS == SYS_WIFI_Deinitialize (sysObj.syswifi))
+if (SYS_WIFI_SUCCESS == SYS_WIFIPROV_Deinitialize (WiFiprovServHandle))
 {
 // when the SYS WIFI is De-initialized.
 }
@@ -540,46 +483,46 @@ if (SYS_WIFI_SUCCESS == SYS_WIFI_Deinitialize (sysObj.syswifi))
 
 **Remarks**
 
-Deinitialize should be called if the WiFi service is no longer going to be used. 
+Deinitialize should be called if the WiFi Provisioning service is no longer going to be used. 
 ## Status functions
 
 
 
 
-### SYS_WIFI_GetStatus
+### SYS_WIFIPROV_GetStatus
 
 **Function**
 
 ```c
-uint8_t SYS_WIFI_GetStatus ( SYS_MODULE_OBJ object)
+uint8_t SYS_WIFIPROV_GetStatus ( SYS_MODULE_OBJ object)
 ```
 
 **Summary**
 
-Returns Wi-Fi system service status.  
+Returns System Wi-Fi Provisioning service status.  
 
 **Description**
 
-This function returns the current status of the System Wi-Fi service.  
+This function returns the current status of the System Wi-Fi Provisioning service.  
 
 **Precondition**
 
-The SYS_WIFI_Initialize function should have been called before calling this function.  
+The SYS_WIFIPROV_Initialize function should have been called before calling this function.  
 
 **Parameters**
 
-*object* - SYS WIFI object handle, returned from SYS_WIFI_Initialize  
+*object* - SYS WIFIPROV object handle, returned from SYS_WIFIPROV_Initialize  
 
 **Returns**
 
-return SYS_WIFI_STATUS if client provided object is valid, else return SYS_WIFI_OBJ_INVALID.  
+return SYS_WIFIPROV_STATUS if client provided object is valid, else return SYS_WIFIPROV_OBJ_INVALID.  
 
 **Example**
 
 ```c
-if (SYS_WIFI_STATUS_TCPIP_READY == SYS_WIFI_GetStatus (sysObj.syswifi))
+if (SYS_WIFIPROV_STATE_WAITFORREQ == SYS_WIFIPROV_GetStatus (WiFiprovServHandle))
 {
-// when the SYS WIFI module in TCPIP ready STATUS
+// when the SYS WIFI Provisioning module in wait for client request
 }
 ```
 
@@ -591,38 +534,38 @@ None
 
 
 
-### SYS_WIFI_Tasks
+### SYS_WIFIPROV_Tasks
 
 **Function**
 
 ```c
-uint8_t SYS_WIFI_Tasks ( SYS_MODULE_OBJ object)
+uint8_t SYS_WIFIPROV_Tasks ( SYS_MODULE_OBJ object)
 ```
 
 **Summary**
 
-Maintains the Wi-Fi System tasks and functionalities.  
+Maintains the Wi-Fi Provisioning System tasks and functionalities.  
 
 **Description**
 
-This function is used to run the various tasks and functionalities of Wi-Fi system service.  
+This function is used to run the various tasks and functionalities of Wi-Fi Provisioning system service.  
 
 **Precondition**
 
-The SYS_WIFI_Initialize function should have been called before calling this function.  
+The SYS_WIFIPROV_Initialize function should have been called before calling this function.  
 
 **Parameters**
 
-*object* - SYS WIFI object handle, returned from SYS_WIFI_Initialize  
+*object* - SYS WIFI Provisioning object handle, returned from SYS_WIFIPROV_Initialize  
 
 **Returns**
 
-return SYS_WIFI_STATUS if client provided object is valid, else return SYS_WIFI_OBJ_INVALID.  
+return SYS_WIFIPROV_STATUS if client provided object is valid, else return SYS_WIFIPROV_OBJ_INVALID.  
 
 **Example**
 
 ```c
-if (SYS_WIFI_OBJ_INVALID != SYS_WIFI_Tasks (sysObj.syswifi))
+if (SYS_WIFIPROV_OBJ_INVALID != SYS_WIFIPROV_Tasks (WiFiprovServHandle))
 {
 
 }
@@ -630,33 +573,33 @@ if (SYS_WIFI_OBJ_INVALID != SYS_WIFI_Tasks (sysObj.syswifi))
 
 **Remarks**
 
-If the Wi-Fi system service is enabled using MHC, then auto generated code will take care of system task execution. 
+None 
 
-### SYS_WIFI_CtrlMsg
+### SYS_WIFIPROV_CtrlMsg
 
 **Function**
 
 ```c
-SYS_WIFI_RESULT SYS_WIFI_CtrlMsg (SYS_MODULE_OBJ object,uint32_t event,void *buffer,uint32_t length )
+SYS_WIFIPROV_RESULT SYS_WIFIPROV_CtrlMsg (SYS_MODULE_OBJ object,uint32_t event,void *buffer,uint32_t length )
 ```
 
 **Summary**
 
-Returns success/ failure for the connect/disconnect/scan operation asked by client.  
+Request Wi-Fi Provisioning system service control request interface  
 
 **Description**
 
-This function is used to make control message request(connect,disconnect,scan,register callback) to Wi-Fi system service.  
+This function is used to make control request to Wi-Fi Provisioning system service.  
 
 **Precondition**
 
-The SYS_WIFI_Initialize function should have been called before calling this function.  
+The SYS_WIFIPROV_Initialize function should have been called before calling this function.  
 
 **Parameters**
 
-*object* - SYS WIFI object handle, returned from SYS_WIFI_Initialize 
+*object* - SYS WIFIPROV object handle, returned from SYS_WIFIPROV_Initialize 
 
-*event* - A event value, event can be any of SYS_WIFI_CTRLMSG types 
+*event* - A event value, event can be any of SYS_WIFIPROV_CTRLMSG types 
 
 *buffer* - Control message data input. 
 
@@ -664,53 +607,42 @@ The SYS_WIFI_Initialize function should have been called before calling this fun
 
 **Returns**
 
-return SYS_WIFI_RESULT.  
+return SYS_WIFIPROV_RESULT.  
 
 **Example**
 
 ```c
-Details of SYS_WIFI_CONNECT:
+Details of SYS_WIFIPROV_SETCONFIG:
 
-SYS_WIFI_CONFIG 	wificonfig;
-SYS_MODULE_OBJ 		WiFiServHandle;
+SYS_WIFIPROV_CONFIG 	wifiprovconfig;
+SYS_MODULE_OBJ 		WiFiprovServHandle;
 
-wificonfig.mode = SYS_WIFI_STA; // Set mode as STA
-wificonfig.save_config = false; // Disable saving wifi configuration
-wificonfig.staconfig.auth_type = SYS_WIFI_WPA2; // Set the auth type to SYS_WIFI_WPA2
-wificonfig.staconfig.channel = 0; // Enable all the channels(0).
-wificonfig.staconfig.auto_connect = 1; // Device doesn't wait for user request.
-memcpy(wificonfig.staconfig.ssid,WIFI_DEV_SSID,sizeof(WIFI_DEV_SSID)); // Set SSID
-memcpy(wificonfig.staconfig.psk,WIFI_DEV_PSK,sizeof(WIFI_DEV_PSK)); // Se PSK
+wifiprovconfig.mode = SYS_WIFI_STA; // Set mode as STA
+wifiprovconfig.save_config = false; // Disable saving wifi configuration
+wifiprovconfig.staconfig.auth_type = SYS_WIFI_WPA2; // Set the auth type to SYS_WIFI_WPA2
+wifiprovconfig.staconfig.channel = 0; // Enable all the channels(0).
+wifiprovconfig.staconfig.auto_connect = 1; // Device doesn't wait for user request.
+memcpy(wifiprovconfig.staconfig.ssid,WIFI_DEV_SSID,sizeof(WIFI_DEV_SSID)); // Set SSID
+memcpy(wifiprovconfig.staconfig.psk,WIFI_DEV_PSK,sizeof(WIFI_DEV_PSK)); // Set PSK
 
-//sysObj.syswifi return from SYS_WIFI_Initialize()
-if (SYS_WIFI_OBJ_INVALID != SYS_WIFI_CtrlMsg (sysObj.syswifi,SYS_WIFI_CONNECT,wificonfig,sizeof(SYS_WIFI_CONFIG)))
+if (SYS_WIFIPROV_OBJ_INVALID != SYS_WIFIPROV_CtrlMsg (WiFiprovServHandle,SYS_WIFIPROV_SETCONFIG,&wifiprovconfig,sizeof(SYS_WIFIPROV_CONFIG)))
 {
-
+//When Wi-Fi Provisioning Configuration need to be updated
 }
 
-Details of SYS_WIFI_SCANREQ:
-In Scan request, user can set channel number and type of scan.
+Details of SYS_WIFIPROV_GETCONFIG:
 
-uint8_t buff[2];
-buff[0] = 0 ; 				//Scan all the channels
-buff[1] = false; 			// Set the Scan type as passive (false- passive scan,true -active scan)
-SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_SCANREQ,buff,2);
+SYS_WIFIPROV_CtrlMsg (WiFiprovServHandle,SYS_WIFIPROV_GETCONFIG,NULL,0);
 
-Details of SYS_WIFI_REGCALLBACK:
-client can register multiple callback.Number of supported callback registration is a MHC configuration.
+Details of SYS_WIFIPROV_CONNECT:
 
-SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_REGCALLBACK,WiFiServCallback,sizeof(uint8_t *));
-SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_REGCALLBACK,WiFiServCallback1,sizeof(uint8_t *));
+//Updating Wi-Fi Connected state to Provisioning service
+bool prov_connectstate = true;
+SYS_WIFIPROV_CtrlMsg (WiFiprovServHandle,SYS_WIFIPROV_CONNECT,&prov_connectstate,sizeof(prov_connectstate));
 
-Details of SYS_WIFI_GETCONFIG:
-Get Wi-Fi Configuration using control message request.
-
-SYS_WIFI_CtrlMsg(sysObj.syswifi,,SYS_WIFI_GETCONFIG,NULL,0);
-
-Details of SYS_WIFI_DISCONNECT:
-Device Disconnect request using control message	request.
-
-SYS_WIFI_CtrlMsg(sysObj.syswifi,,SYS_WIFI_DISCONNECT,NULL,0);
+//Updating Wi-Fi disconnected state to Provisioning service
+bool prov_connectstate = false;
+SYS_WIFIPROV_CtrlMsg (WiFiprovServHandle,SYS_WIFIPROV_CONNECT,&prov_connectstate,sizeof(prov_connectstate));
 
 ```
 **Remarks**
