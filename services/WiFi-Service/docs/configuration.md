@@ -1,7 +1,7 @@
 ---
 grand_parent: Services
 parent: WiFi as a service
-title: WifI service Doc 2
+title: Wi-Fi System Service Configuration
 has_toc: true
 nav_order: 1
 ---

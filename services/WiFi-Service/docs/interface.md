@@ -1,9 +1,9 @@
 ---
-grand_parent: System Services
-parent: Wi-Fi System Service
+grand_parent: Services
+parent: WiFi as a service
 title: Wi-Fi System Service Interface
 has_toc: true
-nav_order: 2
+nav_order: 1
 ---
 
 # System Service Interface
