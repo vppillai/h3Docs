@@ -1,7 +1,7 @@
 ---
 grand_parent: Services
 parent: WiFi as a service
-title: IP1553 Peripheral Library Interface
+title: IWiFi service doc 1
 has_toc: true
 nav_order: 2
 ---
