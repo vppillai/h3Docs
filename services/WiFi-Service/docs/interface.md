@@ -1,12 +1,12 @@
 ---
-grand_parent: Services
-parent: WiFi as a service
-title: IWiFi service doc 1
+grand_parent: System Services
+parent: Wi-Fi System Service
+title: Wi-Fi System Service Interface
 has_toc: true
 nav_order: 2
 ---
 
-# Peripheral Library Interface
+# System Service Interface
 {: .no_toc }
 
 ### Table of contents
@@ -17,641 +17,696 @@ nav_order: 2
 
 ---
 
-## Data Types and Constants
 
-### IP1553_INT_MASK
+## Included Files Summary
 
-```c
-typedef enum
-{
-    IP1553_INT_MASK_EMT = IP1553_IER_EMT_Msk,
-    IP1553_INT_MASK_MTE = IP1553_IER_MTE_Msk,
-    IP1553_INT_MASK_ERX = IP1553_IER_ERX_Msk,
-    IP1553_INT_MASK_ETX = IP1553_IER_ETX_Msk,
-    IP1553_INT_MASK_ETRANS_MASK = IP1553_IER_ETRANS_Msk,
-    IP1553_INT_MASK_TE = IP1553_IER_TE_Msk,
-    IP1553_INT_MASK_TCE = IP1553_IER_TCE_Msk,
-    IP1553_INT_MASK_TPE = IP1553_IER_TPE_Msk,
-    IP1553_INT_MASK_TDE = IP1553_IER_TDE_Msk,
-    IP1553_INT_MASK_TTE = IP1553_IER_TTE_Msk,
-    IP1553_INT_MASK_TWE = IP1553_IER_TWE_Msk,
-    IP1553_INT_MASK_BE = IP1553_IER_BE_Msk,
-    IP1553_INT_MASK_ITR = IP1553_IER_ITR_Msk,
-    IP1553_INT_MASK_TVR = IP1553_IER_TVR_Msk,
-    IP1553_INT_MASK_DBR = IP1553_IER_DBR_Msk,
-    IP1553_INT_MASK_STR = IP1553_IER_STR_Msk,
-    IP1553_INT_MASK_TSR = IP1553_IER_TSR_Msk,
-    IP1553_INT_MASK_OSR = IP1553_IER_OSR_Msk,
-    IP1553_INT_MASK_SDR = IP1553_IER_SDR_Msk,
-    IP1553_INT_MASK_SWD = IP1553_IER_SWD_Msk,
-    IP1553_INT_MASK_RRT = IP1553_IER_RRT_Msk,
-    IP1553_INT_MASK_ITF = IP1553_IER_ITF_Msk,
-    IP1553_INT_MASK_OTF = IP1553_IER_OTF_Msk,
-    IP1553_INT_MASK_IPB = IP1553_IER_IPB_Msk,
-    IP1553_INT_MASK_ERROR_MASK = ( IP1553_INT_MASK_MTE |
-                                   IP1553_INT_MASK_TE |
-                                   IP1553_INT_MASK_TCE |
-                                   IP1553_INT_MASK_TPE |
-                                   IP1553_INT_MASK_TDE |
-                                   IP1553_INT_MASK_TTE |
-                                   IP1553_INT_MASK_TWE |
-                                   IP1553_INT_MASK_BE |
-                                   IP1553_INT_MASK_ITR ),
-    /* Force the compiler to reserve 32-bit memory for enum */
-    IP1553_INT_MASK_INVALID = 0xFFFFFFFF
-} IP1553_INT_MASK;
-```
+| Name | Description |
+|-|-|
+
+## Data Types Summary
+
+| Name | Description |
+|-|-|
+| [SYS_WIFI_AUTH ](#SYS_WIFI_AUTH ) | Identifies the type of Authentication requested. |
+| [SYS_WIFI_CTRLMSG ](#SYS_WIFI_CTRLMSG ) | Identifies the control message for which the client has called the SYS_WIFI_CtrlMsg(). |
+| [SYS_WIFI_MODE ](#SYS_WIFI_MODE ) | Identifies the Wi-Fi operating mode. |
+| [SYS_WIFI_STA_CONFIG](#SYS_WIFI_STA_CONFIG) | Configuration of station parameters. |
+| [SYS_WIFI_AP_CONFIG](#SYS_WIFI_AP_CONFIG) | Configuration of access point mode parameters. |
+| [SYS_WIFI_CONFIG](#SYS_WIFI_CONFIG) | Configuration of device configuration parameters. |
+| [SYS_WIFI_STATUS](#SYS_WIFI_STATUS) | Result of a Wi-Fi service client interface get status operation(SYS_WIFI_GetStatus()). |
+| [SYS_WIFI_RESULT](#SYS_WIFI_RESULT) | Result of a Wi-Fi system service client interface operation. |
+Pointer to a Wi-Fi system service callback function. |
+
+## System Interface Functions Summary
+
+| Name | Description |
+|-|-|
+| [System interface functions are called by system code to initialize the](#System interface functions are called by system code to initialize the) | | [SYS_WIFI_Initialize](#SYS_WIFI_Initialize) | Initializes the System Wi-Fi module. |
+| [SYS_WIFI_Deinitialize](#SYS_WIFI_Deinitialize) | Deinitializes the module instance of the system Wi-Fi service |
+| [SYS_WIFI_GetStatus](#SYS_WIFI_GetStatus) | Returns Wi-Fi system service status. |
+| [SYS_WIFI_Tasks](#SYS_WIFI_Tasks) | Maintains the Wi-Fi System tasks and functionalities. |
+| [SYS_WIFI_CtrlMsg](#SYS_WIFI_CtrlMsg) | Returns success/ failure for the connect/disconnect/scan operation asked by client. |
+
+## Included Files
+
+## Data Types
+
+
+### SYS_WIFI_AUTH 
 
 **Summary**
 
-Identifies the IP1553 current interrupt status
+Identifies the type of Authentication requested.  
 
 **Description**
 
-This data type identifies the IP1553 interrupt status
-
----
-
-### IP1553_CALLBACK
-
-```c
-typedef void (*IP1553_CALLBACK) (uintptr_t contextHandle);
-```
-
-**Summary**
-
-IP1553 Callback Function Pointer.
-
-**Description**
-
-This data type defines the required function signature for the IP1553 callback function. Application must register a pointer to a callback function whose function signature (parameter and return value types) match the types specified by this function pointer in order to receive callback from the PLIB.
-The parameters and return values are described here and a partial example implementation is provided.
-
-**Parameters**
-
-* *contextHandle* - Value identifying the context of the application that registered the callback function
+Identifies the type of Authentication requested.  
 
 **Remarks**
 
-The context parameter contains the a handle to the client context, provided at the time the callback function was registered using the CallbackRegister function. This context handle value is passed back to the client as the "context" parameter. It can be any value (such as a pointer to the client's data) necessary to identify the client context or instance of the client that made the data transfer request.
-
-The callback function executes in the PLIB's interrupt context. It is recommended of the application to not perform process intensive or blocking operations with in this function.
-
-**Example**
-
+None. 
 ```c
-void APP_IP1553_Handler(uintptr_t context)
+typedef enum
 {
-    //Fixable error has occurred
-}
+// Requesting a Open Authentication types
+SYS_WIFI_OPEN = 1,
 
-IP1553_CallbackRegister(&APP_IP1553_Handler, (uintptr_t)NULL);
+// Requesting a WEP Authentication types
+SYS_WIFI_WEP,
+
+// Requesting a WPA/WPA2(Mixed) Authentication types
+SYS_WIFI_WPAWPA2MIXED,
+
+// Requesting a WPA2 Authentication types
+SYS_WIFI_WPA2
+
+} SYS_WIFI_AUTH ;
 ```
 
----
+### SYS_WIFI_CTRLMSG 
 
-### IP1553_OBJ
+
+**Summary**
+
+Identifies the control message for which the client has called the SYS_WIFI_CtrlMsg().  
+
+**Description**
+
+Identifies the control message for which the client has called the SYS_WIFI_CtrlMsg().  
+
+**Remarks**
+
+The different control messages which can be invoked by the client. 
+```c
+typedef enum
+{
+//Control message type for requesting a Wi-Fi Configuration set(for connect)
+SYS_WIFI_CONNECT = 0,
+
+//Control message type for requesting a Wi-Fi device disconnect
+SYS_WIFI_DISCONNECT,
+
+//Control message type for requesting a Wi-Fi configuration information
+SYS_WIFI_GETCONFIG,
+
+//Control message type for registering a Wi-Fi system service client callback
+SYS_WIFI_REGCALLBACK,
+
+//Control message type for requesting a Wi-Fi scan.In Scan request, client can set channel number and type of scan(active/passive).
+SYS_WIFI_SCANREQ
+
+} SYS_WIFI_CTRLMSG ;
+```
+
+### SYS_WIFI_MODE 
+
+
+**Summary**
+
+Identifies the Wi-Fi operating mode.  
+
+**Description**
+
+Identifies the Wi-Fi operating mode.  
+
+**Remarks**
+
+Client need to manually reboot device after switching mode. For example, changing operating mode to STA to AP or AP to STA. 
+```c
+typedef enum
+{
+// Requesting a operating mode a station
+SYS_WIFI_STA = 0,
+
+// Requesting a operating mode a AP access point.
+SYS_WIFI_AP
+
+} SYS_WIFI_MODE ;
+```
+
+### SYS_WIFI_STA_CONFIG
+
+
+**Summary**
+
+Configuration of station parameters.  
+
+**Description**
+
+Configuration of station parameters.  
+
+**Remarks**
+
+None. 
 
 ```c
 typedef struct
 {
-    /* Transfer Event Callback */
-    IP1553_CALLBACK callback;
+//Wi-Fi station mode SSID
+uint8_t ssid[32];
 
-    /* Transfer Event Callback Context */
-    uintptr_t context;
-} IP1553_OBJ;
+//Wi-Fi station mode passphrase
+uint8_t psk[64];
+
+//Wi-Fi station mode authentication type
+SYS_WIFI_AUTH auth_type;
+
+//Wi-Fi station mode channel number.
+//values of channel:
+//0 - scan and connect to all the channels
+//1 to 13 - - scan and connect to specified channel
+uint8_t channel;
+
+//Wi-Fi station mode auto connect flag.
+//value 0- Don't connect to AP, wait for client request.
+//value 1- Connect to AP immediately
+bool auto_connect;
+
+} SYS_WIFI_STA_CONFIG;
 ```
+
+### SYS_WIFI_AP_CONFIG
+
 
 **Summary**
 
-IP1553 PLib Object structure
+Configuration of access point mode parameters.  
 
 **Description**
 
-This data structure defines the IP1553 PLib Instance Object
+Configuration of access point mode parameters.  
 
----
+**Remarks**
 
-### IP1553_DATA_TX_TYPE
+None. 
 
+```c
+typedef struct
+{
+//Wi-Fi access point mode SSID
+uint8_t ssid[32];
+
+//Wi-Fi access point mode passphrase
+uint8_t psk[64];
+
+//Wi-Fi access point mode authentication type
+SYS_WIFI_AUTH auth_type;
+
+//Wi-Fi access point mode channel number.
+//values of channel:
+//1 to 13 - - operating channel of access point
+uint8_t channel;
+
+//Wi-Fi access point mode SSID visibility
+//value of ssid_visibility:
+//0 - Hidden SSID
+//1 - broadcast the SSID
+bool ssid_visibility;
+
+} SYS_WIFI_AP_CONFIG;
+```
+
+### SYS_WIFI_CONFIG
+
+
+**Summary**
+
+Configuration of device configuration parameters.  
+
+**Description**
+
+Configuration of device configuration parameters.  
+
+**Remarks**
+
+None. 
+```c
+typedef struct
+{
+//Operating mode of the device
+SYS_WIFI_MODE mode;
+
+//Flag to identify if configuration needs to be saved in NVM. 0 – Do not save configuration in NVM. 1 – Save configuration in NVM.
+uint8_t save_config;
+
+//Wi-Fi station mode configuration structure
+SYS_WIFI_STA_CONFIG staconfig;
+
+//Wi-Fi access point mode configuration structure
+SYS_WIFI_AP_CONFIG apconfig;
+
+}SYS_WIFI_CONFIG;
+```
+
+### SYS_WIFI_STATUS
+
+
+**Summary**
+
+Result of a Wi-Fi service client interface get status operation(SYS_WIFI_GetStatus()).  
+
+**Description**
+
+Result of a Wi-Fi service client interface get status operation(SYS_WIFI_GetStatus()).  
+
+**Remarks**
+
+None. 
 ```c
 typedef enum
 {
-    IP1553_DATA_TX_TYPE_BC_TO_RT = 0,
-    IP1553_DATA_TX_TYPE_RT_TO_BC,
-    IP1553_DATA_TX_TYPE_RT_TO_RT,
-} IP1553_DATA_TX_TYPE;
+//Wi-Fi system service is in init status
+SYS_WIFI_STATUS_INIT = 1,
+
+//Wi-Fi system service is in driver open status
+SYS_WIFI_STATUS_WDRV_OPEN_REQ,
+
+//Wi-Fi system service is in auto connect wait status
+SYS_WIFI_STATUS_AUTOCONNECT_WAIT,
+
+//Wi-Fi system service is in wait for TCPIP stack init status
+SYS_WIFI_STATUS_TCPIP_WAIT_FOR_TCPIP_INIT,
+
+//Wi-Fi system service is in Wi-Fi connect request status
+SYS_WIFI_STATUS_CONNECT_REQ,
+
+//In AP mode,Wi-Fi system service is in wait for AP IP address
+SYS_WIFI_STATUS_WAIT_FOR_AP_IP,
+
+//In AP mode,Wi-Fi system service is in wait for connecting STA IP address
+SYS_WIFI_STATUS_WAIT_FOR_STA_IP,
+
+//Wi-Fi system service is in TCPIP ready status, waiting for client request.
+SYS_WIFI_STATUS_TCPIP_READY,
+
+//Wi-Fi system service is in TCPIP error status
+SYS_WIFI_STATUS_TCPIP_ERROR,
+
+//Wi-Fi system service is in not in valid status
+SYS_WIFI_STATUS_NONE =255
+} SYS_WIFI_STATUS;
+```
+
+### SYS_WIFI_RESULT
+
+
+**Summary**
+
+Result of a Wi-Fi system service client interface operation.  
+
+**Description**
+
+Identifies the result of Wi-Fi service operations  
+
+**Remarks**
+
+None. 
+```c
+typedef enum{
+
+// Operation completed with success
+SYS_WIFI_SUCCESS = 0,
+
+//Operation Failed.
+SYS_WIFI_FAILURE,
+
+//Wi-Fi configuration request failed
+SYS_WIFI_CONFIG_FAILURE,
+
+//Wi-Fi Connect request failed
+SYS_WIFI_CONNECT_FAILURE,
+
+//Wi-Fi Save request failed
+SYS_WIFI_SAVE_FAILURE,
+
+//Operation request object is invalid
+SYS_WIFI_OBJ_INVALID=255
+
+}SYS_WIFI_RESULT;
+```
+
+
+### 
+
+**Function**
+
+```c
+void (*SYS_WIFI_CALLBACK )(uint32_t event, void * data,void *cookie )
 ```
 
 **Summary**
 
-IP1553 data transfer types
+Pointer to a Wi-Fi system service callback function.  
 
 **Description**
 
-This data type identifies the data transfer type that BC initiate
+This data type defines a pointer to a Wi-Fi service callback function. Callback functions can be registered by client at initialization or using control message type.  
 
----
+**Precondition**
 
-### IP1553_BUS
+The Wi-Fi service must have been initialized using the SYS_WIFI_Initialize function if client registering callback using control message.  
+
+**Parameters**
+
+*event* - A event value, event can be any of SYS_WIFI_CTRLMSG types. 
+
+*data* - Wi-Fi service Data. 
+
+*cookie* - Client register cookie.  
+
+**Returns**
+
+None.  
+
+**Example**
 
 ```c
-typedef enum
+APP_DATA appData;
+void WiFiServCallback (uint32_t event, void * data,void *cookie )
 {
-    IP1553_BUS_A = 0,
-    IP1553_BUS_B
-} IP1553_BUS;
-```
-
-**Summary**
-
-IP1553 output bus selection
-
-**Description**
-
-This data type identifies the IP1553 output bus selection
-
----
-
-### IP1553_MODE_CMD
-
-```c
-typedef enum
+IPV4_ADDR *IPAddr;
+switch(event)
 {
-    IP1553_MODE_CMD_DYNAMIC_BUS_CONTROL = 0,
-    IP1553_MODE_CMD_SYNCHRONIZE_WITHOUT_DATA = 1,
-    IP1553_MODE_CMD_TRANSMIT_STATUS_WORD = 2,
-    IP1553_MODE_CMD_INITIATE_SELF_TEST = 3,
-    IP1553_MODE_CMD_TRANSMITTER_SHUTDOWN = 4,
-    IP1553_MODE_CMD_OVERRIDE_TRANSMITTER_SHUTDOWN = 5,
-    IP1553_MODE_CMD_INHIBIT_TERMINAL_FLAG_BIT = 6,
-    IP1553_MODE_CMD_OVERRIDE_INHIBIT_TERMINAL_FLAG_BIT = 7,
-    IP1553_MODE_CMD_RESET_REMOTE_TERMINAL = 8,
-    IP1553_MODE_CMD_TRANSMIT_VECTOR_WORD = 16,
-    IP1553_MODE_CMD_SYNCHRONIZE_WITH_DATA = 17,
-    IP1553_MODE_CMD_TRANSMIT_LAST_COMMAND = 18,
-    IP1553_MODE_CMD_TRANSMIT_BIT_WORD = 19,
-} IP1553_MODE_CMD;
+case SYS_WIFI_CONNECT:
+IPAddr = (IPV4_ADDR *)data;
+SYS_CONSOLE_PRINT("IP address obtained = %d.%d.%d.%d \\r\\n",IPAddr->v[0], IPAddr->v[1], IPAddr->v[2], IPAddr->v[3]);
+break;
+case SYS_WIFI_DISCONNECT:
+SYS_CONSOLE_PRINT("Device DISCONNECTED \\r\\n");
+break;
+case SYS_WIFI_GETCONFIG:
+SYS_WIFI_CONFIG *wificonfig;
+
+wificonfig = (SYS_WIFI_CONFIG *) data;
+SYS_CONSOLE_PRINT("%s:%d Device mode=%d\\r\\n",__func__,__LINE__,wificonfig->mode);
+break;
+
+}
+}
+void APP_Initialize(void) {
+appData.state = APP_STATE_INIT;
+}
+
+void APP_Tasks(void) {
+
+switch (appData.state) {
+case APP_STATE_INIT:
+{
+SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_REGCALLBACK,WiFiServCallback,sizeof(uint8_t *));
+appData.state=APP_STATE_SERVICE_TASKS;
+break;
+}
+
+case APP_STATE_SERVICE_TASKS:
+{
+
+break;
+}
+default:
+{
+break;
+}
+}
+}
+
+```
+**Remarks**
+
+None. 
+
+```c
+typedef void (*SYS_WIFI_CALLBACK )(uint32_t event, void * data,void *cookie );
+
+```
+## System Interface Functions
+
+
+### System interface functions are called by system code to initialize the
+
+module and maintain proper operation of it.
+
+
+### SYS_WIFI_Initialize
+
+**Function**
+
+```c
+SYS_MODULE_OBJ SYS_WIFI_Initialize( SYS_WIFI_CONFIG *config,
+SYS_WIFI_CALLBACK callback,
+void *cookie)
 ```
 
 **Summary**
 
-IP1553 Mode Command code
+Initializes the System Wi-Fi module.  
 
 **Description**
 
-This data type identifies the 1553 protocol Mode Command code values
+Wi-Fi service supports only one single instance of Wi-Fi.  
 
----
+**Parameters**
 
-## Initialization functions
+*config* - Wi-Fi device configuration structure. 
 
-### IP1553_Initialize
+*callback* - The client callback function pointer. 
+
+*cookie* - The pointer which will be passed to the customer application when the customer callback function is invoked.  
+
+**Returns**
+
+If successful, returns a valid handle to an object. Otherwise, it returns SYS_MODULE_OBJ_INVALID.  
+
+**Example**
 
 ```c
-void IP1553_Initialize(void)
+#define WIFI_DEV_SSID "DEMO_AP"
+#define WIFI_DEV_PSK "password"
+
+SYS_WIFI_CONFIG 	wificonfig;
+
+wificonfig.mode = SYS_WIFI_STA; // Set mode as STA
+wificonfig.save_config = false; // Disable saving wifi configuration
+wificonfig.staconfig.auth_type = SYS_WIFI_WPA2; // Set the auth type to SYS_WIFI_WPA2
+wificonfig.staconfig.channel = 0; // Enable all the channels(0).
+wificonfig.staconfig.auto_connect = 1; // Device doesn't wait for user request.
+memcpy(wificonfig.staconfig.ssid,WIFI_DEV_SSID,sizeof(WIFI_DEV_SSID)); // Set SSID
+memcpy(wificonfig.staconfig.psk,WIFI_DEV_PSK,sizeof(WIFI_DEV_PSK)); // Se PSK
+
+sysObj.syswifi = SYS_WIFI_Initialize(&wificonfig, WiFiServCallback, 0);
+if (sysObj.syswifi == SYS_MODULE_OBJ_INVALID)
+{
+// Handle error
+}
+```
+
+**Remarks**
+
+This routine can only be called once during system initialization. If the Wi-Fi system service is enabled using MHC, then auto generated code will take care of system wi-fi initialization. 
+
+### SYS_WIFI_Deinitialize
+
+**Function**
+
+```c
+SYS_WIFI_RESULT SYS_WIFI_Deinitialize (SYS_MODULE_OBJ object)
 ```
 
 **Summary**
 
-Initializes given instance of the IP1553 peripheral Set the Mode (Bus Controller or Remote Terminal) and reset the instance. In RT mode, set the RT Address Enable all 1553 interrupt sources
+Deinitializes the module instance of the system Wi-Fi service  
 
-**Preconditions**
+**Description**
 
-None
+This function deinitializes the module instance disabling its operation. Resets all of the internal data structures and fields to the default settings.  
+
+**Precondition**
+
+The SYS_WIFI_Initialize function should have been called before calling this function.  
 
 **Parameters**
 
-None
+*object* - SYS WIFI object handle, returned from SYS_WIFI_Initialize  
 
 **Returns**
 
-None
+return SYS_WIFI_RESULT  
 
----
-
-## Setup functions
-
-### IP1553_BuffersConfigSet
+**Example**
 
 ```c
-void IP1553_BuffersConfigSet(uint16_t* txBuffers, uint16_t* rxBuffers)
+if (SYS_WIFI_SUCCESS == SYS_WIFI_Deinitialize (sysObj.syswifi))
+{
+// when the SYS WIFI is De-initialized.
+}
+```
+
+**Remarks**
+
+Deinitialize should be called if the WiFi service is no longer going to be used. 
+
+### SYS_WIFI_GetStatus
+
+**Function**
+
+```c
+uint8_t SYS_WIFI_GetStatus ( SYS_MODULE_OBJ object)
 ```
 
 **Summary**
 
-Set the memory base address for emmission and reception buffers
+Returns Wi-Fi system service status.  
 
-**Preconditions**
+**Description**
 
-IP1553_Initialize must have been called for the IP1553 instance
+This function returns the current status of the System Wi-Fi service.  
+
+**Precondition**
+
+The SYS_WIFI_Initialize function should have been called before calling this function.  
 
 **Parameters**
 
-* *txBuffers* - Pointer to application allocated emission buffer base address. Application must allocate buffer from non-cached contiguous memory and buffer size must be 16 bit * IP1553_BUFFERS_SIZE * IP1553_BUFFERS_NUM.
-* *rxBuffers* - Pointer to application allocated reception buffer base address. Application must allocate buffer from non-cached contiguous memory and buffer size must be 16 bit * IP1553_BUFFERS_SIZE * IP1553_BUFFERS_NUM.
+*object* - SYS WIFI object handle, returned from SYS_WIFI_Initialize  
 
 **Returns**
 
-None
+return SYS_WIFI_STATUS if client provided object is valid, else return SYS_WIFI_OBJ_INVALID.  
 
----
-
-### Status functions
-
-#### IP1553_GetTxBuffersStatus
+**Example**
 
 ```c
-uint32_t IP1553_GetTxBuffersStatus(void)
+if (SYS_WIFI_STATUS_TCPIP_READY == SYS_WIFI_GetStatus (sysObj.syswifi))
+{
+// when the SYS WIFI module in TCPIP ready STATUS
+}
+```
+
+**Remarks**
+
+None 
+
+### SYS_WIFI_Tasks
+
+**Function**
+
+```c
+uint8_t SYS_WIFI_Tasks ( SYS_MODULE_OBJ object)
 ```
 
 **Summary**
 
-Returns the transmission buffers status
+Maintains the Wi-Fi System tasks and functionalities.  
 
-**Preconditions**
+**Description**
 
-IP1553_Initialize must have been called for the IP1553 instance
+This function is used to run the various tasks and functionalities of Wi-Fi system service.  
+
+**Precondition**
+
+The SYS_WIFI_Initialize function should have been called before calling this function.  
 
 **Parameters**
 
-None
+*object* - SYS WIFI object handle, returned from SYS_WIFI_Initialize  
 
 **Returns**
 
-Bitfield value that indicates for each of the 32 buffers if they are ready to be sent (1) or are empty (0)
+return SYS_WIFI_STATUS if client provided object is valid, else return SYS_WIFI_OBJ_INVALID.  
 
----
-
-#### IP1553_ResetTxBuffersStatus
+**Example**
 
 ```c
-void IP1553_ResetTxBuffersStatus(uint32_t buffers)
+if (SYS_WIFI_OBJ_INVALID != SYS_WIFI_Tasks (sysObj.syswifi))
+{
+
+}
+```
+
+**Remarks**
+
+If the Wi-Fi system service is enabled using MHC, then auto generated code will take care of system task execution. 
+
+### SYS_WIFI_CtrlMsg
+
+**Function**
+
+```c
+SYS_WIFI_RESULT SYS_WIFI_CtrlMsg (SYS_MODULE_OBJ object,uint32_t event,void *buffer,uint32_t length )
 ```
 
 **Summary**
 
-Reset the transmission buffers status
+Returns success/ failure for the connect/disconnect/scan operation asked by client.  
 
-**Preconditions**
+**Description**
 
-IP1553_Initialize must have been called for the IP1553 instance
+This function is used to make control message request(connect,disconnect,scan,register callback) to Wi-Fi system service.  
+
+**Precondition**
+
+The SYS_WIFI_Initialize function should have been called before calling this function.  
 
 **Parameters**
 
-* *buffers* - Bitfield of buffer to be reset. When reset a buffer is set ready to be sent (1) in status.
+*object* - SYS WIFI object handle, returned from SYS_WIFI_Initialize 
+
+*event* - A event value, event can be any of SYS_WIFI_CTRLMSG types 
+
+*buffer* - Control message data input. 
+
+*length* - size of buffer data  
 
 **Returns**
 
-None
+return SYS_WIFI_RESULT.  
 
----
-
-#### IP1553_GetRxBuffersStatus
+**Example**
 
 ```c
-uint32_t IP1553_GetRxBuffersStatus(void)
+Details of SYS_WIFI_CONNECT:
+
+SYS_WIFI_CONFIG 	wificonfig;
+SYS_MODULE_OBJ 		WiFiServHandle;
+
+wificonfig.mode = SYS_WIFI_STA; // Set mode as STA
+wificonfig.save_config = false; // Disable saving wifi configuration
+wificonfig.staconfig.auth_type = SYS_WIFI_WPA2; // Set the auth type to SYS_WIFI_WPA2
+wificonfig.staconfig.channel = 0; // Enable all the channels(0).
+wificonfig.staconfig.auto_connect = 1; // Device doesn't wait for user request.
+memcpy(wificonfig.staconfig.ssid,WIFI_DEV_SSID,sizeof(WIFI_DEV_SSID)); // Set SSID
+memcpy(wificonfig.staconfig.psk,WIFI_DEV_PSK,sizeof(WIFI_DEV_PSK)); // Se PSK
+
+//sysObj.syswifi return from SYS_WIFI_Initialize()
+if (SYS_WIFI_OBJ_INVALID != SYS_WIFI_CtrlMsg (sysObj.syswifi,SYS_WIFI_CONNECT,wificonfig,sizeof(SYS_WIFI_CONFIG)))
+{
+
+}
+
+Details of SYS_WIFI_SCANREQ:
+In Scan request, user can set channel number and type of scan.
+
+uint8_t buff[2];
+buff[0] = 0 ; 				//Scan all the channels
+buff[1] = false; 			// Set the Scan type as passive (false- passive scan,true -active scan)
+SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_SCANREQ,buff,2);
+
+Details of SYS_WIFI_REGCALLBACK:
+client can register multiple callback.Number of supported callback registration is a MHC configuration.
+
+SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_REGCALLBACK,WiFiServCallback,sizeof(uint8_t *));
+SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_REGCALLBACK,WiFiServCallback1,sizeof(uint8_t *));
+
+Details of SYS_WIFI_GETCONFIG:
+Get Wi-Fi Configuration using control message request.
+
+SYS_WIFI_CtrlMsg(sysObj.syswifi,,SYS_WIFI_GETCONFIG,NULL,0);
+
+Details of SYS_WIFI_DISCONNECT:
+Device Disconnect request using control message	request.
+
+SYS_WIFI_CtrlMsg(sysObj.syswifi,,SYS_WIFI_DISCONNECT,NULL,0);
+
 ```
+**Remarks**
 
-**Summary**
-
-Returns the reception buffers status
-
-**Preconditions**
-
-IP1553_Initialize must have been called for the IP1553 instance
-
-**Parameters**
-
-None
-
-**Returns**
-
-Bitfield value that indicates for each of the 32 buffers if they are free to receive data or not : empty (1) or full(0).
-
----
-
-#### IP1553_ResetRxBuffersStatus
-
-```c
-void IP1553_ResetRxBuffersStatus(uint32_t buffers)
-```
-
-**Summary**
-
-Reset the reception buffers status
-
-**Preconditions**
-
-IP1553_Initialize must have been called for the IP1553 instance
-
-**Parameters**
-
-* *buffers* - Bitfield of buffer to be reset. When reset a buffer is set ready to receive data (1) in status.
-
-**Returns**
-
-None
-
----
-
-#### IP1553_IrqStatusGet
-
-```c
-IP1553_INT_MASK IP1553_IrqStatusGet( void )
-```
-
-**Summary**
-
-Returns the IP1553 status
-
-**Preconditions**
-
-IP1553_Initialize must have been called for the IP1553 instance
-
-**Parameters**
-
-None
-
-**Returns**
-
-Current status of instance
-
----
-
-### IP1553_BcStartDataTransfer
-
-```c
-void IP1553_BcStartDataTransfer(IP1553_DATA_TX_TYPE transferType, uint8_t txAddr, uint8_t txSubAddr, uint8_t rxAddr, uint8_t rxSubAddr, uint8_t dataWordCount, IP1553_BUS bus )
-```
-
-**Summary**
-
-Start BC command for data transfer
-
-**Preconditions**
-
-IP1553_Initialize must have been called for the IP1553 instance IP1553_BuffersConfigSet must have been called to set allocated buffers IP1553_ResetRxBuffersStatus and IP1553_ResetTxBuffersStatus must have been called for the concerned buffers (sub-address) used in the command.
-
-**Parameters**
-
-* *transferType* - Type of data transfer command to issue
-* *txAddr* - The transmitter address : 0 if BC, RT address otherwise
-* *txSubAddr* - The transmitter sub-address
-* *rxAddr* - The receiver address : 0 if BC, RT address otherwise
-* *rxSubAddr* - The receiver sub-address
-* *dataWordCount* - Number of data word (16 bit) to read/write. 0 stand for 32 data word
-* *bus* - Indicate if the transfer uses physical BUS A or B
-
-**Returns**
-
-None
-
----
-
-### IP1553_BcModeCommandTransfer
-
-```c
-void IP1553_BcModeCommandTransfer(uint8_t rtAddr, IP1553_MODE_CMD modeCommand, uint16_t cmdParameter, IP1553_BUS bus )
-```
-
-**Summary**
-
-Start BC mode command transfer.
-
-**Preconditions**
-
-IP1553_Initialize must have been called for the IP1553 instance.
-IP1553_BuffersConfigSet must have been called to set allocated buffers.
-
-**Parameters**
-
-* *rtAddr* - The remote terminal address or 0x1F for broadcast.
-* *modeCommand* - The mode command code.
-* *cmdParameter* - Optional command parameter for applicable commande code.
-* *bus* - Indicate if the transfer uses physical BUS A or B.
-
-**Returns**
-
-None
-
----
-
-### IP1553_GetFirstStatusWord
-
-```c
-uint16_t IP1553_GetFirstStatusWord( void )
-```
-
-**Summary**
-
-Returns the IP1553 transfer first status word
-
-**Preconditions**
-
-IP1553_Initialize must have been called for the IP1553 instance
-
-**Parameters**
-
-None
-
-**Returns**
-
-Value of transfer first status word
-
----
-
-### IP1553_GetSecondStatusWord
-
-```c
-uint16_t IP1553_GetSecondStatusWord( void )
-```
-
-**Summary**
-
-Returns the IP1553 transfer second status word
-
-**Preconditions**
-
-IP1553_Initialize must have been called for the IP1553 instance
-
-**Parameters**
-
-None
-
-**Returns**
-
-Value of transfer second status word
-
----
-
-### IP1553_BCEnableCmdSet
-
-```c
-void IP1553_BCEnableCmdSet(bool enable)
-```
-
-**Summary**
-
-Enable BCEnableCmd bit to accepts or rejects the control when the terminal receives a valid Dynamic Bus Control mode command. This is the value indicated in the Dynamic Bus Control bit of the status word sent in response to the mode command
-
-**Preconditions**
-
-IP1553_Initialize must have been called for the IP1553 instance
-
-**Parameters**
-
-* *enable* - If true, The terminal accepts the bus control. If false, the terminal reject the bus control
-
-**Returns**
-
-None
-
----
-
-### IP1553_SREQBitCmdSet
-
-```c
-void IP1553_SREQBitCmdSet(bool enable)
-```
-
-**Summary**
-
-Enable or Disable SREQBitCmd bit. Indicates the value of the Service Request bit to be returned in status word transfers.
-
-**Preconditions**
-
-IP1553_Initialize must have been called for the IP1553 instance.
-
-**Parameters**
-
-* *enable* - If true, Service Request bit returned in status word transfers is 1. 0 if false.
-
-**Returns**
-
-None
-
----
-
-### IP1553_BusyBitCmdSet
-
-```c
-void IP1553_BusyBitCmdSet(bool enable)
-```
-
-**Summary**
-
-Enable or Disable BusyBitCmd bit. Indicates the value of the busy bit to be returned in status word transfers. If enabled, Inhibits the transmission of the data words in response to a transmit command and its corresponding interrupt.
-
-**Preconditions**
-
-IP1553_Initialize must have been called for the IP1553 instance.
-
-**Parameters**
-
-* *enable* - If true, busy bit returned in status word transfers is 1. 0 if false.
-
-**Returns**
-
-None
-
----
-
-### IP1553_SSBitCmdSet
-
-```c
-void IP1553_SSBitCmdSet(bool enable)
-```
-
-**Summary**
-
-Enable or Disable SSBitCmd bit. Indicates the value of the Subsystem Flag bit to be returned in status word transfers.
-
-**Preconditions**
-
-IP1553_Initialize must have been called for the IP1553 instance.
-
-**Parameters**
-
-* *enable* - If true, Subsystem Flag bit returned in status word transfers is 1. 0 if false.
-
-**Returns**
-
-None
-
----
-
-### IP1553_TRBitCmdSet
-
-```c
-void IP1553_TRBitCmdSet(bool enable)
-```
-
-**Summary**
-
-Enable or Disable TRBitCmd bit. Indicates the value of the T/F bit to be returned in status word transfers.
-
-**Preconditions**
-
-IP1553_Initialize must have been called for the IP1553 instance.
-
-**Parameters**
-
-* *enable* - If true, T/F bit returned in status word transfers is 1. 0 if false.
-
-**Returns**
-
-None
-
-**Note**:
-
-After reception of a valid "Inhibit T/F Bit" command the T/F bit is maintained at logic level 0.
-
----
-
-### IP1553_BitWordSet
-
-```c
-void IP1553_BitWordSet(uint16_t bitWord)
-```
-
-**Summary**
-
-Set the built-in self test results in BIT register. This value is sent by the terminal in response to a "Transmit Built-In Test".
-
-**Preconditions**
-
-IP1553_Initialize must have been called for the IP1553 instance.
-
-**Parameters**
-
-* *bitWord* - Built-in self test results value.
-
-**Returns**
-
-None
-
----
-
-### IP1553_VectorWordSet
-
-```c
-void IP1553_VectorWordSet(uint16_t vectorWord)
-```
-
-**Summary**
-
-Set the Vector Word value to be sent by the terminal in response to a "Transmit Vector Word" command.
-
-**Preconditions**
-
-IP1553_Initialize must have been called for the IP1553 instance.
-
-**Parameters**
-
-* *vectorWord* - Vector Word value to be sent by the terminal.
-
-**Returns**
-
-None
+None 
