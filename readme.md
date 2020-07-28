@@ -3,7 +3,7 @@ title: Harmony 3 Aerospace Package
 nav_order: 1
 ---
 
-# MPLAB® Harmony 3 Aerospace
+# MPLAB® Harmony 3 Wireless
 
 MPLAB® Harmony 3 is an extension of the MPLAB® ecosystem for creating
 embedded firmware solutions for Microchip 32-bit SAM and PIC® microcontroller
