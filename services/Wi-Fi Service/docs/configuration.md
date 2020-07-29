@@ -20,6 +20,7 @@ or access point(AP)
 
 #### Device Mode:
     Indicates the device operation mode(STA\\AP).
+
 #### STA Mode:
     
     SSID: 
@@ -37,6 +38,7 @@ or access point(AP)
     Auto Connect:
         Indicate whether to auto connect to AP (enable) or wait for
         user input (disable).
+
 #### AP Mode:
     
     SSID:
