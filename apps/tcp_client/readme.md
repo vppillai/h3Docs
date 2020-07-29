@@ -1,6 +1,5 @@
 ---
-grand_parent: Example Applications
-parent: Secured TCP Client
+parent: Example Applications
 title: Secured TCP Client
 has_toc: true
 nav_order: 1
