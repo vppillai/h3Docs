@@ -16,7 +16,7 @@ This example application acts as a TCP Server to which a TCP Client can connect 
 
 ## Description
 
-This example shows the read and write operation over a TCP Connection in a non-blocking manner. The DUT shall act as a Soft AP and the Station running the TCP Client shall connect to this Soft AP and establish connection with the TCP Server running on the DUT.
+This application demonstrates how a user can start a TCP server on the device which is running in Soft AP Mode. The user would need to configure the Wi-Fi settings for the Soft AP and the port number at which the TCP server would be started. The Application will come up as a Soft AP with the TCP Server running on it. A third-party STA will connect to the Soft AP device. The TCP Client on the third -party STA will then connect to the TCP Server running on the device.
 
 ## Downloading and building the application
 
@@ -62,8 +62,5 @@ To build the application, refer to the following table and open the project usin
 9.	Connect a Laptop tp the Soft AP (with SSID DEMO_AP_SOFTAP) running on the DUT
 10. Start a TCP Client (python script) on laptop, giving the server IP as the IP of the Board, and the port as 5555:
 ![System Console](images/system_console.png)
+![Console](images/tcp_client_console.png)
 
-![Console](images/secured_tcp_client_console.png)
-
-
-Note: The secured tcp connection may require the user to modify WolfSSL component settings in MHC depending on the security settings of the site/ server he is trying to access.

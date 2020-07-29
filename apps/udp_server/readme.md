@@ -7,7 +7,7 @@ has_toc: false
 nav_order: 1
 
 family: PIC32MZW1
-function: UD{ Server
+function: UDP Server
 ---
 
 # UDP Server 
@@ -16,7 +16,7 @@ This example application acts as a UDP Server to which a UDP Client can connect 
 
 ## Description
 
-This example shows the read and write operation over a UDP Connection in a non-blocking manner. The DUT (running the UDP Server) and the Another Entity running the UDP Client shall connect to a Home AP and UDP Client shall exchange data with the UDP Server running on the DUT.
+This application demonstrates how a user can start a UDP server on the device. The user would need to configure the Wi-Fi credentials for the Home AP and the port number at which the UDP server should be started. Any standard UDP client can be used to connect to the device which is operating as a UDP server.
 
 ## Downloading and building the application
 

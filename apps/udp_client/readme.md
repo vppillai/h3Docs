@@ -16,7 +16,7 @@ This example application acts as a UDP Client which connects to a UDP Server and
 
 ## Description
 
-This example shows the read and write operation over a UDP Connection in a non-blocking manner. The DUT (running the UDP Client) and the other entity running the UDP Server shall connect to a Home AP and UDP Server shall exchange data with the UDP Client running on the DUT.
+This application demonstrates how a user can use a UDP client to connect to a UDP server. The user would need to configure the Wi-Fi credentials for the Home AP and the UDP server details. The default application will send a string to the UDP server. Any standard UDP server can be used to enable the device to connect as a UDP client.
 
 ## Downloading and building the application
 
