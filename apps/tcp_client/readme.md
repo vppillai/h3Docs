@@ -2,7 +2,12 @@
 parent: Example Applications
 title: Secured TCP Client
 has_toc: true
+has_children: false
+has_toc: false
 nav_order: 1
+
+family: PIC32MZW1
+function: Secured TCP Client
 ---
 
 # Secured TCP Client 
