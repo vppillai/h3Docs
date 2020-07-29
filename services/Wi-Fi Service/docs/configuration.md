@@ -19,7 +19,7 @@ When user select the Wi-Fi System Service library, all the required dependencies
 or access point(AP)
 
 #### Device Mode:
-    Indicates the device operation mode(STA\\AP).
+    Indicates the device operation mode(STA/AP).
 
 #### STA Mode:
     
@@ -27,17 +27,15 @@ or access point(AP)
         Access Point (AP/Router) SSID to connect.
     
     Security type :
-        Indicates the security being used by the AP with which
-        device should connect – OPEN / WPA2 / WPAWPA2 (Mixed)/ WPA3.    
+        Indicates the security being used by the AP with which device should connect – OPEN / WPA2 / WPAWPA2 (Mixed)/ WPA3.    
     
     Password:
-        Password to be used while connecting to the AP. This is
-        mandatory is security mode is set to anything other than
-        OPEN. It will be ignored if security mode is set to OPEN.
+        Password to be used while connecting to the AP. 
+        This is mandatory if security mode is set to anything other than OPEN. 
+        It will be ignored if security mode is set to OPEN.
     
     Auto Connect:
-        Indicate whether to auto connect to AP (enable) or wait for
-        user input (disable).
+        Indicate whether to auto connect to AP (enable) or wait for user input (disable).
 
 #### AP Mode:
     
@@ -73,8 +71,7 @@ or access point(AP)
         Indicates the maximum number of clients user can register.
 
     Enable Wi-Fi Provisioning service:
-        Enables/Disables Wi-Fi Provisioning System Service functionality
-        along with Wi-Fi System Service.
+        Enables/Disables Wi-Fi Provisioning System Service  functionality along with Wi-Fi System Service.
     
     Enable Debug Logs:
         Enables/Disables Wi-Fi and Wi-Fi Provisioning System Service flows and levels.
