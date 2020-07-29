@@ -59,7 +59,7 @@ To build the application, refer to the following table and open the project usin
 
 8.	The device shall come up as SoftAP and then as per the default Net Service configuration, the TCP Server shall come up, awaiting a connection from a TCP Client.
 
-9.	Connect a Laptop tp the Soft AP (with SSID DEMO_AP_SOFTAP) running on the DUT
+9.	Connect a Laptop tp the Soft AP (with ssid DEMO_AP_SOFTAP) running on the DUT
 10. Start a TCP Client (python script) on laptop, giving the server IP as the IP of the Board, and the port as 5555:
 ![System Console](images/system_console.png)
 ![Console](images/tcp_client_console.png)

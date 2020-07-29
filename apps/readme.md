@@ -5,7 +5,7 @@ has_toc: false
 nav_order: 2
 ---
 
-# Examples applications
+# Examples Applications
 
 The following applications are provided to demonstrate the usage of system services with wireless library and networking stack.
 
