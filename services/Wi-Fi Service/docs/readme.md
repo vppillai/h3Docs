@@ -32,8 +32,8 @@ Key Features:
 
 The Wi-Fi System Service provides simple API's to enable Station(STA) or Access Point(AP) functionalities. Multiple clients can request the Wi-Fi system service functionalities like connection request,disconnect request,scan request,etc. User is not required to have Wi-Fi domain knowledge to developed station(STA) or access point(AP) application using Wi-Fi System Service.
 
-* [Configuring the library](configuration.md/#configuring-the-library)
-
 * [Using the library](usage.md/#using-the-library)
+
+* [Configuring the library](configuration.md/#configuring-the-library)
 
 * [Library interface](interface.md)

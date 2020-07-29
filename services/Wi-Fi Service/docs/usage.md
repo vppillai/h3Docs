@@ -20,7 +20,7 @@ The Wi-Fi System Service library provides an abstraction to the Wi-Fi driver API
  
 The following diagram depicts the Wi-Fi System Service abstraction model. 
 
-![](./images/image1.png)
+![](./images/Wifiservice_abstract.png)
 
 ## How The Library Works
 
@@ -28,7 +28,7 @@ By default, MHC generated code provides all the functionalities to
 enable STA or AP mode application. User needs to configure the required
 STA or AP mode configuration using MHC. 
 
-![](./images/image2.png)
+![](./images/Seqdig_WiFi_Initialization.png)
 
 Multiple clients can register for callbacks to the Wi-Fi System Service
 Library for getting Wi-Fi connectivity update information. Additionally
@@ -36,5 +36,5 @@ clients can make request to the Wi-Fi System Service Library using
 SYS\_WIFI\_CtrlMsg() API. More information can be found in the
 SYS\_WIFI\_CtrlMsg examples. 
 
-![](./images/image3.png)
+![](./images/seqdig_WiFi_Multiclient.png)
 
