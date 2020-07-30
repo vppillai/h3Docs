@@ -25,7 +25,11 @@ User can follow below commands for NET System Service:
     Description: Command to close the instance of Net System Service 
     ![](./images/sysnetclose_cli.png)
 
-4. sysnet get info 
+4. sysnet send 
+    Description: Command to close the instance of Net System Service 
+    ![](./images/sysnetsend_cli.png)
+
+5. sysnet get info 
     Description: Command for knowing the Current Information for all the Instances of Net System Service 
     ![](./images/sysnetgetinfo_cli.png)
 
