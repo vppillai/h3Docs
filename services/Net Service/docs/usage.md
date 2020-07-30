@@ -7,50 +7,18 @@ nav_order: 1
 ---
 
 # Net System Service Usage
+## Description
+The NET System Service provides simple APIs to enable Server or Client Connectivity for either TCP or UDP. The User need not take care of intermediate states of a TCPIP Connection, as the Service internally takes care of that. User is not required to have Security domain knowledge to establish a secured connection via the application using NET System Service library.
 
-|Command   |Details   |Example   |
-|---|---|---|
-|sysnethelp   |NET System Service help command which displays the supported CLI commands   |>sysnethelp
-SysNet commands:
-
-1) sysnet open ?                -- To open the sysnet service
-
-2) sysnet close ?               -- To close the sysnet service
-
-3) sysnet send ?                -- To send message via the sysnet service
-
-4) sysnet get info ?            -- To get list of sysnet service instances
->   |
-|sysnet get info   |Command for knowing the Current Information for all the Instances of Net System Service   |>
->sysnet get info
-
-
-*****************************************
-NET Service Instance: 0
-Status: SYS_NET_STATUS_IDLE
-Mode: SYS_NET_MODE_CLIENT
-Socket ID: 0
-Host:
-Remote IP: 0.0.0.0
-Remote Port: 0
-Local Port: 0
-hNet: 0
-
-*****************************************
-NET Service Instance: 1
-Status: SYS_NET_STATUS_IDLE
-Mode: SYS_NET_MODE_CLIENT
-Socket ID: 0
-Host:
-Remote IP: 0.0.0.0
-Remote Port: 0
-Local Port: 0
-hNet: 0
->
->   |
-|sysnet open   |Command for Reconfiguring an already open instance of Net System Service   |sysnet 0 1 google.com 443 tls_enable 1 auto_reconnect 1   |
-|sysnet send   |Command to send a message on an already open Instance of Net System Service   |sysnet send 0 hello   |
-|sysnet close   |Command for closing the socket   |sysnet close 0   |
+### Command Line:
+User can follow below commands for NET System Service: 
+| Command         | Details                                                                                 | Example                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+|-----------------|-----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| sysnethelp      | NET System Service help command which displays the supported CLI commands               | >sysnethelp<br><br>     SysNet commands:<br><br>     1) sysnet open ?                -- To   open the sysnet service<br><br>     2) sysnet close ?               -- To   close the sysnet service<br><br>     3) sysnet send ?                -- To   send message via the sysnet service<br><br>     4) sysnet get info ?            -- To   get list of sysnet service instances                                                                                                                                                                                                                                                              |
+| sysnet get info | Command for knowing the Current Information for all the Instances of Net System Service | ><br>     >sysnet get info<br>     <br>     <br>     *****************************************<br>     NET Service Instance: 0<br>     Status: SYS_NET_STATUS_IDLE<br>     Mode: SYS_NET_MODE_CLIENT<br>     Socket ID: 0<br>     Host:<br>     Remote IP: 0.0.0.0<br>     Remote Port: 0<br>     Local Port: 0<br>     hNet: 0<br>     <br>     *****************************************<br>     NET Service Instance: 1<br>     Status: SYS_NET_STATUS_IDLE<br>     Mode: SYS_NET_MODE_CLIENT<br>     Socket ID: 0<br>     Host:<br>     Remote IP: 0.0.0.0<br>     Remote Port: 0<br>     Local Port: 0<br>     hNet: 0<br>     ><br>     > |
+| sysnet open     | Command for Reconfiguring an already open instance of Net System Service                | sysnet 0 1 google.com 443 tls_enable 1 auto_reconnect 1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| sysnet send     | Command to send a message on an already open Instance of Net System Service             | sysnet send 0 hello                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| sysnet close    | Command to close the socket                                                             | sysnet close 0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 ## Abstraction Model
 
 The NET System Service library provides an abstraction to the NetPres/ TCPIP APIs to provide following functionalities.
