@@ -1,12 +1,12 @@
 ---
-grand_parent: System Services
-parent: Net System Service
+grand_parent: Services
+parent: Net Service
 title: Net System Service Interface
 has_toc: true
 nav_order: 2
 ---
 
-# System Service Interface
+# Net System Service Interface
 {: .no_toc }
 
 ### Table of contents
