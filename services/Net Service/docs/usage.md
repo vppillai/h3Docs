@@ -14,23 +14,28 @@ The NET System Service provides simple APIs to enable Server or Client Connectiv
 User can follow below commands for NET System Service: 
 
 1. sysnethelp 
-    Description: NET System Service help command which displays the supported CLI commands
+    
+    NET System Service help command which displays the supported CLI commands
     ![](./images/sysnethelp_cli.png)
 
 2. sysnet open 
-    Description: Command for Reconfiguring an already open instance of Net System Service 
+    
+     Command for Reconfiguring an already open instance of Net System Service 
     ![](./images/sysnetopen_cli.png)
 
 3. sysnet close 
-    Description: Command to close the instance of Net System Service 
+
+    Command to close the instance of Net System Service 
     ![](./images/sysnetclose_cli.png)
 
 4. sysnet send 
-    Description: Command to close the instance of Net System Service 
+
+    Command to close the instance of Net System Service 
     ![](./images/sysnetsend_cli.png)
 
 5. sysnet get info 
-    Description: Command for knowing the Current Information for all the Instances of Net System Service 
+    
+    Command for knowing the Current Information for all the Instances of Net System Service 
     ![](./images/sysnetgetinfo_cli.png)
 
 
