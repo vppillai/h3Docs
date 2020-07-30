@@ -16,6 +16,8 @@ nav_order: 1
 {:toc}
 
 ---
+# Wi-Fi Provisioning Methods
+
 ## Command line
 
 ##### Wi-Fi Provisioning commands Details 
