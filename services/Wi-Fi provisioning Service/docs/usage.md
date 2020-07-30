@@ -20,7 +20,7 @@ nav_order: 1
 
 ## Command line
 
-##### Wi-Fi Provisioning commands Details 
+Wi-Fi Provisioning commands Details 
 
 
 
@@ -32,7 +32,7 @@ nav_order: 1
 | wifiprov get     | Get Wi-Fi Configuration   | wifiprov get   |
 |||
 
-##### Wi-Fi Provisioning commands command parameters information, 
+Wi-Fi Provisioning commands command parameters information, 
 
 
 | Parameter       | Sub Parameter                                          |
@@ -56,7 +56,7 @@ Note: Wi-Fi Provisioning using command line method is not recommended in product
 Wi-Fi provisioning service can be configured to use TCP socket, a socket server is activated when the device boots.Use a laptop or mobile phone as a TCP client to connect to the device's socket server. 
 Wi-Fi provisioning service defult TCP server port is 6666.
 
-### Wi-Fi provisioning with JSON
+### Wi-Fi provisioning with JSON format
 
 User can send the below JSON format data from TCP Client to provisioning the device.
 
@@ -68,7 +68,7 @@ Example:
 "AP": {"ch": 2, "ssidv": 1, "auth": 4, "SSID": "DEMO_AP_SOFTAP", "PWD": "password" } } 
  ```
 
-##### Details of JSON Parameters, 
+Details of JSON Parameters, 
 
 
 | Parameter       | Sub Parameter  |               Value Details     |
@@ -114,7 +114,8 @@ Follow below steps to provisioning the device using mobile application:
 - After provisioning the device reboot and connect to HOMEAP.
 
 
-#### Sending the TCP data without mobile application:
+
+Sending the TCP data without mobile application:
 Using laptop or mobile phone as TCP client,user can send the TCP data in below format to provisioning the device.
 
 TCP Data Format : apply,\<ssid\>,\<Auth\>,\<password\>,NULL
