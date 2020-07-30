@@ -27,7 +27,7 @@ nav_order: 2
 
 | Name | Description |
 |-|-|
-| [App Debug Print Flows */](#App Debug Print Flows */) | | [SYS_NET_Config](#SYS_NET_Config) | Used for passing on the configuration related to the Net Socket that needs |
+| [SYS_NET_Config](#SYS_NET_Config) | Used for passing on the configuration related to the Net Socket that needs |
 | [SYS_NET_STATUS](#SYS_NET_STATUS) | Identifies the current status of the Sys Net Instance. |
 | [SYS_NET_EVENT](#SYS_NET_EVENT) | Identifies the event type for which the User Callback is called. |
 | [SYS_NET_CTRL_MSG](#SYS_NET_CTRL_MSG) | Identifies the control message for which the User has called the SYS_NET_CtrlMsg(). |
@@ -62,9 +62,6 @@ Pointer to a Net system service callback function. |
 
 ## Data Types and Constants
 
-
-### App Debug Print Flows */
-
 #define SYS_NET_MAX_NUM_OF_SOCKETS	2		// Number of Instances Supported by the NET System Service
 #define SYS_NET_MODE_CLIENT	0				// Client Mode Value
 #define SYS_NET_MODE_SERVER	1				// Server Mode Value
@@ -77,6 +74,7 @@ Pointer to a Net system service callback function. |
 #define SYS_NET_DEFAULT_AUTO_RECONNECT 1	// Auto Reconnect Enabled by default
 #define SYS_NET_DEFAULT_NET_INTF 0	// Interface 0 by default
 
+// App Debug Print Flows
 #define NET_CFG 0x1
 #define NET_DATA 0x2
 

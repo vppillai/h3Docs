@@ -1,12 +1,12 @@
 ---
 grand_parent: Services
-parent: Wi-Fi Service
-title: Wi-Fi System Service Configuration
+parent: Net Service
+title: Net System Service Configuration
 has_toc: true
 nav_order: 1
 ---
 
-# Wi-Fi System Service Configuration
+# Net System Service Configuration
 The Wi-Fi System Service library should be configured through MHC(MPLAB Harmony Configurator). The following figure shows the MHC configuration window for configuring the Wi-Fi System Service and a brief description of various configuration options. 
 
 When user select the Wi-Fi System Service library, all the required dependencies are added automatically into the MHC configuration. In the Wi-Fi System Service library, user can select the operating device mode as station(STA) or access point(AP) and make a required changes in the selected mode. 

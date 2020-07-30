@@ -1,12 +1,12 @@
 ﻿---
 grand_parent: Services
-parent: Wi-Fi Service
-title: Wi-Fi System Service Usage
+parent: Net Service
+title: Net System Service Usage
 has_toc: true
 nav_order: 1
 ---
 
-# Wi-Fi System Service Usage
+# Net System Service Usage
 
 ## Abstraction Model
 
