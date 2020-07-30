@@ -18,11 +18,6 @@ nav_order: 2
 ---
 
 
-## Included Files Summary
-
-| Name | Description |
-|-|-|
-
 ## Data Types and Constants Summary
 
 | Name | Description |
@@ -58,25 +53,29 @@ Pointer to a Net system service callback function. |
 | [SYS_NET_CtrlMsg](#SYS_NET_CtrlMsg) | Returns success/ failure for the disconnect/ reconnect operation asked by the user. |
 | [SYS_NET_SetConfigParam](#SYS_NET_SetConfigParam) | Returns success on setting a configuration parameter for Net System Service. |
 
-## Included Files
-
 ## Data Types and Constants
 
 #define SYS_NET_MAX_NUM_OF_SOCKETS	2		// Number of Instances Supported by the NET System Service
+
 #define SYS_NET_MODE_CLIENT	0				// Client Mode Value
+
 #define SYS_NET_MODE_SERVER	1				// Server Mode Value
+
 #define SYS_NET_MAX_HOSTNAME_LEN 64 	// Max Host Name Length
 
 #define SYS_NET_IP_PROT_UDP 0			// TCP - Ip Protocol Value
+
 #define SYS_NET_IP_PROT_TCP 1			// UDP - Ip Protocol Value
 
 #define SYS_NET_DEFAULT_TLS_ENABLE 0	// TLS Disabled by default
+
 #define SYS_NET_DEFAULT_AUTO_RECONNECT 1	// Auto Reconnect Enabled by default
+
 #define SYS_NET_DEFAULT_NET_INTF 0	// Interface 0 by default
 
-// App Debug Print Flows
-#define NET_CFG 0x1
-#define NET_DATA 0x2
+#define NET_CFG 0x1					// App Debug Print Flows - CFG
+
+#define NET_DATA 0x2					// App Debug Print Flows - DATA
 
 
 ### SYS_NET_Config
@@ -749,6 +748,3 @@ if( SYS_NET_SetConfigParam(objSysNet, 0, &auto_reconnect) == SYS_NET_SUCCESS)
 **Remarks**
 
 None. 
-
-```c
-#define SYS_APPDEBUG_DBG_PRINT(obj, flow, fmt, ...)
