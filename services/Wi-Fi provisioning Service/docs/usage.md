@@ -7,7 +7,15 @@ nav_order: 1
 ---
 
 # Wi-Fi provisioning System Service Usage
+{: .no_toc }
 
+### Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
+---
 ## Command line
 
 ##### Wi-Fi Provisioning commands Details 
@@ -97,7 +105,7 @@ Follow below steps to provisioning the device using mobile application:
 
 ![](./images/SYS_Wi-Fi_Provision_Mobile_app_scan_connect.png)
 
-- user can manually also add provisioning information using "Add New Network".
+- User can manually add provisioning information using "Add New Network" option also.
 
 ![](./images/SYS_Wi-Fi_Provision_Mobile_app_add_new_network.png)
 
@@ -123,8 +131,7 @@ Follow below steps to provisioning the device using HTTP:
 - Open the browser and enter the PIC32MZW1 AP IP address(example: http://192.168.1.1/).
 
 ![](./images/SYS_Wi-Fi_Provision_HTTP_HOME.png)
-
-- Goto page "Network Configuratio" page.
+- Goto "Network Configuratio" page.
 - Update the Configuration details and click on "Apply Wi-Fi Configuration"
 
 ![](./images/SYS_Wi-Fi_Provision_HTTP_Networkconfig.png)
