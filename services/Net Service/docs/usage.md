@@ -13,22 +13,13 @@ The NET System Service provides simple APIs to enable Server or Client Connectiv
 ### Command Line:
 User can follow below commands for NET System Service: 
 
-1. sysnethelp 
-    Description: NET System Service help command which displays the supported CLI commands
-    ![](./images/sysnethelp_cli.png)
-
-2. sysnet open 
-    Description: Command for Reconfiguring an already open instance of Net System Service 
-    ![](./images/sysnetopen_cli.png)
-
-3. sysnet close 
-    Description: Command to close the instance of Net System Service 
-    ![](./images/sysnetclose_cli.png)
-
-4. sysnet get info 
-    Description: Command for knowing the Current Information for all the Instances of Net System Service 
-    ![](./images/sysnetgetinfo_cli.png)
-
+| Command | Details | Example |
+|-|-|-|
+| sysnethelp |    <br>NET System Service help command which displays   the supported CLI commands    |    <br>   <br>   <br>>sysnethelp<br><br>          SysNet commands:<br><br>          1) sysnet open ?                -- To   open the sysnet service<br><br>          2) sysnet close ?               -- To   close the sysnet service<br><br>          3) sysnet send ?                -- To   send message via the sysnet   service<br><br>          4) sysnet get info ?            -- To   get list of sysnet service instances    |
+| sysnet open <mode> <ip_prot> <host_name> <port> <auto_reconnect> <tls_enable> | Command   for Reconfiguring an already open instance of Net System Service | *   mode                  - 0 (client)/   1(server)<br>             * ip_prot               - 0 (udp)/ 1(tcp)<br>             * host_name             - Host Name/ IP Address<br>             * port                  - Server Port -   1:65535<br>             * auto_reconnect                - 0/1 optional: Default   1<br>             * tls_enable            - 0/1 optional: Default 0<br>             * Example: sysnet 0 1   google.com 443 tls_enable 1 auto_reconnect 1 |
+| sysnet close | Command   to sclose the socket | sysnet close 0 |
+| sysnet send | Command   to send a message on an already open Instance of Net System Service | sysnet send 0   hello |
+| sysnet get info | Command   for knowing the Current Information for all the Instances of Net System   Service | ><br>     <br>          >sysnet get info<br>            *****************************************<br>     <br>          NET Service Instance: 0<br>          Status:   SYS_NET_STATUS_IDLE<br>          Mode: SYS_NET_MODE_CLIENT<br>          Socket ID: 0<br>          Host:<br>          Remote IP: 0.0.0.0<br>          Remote Port: 0<br>          Local Port: 0<br>          hNet: 0<br>            *****************************************<br>     <br>          NET Service Instance: 1<br>          Status:   SYS_NET_STATUS_IDLE<br>          Mode: SYS_NET_MODE_CLIENT<br>          Socket ID: 0<br>          Host:<br>          Remote IP: 0.0.0.0<br>          Remote Port: 0<br>          Local Port: 0<br>          hNet: 0<br>          > |
 
 ## Abstraction Model
 
