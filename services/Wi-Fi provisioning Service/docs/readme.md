@@ -15,9 +15,8 @@ Wi-Fi Provisioning System Service Library is used to enable Wi-Fi provisioning m
 
 ### Key Features:
 - Wi-Fi Provisioning using command line. 
-- Wi-Fi Provisioning using TCP socket.
-- Wi-Fi Provisioning using mobile Application.
-- Wi-Fi Provisioning using webpage.
+- Wi-Fi Provisioning using TCP Socket 
+- Wi-Fi Provisioning using webpage(HTTP page).
 
 
 * [Configuring the library](configuration.md/#configuring-the-library)

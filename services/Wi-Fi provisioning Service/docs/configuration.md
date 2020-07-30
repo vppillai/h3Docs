@@ -15,30 +15,34 @@ The Wi-Fi Provisioning System Service library should be configured through MHC(M
 The Wi-Fi Provisioning System Service library MHC menu provide option to enable required Wi-Fi Provisioning methods base on user application requirements. User can select Command line and Socket mode as shown in below diagram. 
 
 
-![](./images/SYS_WiFi_Provision_MHC_diagram.png)
+![](./images/SYS_Wi-Fi_Provision_MHC_diagram.png)
 
 ## Configuration Options:
 
 - WiFi Configuration Stored at NVM Address(Program Flash memory): 
     - NVM Address for storing Wi-Fi Configuration. 
     - User can change this configuration value with program flash memory page aligned address. 
-    - User has to make sure this NVM address(Program Flash memory) page is not overwritten by application code. 
-- WiFi Provisioning Enable in STA mode 
-    - Configuration for Wi-Fi Provisioning in STA mode. 
-    - Enables this configuration only when Wi-Fi system service STA mode is enabled. 
-- WiFi Provisioning Enable in AP mode 
-    - Configuration for Wi-Fi Provisioning in AP mode. 
-    - Enables this configuration only when Wi-Fi system service AP mode is enabled. 
-- WiFi Provisioning with Command Line: 
+    - User has to make sure the NVM address(Program Flash memory) page is not overwritten by application code.
+
+- Save Configuration in the NVM(Program flash memory): 
+    - Indicates the Wi-Fi configuration storing in the NVM. 
+    - This configuration is only valid when "Enable Wi-Fi Provisioning service" is enabled. 
+ 
+Wi-Fi Provisioning Methods  
+- Command Line(CLI): 
     - Enable/Disable Wi-Fi Provision using command line. 
-- WiFi Provisioning with TCP socket: 
+
+- HTTP pages: 
+    - Enable/Disable Wi-Fi Provision using HTTP pages(webpage).
+    -  HTTP Socket Number:   
+        - User configuration for HTTP Server Socket. 
+        - Defult port number is 80.   
+
+- TCP socket: 
     -  Enable/Disable Wi-Fi Provision using TCP Socket. 
     -  TCP Socket Number: 
         - User configuration for TCP Server Socket. 
+        - Defult port number is 6666.   
  
 
-When user want to enable Wi-Fi Provisioning service along with Wi-Fi System Service, then MHC configuration options "Enable Wi-Fi Provisioning service" and "Save Configuration in NVM" should be enabled. 
-
-![](./images/Wi-Fi_system_MHC_block_diagram.png)
- 
 

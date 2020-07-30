@@ -30,7 +30,7 @@ nav_order: 1
 | [SYS_WIFIPROV_CONFIG](#SYS_WIFIPROV_CONFIG) | Configuration of device configuration parameters. |
 | [SYS_WIFIPROV_STATUS](#SYS_WIFIPROV_STATUS) | Result of a Wi-Fi Provisioning system service client interface get operation(SYS_WIFIPROV_GetStatus()). |
 | [SYS_WIFIPROV_RESULT](#SYS_WIFIPROV_RESULT) | Result of a Wi-Fi Provisioning system service client interface operation. |
-| [void](#void) | Pointer to a Wi-Fi Provisioning system service callback function. |
+| [SYS_WIFIPROV_CALLBACK](#SYS_WIFIPROV_CALLBACK) | Pointer to a Wi-Fi Provisioning system service callback function. |
 
 ## Initialization functions Summary
 
@@ -322,7 +322,7 @@ SYS_WIFIPROV_OBJ_INVALID=255
 ```
 
 
-### void
+### SYS_WIFIPROV_CALLBACK
 
 **Function**
 
