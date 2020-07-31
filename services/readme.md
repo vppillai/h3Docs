@@ -11,4 +11,5 @@ nav_order: 3
 * [Wi-Fi Service](./Wi-Fi Service/docs/readme.md)
 * [Wi-Fi provisioning Service](./Wi-Fi provisioning Service/docs/readme.md)
 * [Net Service](./Net Service/docs/readme.md)
+* [Mqtt Service](./Mqtt Service/docs/readme.md)
 

@@ -753,6 +753,3 @@ break;
 
 None. 
 
-```c
-typedef void (*SYS_NET_CALLBACK)(uint32_t event, void *data, void* cookie);
-
