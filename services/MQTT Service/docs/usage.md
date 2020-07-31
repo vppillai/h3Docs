@@ -8,65 +8,76 @@ nav_order: 1
 
 # MQTT System Service Usage
 ## Description
-The NET System Service provides simple APIs to enable Server or Client Connectivity for either TCP or UDP. The User need not take care of intermediate states of a TCPIP Connection, as the Service internally takes care of that. User is not required to have Security domain knowledge to establish a secured connection via the application using NET System Service library.
+The MQTT System Service provides simple APIs to enable MQTT Client Connectivity to a configured MQTT Broker. The User need not take care of intermediate states of a MQTT Connection, as the Service internally takes care of that. User is not required to have Security domain knowledge to establish a secured connection via the application using MQTT System Service library.
 
 ### Command Line:
-User can follow below commands for NET System Service: 
+User can follow below commands for MQTT System Service: 
 
-1. sysnethelp 
+1. sysmqtthelp 
     
-    NET System Service help command which displays the supported CLI commands
-    ![](./images/sysnethelp_cli.png)
+    MQTT System Service help command which displays the supported CLI commands
+    ![](./images/sysmqtthelp_cli.png)
 
-2. sysnet open 
+2. sysmqtt open 
     
-     Command for Reconfiguring an already open instance of Net System Service 
-    ![](./images/sysnetopen_cli.png)
+     Command for Reconfiguring an already open instance of MQTT System Service 
+    ![](./images/sysmqttopen_cli.png)
+    Note: Once the User has configured all the params, the last command for opening the new connection should 'sysmqtt open <instance> apply'
 
-3. sysnet close 
+3. sysmqtt close 
 
-    Command to close the instance of Net System Service 
-    ![](./images/sysnetclose_cli.png)
+    Command to close the instance of MQTT System Service 
+    ![](./images/sysmqttclose_cli.png)
 
-4. sysnet send 
+4. sysmqtt send 
 
-    Command to close the instance of Net System Service 
-    ![](./images/sysnetsend_cli.png)
+    Command to send message on a topic for the instance of MQTT System Service 
+    ![](./images/sysmqttsend_cli.png)
 
-5. sysnet get info 
+5. sysmqtt sunbscribe 
+
+    Command to subscribe to a topic to receive message coming on that topic 
+    ![](./images/sysmqttsubscribe_cli.png)
+
+6. sysmqtt unsunbscribe 
+
+    Command to unsubscribe from a topic 
+    ![](./images/sysmqttunsubscribe_cli.png)
+
+7. sysmqtt get info 
     
     Command for knowing the Current Information for all the Instances of Net System Service 
-    ![](./images/sysnetgetinfo_cli.png)
-
+    ![](./images/sysmqttgetinfo_cli.png)
+    
 
 ## Abstraction Model
 
-The NET System Service library provides an abstraction to the NetPres/ TCPIP APIs to provide following functionalities.
+The MQTT System Service library provides an abstraction to the MQTT APIs to provide following functionalities.
 
-- Connectivity for TCP Client 
-- Connectivity for TCP Server 
-- Connectivity for UDP Client 
-- Connectivity for UDP Server 
+- Connectivity for MQTT Client 
+- Secured Connectivity using TLS 
 - Self Healing 
 - Reduce code user has to write 
 - Reduce time to develop and maintain 
  
-The following diagram depicts the Net System Service abstraction model. 
+The following diagram depicts the MQTT System Service abstraction model. 
 
-![](./images/NetService_abstract.png)
+![](./images/MqttService_abstract.png)
 
 ## How The Library Works
 
-By default MHC generated code provides all the functionalities to enable Client or Server mode applicatation, with TCP or UDP as the IP Protocol. User needs to configure the required Client or Server mode configuration using MHC. User needs to call the SYS_NET_Open() API with a valid callback to open an instance of the Client/ Server configured in the MHC. 
+By default MHC generated code provides all the functionalities to enable MQTT Client applicatation, with secured or unsecured connectivity. User needs to configure the required MQTT Brokerconfiguration using MHC. User needs to call the SYS_MQTT_Connect() API with a valid callback to open an instance of the MQTT Client configured in the MHC. 
 
-![](./images/NetOpen.png)
+![](./images/MqttConnect.png)
 
-The User Application is expected to call SYS_NET_Task() API periodically as this API ensures that the Net System service is able to execute its state machine to process any messages and invoke the user callback for any events. 
+The User Application is expected to call SYS_MQTT_Task() API periodically as this API ensures that the MQTT System service is able to execute its state machine to process any messages and invoke the user callback for any events. 
 
-![](./images/NetTask.png)
+The User Application can call SYS_NET_Publish()/ SYS_NET_Subscribe() API in case it wants to publish message to a topic or receive messages on a topic.
 
-The User Application can call SYS_NET_CtrlMsg() API in case it wants to disconnect the opened connection or to reconnect using different configuration.
+![](./images/MqttPublish.png)
+![](./images/MqttSubscribe.png)
 
-![](./images/NetCtrlMsg.png)
+The User Application when enables Auto-Reconnect, it enables the self healing feature of the MQTT Service. When this feature is enabled, the service will automatically try to establish connection with the MQTT Broker whenever a connection breaks.
+![](./images/MqttSelfHealing.png)
 
 

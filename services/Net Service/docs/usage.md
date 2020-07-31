@@ -30,7 +30,7 @@ User can follow below commands for NET System Service:
 
 4. sysnet send 
 
-    Command to close the instance of Net System Service 
+    Command to send message on the network connection established by the instance of Net System Service 
     ![](./images/sysnetsend_cli.png)
 
 5. sysnet get info 
