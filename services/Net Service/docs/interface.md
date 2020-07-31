@@ -27,7 +27,6 @@ nav_order: 2
 | [SYS_NET_EVENT](#SYS_NET_EVENT) | Identifies the event type for which the User Callback is called. |
 | [SYS_NET_CTRL_MSG](#SYS_NET_CTRL_MSG) | Identifies the control message for which the User has called the SYS_NET_CtrlMsg(). |
 | [SYS_NET_RESULT](#SYS_NET_RESULT) | Identifies the return values for the Sys Net APIs. |
-Pointer to a Net system service callback function. |
 
 ## Initialization functions Summary
 
@@ -35,8 +34,6 @@ Pointer to a Net system service callback function. |
 |-|-|
 | [SYS_NET_Initialize](#SYS_NET_Initialize) | Returns success/ failure for initialization of data structures of the NET service |
 | [SYS_NET_Deinitialize](#SYS_NET_Deinitialize) | Deinitialization of data structures of the NET service |
-| [SYS_NET_Open](#SYS_NET_Open) | Initializes the System NET service. |
-| [SYS_NET_Close](#SYS_NET_Close) | Deinitializes the specific module instance of the SYS NET service |
 
 ## Status functions Summary
 
@@ -48,10 +45,18 @@ Pointer to a Net system service callback function. |
 
 | Name | Description |
 |-|-|
-| [SYS_NET_Task](#SYS_NET_Task) | | [SYS_NET_SendMsg](#SYS_NET_SendMsg) | Returns No of Bytes sent to peer using the System NET instance. |
-| [SYS_NET_RecvMsg](#SYS_NET_RecvMsg) | Returns No of Bytes received from peer using the System NET instance. |
-| [SYS_NET_CtrlMsg](#SYS_NET_CtrlMsg) | Returns success/ failure for the disconnect/ reconnect operation asked by the user. |
+| [SYS_NET_Open](#SYS_NET_Open) | Initializes the System NET service. |
+| [SYS_NET_Close](#SYS_NET_Close) | Deinitializes the specific module instance of the SYS NET service |
+| [SYS_NET_Task](#SYS_NET_Task) | | [SYS_NET_CtrlMsg](#SYS_NET_CtrlMsg) | Returns success/ failure for the disconnect/ reconnect operation asked by the user. |
 | [SYS_NET_SetConfigParam](#SYS_NET_SetConfigParam) | Returns success on setting a configuration parameter for Net System Service. |
+
+## Data Exchange functions Summary
+
+| Name | Description |
+|-|-|
+| [SYS_NET_SendMsg](#SYS_NET_SendMsg) | Returns No of Bytes sent to peer using the System NET instance. |
+| [SYS_NET_RecvMsg](#SYS_NET_RecvMsg) | Returns No of Bytes received from peer using the System NET instance. |
+| [SYS_NET_CALLBACK](#SYS_NET_CALLBACK) | Pointer to a Net system service callback function. |
 
 ## Data Types and Constants
 
@@ -260,76 +265,6 @@ SYS_NET_INVALID_HANDLE = -6,
 } SYS_NET_RESULT;
 ```
 
-
-### 
-
-**Function**
-
-```c
-void (*SYS_NET_CALLBACK )(uint32_t event, void *data, void* cookie)
-```
-
-**Summary**
-
-Pointer to a Net system service callback function.  
-
-**Description**
-
-This data type defines a pointer to a Net service callback function, thus defining the function signature. Callback functions may be registered by clients of the net service when opening a Net socket via the Initialize call.  
-
-**Precondition**
-
-Is a part of the Net service initialization using the SYS_NET_Open function.  
-
-**Parameters**
-
-event	- An event (SYS_NET_EVENT) for which the callback was called. data	- Data (if any) related to the Event 
-*cookie* - A context value, returned untouched to the client when the callback occurs. 
-
-**Returns**
-
-None.  
-
-**Example**
-
-```c
-void NetServCallback(uint32_t event, void *data, void* cookie, )
-{
-switch(event)
-{
-case SYS_NET_EVNT_CONNECTED:
-{
-SYS_CONSOLE_PRINT("NetServCallback(): Status UP");
-while(SYS_NET_SendMsg(g_NetServHandle, "hello", 5) == 0);
-break;
-}
-
-case SYS_NET_EVNT_DISCONNECTED:
-{
-SYS_CONSOLE_PRINT("NetServCallback(): Status DOWN");
-break;
-}
-
-case SYS_NET_EVNT_RCVD_DATA:
-{
-int32_t len = 32;
-uint8_t buffer[32] = {0};
-len = SYS_NET_RecvMsg(g_NetServHandle, buffer, len);
-SYS_CONSOLE_PRINT("NetServCallback(): Data Rcvd = %s", buffer);
-break;
-}
-}
-}
-```
-
-**Remarks**
-
-None. 
-
-```c
-typedef void (*SYS_NET_CALLBACK)(uint32_t event, void *data, void* cookie);
-
-```
 ## Initialization functions
 
 
@@ -392,6 +327,56 @@ SYS_NET_Deinitialize()
 **Remarks**
 
 If the Net system service is enabled using MHC, then auto generated code will take care of system task execution. 
+## Status functions
+
+
+
+
+### SYS_NET_GetStatus
+
+**Function**
+
+```c
+SYS_NET_STATUS SYS_NET_GetStatus ( SYS_MODULE_OBJ object )
+```
+
+**Summary**
+
+Returns System NET instance status.  
+
+**Description**
+
+This function returns the current status of the System NET instance.  
+
+**Precondition**
+
+SYS_NET_Open should have been called before calling this function  
+
+**Parameters**
+
+*object* - SYS NET object handle, returned from SYS_NET_Open  
+
+**Returns**
+
+SYS_NET_STATUS  
+
+**Example**
+
+```c
+// Handle "objSysNet" value must have been returned from SYS_NET_Open.
+if (SYS_NET_GetStatus (objSysNet) == SYS_NET_STATUS_SERVER_AWAITING_CONNECTION)
+{
+// NET system service is initialized and the NET server is ready to accept new connection.
+}
+```
+
+**Remarks**
+
+None. 
+## Setup functions
+
+
+
 
 ### SYS_NET_Open
 
@@ -480,56 +465,6 @@ SYS_NET_Close (objSysNet);
 **Remarks**
 
 Once the Initialize operation has been called, the De-initialize operation must be called before the Initialize operation can be called again. 
-## Status functions
-
-
-
-
-### SYS_NET_GetStatus
-
-**Function**
-
-```c
-SYS_NET_STATUS SYS_NET_GetStatus ( SYS_MODULE_OBJ object )
-```
-
-**Summary**
-
-Returns System NET instance status.  
-
-**Description**
-
-This function returns the current status of the System NET instance.  
-
-**Precondition**
-
-SYS_NET_Open should have been called before calling this function  
-
-**Parameters**
-
-*object* - SYS NET object handle, returned from SYS_NET_Open  
-
-**Returns**
-
-SYS_NET_STATUS  
-
-**Example**
-
-```c
-// Handle "objSysNet" value must have been returned from SYS_NET_Open.
-if (SYS_NET_GetStatus (objSysNet) == SYS_NET_STATUS_SERVER_AWAITING_CONNECTION)
-{
-// NET system service is initialized and the NET server is ready to accept new connection.
-}
-```
-
-**Remarks**
-
-None. 
-## Setup functions
-
-
-
 
 ### SYS_NET_Task
 
@@ -566,6 +501,98 @@ SYS_NET_Task(objSysNet);
 ...
 }
 ```
+
+
+### SYS_NET_CtrlMsg
+
+**Function**
+
+```c
+int32_t SYS_NET_CtrlMsg(SYS_MODULE_OBJ obj, void *data, uint16_t len)
+```
+
+**Summary**
+
+Returns success/ failure for the disconnect/ reconnect operation asked by the user.  
+
+**Description**
+
+This function is used for disconnecting or reconnecting to the peer.  
+
+**Precondition**
+
+SYS_NET_Open should have been called.  
+
+**Parameters**
+
+obj 	- SYS NET object handle, returned from SYS_NET_Open  
+*msg_type* - valid Msg Type  
+*data		- valid data buffer pointer based on the Msg Type* - NULL for DISCONNECT, Pointer to SYS_NET_Config for RECONNECT  len		- length of the data buffer the pointer is pointing to  
+
+**Returns**
+
+*SYS_NET_SUCCESS* - Indicates that the Request was catered to successfully 
+
+*SYS_NET_FAILURE* - Indicates that the Request failed  
+
+**Example**
+
+```c
+// Handle "objSysNet" value must have been returned from SYS_NET_Open.
+if( SYS_NET_CtrlMsg(objSysNet, SYS_NET_CTRL_MSG_DISCONNECT, NULL, 0) == SYS_NET_SUCCESS)
+{
+}
+```
+
+**Remarks**
+
+None. 
+
+### SYS_NET_SetConfigParam
+
+**Function**
+
+```c
+int32_t SYS_NET_SetConfigParam(SYS_MODULE_OBJ obj, uint32_t paramType, void *data)
+```
+
+**Summary**
+
+Returns success on setting a configuration parameter for Net System Service.  
+
+**Description**
+
+This function is currently used for enabling/ disabling the Auto Reconnect feature for the Net Socket.  
+
+**Precondition**
+
+SYS_NET_Open should have been called.  
+
+**Parameters**
+
+obj 	- SYS NET object handle, returned from SYS_NET_Open  
+*paramType* - Reserved for future use  data		- 0/ 1 currently used only for enabling/ disabling the auto reconnect feature  
+
+**Returns**
+
+*SYS_NET_SUCCESS* - Indicates that the Request was catered to successfully  
+
+**Example**
+
+```c
+bool auto_reconnect = true;
+// Handle "objSysNet" value must have been returned from SYS_NET_Open.
+if( SYS_NET_SetConfigParam(objSysNet, 0, &auto_reconnect) == SYS_NET_SUCCESS)
+{
+}
+```
+
+**Remarks**
+
+None. 
+## Data Exchange functions
+
+
 
 
 ### SYS_NET_SendMsg
@@ -661,44 +688,64 @@ if(len > 0)
 
 None. 
 
-### SYS_NET_CtrlMsg
+### SYS_NET_CALLBACK
 
 **Function**
 
 ```c
-int32_t SYS_NET_CtrlMsg(SYS_MODULE_OBJ obj, void *data, uint16_t len)
+void (*SYS_NET_CALLBACK) (uint32_t event, void *data, void* cookie)
 ```
 
 **Summary**
 
-Returns success/ failure for the disconnect/ reconnect operation asked by the user.  
+Pointer to a Net system service callback function.  
 
 **Description**
 
-This function is used for disconnecting or reconnecting to the peer.  
+This data type defines a pointer to a Net service callback function, thus defining the function signature. Callback functions may be registered by clients of the net service when opening a Net socket via the Initialize call.  
 
 **Precondition**
 
-SYS_NET_Open should have been called.  
+Is a part of the Net service initialization using the SYS_NET_Open function.  
 
 **Parameters**
 
-obj 	- SYS NET object handle, returned from SYS_NET_Open  
-*msg_type* - valid Msg Type  
-*data		- valid data buffer pointer based on the Msg Type* - NULL for DISCONNECT, Pointer to SYS_NET_Config for RECONNECT  len		- length of the data buffer the pointer is pointing to  
+event	- An event (SYS_NET_EVENT) for which the callback was called. data	- Data (if any) related to the Event 
+*cookie* - A context value, returned untouched to the client when the callback occurs. 
 
 **Returns**
 
-*SYS_NET_SUCCESS* - Indicates that the Request was catered to successfully 
-
-*SYS_NET_FAILURE* - Indicates that the Request failed  
+None.  
 
 **Example**
 
 ```c
-// Handle "objSysNet" value must have been returned from SYS_NET_Open.
-if( SYS_NET_CtrlMsg(objSysNet, SYS_NET_CTRL_MSG_DISCONNECT, NULL, 0) == SYS_NET_SUCCESS)
+void NetServCallback(uint32_t event, void *data, void* cookie, )
 {
+switch(event)
+{
+case SYS_NET_EVNT_CONNECTED:
+{
+SYS_CONSOLE_PRINT("NetServCallback(): Status UP");
+while(SYS_NET_SendMsg(g_NetServHandle, "hello", 5) == 0);
+break;
+}
+
+case SYS_NET_EVNT_DISCONNECTED:
+{
+SYS_CONSOLE_PRINT("NetServCallback(): Status DOWN");
+break;
+}
+
+case SYS_NET_EVNT_RCVD_DATA:
+{
+int32_t len = 32;
+uint8_t buffer[32] = {0};
+len = SYS_NET_RecvMsg(g_NetServHandle, buffer, len);
+SYS_CONSOLE_PRINT("NetServCallback(): Data Rcvd = %s", buffer);
+break;
+}
+}
 }
 ```
 
@@ -706,45 +753,6 @@ if( SYS_NET_CtrlMsg(objSysNet, SYS_NET_CTRL_MSG_DISCONNECT, NULL, 0) == SYS_NET_
 
 None. 
 
-### SYS_NET_SetConfigParam
-
-**Function**
-
 ```c
-int32_t SYS_NET_SetConfigParam(SYS_MODULE_OBJ obj, uint32_t paramType, void *data)
-```
+typedef void (*SYS_NET_CALLBACK)(uint32_t event, void *data, void* cookie);
 
-**Summary**
-
-Returns success on setting a configuration parameter for Net System Service.  
-
-**Description**
-
-This function is currently used for enabling/ disabling the Auto Reconnect feature for the Net Socket.  
-
-**Precondition**
-
-SYS_NET_Open should have been called.  
-
-**Parameters**
-
-obj 	- SYS NET object handle, returned from SYS_NET_Open  
-*paramType* - Reserved for future use  data		- 0/ 1 currently used only for enabling/ disabling the auto reconnect feature  
-
-**Returns**
-
-*SYS_NET_SUCCESS* - Indicates that the Request was catered to successfully  
-
-**Example**
-
-```c
-bool auto_reconnect = true;
-// Handle "objSysNet" value must have been returned from SYS_NET_Open.
-if( SYS_NET_SetConfigParam(objSysNet, 0, &auto_reconnect) == SYS_NET_SUCCESS)
-{
-}
-```
-
-**Remarks**
-
-None. 
