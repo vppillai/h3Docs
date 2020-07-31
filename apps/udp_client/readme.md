@@ -45,7 +45,7 @@ To build the application, refer to the following table and open the project usin
 2.	Configure Home AP credentials for STA Mode.
 ![MHC](images/configurator.png)
 
-3. Currently Net Service is configured to run as UDP Server running on port 3333. In case the user wants to change this config, please make the changes in the Net Service Module as shown below:
+3. Currently Net Service is configured to run as UDP Client, which connects to a UDP Server running on port 4444. In case the user wants to change this config, please make the changes in the Net Service Module as shown below:
 ![MHC](images/netservice_configurator.png)
 
 4.	Save configurations and generate code via MHC 
@@ -58,10 +58,11 @@ To build the application, refer to the following table and open the project usin
     - Stop : 1 Bit
     - Flow Control : None
 
-8.	The Board shall connect to Home AP and then as per the default Net Service configuration, it shall bring up the UDP Server which shall await connection from a UDP Client..
-![System Console](images/dut_console.png)
+9. User can run any third party utility or a udp_server python script to act as UDP Server running on the Laptop 
+![System Console](images/system_init_console.png)
 
-9. User can run any third party utility or a udp_client python script to act as UDP Client running on the Laptop 
+8.	The Board shall connect to Home AP and then as per the default Net Service configuration, it shall bring up the UDP Client which shall connect to a UDP Server.
+![System Console](images/dut_console.png)
 ![System Console](images/system_console.png)
 
-Note: TLS Connection is not supported for UDP Server configuration
+Note: TLS Connection is not supported for UDP Client configuration

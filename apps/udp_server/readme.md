@@ -59,9 +59,10 @@ To build the application, refer to the following table and open the project usin
     - Flow Control : None
 
 8.	The Board shall connect to Home AP and then as per the default Net Service configuration, it shall bring up the UDP Server which shall await connection from a UDP Client..
-![System Console](images/dut_console.png)
+![System Console](images/dut_init_console.png)
 
 9. User can run any third party utility or a udp_client python script to act as UDP Client running on the Laptop 
 ![System Console](images/system_console.png)
+![System Console](images/dut_console.png)
 
 Note: TLS Connection is not supported for UDP Server configuration

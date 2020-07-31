@@ -23,7 +23,7 @@ This application demonstrates how a user can use the Paho MQTT Client to connect
 To download or clone this application from Github, go to the [top level of the repository](https://github.com/Microchip-MPLAB-Harmony/wireless)
 
 
-Path of the application within the repository is **apps/tcp_client/firmware** .
+Path of the application within the repository is **apps/paho_mqtt_tls_client/firmware** .
 
 To build the application, refer to the following table and open the project using its IDE.
 
@@ -61,11 +61,10 @@ To build the application, refer to the following table and open the project usin
 9.	The Board will connect to Home AP and then as per the default MQTT Service configuration, it shall connect to test.mosquitto.org and publish messages on the topic 'MCHP/Sample/a' periodically every 30 sec. It also subscribes to topic 'MCHP/Sample/b'
 ![Console](images/mqtt_client_publish_console.png)
 
-10.	If any third party MQTT Client connects to test.mosquitto.org and subscribes to the topic 'MCHP/Sample/a', it will receive the periodic messages being published by the MQTT Client running on thr Rio2.
-![Third Party MQTT Client](images/third_party_mqtt_client.png)
+10.	If any third party MQTT Client connects to test.mosquitto.org and subscribes to the topic 'MCHP/Sample/a', it will receive the periodic messages being published by the MQTT Client running on the PIC32MZW1.
 ![Third Party MQTT Client](images/third_party_mqtt_client_subscribe.png)
 
-11. In case the Third Party MQTT Client publishes onto the topic 'MCHP/Sample/b', the Paho MQTT Client running on the Rio2 shall receive the messages being published onto this topic since it has subscribed to it.
+11. In case the Third Party MQTT Client publishes onto the topic 'MCHP/Sample/b', the Paho MQTT Client running on the PIC32MZW1 shall receive the messages being published onto this topic since it has subscribed to it.
 ![Third Party MQTT Client](images/third_party_mqtt_client_publish.png)
 ![Console](images/mqtt_client_subscribe_console.png)
 

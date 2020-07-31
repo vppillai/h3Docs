@@ -45,7 +45,7 @@ To build the application, refer to the following table and open the project usin
 2.	Currently Net Service is configured to run as TCP Server running on port 5555. In case the user wants to change this config, please make the changes in the Net Service Module as shown below:
 ![MHC](images/netservice_configurator.png)
 
-3. Currently Net Service is configured to run a TCP Client in Secured mode to connect to www.google.com on the https port (443). In case the user wants to change this config, please make the changes in the Net Service Module configurations as shown below:
+3. Currently Net Service is configured to run a TCP Server which awaits connection from a TCP Client on port 5555. In case the user wants to change this config, please make the changes in the Net Service Module configurations as shown below:
 
 4.	Save configurations and generate code via MHC 
 5.	Build and program the generated code into the hardware using its IDE
@@ -59,7 +59,7 @@ To build the application, refer to the following table and open the project usin
 
 8.	The device shall come up as SoftAP and then as per the default Net Service configuration, the TCP Server shall come up, awaiting a connection from a TCP Client.
 
-9.	Connect a Laptop tp the Soft AP (with ssid DEMO_AP_SOFTAP) running on the DUT
+9.	Connect a Laptop to the Soft AP (with ssid DEMO_AP_SOFTAP) running on the DUT
 10. Start a TCP Client (python script) on laptop, giving the server IP as the IP of the Board, and the port as 5555:
 ![System Console](images/system_console.png)
 ![Console](images/tcp_client_console.png)
