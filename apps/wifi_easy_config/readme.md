@@ -10,20 +10,20 @@ family: PIC32MZW1
 function: Wi-Fi Easy Configuration
 ---
 
-# Secured TCP Client 
+# Wi-Fi Easy Configuration 
 
-This example application acts as a TCP Client to connect to Secured TCP Server and exchange data in a non-blocking manner.
+This example showcase Wi-Fi AP application to illustrate SoftAP mode Wi-Fi provisioning via command line(CLI),Socket or webpage.
 
 ## Description
 
-This application demonstrates how a user can use a TLS TCP  client to connect to a TCP server. The user would need to configure the Wi-Fi credentials for the Home AP and the TLS server details. The default application will try to establish a TLS connection with www.google.com and send a POST request to it.
+This application demonstrates how a user can configure the device with the credentials of the Home AP. The device will come up in SoftAP mode, the user will connect to the SoftAP via a third party STA. User will then send the Home AP credentials to the device and the device will store the credentials in the NVM. The device will auto reboot. Upon reboot, the device will come up in STA mode, it will connect to the Home AP and acquire an IP address.
 
 ## Downloading and building the application
 
 To download or clone this application from Github, go to the [top level of the repository](https://github.com/Microchip-MPLAB-Harmony/wireless)
 
 
-Path of the application within the repository is **apps/tcp_client/firmware** .
+Path of the application within the repository is **apps/wifi_easy_config/firmware** .
 
 To build the application, refer to the following table and open the project using its IDE.
 
@@ -41,25 +41,73 @@ To build the application, refer to the following table and open the project usin
 ## Running the Application
 
 1. Open the project and launch Harmony3 configurator.
-2.	Configure home AP credentials for STA Mode.
-![MHC](images/configurator.png)
+2. Configure SoftAP credentials as required.
 
-3. Currently Net Service is configured to run a TCP Client in Secured mode to connect to www.google.com on the https port (443). In case the user wants to change this config, please make the changes in the Net Service Module configurations as shown below:
-![MHC](images/netservice_configurator.png)
+![MHC](images/wifi_easyconfig_MHC1.png)
 
-4.	Save configurations and generate code via MHC 
-5.	Build and program the generated code into the hardware using its IDE
-6. Open the Terminal application (Ex.:Tera term) on the computer
-7. Connect to the "USB to UART" COM port and configure the serial settings as follows:
+3.	Save configurations and generate code via MHC 
+4.	Build and program the generated code into the hardware using its IDE
+5. Open the Terminal application (Ex.:Tera term) on the computer
+6. Connect to the "USB to UART" COM port and configure the serial settings as follows:
     - Baud : 115200
     - Data : 8 Bits
     - Parity : None
     - Stop : 1 Bit
     - Flow Control : None
 
-8.	The device will connect to the Home AP and print the IP address obtained.
+7. The device will boot in SoftAP mode.
 
-9.	The Board will connect to Home AP and then as per the default Net Service configuration, it shall connect to www.google.com and do data exchange:
-![Console](images/secured_tcp_client_console.png)
+![Console](images/wifi_easyconfig_log1.png)
 
-Note: The secured tcp connection may require the user to modify WolfSSL component settings in MHC depending on the security settings of the site/ server he is trying to access.
+
+
+### Provisioning using TCP Socket
+Connect to the SoftAP from a laptop or mobile phone.User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.
+
+![Console](images/wifi_easyconfig_log2.png)
+
+Using a TCP Client tool like Packet Sender installed in the laptop connected to the softAP, send the following JSON file to AP’s provisioning port (192.168.1.1:6666)
+
+Note: User would need to edit the default JSON file as per their home AP settings.
+
+```json
+{ 
+"mode": 0, "save_config": 1,"countrycode":"GEN", 
+"STA": { "ch": 0, "auto": 1, "auth": 3, "SSID": "DEMO_AP", "PWD":"password"}, 
+"AP": {"ch": 2, "ssidv": 1, "auth": 4, "SSID": "DEMO_AP_SOFTAP", "PWD": "password" } } 
+ ```
+
+![](images/wifi_easyconfig_tool.png)
+
+Follow the steps available in the "Wi-Fi provisioning with JSON format":
+* [Wi-Fi provisioning System Service Usage](services/Wi-Fi provisioning Service/docs/usage.md)
+
+### Provisioning using Mobile Application
+Connect to the SoftAP from a mobile phone.User may have to enter password on mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.
+
+![Console](images/wifi_easyconfig_log2.png)
+
+Follow the steps available in the "Wi-Fi provisioning with Mobile Application":
+* [Wi-Fi provisioning System Service Usage](services/Wi-Fi provisioning Service/docs/usage.md)
+
+### Provisioning using HTTP(webpage)
+Connect to the SoftAP from a laptop or mobile phone.User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.
+
+![Console](images/wifi_easyconfig_log2.png)
+
+Follow the steps available in the "HTTP":
+* [Wi-Fi provisioning System Service Usage](services/Wi-Fi provisioning Service/docs/usage.md)
+
+
+
+### Provisioning using Command line
+User can enter the below command to switch mode to STA and set desired SSID,passphase and security .
+wifiprov set 0 1 <country code> <channel> <authtype> <ssid_name> <psk_name>
+
+Follow the steps available in the "Command line":
+* [Wi-Fi provisioning System Service Usage](services/Wi-Fi provisioning Service/docs/usage.md)
+
+- The device will auto-reboot into STA mode. 
+- The device will now connect to the configured AP.
+  
+![Console](images/wifi_easyconfig_log3.png)

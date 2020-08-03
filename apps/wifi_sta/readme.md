@@ -10,20 +10,20 @@ family: PIC32MZW1
 function: Wi-Fi Station(STA) Mode
 ---
 
-# Secured TCP Client 
+# Wi-Fi Station(STA) Mode 
 
-This example application acts as a TCP Client to connect to Secured TCP Server and exchange data in a non-blocking manner.
+This example application acts as a Wi-Fi Station(STA) to connect to Access point(AP) and exchange data.
 
 ## Description
 
-This application demonstrates how a user can use a TLS TCP  client to connect to a TCP server. The user would need to configure the Wi-Fi credentials for the Home AP and the TLS server details. The default application will try to establish a TLS connection with www.google.com and send a POST request to it.
+This application demonstrates how a user can connect to the Home AP. The user would need to configure the Home AP credentials (like SSID and security items). The Wi-Fi service will use the credentials to connect to the Home AP and acquire an IP address.The default application will try to establish a connection to AP "DEMO_AP" with WPA2 security and password as a "password".
 
 ## Downloading and building the application
 
 To download or clone this application from Github, go to the [top level of the repository](https://github.com/Microchip-MPLAB-Harmony/wireless)
 
 
-Path of the application within the repository is **apps/tcp_client/firmware** .
+Path of the application within the repository is **apps/wifi_sta/firmware** .
 
 To build the application, refer to the following table and open the project using its IDE.
 
@@ -42,24 +42,24 @@ To build the application, refer to the following table and open the project usin
 
 1. Open the project and launch Harmony3 configurator.
 2.	Configure home AP credentials for STA Mode.
-![MHC](images/configurator.png)
 
-3. Currently Net Service is configured to run a TCP Client in Secured mode to connect to www.google.com on the https port (443). In case the user wants to change this config, please make the changes in the Net Service Module configurations as shown below:
-![MHC](images/netservice_configurator.png)
+![MHC](images/wifi_sta_MHC1.png)
 
-4.	Save configurations and generate code via MHC 
-5.	Build and program the generated code into the hardware using its IDE
-6. Open the Terminal application (Ex.:Tera term) on the computer
-7. Connect to the "USB to UART" COM port and configure the serial settings as follows:
+3.	Save configurations and generate code via MHC 
+4.	Build and program the generated code into the hardware using its IDE
+5. Open the Terminal application (Ex.:Tera term) on the computer
+6. Connect to the "USB to UART" COM port and configure the serial settings as follows:
     - Baud : 115200
     - Data : 8 Bits
     - Parity : None
     - Stop : 1 Bit
     - Flow Control : None
 
-8.	The device will connect to the Home AP and print the IP address obtained.
+7.	The device will connect to the Home AP and print the IP address obtained.
 
-9.	The Board will connect to Home AP and then as per the default Net Service configuration, it shall connect to www.google.com and do data exchange:
-![Console](images/secured_tcp_client_console.png)
+![Console](images/wifi_sta_log1.png)
 
-Note: The secured tcp connection may require the user to modify WolfSSL component settings in MHC depending on the security settings of the site/ server he is trying to access.
+8.	From the DUT(Device Under Test), user can ping the Gateway IP address.
+
+![Console](images/wifi_sta_log2.png)
+
