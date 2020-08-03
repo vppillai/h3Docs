@@ -12,7 +12,7 @@ function: Wi-Fi Easy Configuration
 
 # Wi-Fi Easy Configuration 
 
-This example showcase Wi-Fi AP application to illustrate SoftAP mode Wi-Fi provisioning via command line(CLI),Socket or webpage.
+This example showcase Wi-Fi AP application to illustrate SoftAP mode Wi-Fi provisioning via command line(CLI),Socket and HTTP.
 
 ## Description
 
