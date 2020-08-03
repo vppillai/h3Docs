@@ -17,14 +17,11 @@ The following figure shows the MHC configuration window for configuring the MQTT
 ![](./images/Mqtt_service_MHC.png)
 {: refdef}
 
-<p align="center">
-<img src="./images/Mqtt_service_MHC.png" width=240/>
-</p>
-
 3. Configure the various parameters of Basic Configuration
-<p align="center">
-<img src="./images/Mqtt_Basic_Service.png" width=340/>
-</p>
+
+{:refdef: style="text-align: center;"}
+![](./images/Mqtt_Basic_Service.png)
+{: refdef}
 
 | Parameter Name | Default   Value | Description |
 |-|-|-|
@@ -35,9 +32,10 @@ The following figure shows the MHC configuration window for configuring the MQTT
 
 
 4. Configure the various parameters of Basic Configuration
-<p align="center">
-<img src="./images/Mqtt_Adv_Service.png" width=340/>
-</p>
+
+{:refdef: style="text-align: center;"}
+![](./images/Mqtt_Adv_Service.png)
+{: refdef}
 
 | Parameter Name | Default   Value | Description |
 |-|-|-|
@@ -48,9 +46,10 @@ The following figure shows the MHC configuration window for configuring the MQTT
 | Last   Will and testament | Disabled | LWT   Configuration has the following parameters – <br>         1. Topic, <br>         2. QoS, <br>         3. Retain, and <br>         4. Message <br>This   ‘Message’ will be sent on the ‘Topic’ whenever the Broker finds that there is   an ungraceful disconnection with the Client. |
 
 5. Configure the remaining parameters
-<p align="center">
-<img src="./images/Mqtt_Remaining_Service.png" width=340/>
-</p>
+
+{:refdef: style="text-align: center;"}
+![](./images/Mqtt_Remaining_Service.png)
+{: refdef}
 
 | Parameter Name | Default   Value | Description |
 |-|-|-|
