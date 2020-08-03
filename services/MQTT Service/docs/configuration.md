@@ -10,13 +10,13 @@ nav_order: 1
 The MQTT System Service library should be configured through the MHC. When user select the MQTT System Service library, all the required dependencies components are added automatically in the MHC configuration.
 
 The following figure shows the MHC configuration window for configuring the MQTT System Service and a brief description of various configuration options.
-1. Open the MHC 3
-2. Drag the MQTT Service Module into the Active components from the Available components
+- Open the MHC 3
+- Drag the MQTT Service Module into the Active components from the Available components
 {:refdef: style="text-align: center;"}
 ![](./images/Mqtt_service_MHC.png)
 {: refdef}
 
-3. Configure the various parameters of Basic Configuration
+- Configure the various parameters of Basic Configuration
 {:refdef: style="text-align: center;"}
 ![](./images/Mqtt_Basic_Service.png)
 {: refdef}
@@ -29,7 +29,7 @@ The following figure shows the MHC configuration window for configuring the MQTT
 | Client Id |  | MQTT   Client Id should be unique for the Broker. If left empty, the Id will be   generated randomly |
 
 
-4. Configure the various parameters of Basic Configuration
+- Configure the various parameters of Basic Configuration
 {:refdef: style="text-align: center;"}
 ![](./images/Mqtt_Adv_Service.png)
 {: refdef}
@@ -42,7 +42,7 @@ The following figure shows the MHC configuration window for configuring the MQTT
 | Username/   Password | Disabled | In case   the connection to Broker needs a Username and Password |
 | Last   Will and testament | Disabled | LWT   Configuration has the following parameters – <br>         1. Topic, <br>         2. QoS, <br>         3. Retain, and <br>         4. Message <br>This   ‘Message’ will be sent on the ‘Topic’ whenever the Broker finds that there is   an ungraceful disconnection with the Client. |
 
-5. Configure the remaining parameters
+- Configure the remaining parameters
 {:refdef: style="text-align: center;"}
 ![](./images/Mqtt_Remaining_Service.png)
 {: refdef}
