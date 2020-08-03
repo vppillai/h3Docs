@@ -102,12 +102,13 @@ Follow the steps available in the "HTTP":
 
 ### Provisioning using Command line
 User can enter the below command to switch mode to STA and set desired SSID,passphase and security .
-wifiprov set 0 1 <country code> <channel> <authtype> <ssid_name> <psk_name>
+wifiprov set 0 1 <country_code> <channel> <authtype> <ssid_name> <psk_name>
+
 
 Follow the steps available in the "Command line":
 * [Wi-Fi provisioning System Service Usage](services/Wi-Fi provisioning Service/docs/usage.md)
 
-- The device will auto-reboot into STA mode. 
-- The device will now connect to the configured AP.
+The device will auto-reboot into STA mode. 
+The device will now connect to the configured AP.
   
 ![Console](images/wifi_easyconfig_log3.png)
