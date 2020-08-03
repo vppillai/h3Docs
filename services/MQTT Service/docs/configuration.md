@@ -12,13 +12,11 @@ The MQTT System Service library should be configured through the MHC. When user 
 The following figure shows the MHC configuration window for configuring the MQTT System Service and a brief description of various configuration options.
 1. Open the MHC 3
 2. Drag the MQTT Service Module into the Active components from the Available components
-
 {:refdef: style="text-align: center;"}
 ![](./images/Mqtt_service_MHC.png)
 {: refdef}
 
 3. Configure the various parameters of Basic Configuration
-
 {:refdef: style="text-align: center;"}
 ![](./images/Mqtt_Basic_Service.png)
 {: refdef}
@@ -32,7 +30,6 @@ The following figure shows the MHC configuration window for configuring the MQTT
 
 
 4. Configure the various parameters of Basic Configuration
-
 {:refdef: style="text-align: center;"}
 ![](./images/Mqtt_Adv_Service.png)
 {: refdef}
@@ -46,7 +43,6 @@ The following figure shows the MHC configuration window for configuring the MQTT
 | Last   Will and testament | Disabled | LWT   Configuration has the following parameters – <br>         1. Topic, <br>         2. QoS, <br>         3. Retain, and <br>         4. Message <br>This   ‘Message’ will be sent on the ‘Topic’ whenever the Broker finds that there is   an ungraceful disconnection with the Client. |
 
 5. Configure the remaining parameters
-
 {:refdef: style="text-align: center;"}
 ![](./images/Mqtt_Remaining_Service.png)
 {: refdef}
