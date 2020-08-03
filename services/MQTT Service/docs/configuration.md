@@ -12,6 +12,11 @@ The MQTT System Service library should be configured through the MHC. When user 
 The following figure shows the MHC configuration window for configuring the MQTT System Service and a brief description of various configuration options.
 1. Open the MHC 3
 2. Drag the MQTT Service Module into the Active components from the Available components
+
+{:refdef: style="text-align: center;"}
+![](./images/Mqtt_service_MHC.png)
+{: refdef}
+
 <p align="center">
 <img src="./images/Mqtt_service_MHC.png" width=240/>
 </p>
