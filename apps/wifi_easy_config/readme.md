@@ -62,49 +62,49 @@ To build the application, refer to the following table and open the project usin
 
 
 ### Provisioning using TCP Socket
-    Connect to the SoftAP from a laptop or mobile phone.User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.
+- Connect to the SoftAP from a laptop or mobile phone.User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.
 
-    ![Console](images/wifi_easyconfig_log2.png)
+![Console](images/wifi_easyconfig_log2.png)
 
-    Using a TCP Client tool like Packet Sender installed in the laptop connected to the softAP, send the following JSON file to AP’s provisioning port (192.168.1.1:6666)
+- Using a TCP Client tool like Packet Sender installed in the laptop connected to the softAP, send the following JSON file to AP’s provisioning port (192.168.1.1:6666)
 
-    Note: User would need to edit the default JSON file as per their home AP settings.
+-  Note: User would need to edit the default JSON file as per their home AP settings.
 
-    ```json
-    { 
-    "mode": 0, "save_config": 1,"countrycode":"GEN", 
-    "STA": { "ch": 0, "auto": 1, "auth": 3, "SSID": "DEMO_AP", "PWD":"password"}, 
-    "AP": {"ch": 2, "ssidv": 1, "auth": 4, "SSID": "DEMO_AP_SOFTAP", "PWD": "password" } } 
-    ```
+```json
+{ 
+"mode": 0, "save_config": 1,"countrycode":"GEN", 
+"STA": { "ch": 0, "auto": 1, "auth": 3, "SSID": "DEMO_AP", "PWD":"password"}, 
+"AP": {"ch": 2, "ssidv": 1, "auth": 4, "SSID": "DEMO_AP_SOFTAP", "PWD": "password" } } 
+```
 
-    ![](images/wifi_easyconfig_tool.png)
+![](images/wifi_easyconfig_tool.png)
 
-    For more details follow the steps available in page: * [Wi-Fi provisioning Using JSON Format](../../services/Wi-Fi provisioning Service/docs/usage.md#wi-fi-provisioning-with-json-format)
+- For more details follow the steps available in page: * [Wi-Fi provisioning Using JSON Format](../../services/Wi-Fi provisioning Service/docs/usage.md#wi-fi-provisioning-with-json-format)
 
 ### Provisioning using Mobile Application
-    Connect to the SoftAP from a mobile phone.User may have to enter password on mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.
+- Connect to the SoftAP from a mobile phone.User may have to enter password on mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.
 
-    ![Console](images/wifi_easyconfig_log2.png)
+![Console](images/wifi_easyconfig_log2.png)
 
-    For more details follow the steps available in page: * [Wi-Fi provisioning Using Mobile Application](../../services/Wi-Fi provisioning Service/docs/usage.md#wi-fi-provisioning-with-mobile-application)
+- For more details follow the steps available in page: [Wi-Fi provisioning Using Mobile Application](../../services/Wi-Fi provisioning Service/docs/usage.md#wi-fi-provisioning-with-mobile-application)
 
 ### Provisioning using HTTP(webpage)
-    Connect to the SoftAP from a laptop or mobile phone.User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.
+- Connect to the SoftAP from a laptop or mobile phone.User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.
 
-    ![Console](images/wifi_easyconfig_log2.png)
+![Console](images/wifi_easyconfig_log2.png)
 
-    For more details follow the steps available in page:* [Wi-Fi provisioning using HTTP](../../services/Wi-Fi provisioning Service/docs/usage.md#http)
+- For more details follow the steps available in page:[Wi-Fi provisioning using HTTP](../../services/Wi-Fi provisioning Service/docs/usage.md#http)
 
 
 
 ### Provisioning using Command line
-    User can enter the below command to switch mode to STA and set desired SSID,passphase and security .
+- User can enter the below command to switch mode to STA and set desired SSID,passphase and security .
 
-    wifiprov set 0 1 \<country_code\> \<channel\> \<authtype\> \<ssid_name\> \<psk_name\>
+- wifiprov set 0 1 \<country_code\> \<channel\> \<authtype\> \<ssid_name\> \<psk_name\>
 
-    For more details follow the steps available in page:* [Wi-Fi provisioning using CLI](../../services/Wi-Fi provisioning Service/docs/usage.md#command-line)
+- For more details follow the steps available in page: [Wi-Fi provisioning using CLI](../../services/Wi-Fi provisioning Service/docs/usage.md#command-line)
 
-- The device will auto-reboot into STA mode. 
-- The device will now connect to the configured AP.
+The device will auto-reboot into STA mode.<br> 
+The device will now connect to the configured AP.<br>
   
 ![Console](images/wifi_easyconfig_log3.png)
