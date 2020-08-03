@@ -79,7 +79,7 @@ Note: User would need to edit the default JSON file as per their home AP setting
 
 ![](images/wifi_easyconfig_tool.png)
 
-Follow the steps available in below page:
+For more details follow the steps available in below page:
 * [Wi-Fi provisioning Using JSON Format](../../services/Wi-Fi provisioning Service/docs/usage.md#wi-fi-provisioning-with-json-format)
 
 ### Provisioning using Mobile Application
@@ -87,7 +87,7 @@ Connect to the SoftAP from a mobile phone.User may have to enter password on mob
 
 ![Console](images/wifi_easyconfig_log2.png)
 
-Follow the steps available in below page:
+For more details follow the steps available in below page:
 * [Wi-Fi provisioning Using Mobile Application](../../services/Wi-Fi provisioning Service/docs/usage.md#wi-fi-provisioning-with-mobile-application)
 
 ### Provisioning using HTTP(webpage)
@@ -95,7 +95,7 @@ Connect to the SoftAP from a laptop or mobile phone.User may have to enter passw
 
 ![Console](images/wifi_easyconfig_log2.png)
 
-Follow the steps available in below page:
+For more details follow the steps available in below page:
 * [Wi-Fi provisioning using HTTP](../../services/Wi-Fi provisioning Service/docs/usage.md#http)
 
 
@@ -103,12 +103,12 @@ Follow the steps available in below page:
 ### Provisioning using Command line
 User can enter the below command to switch mode to STA and set desired SSID,passphase and security .
 
-wifiprov set 0 1 <country_code> <channel> <authtype> <ssid_name> <psk_name>
+wifiprov set 0 1 \<country_code\> \<channel\> \<authtype\> \<ssid_name\> \<psk_name\>
 
 
 
 
-Follow the steps available in below page:
+For more details follow the steps available in below page:
 * [Wi-Fi provisioning using CLI](../../services/Wi-Fi provisioning Service/docs/usage.md#command-line)
 
 The device will auto-reboot into STA mode. 
