@@ -18,6 +18,8 @@ This example application acts as a Wi-Fi Access point(AP) to connect to Laptop/M
 
 This application demonstrates how a user can configure the device to operate in SoftAP mode.The device will come up in SoftAP mode and any other device(STA) can connect as a STA to the SoftAP. The third party device should be assigned an IP by the SoftAP.
 
+![](images/wifi_ap_diagram.png)
+
 
 ## Downloading and building the application
 

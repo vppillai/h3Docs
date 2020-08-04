@@ -18,6 +18,10 @@ This example showcase Wi-Fi AP application to illustrate SoftAP mode Wi-Fi provi
 
 This application demonstrates how a user can configure the device with the credentials of the Home AP. The device will come up in SoftAP mode, the user will connect to the SoftAP via a third party STA. User will then send the Home AP credentials to the device and the device will store the credentials in the NVM. The device will auto reboot. Upon reboot, the device will come up in STA mode, it will connect to the Home AP and acquire an IP address.
 
+![](images/wifi_easyconfig_diagram.png)
+DUT will act either in AP mode or STA mode.
+
+
 ## Downloading and building the application
 
 To download or clone this application from Github, go to the [top level of the repository](https://github.com/Microchip-MPLAB-Harmony/wireless)
