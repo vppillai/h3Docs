@@ -17,7 +17,9 @@ This example application acts as a Wi-Fi Station(STA) to connect to Access point
 ## Description
 
 This application demonstrates how a user can connect to the Home AP. The user would need to configure the Home AP credentials (like SSID and security items). The Wi-Fi service will use the credentials to connect to the Home AP and acquire an IP address.The default application will try to establish a connection to AP "DEMO_AP" with WPA2 security and password as a "password".
-![MHC](images/wifi_sta_diagram.png)
+
+![](images/wifi_sta_diagram.png)
+
 ## Downloading and building the application
 
 To download or clone this application from Github, go to the [top level of the repository](https://github.com/Microchip-MPLAB-Harmony/wireless)

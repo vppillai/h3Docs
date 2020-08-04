@@ -20,8 +20,8 @@ Key Features:
         - WPA2 
         - WPAWPA2(Mixed) mode
         - WPA3 
-    - Self Healing
-        The connection for some reason breaks, the service shall take care of reconnecting the same internally. 
+    - Self Healing<br>
+        - The connection for some reason breaks, the service shall take care of reconnecting the same internally. 
 - Configuration of Soft Access point mode(AP) 
     - Security Support: 
         - Open - No security 
