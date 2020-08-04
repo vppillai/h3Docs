@@ -45,7 +45,7 @@ To build the application, refer to the following table and open the project usin
 1. Open the project and launch Harmony3 configurator.
 2.	Configure home AP credentials for STA Mode.
 
-![MHC](images/wifi_sta_MHC1.png)
+    ![MHC](images/wifi_sta_MHC1.png)
 
 3.	Save configurations and generate code via MHC 
 4.	Build and program the generated code into the hardware using its IDE
@@ -59,9 +59,9 @@ To build the application, refer to the following table and open the project usin
 
 7.	The device will connect to the Home AP and print the IP address obtained.
 
-![Console](images/wifi_sta_log1.png)
+    ![Console](images/wifi_sta_log1.png)
 
 8.	From the DUT(Device Under Test), user can ping the Gateway IP address.
 
-![Console](images/wifi_sta_log2.png)
+    ![Console](images/wifi_sta_log2.png)
 

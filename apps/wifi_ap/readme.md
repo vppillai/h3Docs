@@ -46,7 +46,7 @@ To build the application, refer to the following table and open the project usin
 1. Open the project and launch Harmony3 configurator.
 2. Configure softAP credentials as required.
 
-![MHC](images/wifi_ap_MHC1.png)
+    ![MHC](images/wifi_ap_MHC1.png)
 
 3.	Save configurations and generate code via MHC 
 4.	Build and program the generated code into the hardware using its IDE
@@ -60,15 +60,15 @@ To build the application, refer to the following table and open the project usin
 
 7. The device will boot in softAP mode.
 
-![Console](images/wifi_ap_log1.png)
+    ![Console](images/wifi_ap_log1.png)
 
 8. Connect to the softAP from a laptop or a Mobile Phone.
    User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC.
    As soon as the client connects, the device will print the IP address leased to it 
 
-![Console](images/wifi_ap_log2.png)
+    ![Console](images/wifi_ap_log2.png)
 
 9. From DUT, user can ping the connected device. 
 
-![Console](images/wifi_ap_log3.png)
+    ![Console](images/wifi_ap_log3.png)
 

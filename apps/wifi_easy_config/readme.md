@@ -47,7 +47,7 @@ To build the application, refer to the following table and open the project usin
 1. Open the project and launch Harmony3 configurator.
 2. Configure SoftAP credentials as required.
 
-![MHC](images/wifi_easyconfig_MHC1.png)
+    ![MHC](images/wifi_easyconfig_MHC1.png)
 
 3.	Save configurations and generate code via MHC 
 4.	Build and program the generated code into the hardware using its IDE
@@ -61,14 +61,14 @@ To build the application, refer to the following table and open the project usin
 
 7. The device will boot in SoftAP mode.
 
-![Console](images/wifi_easyconfig_log1.png)
+    ![Console](images/wifi_easyconfig_log1.png)
 
 
 
 ### Provisioning using TCP Socket
 - Connect to the SoftAP from a laptop or mobile phone.User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.
 
-![Console](images/wifi_easyconfig_log2.png)
+    ![Console](images/wifi_easyconfig_log2.png)
 
 - Using a TCP Client tool like Packet Sender installed in the laptop connected to the softAP, send the following JSON file to AP’s provisioning port (192.168.1.1:6666)
 
@@ -77,7 +77,7 @@ To build the application, refer to the following table and open the project usin
 ```json
 { 
 "mode": 0, "save_config": 1,"countrycode":"GEN", 
-"STA": { "ch": 0, "auto": 1, "auth": 3, "SSID": "DEMO_AP", "PWD":"password"}, 
+"STA": { "ch": 0, "auto": 1, "auth": 3, "SSID": "dlink", "PWD":"password"}, 
 "AP": {"ch": 2, "ssidv": 1, "auth": 4, "SSID": "DEMO_AP_SOFTAP", "PWD": "password" } } 
 ```
 
@@ -88,14 +88,14 @@ To build the application, refer to the following table and open the project usin
 ### Provisioning using Mobile Application
 - Connect to the SoftAP from a mobile phone.User may have to enter password on mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.
 
-![Console](images/wifi_easyconfig_log2.png)
+    ![Console](images/wifi_easyconfig_log2.png)
 
 - For more details follow the steps available in page: [Wi-Fi provisioning Using Mobile Application](../../services/Wi-Fi provisioning Service/docs/usage.md#wi-fi-provisioning-with-mobile-application)
 
 ### Provisioning using HTTP(webpage)
 - Connect to the SoftAP from a laptop or mobile phone.User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.
 
-![Console](images/wifi_easyconfig_log2.png)
+    ![Console](images/wifi_easyconfig_log2.png)
 
 - For more details follow the steps available in page:[Wi-Fi provisioning using HTTP](../../services/Wi-Fi provisioning Service/docs/usage.md#http)
 
@@ -111,4 +111,4 @@ To build the application, refer to the following table and open the project usin
 The device will auto-reboot into STA mode.<br> 
 The device will now connect to the configured AP.<br>
   
-![Console](images/wifi_easyconfig_log3.png)
+   ![Console](images/wifi_easyconfig_log3.png)
