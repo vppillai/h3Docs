@@ -10,6 +10,6 @@ nav_order: 3
 ## PIC32MZW1
 * [Wi-Fi Service](./wifi/readme.md)
 * [Wi-Fi provisioning Service](./wifiprov/readme.md)
-* [Net Service](./Net Service/docs/readme.md)
-* [Mqtt Service](./MQTT Service/docs/readme.md)
+* [Net Service](./net/docs/readme.md)
+* [Mqtt Service](./mqtt/docs/readme.md)
 
