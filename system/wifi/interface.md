@@ -1,9 +1,9 @@
 ---
-grand_parent: Services
-parent: Wi-Fi Service
+grand_parent: system
+parent: wifi
 title: Wi-Fi System Service Interface
 has_toc: true
-nav_order: 1
+nav_order: 2
 ---
 
 # Wi-Fi System Service Interface
@@ -17,6 +17,11 @@ nav_order: 1
 
 ---
 
+
+## Included Files Summary
+
+| Name | Description |
+|-|-|
 
 ## Data Types and Constants Summary
 
@@ -52,6 +57,8 @@ nav_order: 1
 | [SYS_WIFI_Tasks](#SYS_WIFI_Tasks) | Maintains the Wi-Fi System tasks and functionalities. |
 | [SYS_WIFI_CtrlMsg](#SYS_WIFI_CtrlMsg) | Returns success/ failure for the connect/disconnect/scan operation asked by client. |
 
+## Included Files
+
 ## Data Types and Constants
 
 
@@ -81,7 +88,13 @@ SYS_WIFI_WEP,
 SYS_WIFI_WPAWPA2MIXED,
 
 // Requesting a WPA2 Authentication types
-SYS_WIFI_WPA2
+SYS_WIFI_WPA2,
+
+// Requesting a WPA2/WPA3(Mixed) Authentication types
+SYS_WIFI_WPA2WPA3MIXED,
+
+// Requesting a WPA3 Authentication types
+SYS_WIFI_WPA3
 
 } SYS_WIFI_AUTH ;
 ```
@@ -111,6 +124,9 @@ SYS_WIFI_DISCONNECT,
 
 //Control message type for requesting a Wi-Fi configuration information
 SYS_WIFI_GETCONFIG,
+
+//Control message type for updating a Provisioning Wi-Fi configuration information
+SYS_WIFI_PROVCONFIG,
 
 //Control message type for registering a Wi-Fi system service client callback
 SYS_WIFI_REGCALLBACK,
@@ -249,8 +265,11 @@ typedef struct
 //Operating mode of the device
 SYS_WIFI_MODE mode;
 
-//Flag to identify if configuration needs to be saved in NVM. 0 – Do not save configuration in NVM. 1 – Save configuration in NVM.
+//Flag to identify if configuration needs to be saved in NVM. 0 ? Do not save configuration in NVM. 1 ? Save configuration in NVM.
 uint8_t save_config;
+
+//Country Code configuration
+uint8_t countrycode[5];
 
 //Wi-Fi station mode configuration structure
 SYS_WIFI_STA_CONFIG staconfig;
@@ -305,6 +324,12 @@ SYS_WIFI_STATUS_TCPIP_READY,
 //Wi-Fi system service is in TCPIP error status
 SYS_WIFI_STATUS_TCPIP_ERROR,
 
+//Wi-Fi system service is in config error status
+SYS_WIFI_STATUS_CONFIG_ERROR,
+
+//Wi-Fi system service is in connection error status
+SYS_WIFI_STATUS_CONNECT_ERROR,
+
 //Wi-Fi system service is in not in valid status
 SYS_WIFI_STATUS_NONE =255
 } SYS_WIFI_STATUS;
@@ -332,6 +357,9 @@ SYS_WIFI_SUCCESS = 0,
 
 //Operation Failed.
 SYS_WIFI_FAILURE,
+
+//Wi-Fi service un-initialize
+SYS_WIFI_SERVICE_UNINITIALIZE,
 
 //Wi-Fi configuration request failed
 SYS_WIFI_CONFIG_FAILURE,

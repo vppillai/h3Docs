@@ -1,12 +1,12 @@
 ---
-grand_parent: Services
-parent: Wi-Fi provisioning Service
-title: Wi-Fi provisioning System Service Interface
+grand_parent: system
+parent: wifiprov
+title: Wi-Fi Provisioning System Service Interface
 has_toc: true
-nav_order: 1
+nav_order: 2
 ---
 
-# Wi-Fi provisioning System Service Interface
+# Wi-Fi Provisioning System Service Interface
 {: .no_toc }
 
 ### Table of contents
@@ -18,7 +18,7 @@ nav_order: 1
 ---
 
 
-## Data Types and Constants Summary
+## Data Types Summary
 
 | Name | Description |
 |-|-|
@@ -52,7 +52,7 @@ nav_order: 1
 | [SYS_WIFIPROV_Tasks](#SYS_WIFIPROV_Tasks) | Maintains the Wi-Fi Provisioning System tasks and functionalities. |
 | [SYS_WIFIPROV_CtrlMsg](#SYS_WIFIPROV_CtrlMsg) | Request Wi-Fi Provisioning system service control request interface |
 
-## Data Types and Constants
+## Data Types
 
 
 ### SYS_WIFIPROV_AUTH 
@@ -81,7 +81,13 @@ SYS_WIFIPROV_WEP,
 SYS_WIFIPROV_WPAWPA2MIXED,
 
 // Requesting a WPA2 Authentication types
-SYS_WIFIPROV_WPA2
+SYS_WIFIPROV_WPA2,
+
+// Requesting a WPA2/WPA3(Mixed) Authentication types
+SYS_WIFIPROV_WPA2WPA3MIXED,
+
+// Requesting a WPA3 Authentication types
+SYS_WIFIPROV_WPA3
 
 } SYS_WIFIPROV_AUTH ;
 ```
@@ -134,9 +140,8 @@ typedef enum
 {
 // Requesting a operating mode as a station
 SYS_WIFIPROV_STA = 0,
-
 // Requesting a operating mode as a access point.
-SYS_WIFIPROV_AP
+SYS_WIFIPROV_AP = 1
 
 } SYS_WIFIPROV_MODE ;
 ```
@@ -242,12 +247,14 @@ typedef struct
 //Operating mode of device
 SYS_WIFIPROV_MODE mode;
 
-//Flag to identify if configuration needs to be saved in NVM. 0 – Do not save configuration in NVM. 1 – Save configuration in NVM.
+//Flag to identify if configuration needs to be saved in NVM. 0 ? Do not save configuration in NVM. 1 ? Save configuration in NVM.
 uint8_t save_config;
+
+//Country Code configuration
+uint8_t countrycode[5];
 
 //Wi-Fi station mode configuration
 SYS_WIFIPROV_STA_CONFIG staconfig;
-
 //Wi-Fi access point mode configuration
 SYS_WIFIPROV_AP_CONFIG apconfig;
 }SYS_WIFIPROV_CONFIG;
@@ -271,9 +278,11 @@ None.
 ```c
 typedef enum
 {
-//Wi-Fi Provisioning system service is in NVM read state
-SYS_WIFIPROV_STATUS_NVM_READ=1,
+//Wi-Fi Provisioning system service is in MPFS filesystem mount state
+SYS_WIFIPROV_STATUS_MPFS_MOUNT=1,
 
+//Wi-Fi Provisioning system service is in NVM read state
+SYS_WIFIPROV_STATUS_NVM_READ,
 //Wi-Fi Provisioning system service is in NVM read Wi-Fi Configuration checking state
 SYS_WIFIPROV_STATUS_CONFIG_CHECK,
 
@@ -282,6 +291,9 @@ SYS_WIFIPROV_STATUS_NVM_ERASE,
 
 //Wi-Fi Provisioning system service is in NVM write state
 SYS_WIFIPROV_STATUS_NVM_WRITE,
+
+//Wi-Fi Provisioning system service is in wait for NVM write to complate state
+SYS_WIFIPROV_STATUS_WAITFORWRITE,
 
 //Wi-Fi Provisioning system service is in client request state
 SYS_WIFIPROV_STATUS_WAITFORREQ,

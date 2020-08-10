@@ -64,7 +64,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: Data Types
+// Section: Data Types and Constants
 // *****************************************************************************
 // *****************************************************************************
 
@@ -392,7 +392,7 @@ typedef enum{
 
 // *****************************************************************************
 /* Function:
-    void (*SYS_WIFI_CALLBACK )(uint32_t event, void * data,void *cookie )
+    typedef void (*SYS_WIFI_CALLBACK )(uint32_t event, void * data,void *cookie )
 
    Summary:
     Pointer to a Wi-Fi system service callback function.
@@ -416,28 +416,61 @@ typedef enum{
 
   Example:
     <code>
-	
+	#include "app.h"
+	#include "system/console/sys_console.h"
+	#include "system/wifi/sys_wifi.h"
+	#include "tcpip/tcpip.h"
+	#include "definitions.h"
+
+	APP_DATA appData;
     void WiFiServCallback (uint32_t event, void * data,void *cookie )
     {
+	    IPV4_ADDR *IPAddr; 
 		switch(event)
 		{
 			case SYS_WIFI_CONNECT:
 				IPAddr = (IPV4_ADDR *)data;
-				SYS_CONSOLE_PRINT("IP address obtained = %d.%d.%d.%d \r\n",IPAddr->v[0], IPAddr->v[1], IPAddr->v[2], IPAddr->v[3]);
+				SYS_CONSOLE_PRINT("IP address obtained = %d.%d.%d.%d \\r\\n",IPAddr->v[0], IPAddr->v[1], IPAddr->v[2], IPAddr->v[3]);
 				break;
 			case SYS_WIFI_DISCONNECT:
-				SYS_CONSOLE_PRINT("Device DISCONNECTED\r\n");
+				SYS_CONSOLE_PRINT("Device DISCONNECTED \\r\\n");
 				break;
 			case SYS_WIFI_GETCONFIG:
 				SYS_WIFI_CONFIG *wificonfig;
 
 				wificonfig = (SYS_WIFI_CONFIG *) data;
-				SYS_CONSOLE_PRINT("%s:%d Device mode=%d\r\n",__func__,__LINE__,wificonfig->mode);
+				SYS_CONSOLE_PRINT("%s:%d Device mode=%d\\r\\n",__func__,__LINE__,wificonfig->mode);
 				break;
 					
 		
 		}
     }
+	void APP_Initialize(void) {
+    appData.state = APP_STATE_INIT;
+   }
+	
+	void APP_Tasks(void) {
+
+    switch (appData.state) {
+        case APP_STATE_INIT:
+        {
+            SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_REGCALLBACK,WiFiServCallback,sizeof(uint8_t *));
+            appData.state=APP_STATE_SERVICE_TASKS;
+            break;
+        }
+
+        case APP_STATE_SERVICE_TASKS:
+        {
+
+            break;
+        }
+        default:
+        {
+            break;
+        }
+    }
+    }
+	
     </code>
 
   Remarks:
@@ -448,13 +481,8 @@ typedef void (*SYS_WIFI_CALLBACK )(uint32_t event, void * data,void *cookie );
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: System Interface Functions
+// Section: Initialization functions
 // *****************************************************************************
-// *****************************************************************************
-/*  System interface functions are called by system code to initialize the
-    module and maintain proper operation of it.
-*/
-
 // *****************************************************************************
 /* Function:
     SYS_MODULE_OBJ SYS_WIFI_Initialize( SYS_WIFI_CONFIG *config,
@@ -544,6 +572,10 @@ SYS_MODULE_OBJ SYS_WIFI_Initialize( SYS_WIFI_CONFIG *config,SYS_WIFI_CALLBACK ca
 SYS_WIFI_RESULT SYS_WIFI_Deinitialize (SYS_MODULE_OBJ object) ;
 
 // *****************************************************************************
+// *****************************************************************************
+// Section: Status functions
+// *****************************************************************************
+// *****************************************************************************
 /* Function:
    uint8_t SYS_WIFI_GetStatus ( SYS_MODULE_OBJ object)
 
@@ -566,7 +598,7 @@ SYS_WIFI_RESULT SYS_WIFI_Deinitialize (SYS_MODULE_OBJ object) ;
   Example:
         <code>
         
-         if (SYS_WIFI_STATU_TCPIP_READY == SYS_WIFI_GetStatus (sysObj.syswifi))
+         if (SYS_WIFI_STATUS_TCPIP_READY == SYS_WIFI_GetStatus (sysObj.syswifi))
         {
             // when the SYS WIFI module in TCPIP ready STATUS
         }
@@ -578,6 +610,10 @@ SYS_WIFI_RESULT SYS_WIFI_Deinitialize (SYS_MODULE_OBJ object) ;
 
 uint8_t SYS_WIFI_GetStatus ( SYS_MODULE_OBJ object) ;
 
+// *****************************************************************************
+// *****************************************************************************
+// Section: Setup functions
+// *****************************************************************************
 // *****************************************************************************
 /* Function:
    uint8_t SYS_WIFI_Tasks ( SYS_MODULE_OBJ object)
@@ -690,7 +726,7 @@ uint8_t SYS_WIFI_Tasks (SYS_MODULE_OBJ object);
 */
 SYS_WIFI_RESULT SYS_WIFI_CtrlMsg (SYS_MODULE_OBJ object,uint32_t id,void *buffer,uint32_t length );
 
-
+// *****************************************************************************
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
 

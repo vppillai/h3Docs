@@ -341,7 +341,7 @@ typedef enum{
 
 // *****************************************************************************
 /* Function:
-    void (*SYS_WIFIPROV_CALLBACK )(uint32_t event, void * data,void *cookie )
+    typedef void (*SYS_WIFIPROV_CALLBACK )(uint32_t event, void * data,void *cookie )
 
    Summary:
     Pointer to a Wi-Fi Provisioning system service callback function.
@@ -371,12 +371,12 @@ typedef enum{
 			case SYS_WIFIPROV_SETCONFIG:
 				SYS_WIFIPROV_CONFIG* wifiprovconfig = (SYS_WIFIPROV_CONFIG *) data;
 				//Provisioning service  updated data
-				SYS_CONSOLE_PRINT("%s:%d Device mode=%d\r\n",__func__,__LINE__,wifiprovconfig->mode);
+				SYS_CONSOLE_PRINT("%s:%d Device mode=%d\\r\\n",__func__,__LINE__,wifiprovconfig->mode);
 				break;
 			case SYS_WIFIPROV_GETCONFIG:
 				SYS_WIFIPROV_CONFIG* wifiprovconfig = (SYS_WIFIPROV_CONFIG *) data;
 				//client requested get Wi-Fi Configuration				
-				SYS_CONSOLE_PRINT("%s:%d Device mode=%d\r\n",__func__,__LINE__,wifiprovconfig->mode);
+				SYS_CONSOLE_PRINT("%s:%d Device mode=%d\\r\\n",__func__,__LINE__,wifiprovconfig->mode);
 				break;
 		}
     }
@@ -389,13 +389,8 @@ typedef void (*SYS_WIFIPROV_CALLBACK )(uint32_t event, void * data,void *cookie 
 
 // *****************************************************************************
 // *****************************************************************************
-// Section: System Interface Functions
+// Section: Initialization functions
 // *****************************************************************************
-// *****************************************************************************
-/*  System interface functions are called by system code to initialize the
-    module and maintain proper operation of it.
-*/
-
 // *****************************************************************************
 /* Function:
     SYS_MODULE_OBJ SYS_WIFIPROV_Initialize(SYS_WIFIPROV_CONFIG *config,
@@ -485,6 +480,10 @@ SYS_MODULE_OBJ SYS_WIFIPROV_Initialize(SYS_WIFIPROV_CONFIG *config,SYS_WIFIPROV_
 SYS_WIFIPROV_RESULT SYS_WIFIPROV_Deinitialize (SYS_MODULE_OBJ object) ;
 
 // *****************************************************************************
+// *****************************************************************************
+// Section: Status functions
+// *****************************************************************************
+// *****************************************************************************
 /* Function:
    uint8_t SYS_WIFIPROV_GetStatus ( SYS_MODULE_OBJ object)
 
@@ -518,6 +517,10 @@ SYS_WIFIPROV_RESULT SYS_WIFIPROV_Deinitialize (SYS_MODULE_OBJ object) ;
 */
 uint8_t SYS_WIFIPROV_GetStatus ( SYS_MODULE_OBJ object) ;
 
+// *****************************************************************************
+// *****************************************************************************
+// Section: Setup functions
+// *****************************************************************************
 // *****************************************************************************
 /* Function:
    uint8_t SYS_WIFIPROV_Tasks ( SYS_MODULE_OBJ object)
@@ -619,6 +622,8 @@ uint8_t SYS_WIFIPROV_Tasks (SYS_MODULE_OBJ object);
 */
 
 SYS_WIFIPROV_RESULT SYS_WIFIPROV_CtrlMsg (SYS_MODULE_OBJ object,uint32_t event,void *buffer,uint32_t length );
+
+// *****************************************************************************
 
 // DOM-IGNORE-BEGIN
 #ifdef __cplusplus  // Provide C++ Compatibility
