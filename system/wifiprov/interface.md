@@ -1,9 +1,9 @@
 ---
 grand_parent: Services
 parent: Wi-Fi provisioning Service
-title: Wi-Fi provisioning System Service Configuration
+title: Wi-Fi provisioning System Service Interface
 has_toc: true
-nav_order: 2
+nav_order: 1
 ---
 
 # Wi-Fi Provisioning System Service Interface
@@ -18,7 +18,7 @@ nav_order: 2
 ---
 
 
-## Data Types Summary
+## Data Types and Constants Summary
 
 | Name | Description |
 |-|-|
@@ -52,7 +52,7 @@ nav_order: 2
 | [SYS_WIFIPROV_Tasks](#SYS_WIFIPROV_Tasks) | Maintains the Wi-Fi Provisioning System tasks and functionalities. |
 | [SYS_WIFIPROV_CtrlMsg](#SYS_WIFIPROV_CtrlMsg) | Request Wi-Fi Provisioning system service control request interface |
 
-## Data Types
+## Data Types and Constants
 
 
 ### SYS_WIFIPROV_AUTH 

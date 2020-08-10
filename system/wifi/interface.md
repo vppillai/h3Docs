@@ -1,7 +1,7 @@
 ---
 grand_parent: Services
 parent: Wi-Fi Service
-title: Wi-Fi System Service Configuration
+title: Wi-Fi System Service Interface
 has_toc: true
 nav_order: 1
 ---
@@ -17,11 +17,6 @@ nav_order: 1
 
 ---
 
-
-## Included Files Summary
-
-| Name | Description |
-|-|-|
 
 ## Data Types and Constants Summary
 
@@ -56,8 +51,6 @@ nav_order: 1
 |-|-|
 | [SYS_WIFI_Tasks](#SYS_WIFI_Tasks) | Maintains the Wi-Fi System tasks and functionalities. |
 | [SYS_WIFI_CtrlMsg](#SYS_WIFI_CtrlMsg) | Returns success/ failure for the connect/disconnect/scan operation asked by client. |
-
-## Included Files
 
 ## Data Types and Constants
 
