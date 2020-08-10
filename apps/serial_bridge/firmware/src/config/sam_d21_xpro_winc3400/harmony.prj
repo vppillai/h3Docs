@@ -1,0 +1,1638 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Configuration>
+  <Configurator>
+    <Name dnOrder="0" value="sam_d21_xpro_winc3400"/>
+    <Processor dnOrder="1" value="ATSAMD21J18A"/>
+    <Harmony dnOrder="2" path="../../.."/>
+    <Folder_Name dnOrder="3" value=""/>
+    <Manifest dnOrder="4">
+      <Files dnOrder="0">
+        <File dnOrder="0">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">app.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3"/>
+          <PhysicalPath dnOrder="4">/../../</PhysicalPath>
+          <GeneratedChecksum dnOrder="5"/>
+          <UserChecksum dnOrder="6"/>
+        </File>
+        <File dnOrder="1">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">drv_spi.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/spi/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/spi/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">1D8D347F015F2D6805D228650C53E2E4</GeneratedChecksum>
+          <UserChecksum dnOrder="6">1D8D347F015F2D6805D228650C53E2E4</UserChecksum>
+        </File>
+        <File dnOrder="2">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">drv_spi_local.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/spi/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/spi/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">097A6213CF0F4D2B7E49DE6ADA05C7B3</GeneratedChecksum>
+          <UserChecksum dnOrder="6">097A6213CF0F4D2B7E49DE6ADA05C7B3</UserChecksum>
+        </File>
+        <File dnOrder="3">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">exceptions.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">AC14D1B72037D83BEE60A78AC2103D64</GeneratedChecksum>
+          <UserChecksum dnOrder="6">AC14D1B72037D83BEE60A78AC2103D64</UserChecksum>
+        </File>
+        <File dnOrder="4">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">inet_addr.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/drv/socket/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/drv/socket/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">AEEF29FFFDB553A63B56DEE858BA6F58</GeneratedChecksum>
+          <UserChecksum dnOrder="6">AEEF29FFFDB553A63B56DEE858BA6F58</UserChecksum>
+        </File>
+        <File dnOrder="5">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">inet_ntop.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/drv/socket/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/drv/socket/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">29A0A7FC42F988F55DE7B06BB5D7810D</GeneratedChecksum>
+          <UserChecksum dnOrder="6">29A0A7FC42F988F55DE7B06BB5D7810D</UserChecksum>
+        </File>
+        <File dnOrder="6">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">initialization.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C8166A74FFB5F2F2D3B9DC621F5B06AD</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C8166A74FFB5F2F2D3B9DC621F5B06AD</UserChecksum>
+        </File>
+        <File dnOrder="7">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">interrupts.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">9714FC09F1EBB39ECC4C173B5F11C3E9</GeneratedChecksum>
+          <UserChecksum dnOrder="6">9714FC09F1EBB39ECC4C173B5F11C3E9</UserChecksum>
+        </File>
+        <File dnOrder="8">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">libc_syscalls.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">328F1E09E0DD9BEE901C4562A3E5180A</GeneratedChecksum>
+          <UserChecksum dnOrder="6">328F1E09E0DD9BEE901C4562A3E5180A</UserChecksum>
+        </File>
+        <File dnOrder="9">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">m2m_flash.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">BEE4334ED8159EA13C3E696DBA4BA301</GeneratedChecksum>
+          <UserChecksum dnOrder="6">BEE4334ED8159EA13C3E696DBA4BA301</UserChecksum>
+        </File>
+        <File dnOrder="10">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">m2m_hif.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">5C74DEA2357BE3E11EC374D6C59DA023</GeneratedChecksum>
+          <UserChecksum dnOrder="6">5C74DEA2357BE3E11EC374D6C59DA023</UserChecksum>
+        </File>
+        <File dnOrder="11">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">m2m_ota.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">AFF9A64790F8AAD3F15B5689D3128DBB</GeneratedChecksum>
+          <UserChecksum dnOrder="6">AFF9A64790F8AAD3F15B5689D3128DBB</UserChecksum>
+        </File>
+        <File dnOrder="12">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">m2m_periph.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C607972A9D3CFEFE2BC430A8256318E0</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C607972A9D3CFEFE2BC430A8256318E0</UserChecksum>
+        </File>
+        <File dnOrder="13">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">m2m_ssl.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">D6BD55044B3A772ECB8AB30F07E02147</GeneratedChecksum>
+          <UserChecksum dnOrder="6">D6BD55044B3A772ECB8AB30F07E02147</UserChecksum>
+        </File>
+        <File dnOrder="14">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">m2m_wifi.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">4284FDC723CD664C3B8D3A7328A51203</GeneratedChecksum>
+          <UserChecksum dnOrder="6">4284FDC723CD664C3B8D3A7328A51203</UserChecksum>
+        </File>
+        <File dnOrder="15">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">main.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3"/>
+          <PhysicalPath dnOrder="4">/../../</PhysicalPath>
+          <GeneratedChecksum dnOrder="5"/>
+          <UserChecksum dnOrder="6"/>
+        </File>
+        <File dnOrder="16">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">nm_common.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/drv/common/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/drv/common/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">157FA3E28948BF9EB93E7CA9EBBBAF8E</GeneratedChecksum>
+          <UserChecksum dnOrder="6">157FA3E28948BF9EB93E7CA9EBBBAF8E</UserChecksum>
+        </File>
+        <File dnOrder="17">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">nmasic.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">1D55D329DFE1563B32510036AB520B52</GeneratedChecksum>
+          <UserChecksum dnOrder="6">1D55D329DFE1563B32510036AB520B52</UserChecksum>
+        </File>
+        <File dnOrder="18">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">nmbus.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">6A13418F8FF8B5F0E858CFFB7A157F97</GeneratedChecksum>
+          <UserChecksum dnOrder="6">6A13418F8FF8B5F0E858CFFB7A157F97</UserChecksum>
+        </File>
+        <File dnOrder="19">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">nmdrv.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">B6C379D54FB96F40CF471F42C6575A2B</GeneratedChecksum>
+          <UserChecksum dnOrder="6">B6C379D54FB96F40CF471F42C6575A2B</UserChecksum>
+        </File>
+        <File dnOrder="20">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">nmflash.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">DA1F329AF360FF4C12B3D76F9FAFD19C</GeneratedChecksum>
+          <UserChecksum dnOrder="6">DA1F329AF360FF4C12B3D76F9FAFD19C</UserChecksum>
+        </File>
+        <File dnOrder="21">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">nmspi.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">A33F50456B86219556C79AF80EC669DC</GeneratedChecksum>
+          <UserChecksum dnOrder="6">A33F50456B86219556C79AF80EC669DC</UserChecksum>
+        </File>
+        <File dnOrder="22">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">platform_sercom_data.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/platform/</LogicalPath>
+          <PhysicalPath dnOrder="4">/platform/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">F419EE13669F7B7101087AFA165A6F8B</GeneratedChecksum>
+          <UserChecksum dnOrder="6">F419EE13669F7B7101087AFA165A6F8B</UserChecksum>
+        </File>
+        <File dnOrder="23">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_clock.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/clock/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/clock/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">78636CF3E8BA51CE702B443CD5D7CD7E</GeneratedChecksum>
+          <UserChecksum dnOrder="6">78636CF3E8BA51CE702B443CD5D7CD7E</UserChecksum>
+        </File>
+        <File dnOrder="24">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_dmac.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/dmac/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/dmac/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">B6F196873441AB0B9EF902F40E1B9115</GeneratedChecksum>
+          <UserChecksum dnOrder="6">B6F196873441AB0B9EF902F40E1B9115</UserChecksum>
+        </File>
+        <File dnOrder="25">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_eic.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/eic/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/eic/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">CC2FEC3E498EC4B4BD8523E74421FCE8</GeneratedChecksum>
+          <UserChecksum dnOrder="6">CC2FEC3E498EC4B4BD8523E74421FCE8</UserChecksum>
+        </File>
+        <File dnOrder="26">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_evsys.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/evsys</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/evsys/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C99E6D9B9BA371EA749B7DC16BC2C209</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C99E6D9B9BA371EA749B7DC16BC2C209</UserChecksum>
+        </File>
+        <File dnOrder="27">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_nvic.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/nvic/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/nvic/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">4F9C829004554C8E7352478D1A509CC1</GeneratedChecksum>
+          <UserChecksum dnOrder="6">4F9C829004554C8E7352478D1A509CC1</UserChecksum>
+        </File>
+        <File dnOrder="28">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_nvmctrl.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/nvmctrl/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/nvmctrl/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">12BB5180FB5A5EF3F5A1310030E4E6C5</GeneratedChecksum>
+          <UserChecksum dnOrder="6">12BB5180FB5A5EF3F5A1310030E4E6C5</UserChecksum>
+        </File>
+        <File dnOrder="29">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_port.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/port/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/port/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">F97314BB04F79E93FC58FF43D5715896</GeneratedChecksum>
+          <UserChecksum dnOrder="6">F97314BB04F79E93FC58FF43D5715896</UserChecksum>
+        </File>
+        <File dnOrder="30">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_sercom0_spi.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/sercom/spim/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/sercom/spim/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">D7E861CA02716EB994DD49B78F44318C</GeneratedChecksum>
+          <UserChecksum dnOrder="6">D7E861CA02716EB994DD49B78F44318C</UserChecksum>
+        </File>
+        <File dnOrder="31">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_sercom3_usart.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/sercom/usart/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/sercom/usart/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C0A3D60F3161E10FA22E09B6402B4D5C</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C0A3D60F3161E10FA22E09B6402B4D5C</UserChecksum>
+        </File>
+        <File dnOrder="32">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">plib_tc3.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/tc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/tc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">11D7432FC6AE93CC7452AB086718BB65</GeneratedChecksum>
+          <UserChecksum dnOrder="6">11D7432FC6AE93CC7452AB086718BB65</UserChecksum>
+        </File>
+        <File dnOrder="33">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">socket.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/drv/socket/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/drv/socket/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">57D376EBCA082860EE29D8902D5EDB6A</GeneratedChecksum>
+          <UserChecksum dnOrder="6">57D376EBCA082860EE29D8902D5EDB6A</UserChecksum>
+        </File>
+        <File dnOrder="34">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">spi_flash.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/drv/spi_flash/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/drv/spi_flash/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">72BDAC1554C272BCB69980849C0B616F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">72BDAC1554C272BCB69980849C0B616F</UserChecksum>
+        </File>
+        <File dnOrder="35">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">startup_xc32.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">1D663AF01040F617CC298F9373DE9B57</GeneratedChecksum>
+          <UserChecksum dnOrder="6">1D663AF01040F617CC298F9373DE9B57</UserChecksum>
+        </File>
+        <File dnOrder="36">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">sys_dma.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/system/dma/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/dma/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">5182754E707E008E4C8788FCAB430380</GeneratedChecksum>
+          <UserChecksum dnOrder="6">5182754E707E008E4C8788FCAB430380</UserChecksum>
+        </File>
+        <File dnOrder="37">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">sys_int.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/system/int/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/int/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">AC4D91625233534A323364884F492CC6</GeneratedChecksum>
+          <UserChecksum dnOrder="6">AC4D91625233534A323364884F492CC6</UserChecksum>
+        </File>
+        <File dnOrder="38">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">sys_time.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/system/time/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/time/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">40A99C84F50EB7DFAA579B8675F140DD</GeneratedChecksum>
+          <UserChecksum dnOrder="6">40A99C84F50EB7DFAA579B8675F140DD</UserChecksum>
+        </File>
+        <File dnOrder="39">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">tasks.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">B51F93A5873769DC9149F86C5BE8F2B2</GeneratedChecksum>
+          <UserChecksum dnOrder="6">B51F93A5873769DC9149F86C5BE8F2B2</UserChecksum>
+        </File>
+        <File dnOrder="40">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">FFFFA10876259C85FD5032D6864E1B85</GeneratedChecksum>
+          <UserChecksum dnOrder="6">FFFFA10876259C85FD5032D6864E1B85</UserChecksum>
+        </File>
+        <File dnOrder="41">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_assoc.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">77997C36D4C45AEC165A240204B431D0</GeneratedChecksum>
+          <UserChecksum dnOrder="6">77997C36D4C45AEC165A240204B431D0</UserChecksum>
+        </File>
+        <File dnOrder="42">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_authctx.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">0AA4DC2EEF840D3D9476F233D5E983CE</GeneratedChecksum>
+          <UserChecksum dnOrder="6">0AA4DC2EEF840D3D9476F233D5E983CE</UserChecksum>
+        </File>
+        <File dnOrder="43">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_bssctx.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">072228C81D703764548E987D431BD9BD</GeneratedChecksum>
+          <UserChecksum dnOrder="6">072228C81D703764548E987D431BD9BD</UserChecksum>
+        </File>
+        <File dnOrder="44">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_bssfind.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">E51CA3A2315D290EE8ED4424B8B56829</GeneratedChecksum>
+          <UserChecksum dnOrder="6">E51CA3A2315D290EE8ED4424B8B56829</UserChecksum>
+        </File>
+        <File dnOrder="45">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_custie.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">042776CF9DF2009E8DA017F5380889EA</GeneratedChecksum>
+          <UserChecksum dnOrder="6">042776CF9DF2009E8DA017F5380889EA</UserChecksum>
+        </File>
+        <File dnOrder="46">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_eint.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/dev/gpio/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/dev/gpio/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">2308409367BFCF71D93D65F748729975</GeneratedChecksum>
+          <UserChecksum dnOrder="6">2308409367BFCF71D93D65F748729975</UserChecksum>
+        </File>
+        <File dnOrder="47">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_gpio.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/dev/gpio/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/dev/gpio/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">08BEBE8A13076E61A844A43D2A7D2F16</GeneratedChecksum>
+          <UserChecksum dnOrder="6">08BEBE8A13076E61A844A43D2A7D2F16</UserChecksum>
+        </File>
+        <File dnOrder="48">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_httpprovctx.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">8EC1AFE5482D0690045233EE8F1243FF</GeneratedChecksum>
+          <UserChecksum dnOrder="6">8EC1AFE5482D0690045233EE8F1243FF</UserChecksum>
+        </File>
+        <File dnOrder="49">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_nvm.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">D90120014F7FE01D08131D9433529D8A</GeneratedChecksum>
+          <UserChecksum dnOrder="6">D90120014F7FE01D08131D9433529D8A</UserChecksum>
+        </File>
+        <File dnOrder="50">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_osal.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/osal/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/osal/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">4AA07391431205B3719899F2AD90E2CB</GeneratedChecksum>
+          <UserChecksum dnOrder="6">4AA07391431205B3719899F2AD90E2CB</UserChecksum>
+        </File>
+        <File dnOrder="51">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_powersave.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">8DA7EBDD57D257EDAB74390BAA6984D5</GeneratedChecksum>
+          <UserChecksum dnOrder="6">8DA7EBDD57D257EDAB74390BAA6984D5</UserChecksum>
+        </File>
+        <File dnOrder="52">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_socket.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">448DA56FF5229CAD907C2EF76F8D7B23</GeneratedChecksum>
+          <UserChecksum dnOrder="6">448DA56FF5229CAD907C2EF76F8D7B23</UserChecksum>
+        </File>
+        <File dnOrder="53">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_softap.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">E5A07F904CB44DD45846968DCDD08416</GeneratedChecksum>
+          <UserChecksum dnOrder="6">E5A07F904CB44DD45846968DCDD08416</UserChecksum>
+        </File>
+        <File dnOrder="54">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_spi.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/dev/spi/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/dev/spi/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">FEC5E1BBB0941EC26BBBD70815F606BA</GeneratedChecksum>
+          <UserChecksum dnOrder="6">FEC5E1BBB0941EC26BBBD70815F606BA</UserChecksum>
+        </File>
+        <File dnOrder="55">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_ssl.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">29A99C3302D799CD8D98C0401BCE6F6A</GeneratedChecksum>
+          <UserChecksum dnOrder="6">29A99C3302D799CD8D98C0401BCE6F6A</UserChecksum>
+        </File>
+        <File dnOrder="56">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_sta.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C706F6D1B298F29D7B8294458E31E8C1</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C706F6D1B298F29D7B8294458E31E8C1</UserChecksum>
+        </File>
+        <File dnOrder="57">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_systime.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">BBE1B933992365209BF29C2A154EC52E</GeneratedChecksum>
+          <UserChecksum dnOrder="6">BBE1B933992365209BF29C2A154EC52E</UserChecksum>
+        </File>
+        <File dnOrder="58">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">wdrv_winc_wps.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">9E4CF8EA80BA07268679D84E171B9D8E</GeneratedChecksum>
+          <UserChecksum dnOrder="6">9E4CF8EA80BA07268679D84E171B9D8E</UserChecksum>
+        </File>
+        <File dnOrder="59">
+          <Type dnOrder="0">SOURCE</Type>
+          <Name dnOrder="1">xc32_monitor.c</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/stdio/</LogicalPath>
+          <PhysicalPath dnOrder="4">/stdio/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">A9F55E7CB78F22D9000CA03DC635973C</GeneratedChecksum>
+          <UserChecksum dnOrder="6">A9F55E7CB78F22D9000CA03DC635973C</UserChecksum>
+        </File>
+        <File dnOrder="60">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">ac.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">E83A2568EB70A3E393A9421C4CEDDDD5</GeneratedChecksum>
+          <UserChecksum dnOrder="6">E83A2568EB70A3E393A9421C4CEDDDD5</UserChecksum>
+        </File>
+        <File dnOrder="61">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">adc.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">590A4F4CE794B1EB4CDE657634C91913</GeneratedChecksum>
+          <UserChecksum dnOrder="6">590A4F4CE794B1EB4CDE657634C91913</UserChecksum>
+        </File>
+        <File dnOrder="62">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">app.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3"/>
+          <PhysicalPath dnOrder="4">/../../</PhysicalPath>
+          <GeneratedChecksum dnOrder="5"/>
+          <UserChecksum dnOrder="6"/>
+        </File>
+        <File dnOrder="63">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">atsamd21j18a.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">8393113FB3BE6B6F0EAE7F3D37C78640</GeneratedChecksum>
+          <UserChecksum dnOrder="6">8393113FB3BE6B6F0EAE7F3D37C78640</UserChecksum>
+        </File>
+        <File dnOrder="64">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">atsamd21j18a_compat.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">6D6276673CC69271A1923D9D8E42CDC2</GeneratedChecksum>
+          <UserChecksum dnOrder="6">6D6276673CC69271A1923D9D8E42CDC2</UserChecksum>
+        </File>
+        <File dnOrder="65">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">cmsis_armcc.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/CMSIS/CMSIS/Core/Include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/CMSIS/CMSIS/Core/Include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">D0A91713174AE0A9464105CD4157DEC1</GeneratedChecksum>
+          <UserChecksum dnOrder="6">D0A91713174AE0A9464105CD4157DEC1</UserChecksum>
+        </File>
+        <File dnOrder="66">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">cmsis_armclang.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/CMSIS/CMSIS/Core/Include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/CMSIS/CMSIS/Core/Include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">FB9082D52CC87C29BABCEC7CDA5DA8CD</GeneratedChecksum>
+          <UserChecksum dnOrder="6">FB9082D52CC87C29BABCEC7CDA5DA8CD</UserChecksum>
+        </File>
+        <File dnOrder="67">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">cmsis_armclang_ltm.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/CMSIS/CMSIS/Core/Include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/CMSIS/CMSIS/Core/Include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">787D64C13CE3DCD1082EA06108F51EC6</GeneratedChecksum>
+          <UserChecksum dnOrder="6">787D64C13CE3DCD1082EA06108F51EC6</UserChecksum>
+        </File>
+        <File dnOrder="68">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">cmsis_compiler.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/CMSIS/CMSIS/Core/Include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/CMSIS/CMSIS/Core/Include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">60385A5C6C9882B5D30709A1F6EAEC35</GeneratedChecksum>
+          <UserChecksum dnOrder="6">60385A5C6C9882B5D30709A1F6EAEC35</UserChecksum>
+        </File>
+        <File dnOrder="69">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">cmsis_gcc.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/CMSIS/CMSIS/Core/Include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/CMSIS/CMSIS/Core/Include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">B2E4B79E96D9481B139252F7F1C5924F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">B2E4B79E96D9481B139252F7F1C5924F</UserChecksum>
+        </File>
+        <File dnOrder="70">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">cmsis_iccarm.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/CMSIS/CMSIS/Core/Include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/CMSIS/CMSIS/Core/Include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">AF3CC89090034E070238E8A7BE343262</GeneratedChecksum>
+          <UserChecksum dnOrder="6">AF3CC89090034E070238E8A7BE343262</UserChecksum>
+        </File>
+        <File dnOrder="71">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">cmsis_version.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/CMSIS/CMSIS/Core/Include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/CMSIS/CMSIS/Core/Include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">8D06BEF47A08B8A7A91DE48D1C5DFDAB</GeneratedChecksum>
+          <UserChecksum dnOrder="6">8D06BEF47A08B8A7A91DE48D1C5DFDAB</UserChecksum>
+        </File>
+        <File dnOrder="72">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">configuration.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">59077C89B4DFD52B0F0A8CE9C23204F9</GeneratedChecksum>
+          <UserChecksum dnOrder="6">59077C89B4DFD52B0F0A8CE9C23204F9</UserChecksum>
+        </File>
+        <File dnOrder="73">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">core_cm0plus.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/CMSIS/CMSIS/Core/Include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/CMSIS/CMSIS/Core/Include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">B0478E0DFBB919F587783E5CB5E6DBF3</GeneratedChecksum>
+          <UserChecksum dnOrder="6">B0478E0DFBB919F587783E5CB5E6DBF3</UserChecksum>
+        </File>
+        <File dnOrder="74">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">dac.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">016B5B4A71E106E734B16CA1517FF382</GeneratedChecksum>
+          <UserChecksum dnOrder="6">016B5B4A71E106E734B16CA1517FF382</UserChecksum>
+        </File>
+        <File dnOrder="75">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">definitions.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">45EF53FC7E2348DE0C8B891D3D0947C3</GeneratedChecksum>
+          <UserChecksum dnOrder="6">45EF53FC7E2348DE0C8B891D3D0947C3</UserChecksum>
+        </File>
+        <File dnOrder="76">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">device.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">5D8DB4FB2D3F531AE89B5AD11CFBD453</GeneratedChecksum>
+          <UserChecksum dnOrder="6">5D8DB4FB2D3F531AE89B5AD11CFBD453</UserChecksum>
+        </File>
+        <File dnOrder="77">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">device_cache.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">85D3482D395C59BDFF268B01940CDDDE</GeneratedChecksum>
+          <UserChecksum dnOrder="6">85D3482D395C59BDFF268B01940CDDDE</UserChecksum>
+        </File>
+        <File dnOrder="78">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">dmac.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C2E075A57123D0F17F6743EB79FB5708</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C2E075A57123D0F17F6743EB79FB5708</UserChecksum>
+        </File>
+        <File dnOrder="79">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">driver.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">1D2094DFA60F847FFD4E8153B6E78027</GeneratedChecksum>
+          <UserChecksum dnOrder="6">1D2094DFA60F847FFD4E8153B6E78027</UserChecksum>
+        </File>
+        <File dnOrder="80">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">driver_common.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">CC7DFCC51CD25171A3E400E18969354F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">CC7DFCC51CD25171A3E400E18969354F</UserChecksum>
+        </File>
+        <File dnOrder="81">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">drv_spi.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/spi/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/spi/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">53AD078A2F507226A6BDA2DBFEA03430</GeneratedChecksum>
+          <UserChecksum dnOrder="6">53AD078A2F507226A6BDA2DBFEA03430</UserChecksum>
+        </File>
+        <File dnOrder="82">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">drv_spi_definitions.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/spi/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/spi/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">E2CB59CF36535862BE10D0969882502A</GeneratedChecksum>
+          <UserChecksum dnOrder="6">E2CB59CF36535862BE10D0969882502A</UserChecksum>
+        </File>
+        <File dnOrder="83">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">dsu.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">817445C5CD46BF44AEA791F24FFCFD9B</GeneratedChecksum>
+          <UserChecksum dnOrder="6">817445C5CD46BF44AEA791F24FFCFD9B</UserChecksum>
+        </File>
+        <File dnOrder="84">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">ecc_types.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">6C374B0A5A0CC25B6A1AC8EC2683B374</GeneratedChecksum>
+          <UserChecksum dnOrder="6">6C374B0A5A0CC25B6A1AC8EC2683B374</UserChecksum>
+        </File>
+        <File dnOrder="85">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">eic.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">D354D94F76074F550A3D39339988740E</GeneratedChecksum>
+          <UserChecksum dnOrder="6">D354D94F76074F550A3D39339988740E</UserChecksum>
+        </File>
+        <File dnOrder="86">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">evsys.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">CCEBBAD0032227AD71BE82D0A235ADD8</GeneratedChecksum>
+          <UserChecksum dnOrder="6">CCEBBAD0032227AD71BE82D0A235ADD8</UserChecksum>
+        </File>
+        <File dnOrder="87">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">gclk.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">1F81BE55AB45CB807013941A75AA1A57</GeneratedChecksum>
+          <UserChecksum dnOrder="6">1F81BE55AB45CB807013941A75AA1A57</UserChecksum>
+        </File>
+        <File dnOrder="88">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">hmatrixb.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">56D435F7656CC2343B84F1E66D164D64</GeneratedChecksum>
+          <UserChecksum dnOrder="6">56D435F7656CC2343B84F1E66D164D64</UserChecksum>
+        </File>
+        <File dnOrder="89">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">i2s.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">998DBA248933E5682F2276B60B8FD8D8</GeneratedChecksum>
+          <UserChecksum dnOrder="6">998DBA248933E5682F2276B60B8FD8D8</UserChecksum>
+        </File>
+        <File dnOrder="90">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">m2m_flash.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">0B8B83A45254BD045C872273183ED261</GeneratedChecksum>
+          <UserChecksum dnOrder="6">0B8B83A45254BD045C872273183ED261</UserChecksum>
+        </File>
+        <File dnOrder="91">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">m2m_hif.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C7CA07FBDF182BF65EA7D28D51917EB6</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C7CA07FBDF182BF65EA7D28D51917EB6</UserChecksum>
+        </File>
+        <File dnOrder="92">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">m2m_ota.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">84E6D92F328F6727F0924DE1762EF63B</GeneratedChecksum>
+          <UserChecksum dnOrder="6">84E6D92F328F6727F0924DE1762EF63B</UserChecksum>
+        </File>
+        <File dnOrder="93">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">m2m_periph.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">8417C5141E79DD94822D8096F06F3342</GeneratedChecksum>
+          <UserChecksum dnOrder="6">8417C5141E79DD94822D8096F06F3342</UserChecksum>
+        </File>
+        <File dnOrder="94">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">m2m_socket_host_if.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/socket/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/socket/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">B708F2579973038B8D0E0267F812404F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">B708F2579973038B8D0E0267F812404F</UserChecksum>
+        </File>
+        <File dnOrder="95">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">m2m_ssl.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">9A6AF9ED8ED4462113953EA6696A810A</GeneratedChecksum>
+          <UserChecksum dnOrder="6">9A6AF9ED8ED4462113953EA6696A810A</UserChecksum>
+        </File>
+        <File dnOrder="96">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">m2m_types.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">70C34628E3CEA8C4E50228025237392A</GeneratedChecksum>
+          <UserChecksum dnOrder="6">70C34628E3CEA8C4E50228025237392A</UserChecksum>
+        </File>
+        <File dnOrder="97">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">m2m_wifi.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">984E2D178B2F35989AA8D98AD5A34E5B</GeneratedChecksum>
+          <UserChecksum dnOrder="6">984E2D178B2F35989AA8D98AD5A34E5B</UserChecksum>
+        </File>
+        <File dnOrder="98">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">mpu_armv7.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/CMSIS/CMSIS/Core/Include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/CMSIS/CMSIS/Core/Include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">A0246C3B848A6A45D54CE5DA8DF3B9C8</GeneratedChecksum>
+          <UserChecksum dnOrder="6">A0246C3B848A6A45D54CE5DA8DF3B9C8</UserChecksum>
+        </File>
+        <File dnOrder="99">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">mtb.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">F37178E00FC83646B507901642A0100D</GeneratedChecksum>
+          <UserChecksum dnOrder="6">F37178E00FC83646B507901642A0100D</UserChecksum>
+        </File>
+        <File dnOrder="100">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">netinet_in.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/socket/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/socket/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">E3CD925EBF5C70893FEFE2376B89F492</GeneratedChecksum>
+          <UserChecksum dnOrder="6">E3CD925EBF5C70893FEFE2376B89F492</UserChecksum>
+        </File>
+        <File dnOrder="101">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">nm_bsp.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/bsp/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/bsp/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">E4C7F6A9138B21C1C44006F1FF946E30</GeneratedChecksum>
+          <UserChecksum dnOrder="6">E4C7F6A9138B21C1C44006F1FF946E30</UserChecksum>
+        </File>
+        <File dnOrder="102">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">nm_common.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/common/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/common/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">81845090883D7ABC5D0E41EFA12691E5</GeneratedChecksum>
+          <UserChecksum dnOrder="6">81845090883D7ABC5D0E41EFA12691E5</UserChecksum>
+        </File>
+        <File dnOrder="103">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">nm_debug.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/common/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/common/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">9FB5924949388BCCF95C7175705C8FCE</GeneratedChecksum>
+          <UserChecksum dnOrder="6">9FB5924949388BCCF95C7175705C8FCE</UserChecksum>
+        </File>
+        <File dnOrder="104">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">nmasic.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">A4248CA7652B105D73F97BE236DBB0A1</GeneratedChecksum>
+          <UserChecksum dnOrder="6">A4248CA7652B105D73F97BE236DBB0A1</UserChecksum>
+        </File>
+        <File dnOrder="105">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">nmbus.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">6DBFFD8045A7AE886A013E34FB271ECD</GeneratedChecksum>
+          <UserChecksum dnOrder="6">6DBFFD8045A7AE886A013E34FB271ECD</UserChecksum>
+        </File>
+        <File dnOrder="106">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">nmdrv.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">324E84CA2A7F692A8F3BEE217A7D08C1</GeneratedChecksum>
+          <UserChecksum dnOrder="6">324E84CA2A7F692A8F3BEE217A7D08C1</UserChecksum>
+        </File>
+        <File dnOrder="107">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">nmflash.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">3E28D159BAB001255637FAC2EFC00A82</GeneratedChecksum>
+          <UserChecksum dnOrder="6">3E28D159BAB001255637FAC2EFC00A82</UserChecksum>
+        </File>
+        <File dnOrder="108">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">nmspi.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/driver/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/driver/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">3991FF58CAEE05F55B123B2A8D182B78</GeneratedChecksum>
+          <UserChecksum dnOrder="6">3991FF58CAEE05F55B123B2A8D182B78</UserChecksum>
+        </File>
+        <File dnOrder="109">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">nvmctrl.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">7296DA017FF9C40DCC08191D6999B77B</GeneratedChecksum>
+          <UserChecksum dnOrder="6">7296DA017FF9C40DCC08191D6999B77B</UserChecksum>
+        </File>
+        <File dnOrder="110">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">osal.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">/osal/</LogicalPath>
+          <PhysicalPath dnOrder="4">/osal/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">F0AD88762263B7CB89B02AB4F5876059</GeneratedChecksum>
+          <UserChecksum dnOrder="6">F0AD88762263B7CB89B02AB4F5876059</UserChecksum>
+        </File>
+        <File dnOrder="111">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">osal_definitions.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">/osal/</LogicalPath>
+          <PhysicalPath dnOrder="4">/osal/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">0AC88C49E4585B606FD5AC6804F0C340</GeneratedChecksum>
+          <UserChecksum dnOrder="6">0AC88C49E4585B606FD5AC6804F0C340</UserChecksum>
+        </File>
+        <File dnOrder="112">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">osal_impl_basic.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">/osal/</LogicalPath>
+          <PhysicalPath dnOrder="4">/osal/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">63FBE37825657165B9EA584BF05DBA43</GeneratedChecksum>
+          <UserChecksum dnOrder="6">63FBE37825657165B9EA584BF05DBA43</UserChecksum>
+        </File>
+        <File dnOrder="113">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">pac.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">D5A9C90744DEFF4CCDD467B77B6406CB</GeneratedChecksum>
+          <UserChecksum dnOrder="6">D5A9C90744DEFF4CCDD467B77B6406CB</UserChecksum>
+        </File>
+        <File dnOrder="114">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">platform_sercom_data.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/platform/</LogicalPath>
+          <PhysicalPath dnOrder="4">/platform/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">9C97B0DB6D339D4531F87D2BDDF090C0</GeneratedChecksum>
+          <UserChecksum dnOrder="6">9C97B0DB6D339D4531F87D2BDDF090C0</UserChecksum>
+        </File>
+        <File dnOrder="115">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_clock.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/clock/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/clock/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C591D09F115E12D00921D14939E3900D</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C591D09F115E12D00921D14939E3900D</UserChecksum>
+        </File>
+        <File dnOrder="116">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_dmac.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/dmac/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/dmac/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">7E781B5EB55D5AF7787872E213EFB0C0</GeneratedChecksum>
+          <UserChecksum dnOrder="6">7E781B5EB55D5AF7787872E213EFB0C0</UserChecksum>
+        </File>
+        <File dnOrder="117">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_eic.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/eic/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/eic/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">FDD41B64E79475FA9C26BA293183873E</GeneratedChecksum>
+          <UserChecksum dnOrder="6">FDD41B64E79475FA9C26BA293183873E</UserChecksum>
+        </File>
+        <File dnOrder="118">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_evsys.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/evsys</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/evsys/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">CCAEF942C66AF995876DFD85CEFF611F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">CCAEF942C66AF995876DFD85CEFF611F</UserChecksum>
+        </File>
+        <File dnOrder="119">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_nvic.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/nvic/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/nvic/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">E95AB23B866AA0CE6F0ABF637E9E2C83</GeneratedChecksum>
+          <UserChecksum dnOrder="6">E95AB23B866AA0CE6F0ABF637E9E2C83</UserChecksum>
+        </File>
+        <File dnOrder="120">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_nvmctrl.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/nvmctrl/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/nvmctrl/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">71D16914F1E580B0AF77141622DCD865</GeneratedChecksum>
+          <UserChecksum dnOrder="6">71D16914F1E580B0AF77141622DCD865</UserChecksum>
+        </File>
+        <File dnOrder="121">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_port.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/port/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/port/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">6B9459A2114F4FE5F62DCF3466E0D78B</GeneratedChecksum>
+          <UserChecksum dnOrder="6">6B9459A2114F4FE5F62DCF3466E0D78B</UserChecksum>
+        </File>
+        <File dnOrder="122">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_sercom0_spi.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/sercom/spim/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/sercom/spim/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">24020C6F870EC9C16B0B8FAF499BE0EB</GeneratedChecksum>
+          <UserChecksum dnOrder="6">24020C6F870EC9C16B0B8FAF499BE0EB</UserChecksum>
+        </File>
+        <File dnOrder="123">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_sercom3_usart.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/sercom/usart/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/sercom/usart/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">F25CD1714526030627179B22D489C5E3</GeneratedChecksum>
+          <UserChecksum dnOrder="6">F25CD1714526030627179B22D489C5E3</UserChecksum>
+        </File>
+        <File dnOrder="124">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_sercom_spi_common.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/sercom/spim/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/sercom/spim/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">EC6705B0D355601CE62F39DD261EEE63</GeneratedChecksum>
+          <UserChecksum dnOrder="6">EC6705B0D355601CE62F39DD261EEE63</UserChecksum>
+        </File>
+        <File dnOrder="125">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_sercom_usart_common.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/sercom/usart/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/sercom/usart/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">9B409E836AF212CD11C4BB20B1B7C26E</GeneratedChecksum>
+          <UserChecksum dnOrder="6">9B409E836AF212CD11C4BB20B1B7C26E</UserChecksum>
+        </File>
+        <File dnOrder="126">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_tc3.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/tc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/tc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">83C9817FBC4E9A40624ED3BA28F8B052</GeneratedChecksum>
+          <UserChecksum dnOrder="6">83C9817FBC4E9A40624ED3BA28F8B052</UserChecksum>
+        </File>
+        <File dnOrder="127">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">plib_tc_common.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/peripheral/tc/</LogicalPath>
+          <PhysicalPath dnOrder="4">/peripheral/tc/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">9123F379ED6F3FD032D954CC559D102A</GeneratedChecksum>
+          <UserChecksum dnOrder="6">9123F379ED6F3FD032D954CC559D102A</UserChecksum>
+        </File>
+        <File dnOrder="128">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">pm.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">EBC9AD17B5DCF76A8EDA531E3D2ECDA5</GeneratedChecksum>
+          <UserChecksum dnOrder="6">EBC9AD17B5DCF76A8EDA531E3D2ECDA5</UserChecksum>
+        </File>
+        <File dnOrder="129">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">port.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">7AED24682E6782ACD411A220C99C4F7A</GeneratedChecksum>
+          <UserChecksum dnOrder="6">7AED24682E6782ACD411A220C99C4F7A</UserChecksum>
+        </File>
+        <File dnOrder="130">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">ptc.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">B838D9B01315613C8EFF25C5BB950F80</GeneratedChecksum>
+          <UserChecksum dnOrder="6">B838D9B01315613C8EFF25C5BB950F80</UserChecksum>
+        </File>
+        <File dnOrder="131">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">rtc.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">87D1C55E9ECF3BCCB24FA600CBFCC930</GeneratedChecksum>
+          <UserChecksum dnOrder="6">87D1C55E9ECF3BCCB24FA600CBFCC930</UserChecksum>
+        </File>
+        <File dnOrder="132">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">samd21j18a.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/pio/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/pio/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">CF192A634F1CC95773726EE5CEFA2B91</GeneratedChecksum>
+          <UserChecksum dnOrder="6">CF192A634F1CC95773726EE5CEFA2B91</UserChecksum>
+        </File>
+        <File dnOrder="133">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sercom.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">4253FCE0B35C0AB2AA0253652C488761</GeneratedChecksum>
+          <UserChecksum dnOrder="6">4253FCE0B35C0AB2AA0253652C488761</UserChecksum>
+        </File>
+        <File dnOrder="134">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">socket.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/socket/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/socket/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">DBF9BAC596BAF020A7C6F145C2258571</GeneratedChecksum>
+          <UserChecksum dnOrder="6">DBF9BAC596BAF020A7C6F145C2258571</UserChecksum>
+        </File>
+        <File dnOrder="135">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">spi_flash.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/spi_flash/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/spi_flash/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">EC00E014EB8A6F06025ECB127904F0D8</GeneratedChecksum>
+          <UserChecksum dnOrder="6">EC00E014EB8A6F06025ECB127904F0D8</UserChecksum>
+        </File>
+        <File dnOrder="136">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">spi_flash_map.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/drv/spi_flash/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/drv/spi_flash/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">109C52651CFD18A66CD17146115CB736</GeneratedChecksum>
+          <UserChecksum dnOrder="6">109C52651CFD18A66CD17146115CB736</UserChecksum>
+        </File>
+        <File dnOrder="137">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_debug.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/system/debug/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/debug/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">6BB6C54C5CD963A5A940CF7BB28F4E10</GeneratedChecksum>
+          <UserChecksum dnOrder="6">6BB6C54C5CD963A5A940CF7BB28F4E10</UserChecksum>
+        </File>
+        <File dnOrder="138">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_dma.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/system/dma/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/dma/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">473DBCC8C06479687B347E462B9F6B3B</GeneratedChecksum>
+          <UserChecksum dnOrder="6">473DBCC8C06479687B347E462B9F6B3B</UserChecksum>
+        </File>
+        <File dnOrder="139">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_dma_mapping.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/system/dma/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/dma/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">33CFF9B17F00BDAE39FD8EC48112B9EF</GeneratedChecksum>
+          <UserChecksum dnOrder="6">33CFF9B17F00BDAE39FD8EC48112B9EF</UserChecksum>
+        </File>
+        <File dnOrder="140">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_int.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/system/int/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/int/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">1329D2DEB6E5AC9515AD4D165C60DC74</GeneratedChecksum>
+          <UserChecksum dnOrder="6">1329D2DEB6E5AC9515AD4D165C60DC74</UserChecksum>
+        </File>
+        <File dnOrder="141">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_int_mapping.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/system/int/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/int/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">00278F169FFB0CBBAB3A68B5D647F093</GeneratedChecksum>
+          <UserChecksum dnOrder="6">00278F169FFB0CBBAB3A68B5D647F093</UserChecksum>
+        </File>
+        <File dnOrder="142">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_ports.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/system/ports/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/ports/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">FE9F43E5EA9B28EE2A5C6899712E0B98</GeneratedChecksum>
+          <UserChecksum dnOrder="6">FE9F43E5EA9B28EE2A5C6899712E0B98</UserChecksum>
+        </File>
+        <File dnOrder="143">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_ports_mapping.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/system/ports/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/ports/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">0077CD2365E6F28D76DF1D212FF80059</GeneratedChecksum>
+          <UserChecksum dnOrder="6">0077CD2365E6F28D76DF1D212FF80059</UserChecksum>
+        </File>
+        <File dnOrder="144">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_time.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/system/time/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/time/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">466D676839280C0E7FC2CC6F78BA6EE9</GeneratedChecksum>
+          <UserChecksum dnOrder="6">466D676839280C0E7FC2CC6F78BA6EE9</UserChecksum>
+        </File>
+        <File dnOrder="145">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_time_definitions.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/system/time/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/time/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">82C87C4CF49EE4D859363C15E9073333</GeneratedChecksum>
+          <UserChecksum dnOrder="6">82C87C4CF49EE4D859363C15E9073333</UserChecksum>
+        </File>
+        <File dnOrder="146">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sys_time_local.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/system/time/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/time/src/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">62F39464265EC34979649F761FB4FE57</GeneratedChecksum>
+          <UserChecksum dnOrder="6">62F39464265EC34979649F761FB4FE57</UserChecksum>
+        </File>
+        <File dnOrder="147">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">sysctrl.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">0258BE6535CDDE44682CC0CDCB222880</GeneratedChecksum>
+          <UserChecksum dnOrder="6">0258BE6535CDDE44682CC0CDCB222880</UserChecksum>
+        </File>
+        <File dnOrder="148">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">system.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/system/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">BE95B4F134C5C929787B9DA6FDBF3501</GeneratedChecksum>
+          <UserChecksum dnOrder="6">BE95B4F134C5C929787B9DA6FDBF3501</UserChecksum>
+        </File>
+        <File dnOrder="149">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">system_common.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/system/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C3F5136D520DAC4416512EBFCCA023C3</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C3F5136D520DAC4416512EBFCCA023C3</UserChecksum>
+        </File>
+        <File dnOrder="150">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">system_module.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/system/</LogicalPath>
+          <PhysicalPath dnOrder="4">/system/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">1C75A8A6B60598A2FD0D533F57839B72</GeneratedChecksum>
+          <UserChecksum dnOrder="6">1C75A8A6B60598A2FD0D533F57839B72</UserChecksum>
+        </File>
+        <File dnOrder="151">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">tc.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">E9BCB2B0F7AA6142C2681C1155F88131</GeneratedChecksum>
+          <UserChecksum dnOrder="6">E9BCB2B0F7AA6142C2681C1155F88131</UserChecksum>
+        </File>
+        <File dnOrder="152">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">tcc.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">5819925250D9C7C86B56A48BF0949196</GeneratedChecksum>
+          <UserChecksum dnOrder="6">5819925250D9C7C86B56A48BF0949196</UserChecksum>
+        </File>
+        <File dnOrder="153">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">toolchain_specifics.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">5D5CDFD3AB0E678AACDD28A3276C8099</GeneratedChecksum>
+          <UserChecksum dnOrder="6">5D5CDFD3AB0E678AACDD28A3276C8099</UserChecksum>
+        </File>
+        <File dnOrder="154">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">usb.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">F123D6104DB9C55CD684CE27F3B22781</GeneratedChecksum>
+          <UserChecksum dnOrder="6">F123D6104DB9C55CD684CE27F3B22781</UserChecksum>
+        </File>
+        <File dnOrder="155">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">user.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/</LogicalPath>
+          <PhysicalPath dnOrder="4">/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5"/>
+          <UserChecksum dnOrder="6"/>
+        </File>
+        <File dnOrder="156">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">32A74523001CC4C187FF490A0F7E430D</GeneratedChecksum>
+          <UserChecksum dnOrder="6">32A74523001CC4C187FF490A0F7E430D</UserChecksum>
+        </File>
+        <File dnOrder="157">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_api.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">94B68E35BC47CF9000E56A2CD968A2B3</GeneratedChecksum>
+          <UserChecksum dnOrder="6">94B68E35BC47CF9000E56A2CD968A2B3</UserChecksum>
+        </File>
+        <File dnOrder="158">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_assoc.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">E75B5C98C066A7DBF10B854AC419D0EA</GeneratedChecksum>
+          <UserChecksum dnOrder="6">E75B5C98C066A7DBF10B854AC419D0EA</UserChecksum>
+        </File>
+        <File dnOrder="159">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_authctx.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">E667A4438FD611E9A681D7653603E19C</GeneratedChecksum>
+          <UserChecksum dnOrder="6">E667A4438FD611E9A681D7653603E19C</UserChecksum>
+        </File>
+        <File dnOrder="160">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_bssctx.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">DCF6D51C1FF5B6DC23CDE9C179F59510</GeneratedChecksum>
+          <UserChecksum dnOrder="6">DCF6D51C1FF5B6DC23CDE9C179F59510</UserChecksum>
+        </File>
+        <File dnOrder="161">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_bssfind.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">66D1B025A1551D0291F7DD7DB598D062</GeneratedChecksum>
+          <UserChecksum dnOrder="6">66D1B025A1551D0291F7DD7DB598D062</UserChecksum>
+        </File>
+        <File dnOrder="162">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_client_api.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">B117332A9D5A92CB9D3A57B30921F9E0</GeneratedChecksum>
+          <UserChecksum dnOrder="6">B117332A9D5A92CB9D3A57B30921F9E0</UserChecksum>
+        </File>
+        <File dnOrder="163">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_common.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">090F50A1A8B5A9D5B8A6B6024C3DFBBC</GeneratedChecksum>
+          <UserChecksum dnOrder="6">090F50A1A8B5A9D5B8A6B6024C3DFBBC</UserChecksum>
+        </File>
+        <File dnOrder="164">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_custie.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">ADB81872B1C02AAA29834AF1452AEA03</GeneratedChecksum>
+          <UserChecksum dnOrder="6">ADB81872B1C02AAA29834AF1452AEA03</UserChecksum>
+        </File>
+        <File dnOrder="165">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_debug.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">882B3D96C17040A22E26C464B499B830</GeneratedChecksum>
+          <UserChecksum dnOrder="6">882B3D96C17040A22E26C464B499B830</UserChecksum>
+        </File>
+        <File dnOrder="166">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_gpio.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/dev/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/dev/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">D1BE44448B9DB014BA1243C35D01B3B1</GeneratedChecksum>
+          <UserChecksum dnOrder="6">D1BE44448B9DB014BA1243C35D01B3B1</UserChecksum>
+        </File>
+        <File dnOrder="167">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_httpprovctx.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">C44FEE06CF9D7796C6736E1FE5018876</GeneratedChecksum>
+          <UserChecksum dnOrder="6">C44FEE06CF9D7796C6736E1FE5018876</UserChecksum>
+        </File>
+        <File dnOrder="168">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_nvm.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">6D8663694E91681409832090DCF4A883</GeneratedChecksum>
+          <UserChecksum dnOrder="6">6D8663694E91681409832090DCF4A883</UserChecksum>
+        </File>
+        <File dnOrder="169">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_powersave.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">BB29E3755A067138F9A41BB5C23D4423</GeneratedChecksum>
+          <UserChecksum dnOrder="6">BB29E3755A067138F9A41BB5C23D4423</UserChecksum>
+        </File>
+        <File dnOrder="170">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_socket.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">5349FD28B7523A6EE43D71D759EF873F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">5349FD28B7523A6EE43D71D759EF873F</UserChecksum>
+        </File>
+        <File dnOrder="171">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_softap.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">E5AF59122D8CB3058702BE143FD19B91</GeneratedChecksum>
+          <UserChecksum dnOrder="6">E5AF59122D8CB3058702BE143FD19B91</UserChecksum>
+        </File>
+        <File dnOrder="172">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_spi.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/dev/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/dev/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">D6499F908C8F6253A65EC8A2BFDFD131</GeneratedChecksum>
+          <UserChecksum dnOrder="6">D6499F908C8F6253A65EC8A2BFDFD131</UserChecksum>
+        </File>
+        <File dnOrder="173">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_ssl.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">F6790781CBA0124F3BAC11F0E281344F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">F6790781CBA0124F3BAC11F0E281344F</UserChecksum>
+        </File>
+        <File dnOrder="174">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_sta.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">A1B48BB2953DDC97F059D0CD22B70A74</GeneratedChecksum>
+          <UserChecksum dnOrder="6">A1B48BB2953DDC97F059D0CD22B70A74</UserChecksum>
+        </File>
+        <File dnOrder="175">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_systime.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">1AA3F541AE8FC4E3D38E558DE8AD6FDA</GeneratedChecksum>
+          <UserChecksum dnOrder="6">1AA3F541AE8FC4E3D38E558DE8AD6FDA</UserChecksum>
+        </File>
+        <File dnOrder="176">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdrv_winc_wps.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">config/sam_d21_xpro_winc3400/driver/winc/include/</LogicalPath>
+          <PhysicalPath dnOrder="4">/driver/winc/include/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">864E55BD2393FAB02C5879ED5EFC940F</GeneratedChecksum>
+          <UserChecksum dnOrder="6">864E55BD2393FAB02C5879ED5EFC940F</UserChecksum>
+        </File>
+        <File dnOrder="177">
+          <Type dnOrder="0">HEADER</Type>
+          <Name dnOrder="1">wdt.h</Name>
+          <Security dnOrder="2">NON_SECURE</Security>
+          <LogicalPath dnOrder="3">packs/ATSAMD21J18A_DFP/component/</LogicalPath>
+          <PhysicalPath dnOrder="4">/../../packs/ATSAMD21J18A_DFP/component/</PhysicalPath>
+          <GeneratedChecksum dnOrder="5">AF14D78B734053187B6E93E19BD70449</GeneratedChecksum>
+          <UserChecksum dnOrder="6">AF14D78B734053187B6E93E19BD70449</UserChecksum>
+        </File>
+      </Files>
+      <Settings dnOrder="1">
+        <Setting append="true" category="C32" delimiter=";" dnOrder="0" key="extra-include-directories" security="NON_SECURE" value="../src/config/sam_d21_xpro_winc3400/driver/winc/include/;"/>
+        <Setting append="true" category="C32" delimiter=";" dnOrder="1" key="extra-include-directories" security="NON_SECURE" value="../src/config/sam_d21_xpro_winc3400/driver/winc/include/dev;"/>
+        <Setting append="true" category="C32" delimiter=";" dnOrder="2" key="extra-include-directories" security="NON_SECURE" value="../src/config/sam_d21_xpro_winc3400/driver/winc/include/drv/bsp/include;"/>
+        <Setting append="true" category="C32" delimiter=";" dnOrder="3" key="extra-include-directories" security="NON_SECURE" value="../src/config/sam_d21_xpro_winc3400/driver/winc/include/drv/bsp;"/>
+        <Setting append="true" category="C32" delimiter=";" dnOrder="4" key="extra-include-directories" security="NON_SECURE" value="../src/config/sam_d21_xpro_winc3400/driver/winc/include/drv/common;"/>
+        <Setting append="true" category="C32" delimiter=";" dnOrder="5" key="extra-include-directories" security="NON_SECURE" value="../src/config/sam_d21_xpro_winc3400/driver/winc/include/drv/driver;"/>
+        <Setting append="true" category="C32" delimiter=";" dnOrder="6" key="extra-include-directories" security="NON_SECURE" value="../src/config/sam_d21_xpro_winc3400/driver/winc/include/drv/socket;"/>
+        <Setting append="true" category="C32" delimiter=";" dnOrder="7" key="extra-include-directories" security="NON_SECURE" value="../src/config/sam_d21_xpro_winc3400/driver/winc/include/drv/spi_flash;"/>
+        <Setting append="true" category="C32" delimiter=";" dnOrder="8" key="extra-include-directories" security="NON_SECURE" value="../src/config/sam_d21_xpro_winc3400/platform;"/>
+        <Setting append="true" category="C32" delimiter=";" dnOrder="9" key="extra-include-directories" security="NON_SECURE" value="../src;../src/config/sam_d21_xpro_winc3400;../src/packs/ATSAMD21J18A_DFP;../src/packs/CMSIS/CMSIS/Core/Include;../src/packs/CMSIS/"/>
+        <Setting category="C32-LD" dnOrder="10" key="heap-size" security="NON_SECURE" value="10000"/>
+        <Setting category="C32-LD" dnOrder="11" key="no-device-startup-code" security="NON_SECURE" value="true"/>
+        <Setting append="true" category="C32-LD" delimiter=";" dnOrder="12" key="preprocessor-macros" security="NON_SECURE" value=""/>
+      </Settings>
+    </Manifest>
+    <Settings dnOrder="5">
+      <Setting dnOrder="0" key="CMSISPath" value=".\dev_packs\arm\CMSIS\5.6.0"/>
+      <Setting dnOrder="1" key="DFPPath" value=".\dev_packs\Microchip\SAMD21_DFP\3.3.98\samd21a\atdf\ATSAMD21J18A.atdf"/>
+      <Setting dnOrder="2" key="FORCE_OPTIMIZATION" value="false"/>
+      <Setting dnOrder="3" key="GENERATE_BACKUP" value="true"/>
+      <Setting dnOrder="4" key="MERGE_STRATEGY" value="USER_ALL"/>
+      <Setting dnOrder="5" key="PackageFilter" value="bsp;bt;core;csp;ethercat;wsg_dev;net;wireless;"/>
+    </Settings>
+  </Configurator>
+</Configuration>

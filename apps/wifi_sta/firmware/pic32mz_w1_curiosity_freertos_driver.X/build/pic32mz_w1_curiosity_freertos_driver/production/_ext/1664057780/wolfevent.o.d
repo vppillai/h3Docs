@@ -1,0 +1,32 @@
+build/pic32mz_w1_curiosity_freertos_driver/production/_ext/1664057780/wolfevent.o:  \
+ ../src/third_party/wolfssl/wolfssl/wolfcrypt/src/wolfevent.c  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/config.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/configuration.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/user.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/toolchain_specifics.h  \
+ ../src/third_party/wolfssl/wolfssl/wolfcrypt/settings.h  \
+ ../src/third_party/wolfssl/wolfssl/wolfcrypt/visibility.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/tcpip.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/configuration.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/system/system_common.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/system/system_module.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/system/system_common.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/tcpip_common_ports.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/tcpip_mac.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/driver/driver_common.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/tcpip_mac_object.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/tcpip_manager.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/tcpip_heap.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/tcpip_helpers.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/ipv4.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/dhcp.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/dns.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/ipv6.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/arp.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/tcp.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/udp.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/icmp.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/sntp.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/lldp.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/iperf.h  \
+ ../src/config/pic32mz_w1_curiosity_freertos_driver/library/tcpip/tcpip_commands.h 
