@@ -418,11 +418,8 @@ break;
 case SYS_WIFI_DISCONNECT:
 SYS_CONSOLE_PRINT("Device DISCONNECTED \\r\\n");
 break;
-case SYS_WIFI_GETCONFIG:
-SYS_WIFI_CONFIG *wificonfig;
-
-wificonfig = (SYS_WIFI_CONFIG *) data;
-SYS_CONSOLE_PRINT("%s:%d Device mode=%d\\r\\n",__func__,__LINE__,wificonfig->mode);
+case SYS_WIFI_PROVCONFIG:
+SYS_CONSOLE_PRINT("Received the Provisioning data \\r\\n");
 break;
 
 }
@@ -598,6 +595,20 @@ return SYS_WIFI_STATUS if client provided object is valid, else return SYS_WIFI_
 **Example**
 
 ```c
+This function help user to perform synchronize functionality with Wi-Fi service.
+For example,User want to perform the Scan request when auto connect is disabled.
+So user has to make sure service is in right state,where Wi-Fi service has started and waiting in the Auto connect state(SYS_WIFI_STATUS_AUTOCONNECT_WAIT) before making scan request.
+
+if (SYS_WIFI_STATUS_AUTOCONNECT_WAIT == SYS_WIFI_GetStatus (sysObj.syswifi))
+{
+uint8_t buff[2];
+buff[0] = 0 ; //Scan all the channels
+buff[1] = false; // Set the Scan type as passive (false- passive scan,true -active scan)
+SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_SCANREQ,buff,2);
+}
+
+User want to perform some operation when Wi-Fi system service is in TCPIP ready status, waiting for client request.
+
 if (SYS_WIFI_STATUS_TCPIP_READY == SYS_WIFI_GetStatus (sysObj.syswifi))
 {
 // when the SYS WIFI module in TCPIP ready STATUS
@@ -724,9 +735,13 @@ SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_REGCALLBACK,WiFiServCallback,sizeof(uin
 SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_REGCALLBACK,WiFiServCallback1,sizeof(uint8_t *));
 
 Details of SYS_WIFI_GETCONFIG:
-Get Wi-Fi Configuration using control message request.
+Get Wi-Fi Configuration using control message request.The information of configuration is updated in the wificonfig.
 
-SYS_WIFI_CtrlMsg(sysObj.syswifi,,SYS_WIFI_GETCONFIG,NULL,0);
+SYS_WIFI_CONFIG wificonfig;
+if(SYS_WIFI_SUCCESS == SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETCONFIG, &wificonfig, sizeof(SYS_WIFI_CONFIG)))
+{
+//Received the wificonfig data
+}
 
 Details of SYS_WIFI_DISCONNECT:
 Device Disconnect request using control message	request.
