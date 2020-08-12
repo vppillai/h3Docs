@@ -107,7 +107,7 @@ To build the application, refer to the following table and open the project usin
 
 - wifiprov set 0 1 \<country_code\> \<channel\> \<authtype\> \<ssid_name\> \<psk_name\>
 
-- For more details follow the steps available in page: [Wi-Fi provisioning using CLI](../../system/wifiprov/docs/usage.md#command-line)
+- For more details follow the steps available in page: [Wi-Fi provisioning using CLI](../../services/Wi-Fi provisioning Service/docs/usage.md#command-line)
 
 The device will auto-reboot into STA mode.<br> 
 The device will now connect to the configured AP.<br>
