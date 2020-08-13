@@ -22,6 +22,17 @@ nav_order: 2
 
 | Name | Description |
 |-|-|
+| [SYS_NET_MODE_CLIENT](#SYS_NET_MODE_CLIENT) | Net Socket Mode - Client |
+| [SYS_NET_MODE_SERVER](#SYS_NET_MODE_SERVER) | Net Socket Mode - Server |
+| [SYS_NET_MAX_HOSTNAME_LEN](#SYS_NET_MAX_HOSTNAME_LEN) | Max Host Name Length |
+| [SYS_NET_IP_PROT_UDP](#SYS_NET_IP_PROT_UDP) | Ip Protocol Mode - UDP |
+| [SYS_NET_IP_PROT_TCP](#SYS_NET_IP_PROT_TCP) | Ip Protocol Mode - TCP |
+| [SYS_NET_MAX_NUM_OF_SOCKETS](#SYS_NET_MAX_NUM_OF_SOCKETS) | Number of Instances Supported by the NET System Service |
+| [SYS_NET_DEFAULT_TLS_ENABLE](#SYS_NET_DEFAULT_TLS_ENABLE) | Default Values for TLS - False |
+| [SYS_NET_DEFAULT_AUTO_RECONNECT](#SYS_NET_DEFAULT_AUTO_RECONNECT) | Default Values for Auto Reconnect - True |
+| [SYS_NET_DEFAULT_NET_INTF](#SYS_NET_DEFAULT_NET_INTF) | Default Values for Interface - 0 (Wifi) |
+| [NET_CFG](#NET_CFG) | AppDebug Flow for the Logs - Configuration |
+| [NET_DATA](#NET_DATA) | AppDebug Flow for the Logs - Data |
 | [SYS_NET_Config](#SYS_NET_Config) | Used for passing on the configuration related to the Net Socket that needs |
 | [SYS_NET_STATUS](#SYS_NET_STATUS) | Identifies the current status of the Sys Net Instance. |
 | [SYS_NET_EVENT](#SYS_NET_EVENT) | Identifies the event type for which the User Callback is called. |
@@ -60,30 +71,173 @@ nav_order: 2
 
 ## Data Types and Constants
 
-#define SYS_NET_MAX_NUM_OF_SOCKETS	2		// Number of Instances Supported by the NET System Service
 
-#define SYS_NET_MODE_CLIENT	0				// Client Mode Value
+### SYS_NET_MODE_CLIENT
 
-#define SYS_NET_MODE_SERVER	1				// Server Mode Value
+**Summary**
 
-#define SYS_NET_MAX_HOSTNAME_LEN 64 	// Max Host Name Length
+Net Socket Mode - Client  
 
-#define SYS_NET_IP_PROT_UDP 0			// TCP - Ip Protocol Value
+**Remarks**
 
-#define SYS_NET_IP_PROT_TCP 1			// UDP - Ip Protocol Value
+None. 
 
+```c
+#define SYS_NET_MODE_CLIENT 0			// Client Mode Value
+```
+
+### SYS_NET_MODE_SERVER
+
+
+**Summary**
+
+Net Socket Mode - Server  
+
+**Remarks**
+
+None. 
+
+```c
+#define SYS_NET_MODE_SERVER 1			// Server Mode Value
+```
+
+### SYS_NET_MAX_HOSTNAME_LEN
+
+
+**Summary**
+
+Max Host Name Length  
+
+**Remarks**
+
+None. 
+
+```c
+#define SYS_NET_MAX_HOSTNAME_LEN 	256 	// Max Host Name Length
+```
+
+### SYS_NET_IP_PROT_UDP
+
+
+**Summary**
+
+Ip Protocol Mode - UDP  
+
+**Remarks**
+
+None. 
+
+```c
+#define SYS_NET_IP_PROT_UDP 0			// UDP - Ip Protocol Value
+```
+
+### SYS_NET_IP_PROT_TCP
+
+
+**Summary**
+
+Ip Protocol Mode - TCP  
+
+**Remarks**
+
+None. 
+
+```c
+#define SYS_NET_IP_PROT_TCP 1			// TCP - Ip Protocol Value
+```
+
+### SYS_NET_MAX_NUM_OF_SOCKETS
+
+
+**Summary**
+
+Number of Instances Supported by the NET System Service  
+
+**Remarks**
+
+None. 
+
+```c
+#define SYS_NET_MAX_NUM_OF_SOCKETS 2			// umber of Instances Supported by the NET System Service
+```
+
+### SYS_NET_DEFAULT_TLS_ENABLE
+
+
+**Summary**
+
+Default Values for TLS - False  
+
+**Remarks**
+
+None. 
+
+```c
 #define SYS_NET_DEFAULT_TLS_ENABLE 0	// TLS Disabled by default
+```
 
+### SYS_NET_DEFAULT_AUTO_RECONNECT
+
+
+**Summary**
+
+Default Values for Auto Reconnect - True  
+
+**Remarks**
+
+None. 
+
+```c
 #define SYS_NET_DEFAULT_AUTO_RECONNECT 1	// Auto Reconnect Enabled by default
+```
 
+### SYS_NET_DEFAULT_NET_INTF
+
+
+**Summary**
+
+Default Values for Interface - 0 (Wifi)  
+
+**Remarks**
+
+None. 
+
+```c
 #define SYS_NET_DEFAULT_NET_INTF 0	// Interface 0 by default
+```
 
+### NET_CFG
+
+
+**Summary**
+
+AppDebug Flow for the Logs - Configuration  
+
+**Remarks**
+
+None. 
+
+```c
 #define NET_CFG 0x1					// App Debug Print Flows - CFG
+```
 
+### NET_DATA
+
+
+**Summary**
+
+AppDebug Flow for the Logs - Data  
+
+**Remarks**
+
+None. 
+
+```c
 #define NET_DATA 0x2					// App Debug Print Flows - DATA
-
+```
 
 ### SYS_NET_Config
+
 
 **Summary**
 
