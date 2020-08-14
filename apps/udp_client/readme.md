@@ -62,7 +62,9 @@ To build the application, refer to the following table and open the project usin
 ![System Console](images/system_init_console.png)
 
 8.	The Board shall connect to Home AP and then as per the default Net Service configuration, it shall bring up the UDP Client which shall connect to a UDP Server.
+
 ![System Console](images/dut_console.png)
+
 ![System Console](images/system_console.png)
 
 Note: TLS Connection is not supported for UDP Client configuration
