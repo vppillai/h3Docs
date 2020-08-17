@@ -12,4 +12,5 @@ nav_order: 3
 * [Wi-Fi provisioning Service](./wifiprov/docs/readme.md)
 * [Net Service](./net/docs/readme.md)
 * [Mqtt Service](./mqtt/docs/readme.md)
+* [App Debug Service](./appdebug/docs/readme.md)
 
