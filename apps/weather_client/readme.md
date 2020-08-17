@@ -13,11 +13,11 @@ function: Weather Client
 # Weather Client 
 
 This example demonstrates the use of the PIC32MZW1 to retrieve weather
-information from a weather server (openweathermap.org).
+information from a weather server (api.openweathermap.org).
 
 ## Description
 
-This application demonstrates how a user can use a TCP client to connect to a Weather server. The user would need to configure the Wi-Fi credentials for the Home AP.The default application will try to establish a TCP Client connection with openweathermap.org and send a POST request to it.
+This application demonstrates how a user can use a TCP client to connect to a Weather server. The user would need to configure the Wi-Fi credentials for the Home AP.The default application will try to establish a TCP Client connection with api.openweathermap.org and send a POST request to it.
 
 ## Downloading and building the application
 
