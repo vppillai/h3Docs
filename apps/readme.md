@@ -13,7 +13,7 @@ The following applications are provided to demonstrate the usage of system servi
 * [Wi-Fi Station(STA) Mode](wifi_sta/readme.md)
 * [Wi-Fi Access Point(AP) Mode](wifi_ap/readme.md)
 * [Wi-Fi Easy configuration](wifi_easy_config/readme.md)
-* [Wi-Fi Weather Client](wifi_easy_config/readme.md)
+* [Wi-Fi Weather Client](weather_client/readme.md)
 * [Secured TCP Client](tcp_client/readme.md)
 * [TCP Server](tcp_client/readme.md)
 * [UDP Client](udp_client/readme.md)
