@@ -37,6 +37,7 @@ nav_order: 2
 | Name | Description |
 |-|-|
 | [SYS_APPDEBUG_Initialize](#SYS_APPDEBUG_Initialize) | Returns success/ failure for initialization of data structures of the App Debug service |
+| [SYS_APPDEBUG_Deinitialize](#SYS_APPDEBUG_Deinitialize) | Returns success/ failure for deinitialization of data structures of the App Debug service |
 
 ## Setup functions Summary
 
@@ -50,8 +51,6 @@ nav_order: 2
 | [SYS_APPDEBUG_INFO_PRINT](#SYS_APPDEBUG_INFO_PRINT) | Used for logging Info Level Logs |
 | [SYS_APPDEBUG_FN_ENTER_PRINT](#SYS_APPDEBUG_FN_ENTER_PRINT) | Used for logging Function Entry Logs |
 | [SYS_APPDEBUG_FN_EXIT_PRINT](#SYS_APPDEBUG_FN_EXIT_PRINT) | Used for logging Function Exit Logs |
-
-## Included Files
 
 ## Data Types and Constants
 
@@ -229,6 +228,10 @@ Returns success/ failure for initialization of data structures of the App Debug 
 
 This function is used for initializing the data structures of the App Debug service and is called from within the System Task.  
 
+**Parameters**
+
+index 		- NULL; reserved for future use init 			- NULL; reserved for future use  
+
 **Returns**
 
 *SYS_APPDEBUG_SUCCESS* - Indicates the data structures were initialized successfully 
@@ -238,7 +241,45 @@ This function is used for initializing the data structures of the App Debug serv
 **Example**
 
 ```c
-if( SYS_APPDEBUG_Initialize() == SYS_APPDEBUG_SUCCESS)
+if( SYS_APPDEBUG_Initialize(NULL, NULL) == SYS_APPDEBUG_SUCCESS)
+{
+}
+```
+
+**Remarks**
+
+If the Net system service is enabled using MHC, then auto generated code will take care of system task execution. 
+
+### SYS_APPDEBUG_Deinitialize
+
+**Function**
+
+```c
+int32_t SYS_APPDEBUG_Deinitialize()
+```
+
+**Summary**
+
+Returns success/ failure for deinitialization of data structures of the App Debug service  
+
+**Description**
+
+This function is used for deinitializing the data structures of the App Debug service and is called from within the System Task.  
+
+**Parameters**
+
+None  
+
+**Returns**
+
+*SYS_APPDEBUG_SUCCESS* - Indicates the data structures were deinitialized successfully 
+
+*SYS_APPDEBUG_FAILURE* - Indicates that it failed to deinitialize the data structures.  
+
+**Example**
+
+```c
+if( SYS_APPDEBUG_Deinitialize() == SYS_APPDEBUG_SUCCESS)
 {
 }
 ```
@@ -318,7 +359,7 @@ The SYS_APPDEBUG_Open function should have been called before calling this funct
 
 **Parameters**
 
-*object* - SYS NET object handle, returned from SYS_APPDEBUG_Open  
+*object* - SYS App Debug object handle, returned from SYS_APPDEBUG_Open  
 
 **Returns**
 
@@ -463,7 +504,7 @@ SYS_APPDEBUG_DBG_PRINT(objSysAppDebug, MY_APP_FLOW_DATA, "memory allocation reac
 
 **Remarks**
 
-None.
+None. 
 
 #define SYS_APPDEBUG_DBG_PRINT(obj, flow, fmt, ...) \
 SYS_APPDEBUG_PRINT(obj, flow, APP_LOG_DBG_LVL, __FUNCTION__, __LINE__, fmt, ##__VA_ARGS__)
