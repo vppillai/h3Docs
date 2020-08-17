@@ -58,7 +58,8 @@ nav_order: 2
 |-|-|
 | [SYS_NET_Open](#SYS_NET_Open) | Initializes the System NET service. |
 | [SYS_NET_Close](#SYS_NET_Close) | Deinitializes the specific module instance of the SYS NET service |
-| [SYS_NET_Task](#SYS_NET_Task) | | [SYS_NET_CtrlMsg](#SYS_NET_CtrlMsg) | Returns success/ failure for the disconnect/ reconnect operation asked by the user. |
+| [SYS_NET_Task](#SYS_NET_Task) | Executes the SYS NET service state machine for the instance |
+| [SYS_NET_CtrlMsg](#SYS_NET_CtrlMsg) | Returns success/ failure for the disconnect/ reconnect operation asked by the user. |
 | [SYS_NET_SetConfigParam](#SYS_NET_SetConfigParam) | Returns success on setting a configuration parameter for Net System Service. |
 
 ## Data Exchange functions Summary
@@ -628,6 +629,10 @@ Once the Initialize operation has been called, the De-initialize operation must 
 void SYS_NET_Task(SYS_MODULE_OBJ obj)
 ```
 
+**Summary**
+
+Executes the SYS NET service state machine for the instance  
+
 **Description**
 
 This function ensures that the Networking service is able to execute its state machine to process any messages and invoke the user callback for any events.  
@@ -662,7 +667,7 @@ SYS_NET_Task(objSysNet);
 **Function**
 
 ```c
-int32_t SYS_NET_CtrlMsg(SYS_MODULE_OBJ obj, void *data, uint16_t len)
+int32_t SYS_NET_CtrlMsg(SYS_MODULE_OBJ obj, SYS_NET_CTRL_MSG msg_type, void *data, uint16_t len)
 ```
 
 **Summary**
@@ -680,8 +685,9 @@ SYS_NET_Open should have been called.
 **Parameters**
 
 obj 	- SYS NET object handle, returned from SYS_NET_Open  
-*msg_type* - valid Msg Type  
-*data		- valid data buffer pointer based on the Msg Type* - NULL for DISCONNECT, Pointer to SYS_NET_Config for RECONNECT  len		- length of the data buffer the pointer is pointing to  
+*msg_type* - valid Msg Type SYS_NET_CTRL_MSG  
+*data		- valid data buffer pointer based on the Msg Type* - NULL for DISCONNECT, Pointer to SYS_NET_Config for RECONNECT  
+len 	- length of the data buffer the pointer is pointing to  
 
 **Returns**
 
