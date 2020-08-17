@@ -14,6 +14,7 @@ The App Debug System Service provides simple APIs to enable/ disable logs at run
 
 The App Debug System Service library provides an abstraction to the System Console Lohs to provide following functionalities.
 
-- Enabling/ disabling of logs at runtime based on severity level 
-- Enabling/ disabling of logs at runtime based on logical flows, e.g., Data Flow, Control Flow, etc
+- Enabling/ disabling of logs at runtime.
+- Enabling/ disabling of logs based on severity level 
+- Enabling/ disabling of logs based on logical flows, e.g., Data Flow, Control Flow, etc
  

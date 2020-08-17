@@ -427,7 +427,8 @@ SYS_APPDEBUG_ERR_PRINT(objSysAppDebug, MY_APP_FLOW_DATA, "Failed to allocate mem
 **Remarks**
 
 None. 
-SYS_APPDEBUG_ERR_PRINT(obj, flow, fmt, ...) \
+
+#define SYS_APPDEBUG_ERR_PRINT(obj, flow, fmt, ...) \
 SYS_APPDEBUG_PRINT(obj, flow, APP_LOG_ERROR_LVL, __FUNCTION__, __LINE__, fmt, ##__VA_ARGS__)
 
 
