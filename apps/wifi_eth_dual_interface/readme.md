@@ -1,6 +1,6 @@
 ---
 parent: Example Applications
-title: wifi-ethernet dual interface
+title: Wifi-ethernet dual interface
 has_toc: true
 has_children: false
 has_toc: false
@@ -42,7 +42,7 @@ To build the application, refer to the following table and open the project usin
 ## Running the Application
 
 1. Open the project and launch Harmony3 configurator.
-2.	Configure home AP credentials for AP Mode.
+2.	Configure credentials for AP Mode.
 ![MHC](images/configurator.png)
 3.	Save configurations and generate code via MHC 
 4.	Build and program the generated code into the hardware using its IDE
