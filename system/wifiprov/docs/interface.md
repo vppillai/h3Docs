@@ -23,12 +23,12 @@ nav_order: 1
 | Name | Description |
 |-|-|
 | [SYS_WIFIPROV_AUTH ](#SYS_WIFIPROV_AUTH ) | Identifies the type of Authentication requested. |
-| [SYS_WIFIPROV_CTRLMSG ](#SYS_WIFIPROV_CTRLMSG ) | Identifies the control message for which the client has called the SYS_WIFIPROV_CtrlMsg(). |
+| [SYS_WIFIPROV_CTRLMSG ](#SYS_WIFIPROV_CTRLMSG ) | Identifies the control message for which the client has called |
 | [SYS_WIFIPROV_MODE ](#SYS_WIFIPROV_MODE ) | Identifies the Wi-Fi operating mode. |
 | [SYS_WIFIPROV_STA_CONFIG](#SYS_WIFIPROV_STA_CONFIG) | Configuration of station parameters. |
 | [SYS_WIFIPROV_AP_CONFIG](#SYS_WIFIPROV_AP_CONFIG) | Configuration of access point mode parameters. |
 | [SYS_WIFIPROV_CONFIG](#SYS_WIFIPROV_CONFIG) | Configuration of device configuration parameters. |
-| [SYS_WIFIPROV_STATUS](#SYS_WIFIPROV_STATUS) | Result of a Wi-Fi Provisioning system service client interface get operation(SYS_WIFIPROV_GetStatus()). |
+| [SYS_WIFIPROV_STATUS](#SYS_WIFIPROV_STATUS) | Result of a Wi-Fi Provisioning system service client interface get |
 | [SYS_WIFIPROV_RESULT](#SYS_WIFIPROV_RESULT) | Result of a Wi-Fi Provisioning system service client interface operation. |
 | [SYS_WIFIPROV_CALLBACK](#SYS_WIFIPROV_CALLBACK) | Pointer to a Wi-Fi Provisioning system service callback function. |
 
@@ -257,6 +257,7 @@ uint8_t countryCode[5];
 
 /* Wi-Fi station mode configuration */
 SYS_WIFIPROV_STA_CONFIG staConfig;
+
 /* Wi-Fi access point mode configuration */
 SYS_WIFIPROV_AP_CONFIG apConfig;
 }SYS_WIFIPROV_CONFIG;

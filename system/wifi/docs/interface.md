@@ -23,12 +23,12 @@ nav_order: 1
 | Name | Description |
 |-|-|
 | [SYS_WIFI_AUTH ](#SYS_WIFI_AUTH ) | Identifies the type of Authentication requested. |
-| [SYS_WIFI_CTRLMSG ](#SYS_WIFI_CTRLMSG ) | Identifies the control message for which the client has called the SYS_WIFI_CtrlMsg(). |
+| [SYS_WIFI_CTRLMSG ](#SYS_WIFI_CTRLMSG ) | Identifies the control message for which the client has called |
 | [SYS_WIFI_MODE ](#SYS_WIFI_MODE ) | Identifies the Wi-Fi operating mode. |
 | [SYS_WIFI_STA_CONFIG](#SYS_WIFI_STA_CONFIG) | Configuration of station parameters. |
 | [SYS_WIFI_AP_CONFIG](#SYS_WIFI_AP_CONFIG) | Configuration of access point mode parameters. |
 | [SYS_WIFI_CONFIG](#SYS_WIFI_CONFIG) | Configuration of device configuration parameters. |
-| [SYS_WIFI_STATUS](#SYS_WIFI_STATUS) | Result of a Wi-Fi service client interface get status operation(SYS_WIFI_GetStatus()). |
+| [SYS_WIFI_STATUS](#SYS_WIFI_STATUS) | Result of a Wi-Fi service client interface get status |
 | [SYS_WIFI_RESULT](#SYS_WIFI_RESULT) | Result of a Wi-Fi system service client interface operation. |
 | [SYS_WIFI_CALLBACK](#SYS_WIFI_CALLBACK) | Pointer to a Wi-Fi system service callback function. |
 
@@ -604,7 +604,7 @@ Returns Wi-Fi system service status.
 
 **Description**
 
-This function returns the current status of the System Wi-Fi service. This function help user to perform synchronize functionality with Wi-Fi service.  
+This function returns the current status of the System Wi-Fi service.  This function help user to perform synchronize functionality with Wi-Fi service.  
 
 **Precondition**
 
