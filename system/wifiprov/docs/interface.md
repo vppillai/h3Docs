@@ -215,7 +215,7 @@ SYS_WIFIPROV_AUTH authType;
 
 /* Wi-Fi access point mode channel number
 values of channel:
-1 to 13 - - operating channel of access point */
+1 to 13 - operating channel of access point */
 uint8_t channel;
 
 /* Wi-Fi access point mode SSID visibility
@@ -248,8 +248,8 @@ typedef struct
 SYS_WIFIPROV_MODE mode;
 
 /* Flag to identify if configuration needs to be saved in NVM.
-0 ? Do not save configuration in NVM.
-1 ? Save configuration in NVM. */
+0 - Do not save configuration in NVM.
+1 - Save configuration in NVM. */
 uint8_t saveConfig;
 
 /* Country Code configuration */
@@ -343,7 +343,12 @@ SYS_WIFIPROV_OBJ_INVALID=255
 **Function**
 
 ```c
-typedef void (*SYS_WIFIPROV_CALLBACK )(uint32_t event, void * data,void *cookie )
+typedef void (*SYS_WIFIPROV_CALLBACK )
+(
+uint32_t event,
+void * data,
+void *cookie
+)
 ```
 
 **Summary**

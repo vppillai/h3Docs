@@ -262,8 +262,8 @@ typedef struct
 SYS_WIFI_MODE mode;
 
 /* Flag to identify if configuration needs to be saved in NVM.
-0 ? Do not save configuration in NVM.
-1 ? Save configuration in NVM. */
+0 - Do not save configuration in NVM.
+1 - Save configuration in NVM. */
 uint8_t saveConfig;
 
 /* Country Code configuration */
@@ -699,7 +699,13 @@ If the Wi-Fi system service is enabled using MHC, then auto generated code will 
 **Function**
 
 ```c
-SYS_WIFI_RESULT SYS_WIFI_CtrlMsg (SYS_MODULE_OBJ object,uint32_t event,void *buffer,uint32_t length )
+SYS_WIFI_RESULT SYS_WIFI_CtrlMsg
+(
+SYS_MODULE_OBJ object,
+uint32_t event,
+void *buffer,
+uint32_t length
+)
 ```
 
 **Summary**
@@ -708,7 +714,7 @@ Returns success/ failure for the connect/disconnect/scan operation asked by clie
 
 **Description**
 
-This function is used to make control message request(connect,disconnect,scan,register callback) to Wi-Fi system service.  
+This function is used to make control message request (connect,disconnect,scan,register callback) to Wi-Fi system service.  
 
 **Precondition**
 
