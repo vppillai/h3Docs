@@ -71,22 +71,22 @@ None.
 ```c
 typedef enum
 {
-// Requesting a Open Authentication types
+/* Requesting a Open Authentication types */
 SYS_WIFIPROV_OPEN = 1,
 
-// Requesting a WEP Authentication types
+/* Requesting a WEP Authentication types */
 SYS_WIFIPROV_WEP,
 
-// Requesting a WPA/WPA2(Mixed) Authentication types
+/* Requesting a WPA/WPA2(Mixed) Authentication types */
 SYS_WIFIPROV_WPAWPA2MIXED,
 
-// Requesting a WPA2 Authentication types
+/* Requesting a WPA2 Authentication types */
 SYS_WIFIPROV_WPA2,
 
-// Requesting a WPA2/WPA3(Mixed) Authentication types
+/* Requesting a WPA2/WPA3(Mixed) Authentication types */
 SYS_WIFIPROV_WPA2WPA3MIXED,
 
-// Requesting a WPA3 Authentication types
+/* Requesting a WPA3 Authentication types */
 SYS_WIFIPROV_WPA3
 
 } SYS_WIFIPROV_AUTH ;
@@ -109,13 +109,13 @@ The different control messages which can be invoked by the client.
 ```c
 typedef enum
 {
-// Requesting a Wi-Fi Configuration set(for connect)
+/* Requesting a Wi-Fi Configuration set(for connect) */
 SYS_WIFIPROV_SETCONFIG = 0,
 
-// Requesting a Wi-Fi configuration get
+/* Requesting a Wi-Fi configuration get */
 SYS_WIFIPROV_GETCONFIG,
 
-// Updating Wi-Fi Connect status for enabling Wi-Fi Provisioning service
+/* Updating Wi-Fi Connect status for enabling Wi-Fi Provisioning service */
 SYS_WIFIPROV_CONNECT,
 
 } SYS_WIFIPROV_CTRLMSG ;
@@ -138,9 +138,9 @@ Client need to manually reboot device after switching mode. For example changing
 ```c
 typedef enum
 {
-// Requesting a operating mode as a station
+/* Requesting a operating mode as a station */
 SYS_WIFIPROV_STA = 0,
-// Requesting a operating mode as a access point.
+/* Requesting a operating mode as a access point. */
 SYS_WIFIPROV_AP = 1
 
 } SYS_WIFIPROV_MODE ;
@@ -163,25 +163,25 @@ None.
 ```c
 typedef struct
 {
-//Wi-Fi station mode SSID
+/* Wi-Fi station mode SSID */
 uint8_t ssid[32];
 
-//Wi-Fi station mode passphrase
+/* Wi-Fi station mode passphrase */
 uint8_t psk[64];
 
-//Wi-Fi station mode authentication type
-SYS_WIFIPROV_AUTH auth_type;
+/* Wi-Fi station mode authentication type */
+SYS_WIFIPROV_AUTH authType;
 
-//Wi-Fi station mode channel number.
-//values of channel:
-//0 - scan and connect to all the channels
-//1 to 13 - - scan and connect to specified channel
+/* Wi-Fi station mode channel number.
+values of channel:
+0 - scan and connect to all the channels
+1 to 13 - - scan and connect to specified channel */
 uint8_t channel;
 
-//Wi-Fi station mode auto connect flag.
-//value 0- Don't connect to AP, wait for client request.
-//value 1- Connect to AP
-bool auto_connect;
+/* Wi-Fi station mode auto connect flag.
+value 0- Don't connect to AP, wait for client request.
+value 1- Connect to AP */
+bool autoConnect;
 
 } SYS_WIFIPROV_STA_CONFIG;
 ```
@@ -204,25 +204,25 @@ None.
 ```c
 typedef struct
 {
-//Wi-Fi access point mode SSID
+/* Wi-Fi access point mode SSID */
 uint8_t ssid[32];
 
-//Wi-Fi access point mode passphrase
+/* Wi-Fi access point mode passphrase */
 uint8_t psk[64];
 
-//Wi-Fi access point mode authentication type
-SYS_WIFIPROV_AUTH auth_type;
+/* Wi-Fi access point mode authentication type */
+SYS_WIFIPROV_AUTH authType;
 
-//Wi-Fi access point mode channel number.
-//values of channel:
-//1 to 13 - - operating channel of access point
+/* Wi-Fi access point mode channel number
+values of channel:
+1 to 13 - - operating channel of access point */
 uint8_t channel;
 
-//Wi-Fi access point mode SSID visibility
-//Value of ssid_visibility:
-//0 - Hidden SSID
-//1 - broadcast the SSID
-bool ssid_visibility;
+/* Wi-Fi access point mode SSID visibility
+Value of ssidVisibility:
+0 - Hidden SSID
+1 - broadcast the SSID */
+bool ssidVisibility;
 
 } SYS_WIFIPROV_AP_CONFIG;
 ```
@@ -244,19 +244,21 @@ None.
 ```c
 typedef struct
 {
-//Operating mode of device
+/* Operating mode of device */
 SYS_WIFIPROV_MODE mode;
 
-//Flag to identify if configuration needs to be saved in NVM. 0 ? Do not save configuration in NVM. 1 ? Save configuration in NVM.
-uint8_t save_config;
+/* Flag to identify if configuration needs to be saved in NVM.
+0 ? Do not save configuration in NVM.
+1 ? Save configuration in NVM. */
+uint8_t saveConfig;
 
-//Country Code configuration
-uint8_t countrycode[5];
+/* Country Code configuration */
+uint8_t countryCode[5];
 
-//Wi-Fi station mode configuration
-SYS_WIFIPROV_STA_CONFIG staconfig;
-//Wi-Fi access point mode configuration
-SYS_WIFIPROV_AP_CONFIG apconfig;
+/* Wi-Fi station mode configuration */
+SYS_WIFIPROV_STA_CONFIG staConfig;
+/* Wi-Fi access point mode configuration */
+SYS_WIFIPROV_AP_CONFIG apConfig;
 }SYS_WIFIPROV_CONFIG;
 ```
 
@@ -278,27 +280,29 @@ None.
 ```c
 typedef enum
 {
-//Wi-Fi Provisioning system service is in MPFS filesystem mount state
+/* Wi-Fi Provisioning system service is in MPFS filesystem mount state */
 SYS_WIFIPROV_STATUS_MPFS_MOUNT=1,
 
-//Wi-Fi Provisioning system service is in NVM read state
+/* Wi-Fi Provisioning system service is in NVM read state */
 SYS_WIFIPROV_STATUS_NVM_READ,
-//Wi-Fi Provisioning system service is in NVM read Wi-Fi Configuration checking state
+/* Wi-Fi Provisioning system service is in NVM read Wi-Fi Configuration
+checking state */
 SYS_WIFIPROV_STATUS_CONFIG_CHECK,
 
-//Wi-Fi Provisioning system service is in NVM erase state
+/* Wi-Fi Provisioning system service is in NVM erase state */
 SYS_WIFIPROV_STATUS_NVM_ERASE,
 
-//Wi-Fi Provisioning system service is in NVM write state
+/* Wi-Fi Provisioning system service is in NVM write state */
 SYS_WIFIPROV_STATUS_NVM_WRITE,
 
-//Wi-Fi Provisioning system service is in wait for NVM write to complate state
+/* Wi-Fi Provisioning system service is in wait for NVM write to
+complate state */
 SYS_WIFIPROV_STATUS_WAITFORWRITE,
 
-//Wi-Fi Provisioning system service is in client request state
+/* Wi-Fi Provisioning system service is in client request state */
 SYS_WIFIPROV_STATUS_WAITFORREQ,
 
-//Wi-Fi Provisioning system service is in invalid state
+/*Wi-Fi Provisioning system service is in invalid state */
 SYS_WIFIPROV_STATUS_NONE =255
 
 } SYS_WIFIPROV_STATUS;
@@ -321,13 +325,13 @@ None.
 ```c
 typedef enum{
 
-// Operation completed with success
+/* Operation completed with success */
 SYS_WIFIPROV_SUCCESS = 0,
 
-//Operation failed.
+/* Operation failed. */
 SYS_WIFIPROV_FAILURE,
 
-//Operation request object is invalid
+/* Operation request object is invalid */
 SYS_WIFIPROV_OBJ_INVALID=255
 
 }SYS_WIFIPROV_RESULT;
@@ -374,15 +378,20 @@ void WiFiProvServCallback (uint32_t event, void * data,void *cookie )
 switch(event)
 {
 case SYS_WIFIPROV_SETCONFIG:
-SYS_WIFIPROV_CONFIG* wifiprovconfig = (SYS_WIFIPROV_CONFIG *) data;
-//Provisioning service updated data
-SYS_CONSOLE_PRINT("%s:%d Device mode=%d\\r\\n",__func__,__LINE__,wifiprovconfig->mode);
+{
+SYS_WIFIPROV_CONFIG* wifiProvConfig = (SYS_WIFIPROV_CONFIG *) data;
+// Provisioning service updated data
+SYS_CONSOLE_PRINT("%s:%d Device mode=%d\\r\\n",__func__,__LINE__,wifiProvConfig->mode);
 break;
+}
+
 case SYS_WIFIPROV_GETCONFIG:
-SYS_WIFIPROV_CONFIG* wifiprovconfig = (SYS_WIFIPROV_CONFIG *) data;
-//client requested get Wi-Fi Configuration
-SYS_CONSOLE_PRINT("%s:%d Device mode=%d\\r\\n",__func__,__LINE__,wifiprovconfig->mode);
+{
+SYS_WIFIPROV_CONFIG* wifiProvConfig = (SYS_WIFIPROV_CONFIG *) data;
+// client requested get Wi-Fi Configuration
+SYS_CONSOLE_PRINT("%s:%d Device mode=%d\\r\\n",__func__,__LINE__,wifiProvConfig->mode);
 break;
+}
 }
 }
 ```
@@ -403,9 +412,12 @@ typedef void (*SYS_WIFIPROV_CALLBACK )(uint32_t event, void * data,void *cookie 
 **Function**
 
 ```c
-SYS_MODULE_OBJ SYS_WIFIPROV_Initialize(SYS_WIFIPROV_CONFIG *config,
+SYS_MODULE_OBJ SYS_WIFIPROV_Initialize
+(
+SYS_WIFIPROV_CONFIG *config,
 SYS_WIFIPROV_CALLBACK callback,
-void *cookie)
+void *cookie
+)
 ```
 
 **Summary**
@@ -434,19 +446,32 @@ If successful, returns a valid handle to an object. Otherwise, it returns SYS_MO
 #define WIFI_DEV_SSID "DEMO_AP"
 #define WIFI_DEV_PSK "password"
 
-SYS_WIFIPROV_CONFIG 	wifiprovconfig;
-SYS_MODULE_OBJ 		 WiFiprovServHandle;
+SYS_WIFIPROV_CONFIG wifiProvConfig;
+SYS_MODULE_OBJ wifiProvServHandle;
 
-wifiprovconfig.mode = SYS_WIFI_STA; // Set mode as STA
-wifiprovconfig.save_config = false; // Disable saving wifi configuration
-wifiprovconfig.staconfig.auth_type = SYS_WIFI_WPA2; // Set the auth type to SYS_WIFI_WPA2
-wifiprovconfig.staconfig.channel = 0; // Enable all the channels(0).
-wifiprovconfig.staconfig.auto_connect = 1; // Device doesn't wait for user request.
-memcpy(wifiprovconfig.staconfig.ssid,WIFI_DEV_SSID,sizeof(WIFI_DEV_SSID)); // Set SSID
-memcpy(wifiprovconfig.staconfig.psk,WIFI_DEV_PSK,sizeof(WIFI_DEV_PSK)); // Set PSK
+// Set mode as STA
+wifiProvConfig.mode = SYS_WIFI_STA;
 
-WiFiprovServHandle = SYS_WIFIPROV_Initialize(&wifiprovconfig, WiFiProvServCallback, 0);
-if (WiFiprovServHandle == SYS_MODULE_OBJ_INVALID)
+// Disable saving wifi configuration
+wifiProvConfig.saveConfig = false;
+
+//Set the auth type to SYS_WIFI_WPA2
+wifiProvConfig.staConfig.authType = SYS_WIFI_WPA2;
+
+// Enable all the channels(0)
+wifiProvConfig.staConfig.channel = 0;
+
+// Device doesn't wait for user request.
+wifiProvConfig.staConfig.autoConnect = 1;
+
+// Set SSID
+memcpy(wifiProvConfig.staConfig.ssid,WIFI_DEV_SSID,sizeof(WIFI_DEV_SSID));
+
+// Set PSK
+memcpy(wifiProvConfig.staConfig.psk,WIFI_DEV_PSK,sizeof(WIFI_DEV_PSK));
+
+wifiProvServHandle = SYS_WIFIPROV_Initialize(&wifiProvConfig, WiFiProvServCallback, 0);
+if (wifiProvServHandle == SYS_MODULE_OBJ_INVALID)
 {
 // Handle error
 }
@@ -487,7 +512,7 @@ return SYS_WIFIPROV_RESULT
 **Example**
 
 ```c
-if (SYS_WIFI_SUCCESS == SYS_WIFIPROV_Deinitialize (WiFiprovServHandle))
+if (SYS_WIFI_SUCCESS == SYS_WIFIPROV_Deinitialize (wifiProvServHandle))
 {
 // when the SYS WIFI is De-initialized.
 }
@@ -532,7 +557,7 @@ return SYS_WIFIPROV_STATUS if client provided object is valid, else return SYS_W
 **Example**
 
 ```c
-if (SYS_WIFIPROV_STATE_WAITFORREQ == SYS_WIFIPROV_GetStatus (WiFiprovServHandle))
+if (SYS_WIFIPROV_STATE_WAITFORREQ == SYS_WIFIPROV_GetStatus (wifiProvServHandle))
 {
 // when the SYS WIFI Provisioning module in wait for client request
 }
@@ -577,7 +602,7 @@ return SYS_WIFIPROV_STATUS if client provided object is valid, else return SYS_W
 **Example**
 
 ```c
-if (SYS_WIFIPROV_OBJ_INVALID != SYS_WIFIPROV_Tasks (WiFiprovServHandle))
+if (SYS_WIFIPROV_OBJ_INVALID != SYS_WIFIPROV_Tasks (wifiProvServHandle))
 {
 
 }
@@ -626,35 +651,45 @@ return SYS_WIFIPROV_RESULT.
 ```c
 Details of SYS_WIFIPROV_SETCONFIG:
 
-SYS_WIFIPROV_CONFIG 	wifiprovconfig;
-SYS_MODULE_OBJ 		WiFiprovServHandle;
+SYS_WIFIPROV_CONFIG wifiProvConfig;
+SYS_MODULE_OBJ wifiProvServHandle;
 
-wifiprovconfig.mode = SYS_WIFI_STA; // Set mode as STA
-wifiprovconfig.save_config = false; // Disable saving wifi configuration
-wifiprovconfig.staconfig.auth_type = SYS_WIFI_WPA2; // Set the auth type to SYS_WIFI_WPA2
-wifiprovconfig.staconfig.channel = 0; // Enable all the channels(0).
-wifiprovconfig.staconfig.auto_connect = 1; // Device doesn't wait for user request.
-memcpy(wifiprovconfig.staconfig.ssid,WIFI_DEV_SSID,sizeof(WIFI_DEV_SSID)); // Set SSID
-memcpy(wifiprovconfig.staconfig.psk,WIFI_DEV_PSK,sizeof(WIFI_DEV_PSK)); // Set PSK
+// Set mode as STA
+wifiProvConfig.mode = SYS_WIFI_STA;
 
-if (SYS_WIFIPROV_OBJ_INVALID != SYS_WIFIPROV_CtrlMsg (WiFiprovServHandle,SYS_WIFIPROV_SETCONFIG,&wifiprovconfig,sizeof(SYS_WIFIPROV_CONFIG)))
+// Disable saving wifi configuration
+wifiProvConfig.saveConfig = false;
+
+// Set the auth type to SYS_WIFI_WPA2
+wifiProvConfig.staConfig.authType = SYS_WIFI_WPA2;
+
+// Enable all the channels(0)
+wifiProvConfig.staConfig.channel = 0;
+
+// Device doesn't wait for user request
+wifiProvConfig.staConfig.autoConnect = 1;
+
+// Set SSID
+memcpy(wifiProvConfig.staConfig.ssid,WIFI_DEV_SSID,sizeof(WIFI_DEV_SSID));
+
+// Set PSK
+memcpy(wifiProvConfig.staConfig.psk,WIFI_DEV_PSK,sizeof(WIFI_DEV_PSK));
+if (SYS_WIFIPROV_OBJ_INVALID != SYS_WIFIPROV_CtrlMsg (wifiProvServHandle,SYS_WIFIPROV_SETCONFIG,&wifiProvConfig,sizeof(SYS_WIFIPROV_CONFIG)))
 {
-//When Wi-Fi Provisioning Configuration need to be updated
+// When Wi-Fi Provisioning Configuration need to be updated
 }
 
 Details of SYS_WIFIPROV_GETCONFIG:
-
-SYS_WIFIPROV_CtrlMsg (WiFiprovServHandle,SYS_WIFIPROV_GETCONFIG,NULL,0);
+SYS_WIFIPROV_CtrlMsg (wifiProvServHandle,SYS_WIFIPROV_GETCONFIG,NULL,0);
 
 Details of SYS_WIFIPROV_CONNECT:
+// Updating Wi-Fi Connected state to Provisioning service
+bool wifiProvConnectState = true;
+SYS_WIFIPROV_CtrlMsg (wifiProvServHandle,SYS_WIFIPROV_CONNECT,&wifiProvConnectState,sizeof(wifiProvConnectState));
 
-//Updating Wi-Fi Connected state to Provisioning service
-bool prov_connectstate = true;
-SYS_WIFIPROV_CtrlMsg (WiFiprovServHandle,SYS_WIFIPROV_CONNECT,&prov_connectstate,sizeof(prov_connectstate));
-
-//Updating Wi-Fi disconnected state to Provisioning service
-bool prov_connectstate = false;
-SYS_WIFIPROV_CtrlMsg (WiFiprovServHandle,SYS_WIFIPROV_CONNECT,&prov_connectstate,sizeof(prov_connectstate));
+// Updating Wi-Fi disconnected state to Provisioning service
+bool wifiProvConnectState = false;
+SYS_WIFIPROV_CtrlMsg (wifiProvServHandle,SYS_WIFIPROV_CONNECT,&wifiProvConnectState,sizeof(wifiProvConnectState));
 
 ```
 **Remarks**

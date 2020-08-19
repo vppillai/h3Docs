@@ -71,22 +71,22 @@ None.
 ```c
 typedef enum
 {
-// Requesting a Open Authentication types
+/* Requesting a Open Authentication types */
 SYS_WIFI_OPEN = 1,
 
-// Requesting a WEP Authentication types
+/* Requesting a WEP Authentication types */
 SYS_WIFI_WEP,
 
-// Requesting a WPA/WPA2(Mixed) Authentication types
+/* Requesting a WPA/WPA2(Mixed) Authentication types */
 SYS_WIFI_WPAWPA2MIXED,
 
-// Requesting a WPA2 Authentication types
+/* Requesting a WPA2 Authentication types */
 SYS_WIFI_WPA2,
 
-// Requesting a WPA2/WPA3(Mixed) Authentication types
+/* Requesting a WPA2/WPA3(Mixed) Authentication types */
 SYS_WIFI_WPA2WPA3MIXED,
 
-// Requesting a WPA3 Authentication types
+/* Requesting a WPA3 Authentication types */
 SYS_WIFI_WPA3
 
 } SYS_WIFI_AUTH ;
@@ -109,22 +109,26 @@ The different control messages which can be invoked by the client.
 ```c
 typedef enum
 {
-//Control message type for requesting a Wi-Fi Configuration set(for connect)
+/* Control message type for requesting a Wi-Fi Configuration
+set(for connect) */
 SYS_WIFI_CONNECT = 0,
 
-//Control message type for requesting a Wi-Fi device disconnect
+/*Control message type for requesting a Wi-Fi device disconnect */
 SYS_WIFI_DISCONNECT,
 
-//Control message type for requesting a Wi-Fi configuration information
+/* Control message type for requesting a Wi-Fi configuration information */
 SYS_WIFI_GETCONFIG,
 
-//Control message type for updating a Provisioning Wi-Fi configuration information
+/* Control message type for updating a Provisioning Wi-Fi configuration
+information */
 SYS_WIFI_PROVCONFIG,
 
-//Control message type for registering a Wi-Fi system service client callback
+/* Control message type for registering a Wi-Fi system service
+client callback */
 SYS_WIFI_REGCALLBACK,
 
-//Control message type for requesting a Wi-Fi scan.In Scan request, client can set channel number and type of scan(active/passive).
+/* Control message type for requesting a Wi-Fi scan.In Scan request,
+client can set channel number and type of scan(active/passive). */
 SYS_WIFI_SCANREQ
 
 } SYS_WIFI_CTRLMSG ;
@@ -147,12 +151,11 @@ Client need to manually reboot device after switching mode. For example, changin
 ```c
 typedef enum
 {
-// Requesting a operating mode a station
+/* Requesting a operating mode a station */
 SYS_WIFI_STA = 0,
 
-// Requesting a operating mode a AP access point.
+/* Requesting a operating mode a AP access point. */
 SYS_WIFI_AP
-
 } SYS_WIFI_MODE ;
 ```
 
@@ -174,25 +177,25 @@ None.
 ```c
 typedef struct
 {
-//Wi-Fi station mode SSID
+/* Wi-Fi station mode SSID */
 uint8_t ssid[32];
 
-//Wi-Fi station mode passphrase
+/* Wi-Fi station mode passphrase */
 uint8_t psk[64];
 
-//Wi-Fi station mode authentication type
-SYS_WIFI_AUTH auth_type;
+/* Wi-Fi station mode authentication type */
+SYS_WIFI_AUTH authType;
 
-//Wi-Fi station mode channel number.
-//values of channel:
-//0 - scan and connect to all the channels
-//1 to 13 - - scan and connect to specified channel
+/* Wi-Fi station mode channel number.
+values of channel:
+0 - scan and connect to all the channels
+1 to 13 - - scan and connect to specified channel */
 uint8_t channel;
 
-//Wi-Fi station mode auto connect flag.
-//value 0- Don't connect to AP, wait for client request.
-//value 1- Connect to AP immediately
-bool auto_connect;
+/* Wi-Fi station mode auto connect flag.
+value 0- Don't connect to AP, wait for client request.
+value 1- Connect to AP immediately */
+bool autoConnect;
 
 } SYS_WIFI_STA_CONFIG;
 ```
@@ -215,25 +218,25 @@ None.
 ```c
 typedef struct
 {
-//Wi-Fi access point mode SSID
+/* Wi-Fi access point mode SSID */
 uint8_t ssid[32];
 
-//Wi-Fi access point mode passphrase
+/* Wi-Fi access point mode passphrase */
 uint8_t psk[64];
 
-//Wi-Fi access point mode authentication type
-SYS_WIFI_AUTH auth_type;
+/* Wi-Fi access point mode authentication type */
+SYS_WIFI_AUTH authType;
 
-//Wi-Fi access point mode channel number.
-//values of channel:
-//1 to 13 - - operating channel of access point
+/* Wi-Fi access point mode channel number.
+values of channel:
+1 to 13 - - operating channel of access point */
 uint8_t channel;
 
-//Wi-Fi access point mode SSID visibility
-//value of ssid_visibility:
-//0 - Hidden SSID
-//1 - broadcast the SSID
-bool ssid_visibility;
+/* Wi-Fi access point mode SSID visibility
+value of ssidVisibility:
+0 - Hidden SSID
+1 - broadcast the SSID */
+bool ssidVisibility;
 
 } SYS_WIFI_AP_CONFIG;
 ```
@@ -255,20 +258,22 @@ None.
 ```c
 typedef struct
 {
-//Operating mode of the device
+/* Operating mode of the device */
 SYS_WIFI_MODE mode;
 
-//Flag to identify if configuration needs to be saved in NVM. 0 ? Do not save configuration in NVM. 1 ? Save configuration in NVM.
-uint8_t save_config;
+/* Flag to identify if configuration needs to be saved in NVM.
+0 ? Do not save configuration in NVM.
+1 ? Save configuration in NVM. */
+uint8_t saveConfig;
 
-//Country Code configuration
-uint8_t countrycode[5];
+/* Country Code configuration */
+uint8_t countryCode[5];
 
-//Wi-Fi station mode configuration structure
-SYS_WIFI_STA_CONFIG staconfig;
+/* Wi-Fi station mode configuration structure */
+SYS_WIFI_STA_CONFIG staConfig;
 
-//Wi-Fi access point mode configuration structure
-SYS_WIFI_AP_CONFIG apconfig;
+/* Wi-Fi access point mode configuration structure */
+SYS_WIFI_AP_CONFIG apConfig;
 
 }SYS_WIFI_CONFIG;
 ```
@@ -290,40 +295,40 @@ None.
 ```c
 typedef enum
 {
-//Wi-Fi system service is in init status
+/* Wi-Fi system service is in init status */
 SYS_WIFI_STATUS_INIT = 1,
 
-//Wi-Fi system service is in driver open status
+/* Wi-Fi system service is in driver open status */
 SYS_WIFI_STATUS_WDRV_OPEN_REQ,
 
-//Wi-Fi system service is in auto connect wait status
+/* Wi-Fi system service is in auto connect wait status */
 SYS_WIFI_STATUS_AUTOCONNECT_WAIT,
 
-//Wi-Fi system service is in wait for TCPIP stack init status
+/* Wi-Fi system service is in wait for TCPIP stack init status */
 SYS_WIFI_STATUS_TCPIP_WAIT_FOR_TCPIP_INIT,
 
-//Wi-Fi system service is in Wi-Fi connect request status
+/* Wi-Fi system service is in Wi-Fi connect request status */
 SYS_WIFI_STATUS_CONNECT_REQ,
 
-//In AP mode,Wi-Fi system service is in wait for AP IP address
+/* In AP mode,Wi-Fi system service is in wait for AP IP address */
 SYS_WIFI_STATUS_WAIT_FOR_AP_IP,
 
-//In AP mode,Wi-Fi system service is in wait for connecting STA IP address
+/* In AP mode,Wi-Fi system service is in wait for connecting STA IP address */
 SYS_WIFI_STATUS_WAIT_FOR_STA_IP,
 
-//Wi-Fi system service is in TCPIP ready status, waiting for client request.
+/* Wi-Fi system service is in TCPIP ready status, waiting for client request.*/
 SYS_WIFI_STATUS_TCPIP_READY,
 
-//Wi-Fi system service is in TCPIP error status
+/* Wi-Fi system service is in TCPIP error status */
 SYS_WIFI_STATUS_TCPIP_ERROR,
 
-//Wi-Fi system service is in config error status
+/* Wi-Fi system service is in config error status */
 SYS_WIFI_STATUS_CONFIG_ERROR,
 
-//Wi-Fi system service is in connection error status
+/* Wi-Fi system service is in connection error status */
 SYS_WIFI_STATUS_CONNECT_ERROR,
 
-//Wi-Fi system service is in not in valid status
+/* Wi-Fi system service is in not in valid status */
 SYS_WIFI_STATUS_NONE =255
 } SYS_WIFI_STATUS;
 ```
@@ -345,16 +350,16 @@ None.
 ```c
 typedef enum{
 
-// Operation completed with success
+/* Operation completed with success */
 SYS_WIFI_SUCCESS = 0,
 
-//Operation Failed.
+/* Operation Failed.*/
 SYS_WIFI_FAILURE,
 
-//Wi-Fi service un-initialize
+/* Wi-Fi service un-initialize */
 SYS_WIFI_SERVICE_UNINITIALIZE,
 
-//Wi-Fi configuration request failed
+/*Wi-Fi configuration request failed */
 SYS_WIFI_CONFIG_FAILURE,
 
 //Wi-Fi Connect request failed
@@ -412,16 +417,21 @@ IPV4_ADDR *IPAddr;
 switch(event)
 {
 case SYS_WIFI_CONNECT:
+{
 IPAddr = (IPV4_ADDR *)data;
 SYS_CONSOLE_PRINT("IP address obtained = %d.%d.%d.%d \\r\\n",IPAddr->v[0], IPAddr->v[1], IPAddr->v[2], IPAddr->v[3]);
 break;
+}
 case SYS_WIFI_DISCONNECT:
+{
 SYS_CONSOLE_PRINT("Device DISCONNECTED \\r\\n");
 break;
+}
 case SYS_WIFI_PROVCONFIG:
+{
 SYS_CONSOLE_PRINT("Received the Provisioning data \\r\\n");
 break;
-
+}
 }
 }
 void APP_Initialize(void) {
@@ -467,9 +477,12 @@ typedef void (*SYS_WIFI_CALLBACK )(uint32_t event, void * data,void *cookie );
 **Function**
 
 ```c
-SYS_MODULE_OBJ SYS_WIFI_Initialize( SYS_WIFI_CONFIG *config,
+SYS_MODULE_OBJ SYS_WIFI_Initialize
+(
+SYS_WIFI_CONFIG *config,
 SYS_WIFI_CALLBACK callback,
-void *cookie)
+void *cookie
+)
 ```
 
 **Summary**
@@ -498,17 +511,30 @@ If successful, returns a valid handle to an object. Otherwise, it returns SYS_MO
 #define WIFI_DEV_SSID "DEMO_AP"
 #define WIFI_DEV_PSK "password"
 
-SYS_WIFI_CONFIG 	wificonfig;
+SYS_WIFI_CONFIG wifiSrvcConfig;
 
-wificonfig.mode = SYS_WIFI_STA; // Set mode as STA
-wificonfig.save_config = false; // Disable saving wifi configuration
-wificonfig.staconfig.auth_type = SYS_WIFI_WPA2; // Set the auth type to SYS_WIFI_WPA2
-wificonfig.staconfig.channel = 0; // Enable all the channels(0).
-wificonfig.staconfig.auto_connect = 1; // Device doesn't wait for user request.
-memcpy(wificonfig.staconfig.ssid,WIFI_DEV_SSID,sizeof(WIFI_DEV_SSID)); // Set SSID
-memcpy(wificonfig.staconfig.psk,WIFI_DEV_PSK,sizeof(WIFI_DEV_PSK)); // Se PSK
+// Set mode as STA
+wifiSrvcConfig.mode = SYS_WIFI_STA;
 
-sysObj.syswifi = SYS_WIFI_Initialize(&wificonfig, WiFiServCallback, 0);
+// Disable saving wifi configuration
+wifiSrvcConfig.saveConfig = false;
+
+// Set the auth type to SYS_WIFI_WPA2
+wifiSrvcConfig.staConfig.authType = SYS_WIFI_WPA2;
+
+// Enable all the channels(0)
+wifiSrvcConfig.staConfig.channel = 0;
+
+// Device doesn't wait for user request
+wifiSrvcConfig.staConfig.autoConnect = 1;
+
+// Set SSID
+memcpy(wifiSrvcConfig.staConfig.ssid,WIFI_DEV_SSID,sizeof(WIFI_DEV_SSID));
+
+// Set PSK
+memcpy(wifiSrvcConfig.staConfig.psk,WIFI_DEV_PSK,sizeof(WIFI_DEV_PSK));
+
+sysObj.syswifi = SYS_WIFI_Initialize(&wifiSrvcConfig, WiFiServCallback, 0);
 if (sysObj.syswifi == SYS_MODULE_OBJ_INVALID)
 {
 // Handle error
@@ -578,7 +604,7 @@ Returns Wi-Fi system service status.
 
 **Description**
 
-This function returns the current status of the System Wi-Fi service.  
+This function returns the current status of the System Wi-Fi service. This function help user to perform synchronize functionality with Wi-Fi service.  
 
 **Precondition**
 
@@ -595,20 +621,24 @@ return SYS_WIFI_STATUS if client provided object is valid, else return SYS_WIFI_
 **Example**
 
 ```c
-This function help user to perform synchronize functionality with Wi-Fi service.
-For example,User want to perform the Scan request when auto connect is disabled.
-So user has to make sure service is in right state,where Wi-Fi service has started and waiting in the Auto connect state(SYS_WIFI_STATUS_AUTOCONNECT_WAIT) before making scan request.
+// For example,User want to perform the Scan request when auto connect is disabled.
+// So user has to make sure service is in right state,
+// where Wi-Fi service has started and waiting in the Auto connect
+// state(SYS_WIFI_STATUS_AUTOCONNECT_WAIT) before making scan request.
 
 if (SYS_WIFI_STATUS_AUTOCONNECT_WAIT == SYS_WIFI_GetStatus (sysObj.syswifi))
 {
 uint8_t buff[2];
-buff[0] = 0 ; //Scan all the channels
-buff[1] = false; // Set the Scan type as passive (false- passive scan,true -active scan)
+
+// Scan all the channels
+buff[0] = 0 ;
+
+// Set the Scan type as passive (false- passive scan,true -active scan)
+buff[1] = false;
 SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_SCANREQ,buff,2);
 }
 
-User want to perform some operation when Wi-Fi system service is in TCPIP ready status, waiting for client request.
-
+//Wi-Fi system service is in TCPIP ready status, waiting for client request.
 if (SYS_WIFI_STATUS_TCPIP_READY == SYS_WIFI_GetStatus (sysObj.syswifi))
 {
 // when the SYS WIFI module in TCPIP ready STATUS
@@ -658,8 +688,8 @@ if (SYS_WIFI_OBJ_INVALID != SYS_WIFI_Tasks (sysObj.syswifi))
 {
 
 }
-```
 
+```
 **Remarks**
 
 If the Wi-Fi system service is enabled using MHC, then auto generated code will take care of system task execution. 
@@ -702,51 +732,70 @@ return SYS_WIFI_RESULT.
 
 ```c
 Details of SYS_WIFI_CONNECT:
+SYS_WIFI_CONFIG wifiSrvcConfig;
+SYS_MODULE_OBJ WiFiServHandle;
 
-SYS_WIFI_CONFIG 	wificonfig;
-SYS_MODULE_OBJ 		WiFiServHandle;
+// Set mode as STA
+wifiSrvcConfig.mode = SYS_WIFI_STA;
 
-wificonfig.mode = SYS_WIFI_STA; // Set mode as STA
-wificonfig.save_config = false; // Disable saving wifi configuration
-wificonfig.staconfig.auth_type = SYS_WIFI_WPA2; // Set the auth type to SYS_WIFI_WPA2
-wificonfig.staconfig.channel = 0; // Enable all the channels(0).
-wificonfig.staconfig.auto_connect = 1; // Device doesn't wait for user request.
-memcpy(wificonfig.staconfig.ssid,WIFI_DEV_SSID,sizeof(WIFI_DEV_SSID)); // Set SSID
-memcpy(wificonfig.staconfig.psk,WIFI_DEV_PSK,sizeof(WIFI_DEV_PSK)); // Se PSK
+// Disable saving wifi configuration
+wifiSrvcConfig.saveConfig = false;
 
-//sysObj.syswifi return from SYS_WIFI_Initialize()
-if (SYS_WIFI_OBJ_INVALID != SYS_WIFI_CtrlMsg (sysObj.syswifi,SYS_WIFI_CONNECT,wificonfig,sizeof(SYS_WIFI_CONFIG)))
+// Set the auth type to SYS_WIFI_WPA2
+wifiSrvcConfig.staConfig.authType = SYS_WIFI_WPA2;
+
+// Enable all the channels(0)
+wifiSrvcConfig.staConfig.channel = 0;
+
+// Device doesn't wait for user request
+wifiSrvcConfig.staConfig.autoConnect = 1;
+
+// Set SSID
+memcpy(wifiSrvcConfig.staConfig.ssid, WIFI_DEV_SSID, sizeof(WIFI_DEV_SSID));
+
+// Set PSK
+memcpy(wifiSrvcConfig.staConfig.psk, WIFI_DEV_PSK, sizeof(WIFI_DEV_PSK));
+
+// sysObj.syswifi return from SYS_WIFI_Initialize()
+if (SYS_WIFI_OBJ_INVALID != SYS_WIFI_CtrlMsg (sysObj.syswifi, SYS_WIFI_CONNECT, wifiSrvcConfig, sizeof(SYS_WIFI_CONFIG)))
 {
 
 }
 
 Details of SYS_WIFI_SCANREQ:
-In Scan request, user can set channel number and type of scan.
 
+// In Scan request, user can set channel number and type of scan.
 uint8_t buff[2];
-buff[0] = 0 ; 				//Scan all the channels
-buff[1] = false; 			// Set the Scan type as passive (false- passive scan,true -active scan)
-SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_SCANREQ,buff,2);
+
+// Scan all the channels
+buff[0] = 0 ;
+
+// Set the Scan type as passive:
+// false- passive scan,
+// true -active scan)
+buff[1] = false;
+SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_SCANREQ, buff, 2);
 
 Details of SYS_WIFI_REGCALLBACK:
-client can register multiple callback.Number of supported callback registration is a MHC configuration.
 
-SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_REGCALLBACK,WiFiServCallback,sizeof(uint8_t *));
-SYS_WIFI_CtrlMsg(sysObj.syswifi,SYS_WIFI_REGCALLBACK,WiFiServCallback1,sizeof(uint8_t *));
+// Client can register multiple callback.Number of supported
+// callback registration is a MHC configuration.
+SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_REGCALLBACK, WiFiServCallback, sizeof(uint8_t *));
 
 Details of SYS_WIFI_GETCONFIG:
-Get Wi-Fi Configuration using control message request.The information of configuration is updated in the wificonfig.
 
-SYS_WIFI_CONFIG wificonfig;
-if(SYS_WIFI_SUCCESS == SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETCONFIG, &wificonfig, sizeof(SYS_WIFI_CONFIG)))
+// Get Wi-Fi Configuration using control message request.
+// The information of configuration is updated in the wifiSrvcConfig.
+
+SYS_WIFI_CONFIG wifiSrvcConfig;
+if(SYS_WIFI_SUCCESS == SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_GETCONFIG, &wifiSrvcConfig, sizeof(SYS_WIFI_CONFIG)))
 {
-//Received the wificonfig data
+//Received the wifiSrvcConfig data
 }
 
 Details of SYS_WIFI_DISCONNECT:
-Device Disconnect request using control message	request.
-
-SYS_WIFI_CtrlMsg(sysObj.syswifi,,SYS_WIFI_DISCONNECT,NULL,0);
+// Device Disconnect request using control message request.
+SYS_WIFI_CtrlMsg(sysObj.syswifi, SYS_WIFI_DISCONNECT, NULL, 0);
 
 ```
 **Remarks**
