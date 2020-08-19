@@ -10,7 +10,7 @@ family: PIC32MZW1
 function: dual interface
 ---
 
-# wifi-ethernet dual interface
+# Wifi-ethernet dual interface
 
 This example application acts as a Soft AP with both wifi and ethernet interface enabled.
 
