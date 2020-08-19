@@ -20,4 +20,4 @@ The following applications are provided to demonstrate the usage of system servi
 * [UDP Server](udp_server/readme.md)
 * [Paho MQTT Client]( paho_mqtt_client/readme.md)
 * [Paho MQTT TLS Client]( paho_mqtt_tls_client/readme.md)
-* [Dual Interface]( wifi_eth_dual_interface/readme.md)
+* [Dual Interface](wifi_eth_dual_interface/readme.md)
