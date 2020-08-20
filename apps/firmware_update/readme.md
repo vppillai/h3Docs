@@ -9,11 +9,16 @@ nav_order: 1
 family: PIC32MZW1
 function: Firmware update
 ---
+### Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
 
 # Introdcution 
 
 ATWINC1500/ATWINC3400 features an on-chip microcontroller and integrated SPI Flash memory for
-system firmware. The serial flash memory also stores the root certificate required for TLS/SSL connection and the gain table values used by transceiver. This application note explains in detail downloading procedure of firmware,certificate and gain values into WINC serial flash through different supported serial interfaces like SPI/UART. This document also covers some useful troubleshooting tips for downloading failures.
+system firmware. The serial flash memory also stores the root certificate required for TLS/SSL connection and the gain table values used by transceiver. This application note explains in detail downloading procedure of firmware,certificate and gain values into WINC serial flash through  supported serial interfaces. This document also covers some useful troubleshooting tips for downloading failures.
 
 # Firmware Update project
 
@@ -68,14 +73,59 @@ The batch script will program a serial bridge binary on the host MCU to redirect
 
 The binary elf files which are available in the /src/firmware/Tools/serial_bridge directory are taken from the Serial bridge application which are available in ASF and MPAB Harmony.
 
-For ASF, Serial Bridge applicaition can be imported in the same way how firmwae update project was imported. Once imported user can build and flash the serial bridge applciaiton to the device.
+For ASF, Serial Bridge applicaition can be imported in the same way how firmware update project is imported. Once imported user can build and flash the serial bridge applciaiton to the device.
+
 ![MHC](images/serial_bridge_ASF.png)
 
 For MPLAB Harmony, Serial bridge applicaiton can be found in the wireless/apps/ path inside harmony repository.
+
 ![MHC](images/serial_bridge_h3.png)
 
 With these two project user can build the serial bridge binaries and add it in to the /src/firmware/Tools/serial_bridge inside serial bridge application.
 
+## Serial Flash Download via Built-in UART
+
+The serial flash download can be done using the built-in UART of WINC device. Prior to running any update script, ensure that the hardware is setup as required. Note: WINC3400 does not support download through built-in UART at present.
+
+### Hardware Setup
+
+#### Power On Sequence
+To perform a serial flash download using the WINC built-in UART, it is mandatory that the WINC chip is in the right bootloader state. To do so, the host MCU must power up the WINC chip and then perform the reset sequence as defined in the datasheet. This can be done very easily from the host MCU by calling the m2m_bsp_init() function.
+
+```
+int main(void)
+{
+/* Initialize the board. */
+system_init();
+/* Initialize the BSP. */
+nm_bsp_init();
+while(1) {
+}
+}
+```
+
+#### UART Pin assignment
+
+Pin assignment of WINC1500 module UART are described in the following table. On ATWINC1500
+Xplained Pro, TX and RX are available on through holes labeled “DEBUG_UART” for easy identification.
+
+| ATWINC1500 module pin name | ATWINC1500 Xplained Pro pin name | Function |
+| ----------- | ----------- | -------------- |
+| J14 | UART_TX | TXD |
+| J19 | UART_RXD | RXD |
+
+download_all.bat batch script shall be located in the src/firmware folder of the
+"WINCXXXX_FIRMWARE_UPDATE_PROJECT" triggers the download through built-in UART.
+
+Ensure that the host MCU is powered up and that the WINC built-in UART is connected to PC via a
+serial to USB converter.
+2. In a Windows shell, run the command download_all.bat UART to start the download.
+Note: The gain setting values for SAMW25 module is different than the gain setting values of
+WINC1500 module. The above command downloads WINC1500 module gain values. The
+command for SAMW25 to incorporate the gain values of SAMW25 module:
+download_all.bat UART SAMW25
+3. During the download process, the batch script will output the firmware version being programmed
+onto the WINC as well as the previously installed firmware version.
 
 ## Serial Flash Download Using Custom Host MCU
 
@@ -161,12 +211,15 @@ image_tool -h
 
 ### create compound image	
 Command: image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog
+
 ![MHC](images/image_tool_compound_log.png)
 ### create compound image	
 Command: image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog -r "root certificates"
+
 ![MHC](images/image_tool_r_log.png)
 ### create compound image	
 Command: image_tool.exe -c flash_image.config -c c Tools\gain_builder\gain_sheets\new_gain.config -o ota_firmware\m2m_ota_3A0.bin -of winc_ota -s ota
+
 ![MHC](images/image_tool_ota_image.png)
 
 
@@ -216,18 +269,23 @@ winc_programmer_UART.exe -h
 ## Commands logs
 ### Erase compound image	
 Command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -e -pfw programmer_firmware\release3A0\programmer_release_text.bin
+
 ![MHC](images/programmer_e_log.png)
 ### write compound image	
 command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -w -pfw programmer_firmware\release3A0\programmer_release_text.bin
+
 ![MHC](images/programmer_w_log.png)
 ### Read compound image	
 Command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -r -pfw programmer_firmware\release3A0\programmer_release_text.bin
+
 ![MHC](images/programmer_read_log.png)
 ### Verify compound image	
 command: winc_programmer_uart.exe -p \.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -r -pfw ..\programmer_firmware\release3A0\programmer_release_text.bin
+
 ![MHC](images/programmer_v_log.png)
 ### reade write verify compound image	
 command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -e -i m2m_image_3A0.bin -if prog -w -r -pfw programmer_firmware\release3A0\programmer_release_text.bin
+
 ![MHC](images/programmer_rwv_log.png)
 
 
