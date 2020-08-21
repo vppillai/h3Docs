@@ -17,18 +17,37 @@ function: Firmware update
 
 # Introdcution 
 
-ATWINC1500/ATWINC3400 features an on-chip microcontroller and integrated SPI Flash memory for system firmware. The serial flash memory also stores the root certificate required for TLS/SSL connection and the gain table values used by transceiver. This application note explains in detail downloading procedure of firmware,certificate and gain values into WINC serial flash through different supported serial interfaces like SPI/UART. This document also covers some useful troubleshooting tips for downloading failures.
+ATWINC1500/ATWINC3400 features an on-chip microcontroller and integrated SPI Flash memory for system firmware. The serial flash memory also stores the root certificate required for TLS/SSL connection and the gain table values used by transceiver. This document explains in detail downloading procedure of firmware, certificate and gain values into WINC serial flash through different supported serial interfaces like SPI/UART. This document also covers some useful troubleshooting tips for downloading failures.
+
+The document guide informtion: 
+* Firmware update project: 
+    * User can verify .bat file for required HostMCU in /src folder of "WINCXXXX_FIRMWARE_UPDATE_PROJECT" project.
+    * For supported HostMCU user can follow the instruction available in section [Firmware update project](#firmware-update-project)
+
+* Serial Bridge Application: 
+    * When user could not find the required HostMCU support batch file in /src folder of "WINCXXXX_FIRMWARE_UPDATE_PROJECT" project.
+    * User can create the serial bridge application for the required HostMCU and add the generated elf into "WINCXXXX_FIRMWARE_UPDATE_PROJECT" project.
+    * User can follow the instruction available in section [Serial Bridge Application](#serial-bridge-application)
+
+* General Information on Firmware Update
+    * User can refer to this section for understanding how the binary tools can be used for building and programming the firmeare image.
+    * User can follow the instruction available in section [General Information on Firmware Update](#general-information-on-firmware-update)
+
+* Download Failure Troubleshooting
+    * When customer face issue while programming / updating the firmware, user can refer this section [Download Failure Troubleshooting](#download-failure-troubleshooting)
+
+
 
 # Firmware update project
 
-The ATWINC1500 and ATWINC3400 WiFi devices require firmware to be loaded into flash memorY. The ATWINC1500 and ATWINC3400 devices are preloaded with the firmware, however IT would be useful to update the latest firmware to take advantage of fixes and new features.
+The ATWINC1500 and ATWINC3400 WiFi devices require firmware to be loaded into flash memory. The ATWINC1500 and ATWINC3400 devices are preloaded with the firmware, however it would be useful to update the latest firmware to take advantage of fixes and new features.
 
 ## Hardware Setup 
 
-* SAM D21 Xplained Pro Evaluation Kit (SAMD21 is used as a HostMCU).
-* ATWINC1500/ATWINC3400 - Wi-Fi SPI slave device connected to SAMD21 HostMCU device.
-* The WINC device is attached to EXT1 of the SAMD21 Xplained Pro kit. 
-* Plug a micro USB cable from Windows computer to the debug USB port of the SAMD21 Xplained Pro kit.
+* SAM D21 Xplained Pro Evaluation Kit (ATSAMD21-XPRO)  - SAMD21 is used as a HostMCU
+* ATWINC1500 / WINC3400 Xplained PRO Evaluation Kit (ATWINC1500-XPRO / ATWINC3400-XPRO) - Wi-Fi SPI slave device connected to SAMD21 HostMCU device 
+* The ATWINC1500 / ATWINC3400 device is attached to EXT1 of the SAMD21 Xplained Pro kit. 
+* Plug a micro USB cable from Windows computer to the debug USB port of the SAM D21 Xplained Pro Evaluation kit.
 
 ![MHC](images/hardware_setup.png)
 
@@ -37,12 +56,8 @@ The ATWINC1500 and ATWINC3400 WiFi devices require firmware to be loaded into fl
 The "src" folder inside "WINCXXXX_FIRMWARE_UPDATE_PROJECT" contains a list of batch (.bat) script files which are used to trigger a WINC serial flash download.
 * Ensure that the SAM Xplained Pro board is connected to PC via debug USB port. 
 * The virtual EDBG COM port of the board is now listed in the device manager.
-* Run the sam_xplained_pro_firmware_update.bat script that corresponds to connected
+* Run the samxxx_xplained_pro_firmware_update.bat script that corresponds to connected
 Xplained board.
-* These sam_xplained_pro_firmware_update.bat scripts will take care of the following jobs:
-    * Program Serial Bridge application 
-    * Prepare compound programmable binary image
-    * Program the prepared binary image in to WINC device.
 
 The script will print the following message in the successful case.
 
@@ -56,12 +71,16 @@ winc_programmer_UART (PC) <----> samd21_xplained_pro_serial_bridge.elf <----> WI
 
 ## Serial Flash Download Using SAM Xplained Pro Board
 
-/src/firmware/Tools/serial_bridge shall contain the serial bridge binary images for few of SAM based host MCU’s. This serial bridge firmware uses UART interface available on SAM Xplained Pro boards. The batch script files available in the firmware update project /src folder contains the scripts to program the platform specific to serial bridge binary image on the host MCU before it starts the WINC serial flash download. EDBG on SAM Xplained Pro board is used for programming serial bridge image. The script uses the Atmel Studio atprogram.exe commands for programming the host MCU via EDBG of SAM Xplained Pro boards.
+* The /src/firmware/Tools/serial_bridge shall contain the serial bridge binary images for available SAM based host MCU’s. 
+* This serial bridge firmware uses UART interface available on SAM Xplained Pro boards. 
+* The batch script files available in the firmware update project /src folder contains the scripts to program the platform specific to serial bridge binary image on the host MCU before it starts the WINC serial flash download. 
+* EDBG on SAM Xplained Pro board is used for programming serial bridge image. 
+* The script uses the Atmel Studio atprogram.exe commands for programming the host MCU via EDBG of SAM Xplained Pro boards.
 
 The same batch (.bat) script files in "src" folder inside "WINCXXXX_FIRMWARE_UPDATE_PROJECT" will trigger the WINC serial flash download.
 * Ensure that the SAM Xplained Pro board is connected to PC via debug USB port. 
 * The virtual EDBG COM port of the board is now listed in the device manager.
-* Run the sam_xplained_pro_firmware_update.bat script that corresponds to connected
+* Run the samxxx_xplained_pro_firmware_update.bat script that corresponds to connected
 Xplained board.
 
 
@@ -69,7 +88,7 @@ A list of batch (.bat) script files in the /src folder of "WINCXXXX_FIRMWARE_UPD
 shall be used to trigger a WINC serial flash download.
 1. Ensure that the SAM Xplained Pro board is connected to PC via debug USB port. The virtual EDBG
 COM port of the board is now listed in the device manager.
-2. Run the sam_xplained_pro_firmware_update.bat script that corresponds to connected
+2. Run the samxxx_xplained_pro_firmware_update.bat script that corresponds to connected
 Xplained board.
 
 The batch script will program a serial bridge binary on the host MCU to redirect firmware data from the computer (EDBG virtual COM port) to the WINC chip (via SPI). The serial bridge application also performs the WINC power up sequence, thus ensuring that the WINC bootloader is in the appropriate state to start a download.
@@ -78,15 +97,22 @@ The batch script will program a serial bridge binary on the host MCU to redirect
 
 The binary elf files which are available in the /src/firmware/Tools/serial_bridge directory are taken from the Serial bridge application which are available in ASF and MPAB Harmony.
 
-For ASF, Serial Bridge applicaition can be imported in the same way how firmware update project is imported. Once imported user can build and copy the built elf file to the /src/firmware/Tools/serial_bridge path inside "WINCXXXX_FIRMWARE_UPDATE_PROJECT" directory.
+#### Serial Bridge Application for ASF
+
+* For ASF, Serial Bridge applicaition can be imported in the same way how firmware update project is imported. 
+* Build the project.
+* Copy the elf binary file to the /src/firmware/Tools/serial_bridge path inside the "WINCXXXX_FIRMWARE_UPDATE_PROJECT" project.
 
 ![MHC](images/serial_bridge_ASF.png)
 
-For MPLAB Harmony, Serial bridge applicaiton can be found in the wireless/apps/ path inside harmony repository. User can open the project in the MPLABX IDE, build it and copy the elf file to the /src/firmware/Tools/serial_bridge path inside "WINCXXXX_FIRMWARE_UPDATE_PROJECT" directory.
+#### Serial Bridge Application for MPLAB Harmony3
+
+* For MPLAB Harmony3, Serial bridge applicaiton can be found in the wireless/apps/ path inside harmony repository. 
+* Open the project in the MPLABX IDE.
+* Build the project.
+* Copy the elf binary file to the /src/firmware/Tools/serial_bridge path inside the "WINCXXXX_FIRMWARE_UPDATE_PROJECT" project.
 
 ![MHC](images/serial_bridge_h3.png)
-
-With these two project user can build the serial bridge binaries and add it in to the /src/firmware/Tools/serial_bridge inside serial bridge application.
 
 ## Serial Flash Download via Built-in UART
 
@@ -95,7 +121,11 @@ The serial flash download can be done using the built-in UART of ATWINC1500 devi
 ### Hardware Setup
 
 #### Power On Sequence
-To perform a serial flash download using the ATWINC1500 built-in UART, it is mandatory that the ATWINC1500 chip is in the right bootloader state. To do so, the HostMCU must power up the ATWINC1500 chip and then perform the reset sequence as defined in the datasheet. This can be done very easily from the HostMCU by calling the m2m_bsp_init() function.
+
+* To perform a serial flash download using the ATWINC1500 built-in UART, it is mandatory that the ATWINC1500 chip is in the right bootloader state. 
+* To do so, the HostMCU must power up the ATWINC1500 chip and then perform the reset sequence as defined in the ATWINC1500 datasheet. 
+* This can be done very easily from the HostMCU by calling the m2m_bsp_init() function.
+* Please find the below example code as reference.
 
 ```
 int main(void)
@@ -111,39 +141,42 @@ while(1) {
 
 #### UART Pin Assignment
 
-Pin assignment of WINC1500 module UART are described in the following table. On ATWINC1500 Xplained Pro, TX and RX are available on through holes labeled “DEBUG_UART” for easy identification.
+* Pin assignment of WINC1500 module UART are described in the following table. 
+* On ATWINC1500 Xplained Pro, TX and RX are available on through holes labeled “DEBUG_UART” for easy identification.
 
 | ATWINC1500 module pin name | ATWINC1500 Xplained Pro pin name | Function |
 | ----------- | ----------- | -------------- |
 | J14 | UART_TX | TXD |
 | J19 | UART_RXD | RXD |
 
-download_all.bat batch script shall be located in the src/firmware folder of the
-"WINCXXXX_FIRMWARE_UPDATE_PROJECT" triggers the download through built-in UART.
-
 Ensure that the HostMCU is powered up and that the ATWINC1500 built-in UART is connected to PC via a
 serial to USB converter.
-2. In a Windows shell, run the command download_all.bat UART to start the download.
-Note: The gain setting values for SAMW25 module is different than the gain setting values of
-ATWINC1500 module. The above command downloads ATWINC1500 module gain values. The
-command for SAMW25 to incorporate the gain values of SAMW25 module:
-download_all.bat UART SAMW25
-3. During the download process, the batch script will output the firmware version being programmed
+* In a Windows shell, run the command download_all.bat UART to start the download.
+* During the download process, the batch script will output the firmware version being programmed
 onto the ATWINC1500 as well as the previously installed firmware version.
+* download_all.bat batch script shall be located in the src/firmware folder of the
+"WINCXXXX_FIRMWARE_UPDATE_PROJECT" triggers the download through built-in UART.
 
 ## Serial Flash Download Using Custom HostMCU
 
-The serial bridge example application which is available in ASF and MPLAB Harmony for any SAM based HostMCU’s can be taken as base for implementing serial bridge for custom specific HostMCU’s.
+The serial bridge example application for any supported HostMCU can be taken as a reference for implementing serial bridge for custom HostMCU.
 
-download_all_sb.bat shall be located in the src/firmware folder of the
-“WINCXXXX_FIRMWARE_UPDATE_PROJECT” triggers the serial flash download.
-1. Mofify the script to program the HostMCU with the custom implemented serial bridge firmware.
-2. Ensure that ATWINC1500 device connected to HostMCU is powered up and that the host UART is
-connected to PC.
+* Serial bridge applicaiton can be found in the wireless/apps/ path inside Harmony3 repository. 
+* Intergrate the serial bridge applicaiton in your development environment.
+* Build the project.
+* Copy the built elf binary file to the /src/firmware/Tools/serial_bridge path inside the "WINCXXXX_FIRMWARE_UPDATE_PROJECT" project.
+* Create a copy of batch file samxxx_xplained_pro_firmware_update.bat and rename according to your HostMCU name.
+* In the created batch file replace the samxxx_xplained_pro_serial_bridge.elf with your generated elf file.
+* Run the samxxx_xplained_pro_serial_bridge.elf
 
 # General Information on Firmware Update
 
 This firmware update script sam_xplained_pro_firmware_update.bat internally calls the following scripts.
+
+* These sam_xplained_pro_firmware_update.bat scripts will take care of the following jobs:
+    * Program the Serial Bridge application 
+    * Prepare compound programmable binary image
+    * Program the prepared binary image in to WINC device.
 
 - download_all_sb 
     - Erase the HostMCU
