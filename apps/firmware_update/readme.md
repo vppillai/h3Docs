@@ -15,9 +15,6 @@ function: Firmware update
 1. TOC
 {:toc}
 
-
-1. Troubloe sh0ot add
-
 # Introdcution 
 
 ATWINC1500/ATWINC3400 features an on-chip microcontroller and integrated SPI Flash memory for system firmware. The serial flash memory also stores the root certificate required for TLS/SSL connection and the gain table values used by transceiver. This application note explains in detail downloading procedure of firmware,certificate and gain values into WINC serial flash through different supported serial interfaces like SPI/UART. This document also covers some useful troubleshooting tips for downloading failures.
@@ -98,7 +95,7 @@ The serial flash download can be done using the built-in UART of WINC device. Pr
 ### Hardware Setup
 
 #### Power On Sequence
-To perform a serial flash download using the WINC built-in UART, it is mandatory that the WINC chip is in the right bootloader state. To do so, the host MCU must power up the WINC chip and then perform the reset sequence as defined in the datasheet. This can be done very easily from the host MCU by calling the m2m_bsp_init() function.
+To perform a serial flash download using the WINC built-in UART, it is mandatory that the WINC chip is in the right bootloader state. To do so, the HostMCU must power up the WINC chip and then perform the reset sequence as defined in the datasheet. This can be done very easily from the HostMCU by calling the m2m_bsp_init() function.
 
 ```
 int main(void)
@@ -125,7 +122,7 @@ Xplained Pro, TX and RX are available on through holes labeled “DEBUG_UART” 
 download_all.bat batch script shall be located in the src/firmware folder of the
 "WINCXXXX_FIRMWARE_UPDATE_PROJECT" triggers the download through built-in UART.
 
-Ensure that the host MCU is powered up and that the WINC built-in UART is connected to PC via a
+Ensure that the HostMCU is powered up and that the WINC built-in UART is connected to PC via a
 serial to USB converter.
 2. In a Windows shell, run the command download_all.bat UART to start the download.
 Note: The gain setting values for SAMW25 module is different than the gain setting values of
@@ -135,17 +132,17 @@ download_all.bat UART SAMW25
 3. During the download process, the batch script will output the firmware version being programmed
 onto the WINC as well as the previously installed firmware version.
 
-## Serial Flash Download Using Custom Host MCU
+## Serial Flash Download Using Custom HostMCU
 
-The serial bridge example application which is available in ASF and MPLAB Harmony for any SAM based host MCU’s can be taken as base for implementing serial bridge for custom specific host MCU’s.
+The serial bridge example application which is available in ASF and MPLAB Harmony for any SAM based HostMCU’s can be taken as base for implementing serial bridge for custom specific HostMCU’s.
 
 download_all_sb.bat shall be located in the src/firmware folder of the
 “WINCXXXX_FIRMWARE_UPDATE_PROJECT” triggers the serial flash download.
-1. Mofify the script to program the host MCU with the custom implemented serial bridge firmware.
-2. Ensure that WINC device connected to host MCU is powered up and that the host UART is
+1. Mofify the script to program the HostMCU with the custom implemented serial bridge firmware.
+2. Ensure that WINC device connected to HostMCU is powered up and that the host UART is
 connected to PC.
 
-# General information on formware update
+# General information on firmware update
 
 This firmware update script sam_xplained_pro_firmware_update.bat internally calls the following scripts.
 
@@ -178,10 +175,10 @@ prepare_image and update_pll_table both does the same job which preparing compou
 | includes Gain table to create binary image | Does not includes Gain table to create binary image |
 | Not for production line | Created for production level purpose |
 
-### To summerize the above points 
+### Summary 
 
 - User can prepare binary image and program the WINC by using alone any of the firmeare update script file available in the src directory insdie firmware update project.
-For example, if the Host MCU is SAMD21 user can run the samd21_xplained_pro_firmware_update script file.
+For example, if the HostMCU is SAMD21 user can run the samd21_xplained_pro_firmware_update script file.
 
 - To build the image alone user can either use update_pll script or image_tool based on his requirement.
 
@@ -191,7 +188,7 @@ The above mentioned script files internally use the following tools to build and
 1. image_tool - Builds compound binary image
 2. winc_programmer_UART – Program the built binary image to the WILC device.
 
-## Building the binary firmware image
+## Building Firmware Image
 
 image_tool located in src/firmware is used to build binary images for WINC devices. it collects all the firmware for each section and combine it in to one firmware called m2m_image_3a0.bin. The Image_tool gathers the above-mentioned section and its address information from flash_image XML file. Please refer flash_image XML file for more information on how memory is divided.
 
@@ -239,7 +236,7 @@ Command: image_tool.exe -c flash_image.config -c c Tools\gain_builder\gain_sheet
 ![MHC](images/image_tool_ota_image.png)
 
 
-## Programming the binary firmware image
+## Programming Firmware Image
 
 winc_programmer_uart located in src/firmware is used to program the binary images for WINC devices. it does the following primary jobs:
 * Erase the WINC memory
@@ -248,15 +245,15 @@ winc_programmer_uart located in src/firmware is used to program the binary image
 * Verify the written firmeare.
 
 
-### command to program WINC device using winc_programmer_UART tool:
+### winc_programmer_uart tool ssage
 
 | usage | command |
 | ----------- | ----------- |
-| Erase WINC1500 memory | winc_programmer_UART.exe  -p \\.\COM16 -d winc1500 -e -pfw programmer_firmware\release3A0\programmer_release_text.bin |
-| Write the created binary image to WINC1500 memory | winc_programmer_UART.exe  -p \\.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -w -pfw programmer_firmware\release3A0\programmer_release_text.bin |
-| Read back the written image from WINC1500 memory | winc_programmer_UART.exe  -p \\.\COM16 -d winc1500 -r -pfw programmer_firmware\release3A0\programmer_release_text.bin |
-| Verify the written data with binary binary image | winc_programmer_uart.exe  -p \\.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -r -pfw ..\programmer_firmware\release3A0\programmer_release_text.bin  |
-| Single command to read write and verify | winc_programmer_UART.exe  -p \\.\COM16 -d winc1500 -e -i m2m_image_3A0.bin -if prog -w -r -pfw programmer_firmware\release3A0\programmer_release_text.bin |
+| Erase WINC memory | winc_programmer_UART.exe  -p \\.\COM16 -d winc1500 -e -pfw programmer_firmware\release3A0\programmer_release_text.bin |
+| Write the created binary image to WINC memory | winc_programmer_UART.exe  -p \\.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -w -pfw programmer_firmware\release3A0\programmer_release_text.bin |
+| Read back the written image from WINC memory | winc_programmer_UART.exe  -p \\.\COM16 -d winc1500 -r -pfw programmer_firmware\release3A0\programmer_release_text.bin |
+| Verify the written image in WINC device | winc_programmer_uart.exe  -p \\.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -r -pfw ..\programmer_firmware\release3A0\programmer_release_text.bin  |
+| Single command which does all the above operations | winc_programmer_UART.exe  -p \\.\COM16 -d winc1500 -e -i m2m_image_3A0.bin -if prog -w -r -pfw programmer_firmware\release3A0\programmer_release_text.bin |
 
 | argumenats | explanation |
 | ----------- | ----------- |
@@ -268,28 +265,28 @@ winc_programmer_uart located in src/firmware is used to program the binary image
 | -if | Input format.          winc_ota    - WINC OTA format. raw         - A raw binary image. prog        - Format suitable for programming.  |
 | -pfw | programming firmware    WINC firmware used to program the device.  |
 
-### For more information enter image_tool help command:
+### For more information enter winc_programmer_uart help command:
 
 winc_programmer_UART.exe -h
 
 ## Commands logs
-### Erase compound image	
+### Erase WINC memory	
 Command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -e -pfw programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_e_log.png)
-### write compound image	
+### Write compound image to WINC
 command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -w -pfw programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_w_log.png)
-### Read compound image	
+### Read firmware image from WINC memory	
 Command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -r -pfw programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_read_log.png)
-### Verify compound image	
+### Verify the written image	
 command: winc_programmer_uart.exe -p \.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -r -pfw ..\programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_v_log.png)
-### reade write verify compound image	
+### Single command which does all the above operations	
 command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -e -i m2m_image_3A0.bin -if prog -w -r -pfw programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_rwv_log.png)
@@ -320,14 +317,14 @@ How to fix it:
 ![MHC](images/more_than_one_comport.png)
 
 The Found more than one matching tool error could be observed when downloading using
-Xplained Pro board serial bridge with sam_xplained_pro_firmware_update.bat batch script. The script will try to look for available COM ports and try to match each COM port name with “EDBG” string. This is to program the serial bridge binary image on the host MCU.
+Xplained Pro board serial bridge with sam_xplained_pro_firmware_update.bat batch script. The script will try to look for available COM ports and try to match each COM port name with “EDBG” string. This is to program the serial bridge binary image on the HostMCU.
 How to fix it:
 * All the Xplained Pro boards are enumerated with “EDBG Virtual COM Port”. Make sure to connect one Xplained Pro board at a time on PC.
 
 ## Listing More Than One COM Port
 
 More than one COM port could be listed when downloading using download_all.bat where the
-host MCU already has the serial bridge firmware or download through built-in UART. The winc_programmer_UART tool used to perform a serial bridge or a built-in UART download will try to look for available COM ports and try to match each COM port name with “EDBG” string or a port number “COM” string. If one of the two conditions is true, the program will then try to send a 0x12 char on each UART line. The other side is then expected to answer 0x5A for a built-in UART update or 0x5B for a serial bridge update.
+HostMCU already has the serial bridge firmware or download through built-in UART. The winc_programmer_UART tool used to perform a serial bridge or a built-in UART download will try to look for available COM ports and try to match each COM port name with “EDBG” string or a port number “COM” string. If one of the two conditions is true, the program will then try to send a 0x12 char on each UART line. The other side is then expected to answer 0x5A for a built-in UART update or 0x5B for a serial bridge update.
 If the expected response is received on all UART lines, the script will list all the detected COM ports.
 
 How to fix it:
