@@ -21,7 +21,7 @@ ATWINC1500/ATWINC3400 features an on-chip microcontroller and integrated SPI Fla
 
 # Firmware Update project
 
-The ATWINC1500 and ATWINC3400 WiFi devices require firmware to be loaded into flash memorY. The ATWINC1500 and ATWINC3400 devices are preloaded with the firmeare, however IT would be useful to update the latest firmware to take advantage of fixes and new features.
+The ATWINC1500 and ATWINC3400 WiFi devices require firmware to be loaded into flash memorY. The ATWINC1500 and ATWINC3400 devices are preloaded with the firmware, however IT would be useful to update the latest firmware to take advantage of fixes and new features.
 
 ## Hardware setup 
 
@@ -175,12 +175,6 @@ prepare_image and update_pll_table both does the same job which preparing compou
 | includes Gain table to create binary image | Does not includes Gain table to create binary image |
 | Not for production line | Created for production level purpose |
 
-### Summary 
-
-- User can prepare binary image and program the WINC by using alone any of the firmeare update script file available in the src directory insdie firmware update project.
-For example, if the HostMCU is SAMD21 user can run the samd21_xplained_pro_firmware_update script file.
-
-- To build the image alone user can either use update_pll script or image_tool based on his requirement.
 
 ## WINC Binary tools
 
@@ -205,9 +199,9 @@ image_tool and the configuration XML file both can be found under "src\firmware"
 
 | usage | command |
 | ----------- | ----------- |
-| To create compound image | image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog |
+| To create firmware image | image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog |
 | Writing to a specific region(Root certificate) | image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog -r "root certificates" |
-| To create OTA compound image | image_tool.exe -c flash_image.config -c c Tools\gain_builder\gain_sheets\new_gain.config -o ota_firmware\m2m_ota_3A0.bin -of winc_ota -s ota |
+| To create OTA firmware image | image_tool.exe -c flash_image.config -c c Tools\gain_builder\gain_sheets\new_gain.config -o ota_firmware\m2m_ota_3A0.bin -of winc_ota -s ota |
 
 | argumenats | explanation |
 | ----------- | ----------- |
@@ -216,21 +210,21 @@ image_tool and the configuration XML file both can be found under "src\firmware"
 | -of | stands for output format. The image_tool supports 4 output formats 1. raw         - A raw binary image. 2. winc_ota    - WINC OTA format. 3. prog        - Format suitable for programming. 4. log         - Textual log information.  |
 | -r | Specifies a region to process. More than one region can be specified with repeated use of this option. If used only the regions specified will be processed.  |
 
-### For more information, enter image_tool help command:
+For more information, enter image_tool help command:
 
 image_tool -h
 
-## Commands logs
+### Commands logs
 
-### Creating compound image	
+#### Creating Firmware image	
 Command: image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog
 
 ![MHC](images/image_tool_compound_log.png)
-### Writing to a specific region(	
+#### Writing to a specific region
 Command: image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog -r "root certificates"
 
 ![MHC](images/image_tool_r_log.png)
-### Creating OTA compound image	
+#### Creating OTA Firmware image	
 Command: image_tool.exe -c flash_image.config -c c Tools\gain_builder\gain_sheets\new_gain.config -o ota_firmware\m2m_ota_3A0.bin -of winc_ota -s ota
 
 ![MHC](images/image_tool_ota_image.png)
@@ -240,9 +234,9 @@ Command: image_tool.exe -c flash_image.config -c c Tools\gain_builder\gain_sheet
 
 winc_programmer_uart located in src/firmware is used to program the binary images for WINC devices. it does the following primary jobs:
 * Erase the WINC memory
-* Read the firmeare from WINC 
-* Write the firmeare to WINC
-* Verify the written firmeare.
+* Read the firmware from WINC 
+* Write the firmware to WINC
+* Verify the written firmware.
 
 
 ### winc_programmer_uart tool ssage
@@ -265,28 +259,28 @@ winc_programmer_uart located in src/firmware is used to program the binary image
 | -if | Input format.          winc_ota    - WINC OTA format. raw         - A raw binary image. prog        - Format suitable for programming.  |
 | -pfw | programming firmware    WINC firmware used to program the device.  |
 
-### For more information enter winc_programmer_uart help command:
+For more information enter winc_programmer_uart help command:
 
 winc_programmer_UART.exe -h
 
-## Commands logs
-### Erase WINC memory	
+### Commands logs
+#### Erase WINC memory	
 Command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -e -pfw programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_e_log.png)
-### Write compound image to WINC
+#### Write compound image to WINC
 command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -w -pfw programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_w_log.png)
-### Read firmware image from WINC memory	
+#### Read firmware image from WINC memory	
 Command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -r -pfw programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_read_log.png)
-### Verify the written image	
+#### Verify the written image	
 command: winc_programmer_uart.exe -p \.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -r -pfw ..\programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_v_log.png)
-### Single command which does all the above operations	
+#### Single command which does all the above operations	
 command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -e -i m2m_image_3A0.bin -if prog -w -r -pfw programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_rwv_log.png)
