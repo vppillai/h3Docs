@@ -23,7 +23,7 @@ ATWINC1500/ATWINC3400 features an on-chip microcontroller and integrated SPI Fla
 
 The ATWINC1500 and ATWINC3400 WiFi devices require firmware to be loaded into flash memorY. The ATWINC1500 and ATWINC3400 devices are preloaded with the firmware, however IT would be useful to update the latest firmware to take advantage of fixes and new features.
 
-## Hardware setup 
+## Hardware Setup 
 
 * SAM D21 Xplained Pro Evaluation Kit (SAMD21 is used as a HostMCU).
 * ATWINC1500/ATWINC3400 - Wi-Fi SPI slave device connected to SAMD21 HostMCU device.
@@ -48,7 +48,7 @@ The script will print the following message in the successful case.
 
 ![MHC](images/pass_output_log.png)
 
-# Serial Bridge Applicaiton 
+# Serial Bridge Application 
 
 As the WINC device is connected to host MCU through SPI interface, upgrading the WINC serial flash via the host MCU would be an easier solution. Since, WINC provides transparent access to host MCU, the WINC serial flash can be read/written from host MCU. The host MCU can program the serial (SPI) flash without the need for operational firmware in the WINC. The host MCU running the serial bridge firmware is connected between computer and WINC SPI to dwonload the firmware to WINC serial flash.
 
@@ -109,7 +109,7 @@ while(1) {
 }
 ```
 
-#### UART Pin assignment
+#### UART Pin Assignment
 
 Pin assignment of WINC1500 module UART are described in the following table. On ATWINC1500 Xplained Pro, TX and RX are available on through holes labeled “DEBUG_UART” for easy identification.
 
@@ -141,7 +141,7 @@ download_all_sb.bat shall be located in the src/firmware folder of the
 2. Ensure that ATWINC1500 device connected to HostMCU is powered up and that the host UART is
 connected to PC.
 
-# General information on firmware update
+# General Information on Firmware Update
 
 This firmware update script sam_xplained_pro_firmware_update.bat internally calls the following scripts.
 
@@ -175,7 +175,7 @@ prepare_image and update_pll_table both does the same job which preparing compou
 | Not for production line | Created for production level purpose |
 
 
-## ATWINC1500 Binary tools
+## ATWINC1500 Binary Tools
 
 The above mentioned script files internally use the following tools to build and program the image.
 1. image_tool - Builds firmware binary image
@@ -196,7 +196,7 @@ ATWINC3400 memory segmentation:
 
 image_tool and the configuration XML file both can be found under "src\firmware" directory inside firmware_update_project.
 
-### image_tool usage
+### image_tool Usage
 
 | usage | command |
 | ----------- | ----------- |
@@ -217,15 +217,15 @@ image_tool -h
 
 ### Commands logs
 
-#### Creating Firmware image	
+#### Creating Firmware Image	
 Expected output log for the command: image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog
 
 ![MHC](images/image_tool_compound_log.png)
-#### Writing to a specific region
+#### Writing to a Specific Region
 Expected output log for the command: image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog -r "root certificates"
 
 ![MHC](images/image_tool_r_log.png)
-#### Creating OTA Firmware image	
+#### Creating OTA Firmware Image	
 Expected output log for the command: image_tool.exe -c flash_image.config -c c Tools\gain_builder\gain_sheets\new_gain.config -o ota_firmware\m2m_ota_3A0.bin -of winc_ota -s ota
 
 ![MHC](images/image_tool_ota_image.png)
@@ -240,7 +240,7 @@ winc_programmer_uart tool located in src/firmware is used to program the binary 
 * Verify the written firmware.
 
 
-### winc_programmer_uart tool usage
+### winc_programmer_uart Tool Usage
 
 | usage | command |
 | ----------- | ----------- |
@@ -269,19 +269,20 @@ winc_programmer_UART.exe -h
 Command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -e -pfw programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_e_log.png)
-#### Write Firmware image to WINC
+#### Write Firmware Image to WINC
 Expected output log for the command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -w -pfw programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_w_log.png)
-#### Read firmware image from WINC memory	
+#### Read Firmware Image From WINC memory	
 Expected output log for the Command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -r -pfw programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_read_log.png)
-#### Verify the written image	
+#### Verify the Written Image	
 Expected output log for the command: winc_programmer_uart.exe -p \.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -r -pfw ..\programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_v_log.png)
-#### Single command which does all the above operations	
+#### Consolidated Single Command 
+This command does all the all the above operations in a single command.
 Expected output log for the command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -e -i m2m_image_3A0.bin -if prog -w -r -pfw programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_rwv_log.png)
