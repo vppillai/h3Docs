@@ -15,33 +15,34 @@ function: Firmware update
 1. TOC
 {:toc}
 
+
+1. Troubloe sh0ot add
+
 # Introdcution 
 
-ATWINC1500/ATWINC3400 features an on-chip microcontroller and integrated SPI Flash memory for
-system firmware. The serial flash memory also stores the root certificate required for TLS/SSL connection and the gain table values used by transceiver. This application note explains in detail downloading procedure of firmware,certificate and gain values into WINC serial flash through  supported serial interfaces. This document also covers some useful troubleshooting tips for downloading failures.
+ATWINC1500/ATWINC3400 features an on-chip microcontroller and integrated SPI Flash memory for system firmware. The serial flash memory also stores the root certificate required for TLS/SSL connection and the gain table values used by transceiver. This application note explains in detail downloading procedure of firmware,certificate and gain values into WINC serial flash through different supported serial interfaces like SPI/UART. This document also covers some useful troubleshooting tips for downloading failures.
 
 # Firmware Update project
 
-The ATWINC1500 and ATWINC3400 WiFi devices require firmware to be loaded into flash memory to operate. These devices will come shipped with firmware preloaded, however it may become necessary to update this firmware to take advantage of fixes and new or expanded features.
+The ATWINC1500 and ATWINC3400 WiFi devices require firmware to be loaded into flash memorY. The ATWINC1500 and ATWINC3400 devices are preloaded with the firmeare, however IT would be useful to update the latest firmware to take advantage of fixes and new features.
 
 ## Hardware setup 
 
-For the sake of this Applicaiton Note SAMD21 has taken as HostMCU and WINC1500 is used as SPI slave WINC device. The WINC device is attached to EXT1 of the SAM Xplained Pro
-kit. Plug a micro USB cable from Windows computer to the debug USB port of the Xplained Pro kit.
+* SAM D21 Xplained Pro Evaluation Kit (SAMD21 is used as a HostMCU)
+* ATWINC1500/ATWINC3400 - Wi-Fi SPI slave device connected to SAMD21 HostMCU device.
+* The WINC device is attached to EXT1 of the SAMD21 Xplained Pro kit. 
+* Plug a micro USB cable from Windows computer to the debug USB port of the SAMD21 Xplained Pro kit.
 
 ![MHC](images/hardware_setup.png)
 
 ## Project Overview
 
-Go to the "src" directory under where the firmware update project located.
-
-A list of batch (.bat) script files in the /src folder of "WINCXXXX_FIRMWARE_UPDATE_PROJECT"
-shall be used to trigger a WINC serial flash download.
-1. Ensure that the SAM Xplained Pro board is connected to PC via debug USB port. The virtual EDBG
-COM port of the board is now listed in the device manager.
-2. Run the sam_xplained_pro_firmware_update.bat script that corresponds to connected
+The "src" folder inside "WINCXXXX_FIRMWARE_UPDATE_PROJECT" contains a list of batch (.bat) script files which are used to trigger a WINC serial flash download.
+* Ensure that the SAM Xplained Pro board is connected to PC via debug USB port. 
+* The virtual EDBG COM port of the board is now listed in the device manager.
+* Run the sam_xplained_pro_firmware_update.bat script that corresponds to connected
 Xplained board.
-3. These sam_xplained_pro_firmware_update.bat scripts will take of the following jobs:
+* These sam_xplained_pro_firmware_update.bat scripts will take care of the following jobs:
     * Program Serial Bridge application 
     * Prepare compound programmable binary image
     * Program the prepared binary image in to WINC device.
@@ -52,13 +53,20 @@ The script will print the following message in the successfull case.
 
 # Serial Bridge Applicaiton 
 
-As the WINC device is connected to host MCU through SPI interface, upgrading the WINC serial flash via the host MCU would be an easier solution. Since, WINC provides transparent access to host MCU, the WINC serial flash can be read/written from host MCU. The host MCU can program the serial (SPI) flash without need for operational firmware in the WINC. The host MCU running the serial bridge firmware is connected between computer and WINC SPI to dwonload the firmware to WINC serial flash.
+As the WINC device is connected to host MCU through SPI interface, upgrading the WINC serial flash via the host MCU would be an easier solution. Since, WINC provides transparent access to host MCU, the WINC serial flash can be read/written from host MCU. The host MCU can program the serial (SPI) flash without the need for operational firmware in the WINC. The host MCU running the serial bridge firmware is connected between computer and WINC SPI to dwonload the firmware to WINC serial flash.
 
-winc_programmer_UART <----> samd21_xplained_pro_serial_bridge.elf <----> WINC device
+winc_programmer_UART (PC) <----> samd21_xplained_pro_serial_bridge.elf <----> WINC SPI device
 
 ## Serial Flash Download Using SAM Xplained Pro Board
 
-/src/firmware/Tools/serial_bridge shall contain the serial bridge binary images for few of SAM based host MCU’s. This serial bridge firmware uses UART interface available on SAM Xplained Pro boards. The batch script files available in /src folder contains the scripts to program the platform specific serial bridge binary image on the host MCU before it starts the WINC serial flash download. EDBG on SAM Xplained Pro board is used for programming serial bridge image. The script uses the Atmel Studio atprogram.exe commands for programming the host MCU via EDBG of SAM Xplained Pro boards.
+/src/firmware/Tools/serial_bridge shall contain the serial bridge binary images for few of SAM based host MCU’s. This serial bridge firmware uses UART interface available on SAM Xplained Pro boards. The batch script files available in the firmware update project /src folder contains the scripts to program the platform specific to serial bridge binary image on the host MCU before it starts the WINC serial flash download. EDBG on SAM Xplained Pro board is used for programming serial bridge image. The script uses the Atmel Studio atprogram.exe commands for programming the host MCU via EDBG of SAM Xplained Pro boards.
+
+The same batch (.bat) script files in "src" folder inside "WINCXXXX_FIRMWARE_UPDATE_PROJECT" will trigger the WINC serial flash download.
+* Ensure that the SAM Xplained Pro board is connected to PC via debug USB port. 
+* The virtual EDBG COM port of the board is now listed in the device manager.
+* Run the sam_xplained_pro_firmware_update.bat script that corresponds to connected
+Xplained board.
+
 
 A list of batch (.bat) script files in the /src folder of "WINCXXXX_FIRMWARE_UPDATE_PROJECT"
 shall be used to trigger a WINC serial flash download.
@@ -73,11 +81,11 @@ The batch script will program a serial bridge binary on the host MCU to redirect
 
 The binary elf files which are available in the /src/firmware/Tools/serial_bridge directory are taken from the Serial bridge application which are available in ASF and MPAB Harmony.
 
-For ASF, Serial Bridge applicaition can be imported in the same way how firmware update project is imported. Once imported user can build and flash the serial bridge applciaiton to the device.
+For ASF, Serial Bridge applicaition can be imported in the same way how firmware update project is imported. Once imported user can build and copy the built elf file to the /src/firmware/Tools/serial_bridge path inside "WINCXXXX_FIRMWARE_UPDATE_PROJECT" directory.
 
 ![MHC](images/serial_bridge_ASF.png)
 
-For MPLAB Harmony, Serial bridge applicaiton can be found in the wireless/apps/ path inside harmony repository.
+For MPLAB Harmony, Serial bridge applicaiton can be found in the wireless/apps/ path inside harmony repository. User can open the project in the MPLABX IDE, build it and copy the elf file to the /src/firmware/Tools/serial_bridge path inside "WINCXXXX_FIRMWARE_UPDATE_PROJECT" directory.
 
 ![MHC](images/serial_bridge_h3.png)
 
@@ -131,13 +139,11 @@ onto the WINC as well as the previously installed firmware version.
 
 The serial bridge example application which is available in ASF and MPLAB Harmony for any SAM based host MCU’s can be taken as base for implementing serial bridge for custom specific host MCU’s.
 
-download_all.bat shall be located in the src/firmware folder of the
+download_all_sb.bat shall be located in the src/firmware folder of the
 “WINCXXXX_FIRMWARE_UPDATE_PROJECT” triggers the serial flash download.
-1. Program the host MCU with the custom implemented serial bridge firmware.
+1. Mofify the script to program the host MCU with the custom implemented serial bridge firmware.
 2. Ensure that WINC device connected to host MCU is powered up and that the host UART is
 connected to PC.
-3. In a Windows shell, run the command download_all.bat UART to start the download.
-4. During the download process, the batch script will output the firmware version being programmed onto the WINC as well as the previously installed firmware version.
 
 # General information on formware update
 
@@ -179,21 +185,31 @@ For example, if the Host MCU is SAMD21 user can run the samd21_xplained_pro_firm
 
 - To build the image alone user can either use update_pll script or image_tool based on his requirement.
 
+## WINC Binary tools
+
+The above mentioned script files internally use the following tools to build and program the image.
+1. image_tool - Builds compound binary image
+2. winc_programmer_UART – Program the built binary image to the WILC device.
+
 ## Building the binary firmware image
 
-WINC1500 memory is divided in to following sections:
+image_tool located in src/firmware is used to build binary images for WINC devices. it collects all the firmware for each section and combine it in to one firmware called m2m_image_3a0.bin. The Image_tool gathers the above-mentioned section and its address information from flash_image XML file. Please refer flash_image XML file for more information on how memory is divided.
 
-![MHC](images/firmware_sections.png)
+WINC1500 memory sections:
 
-The image_tool collects all the firmware for each section and combine it in to one firmware called m2m_image_3a0.bin
-The Image_tool gathers the above-mentioned section and its address information from flash_image XML file. Please refer flash_image XML file for more information on how memory is divided.
+![MHC](images/firmware_sections_1500_rs.png)
+
+WINC3400 memory sections:
+
+![MHC](images/firmware_sections_3400_rs.png)
+
 
 image_tool and the configuration XML file both can be found under "src\firmware" directory inside firmware_update_project.
 
 | usage | command |
 | ----------- | ----------- |
 | To create compound image | image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog |
-| Writing to a specified region(Root certificate) | image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog -r "root certificates" |
+| Writing to a specific region(Root certificate) | image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog -r "root certificates" |
 | To create OTA compound image | image_tool.exe -c flash_image.config -c c Tools\gain_builder\gain_sheets\new_gain.config -o ota_firmware\m2m_ota_3A0.bin -of winc_ota -s ota |
 
 | argumenats | explanation |
@@ -209,15 +225,15 @@ image_tool -h
 
 ## Commands logs
 
-### create compound image	
+### Creating compound image	
 Command: image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog
 
 ![MHC](images/image_tool_compound_log.png)
-### create compound image	
+### Writing to a specific region(	
 Command: image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog -r "root certificates"
 
 ![MHC](images/image_tool_r_log.png)
-### create compound image	
+### Creating OTA compound image	
 Command: image_tool.exe -c flash_image.config -c c Tools\gain_builder\gain_sheets\new_gain.config -o ota_firmware\m2m_ota_3A0.bin -of winc_ota -s ota
 
 ![MHC](images/image_tool_ota_image.png)
@@ -225,21 +241,11 @@ Command: image_tool.exe -c flash_image.config -c c Tools\gain_builder\gain_sheet
 
 ## Programming the binary firmware image
 
-There are two tools  available to program the WINC1500 device.
-1.	winc_programmer_UART – Device to program it via UART interface
-2.	winc_programmer_I2C - Device to program it via I2C interface
-
-For winc_programmer_UART tool to work as expected, an application called serial_bridge is used in the host SAM device which acts as bridge between the programmer winc_programmer_UART tool and the WINC device.
-This serial_bridge applicaiton as the name implies acts a bridge between winc_programmer_UART and WINC1500 device.
-
-Serial bridge applications for the corresponding Host device can be found in the firmware\Tools\serial_bridge path under firmware_update_project
-
-But the user can directly use MPLab serial bridge application to download it into the Host memory.
-
-winc_programmer_UART <----> samd21_xplained_pro_serial_bridge.elf <----> WINC device
-
-Similarly winc_programmer_I2C uses Aardvark tool to communicaite with WINC1500 device. 
-Please note this document covers only the winc_programmer_UART tool.
+winc_programmer_uart located in src/firmware is used to program the binary images for WINC devices. it does the following primary jobs:
+* Erase the WINC memory
+* Read the firmeare from WINC 
+* Write the firmeare to WINC
+* Verify the written firmeare.
 
 
 ### command to program WINC device using winc_programmer_UART tool:
@@ -291,19 +297,54 @@ command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -e -i m2m_image_3A0.bi
 
 
 
+# Download Failure Troubleshooting
+Here are the troubleshooting tips for a specific error while downloading using batch script.
+
+## Failed To Find Any COM Port
+
+The winc_programmer_UART.exe expects a COM port as an argument. If the expected COM port is not found then it wil throw error.
+![MHC](images/cannot_find_edbg_board.png)
+
+How to fix it:
+* Make sure WINC COM port is listed in the device manager.
+* Make sure WINC COM port is not opened by any other application. For verification, try to open and close the COM port with a terminal application.
+* Cheap USB cable (serial bridge) or cheap serial to USB converter (built-in UART) can introduce garbage on the UART line thus failing the detection of the WINC COM port. Try a different cable.
+* When performing a built-in UART download, it is expected that the WINC bootloader is in a particular state that can only be achieved after doing a clean power up and reset sequence. Hence, before doing a download always ensure that a clean power up and reset sequence has been made.
+* Make sure that no other extension board (ex: IO1...) is connected to the Xplained Pro board while performing the download.
+* Make sure the project path is not exceeding Windows maximum 260 characters path length
 
 
 
+## Found More Than One Matching Tool
+
+![MHC](images/more_than_one_comport.png)
+
+The Found more than one matching tool error could be observed when downloading using
+Xplained Pro board serial bridge with sam_xplained_pro_firmware_update.bat batch script. The script will try to look for available COM ports and try to match each COM port name with “EDBG” string. This is to program the serial bridge binary image on the host MCU.
+How to fix it:
+* All the Xplained Pro boards are enumerated with “EDBG Virtual COM Port”. Make sure to connect one Xplained Pro board at a time on PC.
+
+## Listing More Than One COM Port
+
+More than one COM port could be listed when downloading using download_all.bat where the
+host MCU already has the serial bridge firmware or download through built-in UART. The winc_programmer_UART tool used to perform a serial bridge or a built-in UART download will try to look for available COM ports and try to match each COM port name with “EDBG” string or a port number “COM” string. If one of the two conditions is true, the program will then try to send a 0x12 char on each UART line. The other side is then expected to answer 0x5A for a built-in UART update or 0x5B for a serial bridge update.
+If the expected response is received on all UART lines, the script will list all the detected COM ports.
+
+How to fix it:
+* Input COM port number of the intended device to be downloaded when Please enter COM
+port number to program: is displayed as shown in the above figures.
+* Note that for each downloading option of WINC chip firmware, TLS/SSL root certificates, gain table the COM port number to be given. To avoid this, it is possible to force the winc_programmer_UART tool to use a specific COM port number in the beginning. For example to use COM56, run the script like this: download_all.bat UART 56
 
 
+## Failed To Initialize Programmer: Invalid Chip ID
 
+The Failed to initialize programmer with Invalid chip ID error typically happens when
+there is garbage or noise on the UART line preventing from reading the correct chip ID value.
+How to fix it:
+* Try connecting the PC and the WINC with a different cable. A clean power up and reset sequence of the WINC is necessary to start over with the WINC bootloader in the appropriate state.
 
+## Failed To Initialize Programmer: Waiting For Chip Permission
 
-
-
-
-
-
-
-
-
+After printing the correct chip ID of the WINC, the winc_programmer_UART tool programs a small binary (programmer firmware) to assist with WINC flash programming. At this stage the winc_programmer_UART will change the UART baud rate from 115200 to 500000 to speed up the actual transfer of the firmware image. Once the baud rate change is made, the chip permission is verified to ensure the UART connection is reliable. Failing at this stage means that the current setup does not support such a high baud rate.
+How to fix it:
+* It is recommended to try connecting the PC and the WINC with a different cable. Also a clean power up and reset sequence of the WINC is necessary to start over with the WINC bootloader in the appropriate state.
