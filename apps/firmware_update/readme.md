@@ -178,8 +178,8 @@ prepare_image and update_pll_table both does the same job which preparing compou
 ## ATWINC1500 Binary tools
 
 The above mentioned script files internally use the following tools to build and program the image.
-1. image_tool - Builds compound binary image
-2. winc_programmer_UART – Program the built binary image to the WILC device.
+1. image_tool - Builds firmware binary image
+2. winc_programmer_uart – Program the built firmware binary image to the WILC device.
 
 ## Building Firmware Image
 
