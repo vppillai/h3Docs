@@ -19,13 +19,13 @@ function: Firmware update
 
 ATWINC1500/ATWINC3400 features an on-chip microcontroller and integrated SPI Flash memory for system firmware. The serial flash memory also stores the root certificate required for TLS/SSL connection and the gain table values used by transceiver. This application note explains in detail downloading procedure of firmware,certificate and gain values into WINC serial flash through different supported serial interfaces like SPI/UART. This document also covers some useful troubleshooting tips for downloading failures.
 
-# Firmware Update project
+# Firmware update project
 
 The ATWINC1500 and ATWINC3400 WiFi devices require firmware to be loaded into flash memorY. The ATWINC1500 and ATWINC3400 devices are preloaded with the firmware, however IT would be useful to update the latest firmware to take advantage of fixes and new features.
 
 ## Hardware setup 
 
-* SAM D21 Xplained Pro Evaluation Kit (SAMD21 is used as a HostMCU)
+* SAM D21 Xplained Pro Evaluation Kit (SAMD21 is used as a HostMCU).
 * ATWINC1500/ATWINC3400 - Wi-Fi SPI slave device connected to SAMD21 HostMCU device.
 * The WINC device is attached to EXT1 of the SAMD21 Xplained Pro kit. 
 * Plug a micro USB cable from Windows computer to the debug USB port of the SAMD21 Xplained Pro kit.
@@ -44,7 +44,7 @@ Xplained board.
     * Prepare compound programmable binary image
     * Program the prepared binary image in to WINC device.
 
-The script will print the following message in the successfull case.
+The script will print the following message in the successful case.
 
 ![MHC](images/pass_output_log.png)
 
@@ -90,12 +90,12 @@ With these two project user can build the serial bridge binaries and add it in t
 
 ## Serial Flash Download via Built-in UART
 
-The serial flash download can be done using the built-in UART of WINC device. Prior to running any update script, ensure that the hardware is setup as required. Note: WINC3400 does not support download through built-in UART at present.
+The serial flash download can be done using the built-in UART of ATWINC1500 device. Prior to running any update script, ensure that the hardware is setup as required. Note: ATWINC3400 does not support download through built-in UART at present.
 
 ### Hardware Setup
 
 #### Power On Sequence
-To perform a serial flash download using the WINC built-in UART, it is mandatory that the WINC chip is in the right bootloader state. To do so, the HostMCU must power up the WINC chip and then perform the reset sequence as defined in the datasheet. This can be done very easily from the HostMCU by calling the m2m_bsp_init() function.
+To perform a serial flash download using the ATWINC1500 built-in UART, it is mandatory that the ATWINC1500 chip is in the right bootloader state. To do so, the HostMCU must power up the ATWINC1500 chip and then perform the reset sequence as defined in the datasheet. This can be done very easily from the HostMCU by calling the m2m_bsp_init() function.
 
 ```
 int main(void)
@@ -111,8 +111,7 @@ while(1) {
 
 #### UART Pin assignment
 
-Pin assignment of WINC1500 module UART are described in the following table. On ATWINC1500
-Xplained Pro, TX and RX are available on through holes labeled “DEBUG_UART” for easy identification.
+Pin assignment of WINC1500 module UART are described in the following table. On ATWINC1500 Xplained Pro, TX and RX are available on through holes labeled “DEBUG_UART” for easy identification.
 
 | ATWINC1500 module pin name | ATWINC1500 Xplained Pro pin name | Function |
 | ----------- | ----------- | -------------- |
@@ -122,15 +121,15 @@ Xplained Pro, TX and RX are available on through holes labeled “DEBUG_UART” 
 download_all.bat batch script shall be located in the src/firmware folder of the
 "WINCXXXX_FIRMWARE_UPDATE_PROJECT" triggers the download through built-in UART.
 
-Ensure that the HostMCU is powered up and that the WINC built-in UART is connected to PC via a
+Ensure that the HostMCU is powered up and that the ATWINC1500 built-in UART is connected to PC via a
 serial to USB converter.
 2. In a Windows shell, run the command download_all.bat UART to start the download.
 Note: The gain setting values for SAMW25 module is different than the gain setting values of
-WINC1500 module. The above command downloads WINC1500 module gain values. The
+ATWINC1500 module. The above command downloads ATWINC1500 module gain values. The
 command for SAMW25 to incorporate the gain values of SAMW25 module:
 download_all.bat UART SAMW25
 3. During the download process, the batch script will output the firmware version being programmed
-onto the WINC as well as the previously installed firmware version.
+onto the ATWINC1500 as well as the previously installed firmware version.
 
 ## Serial Flash Download Using Custom HostMCU
 
@@ -139,7 +138,7 @@ The serial bridge example application which is available in ASF and MPLAB Harmon
 download_all_sb.bat shall be located in the src/firmware folder of the
 “WINCXXXX_FIRMWARE_UPDATE_PROJECT” triggers the serial flash download.
 1. Mofify the script to program the HostMCU with the custom implemented serial bridge firmware.
-2. Ensure that WINC device connected to HostMCU is powered up and that the host UART is
+2. Ensure that ATWINC1500 device connected to HostMCU is powered up and that the host UART is
 connected to PC.
 
 # General information on firmware update
@@ -148,14 +147,14 @@ This firmware update script sam_xplained_pro_firmware_update.bat internally call
 
 - download_all_sb 
     - Erase the HostMCU
-    - Program the Serial bridge applicaiton 
+    - Program the Serial bridge application 
     - Reset the HostMCU
     - Find COM port where the device is connected
     - Calls download_all batch file
 
 - download_all
     - calls update_pll_table to prepare the image
-    - Program the WINC device using winc_programmer_uart.exe utility
+    - Program the ATWINC1500 device using winc_programmer_uart.exe utility
 
 - update_pll_table
     - Calculating PLL lookup table using the xo offset from efuse at flash time. 
@@ -176,7 +175,7 @@ prepare_image and update_pll_table both does the same job which preparing compou
 | Not for production line | Created for production level purpose |
 
 
-## WINC Binary tools
+## ATWINC1500 Binary tools
 
 The above mentioned script files internally use the following tools to build and program the image.
 1. image_tool - Builds compound binary image
@@ -184,18 +183,20 @@ The above mentioned script files internally use the following tools to build and
 
 ## Building Firmware Image
 
-image_tool located in src/firmware is used to build binary images for WINC devices. it collects all the firmware for each section and combine it in to one firmware called m2m_image_3a0.bin. The Image_tool gathers the above-mentioned section and its address information from flash_image XML file. Please refer flash_image XML file for more information on how memory is divided.
+image_tool is located in src/firmware is used to build binary images for ATWINC devices. It collects all the firmware for each section and combine it in to one firmware called m2m_image_XXXX.bin. The Image_tool gathers the above-mentioned section and its address information from flash_image XML file. Please refer flash_image XML file for more information on how memory is divided.
 
-WINC1500 memory sections:
+ATWINC1500 memory segmentation:
 
 ![MHC](images/firmware_sections_1500_rs.png)
 
-WINC3400 memory sections:
+ATWINC3400 memory segmentation:
 
 ![MHC](images/firmware_sections_3400_rs.png)
 
 
 image_tool and the configuration XML file both can be found under "src\firmware" directory inside firmware_update_project.
+
+### image_tool usage
 
 | usage | command |
 | ----------- | ----------- |
@@ -206,7 +207,7 @@ image_tool and the configuration XML file both can be found under "src\firmware"
 | argumenats | explanation |
 | ----------- | ----------- |
 | -c | stands for configuration files. Microchip recommends to use the default configuration files which is flash_image.config  |
-| -o | output name of the binary image files. For WINC1500 it should be m2m_image_3a0.bin and for WINC3400 it should be m2m_image_3400.bin |
+| -o | output name of the binary image files. For ATWINC1500 it should be m2m_image_3a0.bin and for ATWINC3400 it should be m2m_image_3400.bin |
 | -of | stands for output format. The image_tool supports 4 output formats 1. raw         - A raw binary image. 2. winc_ota    - WINC OTA format. 3. prog        - Format suitable for programming. 4. log         - Textual log information.  |
 | -r | Specifies a region to process. More than one region can be specified with repeated use of this option. If used only the regions specified will be processed.  |
 
@@ -217,43 +218,43 @@ image_tool -h
 ### Commands logs
 
 #### Creating Firmware image	
-Command: image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog
+Expected output log for the command: image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog
 
 ![MHC](images/image_tool_compound_log.png)
 #### Writing to a specific region
-Command: image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog -r "root certificates"
+Expected output log for the command: image_tool.exe -c flash_image.config -o firmware\m2m_image_3a0.bin -of prog -r "root certificates"
 
 ![MHC](images/image_tool_r_log.png)
 #### Creating OTA Firmware image	
-Command: image_tool.exe -c flash_image.config -c c Tools\gain_builder\gain_sheets\new_gain.config -o ota_firmware\m2m_ota_3A0.bin -of winc_ota -s ota
+Expected output log for the command: image_tool.exe -c flash_image.config -c c Tools\gain_builder\gain_sheets\new_gain.config -o ota_firmware\m2m_ota_3A0.bin -of winc_ota -s ota
 
 ![MHC](images/image_tool_ota_image.png)
 
 
 ## Programming Firmware Image
 
-winc_programmer_uart located in src/firmware is used to program the binary images for WINC devices. it does the following primary jobs:
-* Erase the WINC memory
-* Read the firmware from WINC 
-* Write the firmware to WINC
+winc_programmer_uart tool located in src/firmware is used to program the binary images for WINC devices. it does the following primary jobs:
+* Erase the ATWINC memory
+* Read the firmware from ATWINC 
+* Write the firmware to ATWINC
 * Verify the written firmware.
 
 
-### winc_programmer_uart tool ssage
+### winc_programmer_uart tool usage
 
 | usage | command |
 | ----------- | ----------- |
-| Erase WINC memory | winc_programmer_UART.exe  -p \\.\COM16 -d winc1500 -e -pfw programmer_firmware\release3A0\programmer_release_text.bin |
-| Write the created binary image to WINC memory | winc_programmer_UART.exe  -p \\.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -w -pfw programmer_firmware\release3A0\programmer_release_text.bin |
-| Read back the written image from WINC memory | winc_programmer_UART.exe  -p \\.\COM16 -d winc1500 -r -pfw programmer_firmware\release3A0\programmer_release_text.bin |
-| Verify the written image in WINC device | winc_programmer_uart.exe  -p \\.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -r -pfw ..\programmer_firmware\release3A0\programmer_release_text.bin  |
+| Erase ATWINC memory | winc_programmer_UART.exe  -p \\.\COM16 -d winc1500 -e -pfw programmer_firmware\release3A0\programmer_release_text.bin |
+| Write the created binary image to ATWINC memory | winc_programmer_UART.exe  -p \\.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -w -pfw programmer_firmware\release3A0\programmer_release_text.bin |
+| Read back the written image from ATWINC memory | winc_programmer_UART.exe  -p \\.\COM16 -d winc1500 -r -pfw programmer_firmware\release3A0\programmer_release_text.bin |
+| Verify the written image in ATWINC device | winc_programmer_uart.exe  -p \\.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -r -pfw ..\programmer_firmware\release3A0\programmer_release_text.bin  |
 | Single command which does all the above operations | winc_programmer_UART.exe  -p \\.\COM16 -d winc1500 -e -i m2m_image_3A0.bin -if prog -w -r -pfw programmer_firmware\release3A0\programmer_release_text.bin |
 
 | argumenats | explanation |
 | ----------- | ----------- |
 | -p | is the port number which can be found by entering the command: test_edbg |
-| -d | stands for WINC device it can be WINC1500 or WINC3400 |
-| -e | To erase the WINC device memory before wirting the firmware image  |
+| -d | stands for ATWINC device it can be ATWINC1500 or ATWINC3400 |
+| -e | To erase the ATWINC device memory before wirting the firmware image  |
 | -w | To write the firmware image  |
 | -r | To read the firmware image  |
 | -if | Input format.          winc_ota    - WINC OTA format. raw         - A raw binary image. prog        - Format suitable for programming.  |
@@ -268,20 +269,20 @@ winc_programmer_UART.exe -h
 Command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -e -pfw programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_e_log.png)
-#### Write compound image to WINC
-command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -w -pfw programmer_firmware\release3A0\programmer_release_text.bin
+#### Write Firmware image to WINC
+Expected output log for the command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -w -pfw programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_w_log.png)
 #### Read firmware image from WINC memory	
-Command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -r -pfw programmer_firmware\release3A0\programmer_release_text.bin
+Expected output log for the Command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -r -pfw programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_read_log.png)
 #### Verify the written image	
-command: winc_programmer_uart.exe -p \.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -r -pfw ..\programmer_firmware\release3A0\programmer_release_text.bin
+Expected output log for the command: winc_programmer_uart.exe -p \.\COM16 -d winc1500 -i m2m_image_3A0.bin -if prog -r -pfw ..\programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_v_log.png)
 #### Single command which does all the above operations	
-command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -e -i m2m_image_3A0.bin -if prog -w -r -pfw programmer_firmware\release3A0\programmer_release_text.bin
+Expected output log for the command: winc_programmer_UART.exe -p \.\COM16 -d winc1500 -e -i m2m_image_3A0.bin -if prog -w -r -pfw programmer_firmware\release3A0\programmer_release_text.bin
 
 ![MHC](images/programmer_rwv_log.png)
 
@@ -297,10 +298,10 @@ The winc_programmer_UART.exe expects a COM port as an argument. If the expected 
 ![MHC](images/cannot_find_edbg_board.png)
 
 How to fix it:
-* Make sure WINC COM port is listed in the device manager.
-* Make sure WINC COM port is not opened by any other application. For verification, try to open and close the COM port with a terminal application.
-* Cheap USB cable (serial bridge) or cheap serial to USB converter (built-in UART) can introduce garbage on the UART line thus failing the detection of the WINC COM port. Try a different cable.
-* When performing a built-in UART download, it is expected that the WINC bootloader is in a particular state that can only be achieved after doing a clean power up and reset sequence. Hence, before doing a download always ensure that a clean power up and reset sequence has been made.
+* Make sure ATWINC COM port is listed in the device manager.
+* Make sure ATWINC COM port is not opened by any other application. For verification, try to open and close the COM port with a terminal application.
+* Cheap USB cable (serial bridge) or cheap serial to USB converter (built-in UART) can introduce garbage on the UART line thus failing the detection of the ATWINC COM port. Try a different cable.
+* When performing a built-in UART download, it is expected that the ATWINC bootloader is in a particular state that can only be achieved after doing a clean power up and reset sequence. Hence, before doing a download always ensure that a clean power up and reset sequence has been made.
 * Make sure that no other extension board (ex: IO1...) is connected to the Xplained Pro board while performing the download.
 * Make sure the project path is not exceeding Windows maximum 260 characters path length
 
@@ -324,7 +325,7 @@ If the expected response is received on all UART lines, the script will list all
 How to fix it:
 * Input COM port number of the intended device to be downloaded when Please enter COM
 port number to program: is displayed as shown in the above figures.
-* Note that for each downloading option of WINC chip firmware, TLS/SSL root certificates, gain table the COM port number to be given. To avoid this, it is possible to force the winc_programmer_UART tool to use a specific COM port number in the beginning. For example to use COM56, run the script like this: download_all.bat UART 56
+* Note that for each downloading option of ATWINC chip firmware, TLS/SSL root certificates, gain table the COM port number to be given. To avoid this, it is possible to force the winc_programmer_UART tool to use a specific COM port number in the beginning. For example to use COM56, run the script like this: download_all.bat UART 56
 
 
 ## Failed To Initialize Programmer: Invalid Chip ID
@@ -332,10 +333,10 @@ port number to program: is displayed as shown in the above figures.
 The Failed to initialize programmer with Invalid chip ID error typically happens when
 there is garbage or noise on the UART line preventing from reading the correct chip ID value.
 How to fix it:
-* Try connecting the PC and the WINC with a different cable. A clean power up and reset sequence of the WINC is necessary to start over with the WINC bootloader in the appropriate state.
+* Try connecting the PC and the ATWINC with a different cable. A clean power up and reset sequence of the ATWINC is necessary to start over with the ATWINC bootloader in the appropriate state.
 
 ## Failed To Initialize Programmer: Waiting For Chip Permission
 
-After printing the correct chip ID of the WINC, the winc_programmer_UART tool programs a small binary (programmer firmware) to assist with WINC flash programming. At this stage the winc_programmer_UART will change the UART baud rate from 115200 to 500000 to speed up the actual transfer of the firmware image. Once the baud rate change is made, the chip permission is verified to ensure the UART connection is reliable. Failing at this stage means that the current setup does not support such a high baud rate.
+After printing the correct chip ID of the ATWINC, the winc_programmer_UART tool programs a small binary (programmer firmware) to assist with ATWINC flash programming. At this stage the winc_programmer_UART will change the UART baud rate from 115200 to 500000 to speed up the actual transfer of the firmware image. Once the baud rate change is made, the chip permission is verified to ensure the UART connection is reliable. Failing at this stage means that the current setup does not support such a high baud rate.
 How to fix it:
-* It is recommended to try connecting the PC and the WINC with a different cable. Also a clean power up and reset sequence of the WINC is necessary to start over with the WINC bootloader in the appropriate state.
+* It is recommended to try connecting the PC and the ATWINC with a different cable. Also a clean power up and reset sequence of the ATWINC is necessary to start over with the ATWINC bootloader in the appropriate state.
