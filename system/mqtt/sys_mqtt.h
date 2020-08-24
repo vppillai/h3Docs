@@ -227,6 +227,7 @@ typedef struct {
 
   Summary:
     Used for Reading the message that has been received on a topic subscribed to.
+	The structure is also used for passing on the LWT config when connecting to MQTT Broker.
 
   Remarks:
     This Message is passed to the Application via the SYS_MQTT_CALLBACK() function
@@ -251,6 +252,15 @@ typedef struct {
 	uint16_t	topicLength;	
 } SYS_MQTT_PublishConfig;
 
+// *****************************************************************************
+/* System MQTT Read Published Message
+
+  Summary:
+    Used for publishing a message on a topic. It contains the config related to the Topic
+
+  Remarks:
+    This Message is passed from the Application to the MQTT servuce via the SYS_MQTT_Publish() function
+*/
 typedef struct {
 	//Qos (0/ 1/ 2)
 	uint8_t	qos;	
@@ -269,8 +279,8 @@ typedef struct {
 /* System Mqtt Event Message Type
 
   Summary:
-    Event Message Type which comes with the Callback SYS_MQTT_CALLBACK() for performing various 
-	MQTT Operations.
+    Event Message Type which comes with the Callback SYS_MQTT_CALLBACK() 
+	informing the user of the event that has occured.
 
   Remarks:
     None.
@@ -311,8 +321,8 @@ typedef enum {
 /* System MQTT Instance Configuration
 
   Summary:
-    Used for passing on the configuration related to the either MQTT Broker, or the Cloud Vendors 
-	AWS/ Azure.
+    Used for passing on the configuration related to the either MQTT Broker, 
+	or the Cloud Vendors AWS/ Azure, etc.
 
   Remarks:
     None.
@@ -364,7 +374,7 @@ extern const SYS_MQTT_Config 		g_sSysMqttConfig;
        </code>
 
   Remarks:
-		If the Net system service is enabled using MHC, then auto generated code will take care of system task execution.
+		If the MQTT system service is enabled using MHC, then auto generated code will take care of its initialization.
   */
 int32_t SYS_MQTT_Initialize();
 
@@ -384,7 +394,7 @@ int32_t SYS_MQTT_Initialize();
        </code>
 
   Remarks:
-		If the Net system service is enabled using MHC, then auto generated code will take care of system task execution.
+		None
 	   */
 int32_t SYS_MQTT_Deinitialize();
 
@@ -418,7 +428,8 @@ int32_t SYS_MQTT_Deinitialize();
        // Handle "objSysMqtt" value must have been returned from SYS_MQTT_Connect.
        if (SYS_MQTT_GetStatus (objSysMqtt) == SYS_MQTT_STATUS_WAIT_FOR_MQTT_CONACK)
        {
-           // MQTT system service is initialized, and Waiting for the Connect Ack from the Broker for the Connect Packet sent by DUT to it.
+           // MQTT system service is initialized, and Waiting for the Connect Ack 
+		   // from the Broker for the Connect Packet sent by DUT to it.
        }
        </code>
 
@@ -437,13 +448,14 @@ SYS_MQTT_STATUS SYS_MQTT_GetStatus(SYS_MODULE_OBJ obj);
 // *****************************************************************************
 // *****************************************************************************
 /* Function:
-    int32_t SYS_MQTT_Publish(SYS_MODULE_OBJ obj, SYS_MQTT_PublishTopicCfg  *psPubCfg, char *message, uint16_t message_len);
+    int32_t SYS_MQTT_Publish(SYS_MODULE_OBJ obj, 
+			SYS_MQTT_PublishTopicCfg  *psPubCfg, char *message, uint16_t message_len);
 
   Summary:
-      Returns success/ failure for the publishing of message asked by the user.
+      Returns success/ failure for the publishing of message on a topic by the user.
 
    Description:
-		This function is used for Publishing a message to a Topic.
+		This function is used for Publishing a message on a Topic.
   
   Precondition:
        SYS_MQTT_Connect should have been called before calling this function
@@ -486,7 +498,9 @@ int32_t	SYS_MQTT_Publish(SYS_MODULE_OBJ obj, SYS_MQTT_PublishTopicCfg  *psPubCfg
       Pointer to a MQTT system service callback function.
 
    Description:
-		This data type defines a pointer to a Mqtt service callback function, thus defining the function signature.  Callback functions may be registered by mqtt clients of the Mqtt service via the SYS_MQTT_Connect call.
+		This data type defines a pointer to a Mqtt service callback function, 
+		thus defining the function signature.  Callback functions may be registered 
+		by mqtt clients of the Mqtt service via the SYS_MQTT_Connect call.
   
   Precondition:
        Is a part of the Mqtt service Setup using the SYS_MQTT_Connect function
@@ -495,7 +509,9 @@ int32_t	SYS_MQTT_Publish(SYS_MODULE_OBJ obj, SYS_MQTT_PublishTopicCfg  *psPubCfg
 	eEventType	- event (SYS_MQTT_EVENT_TYPE) - Message Received/ Got Disconnected <br>
 	data	- Data (if any) related to the Event <br>
 	len		- Length of the Data received <br>
-    cookie  	- A context value, returned untouched to the client when the callback occurs.  It can be used to identify the instance of the client who registered the callback.
+    cookie  	- A context value, returned untouched to the client when the 
+					callback occurs.  It can be used to identify the instance of 
+					the client who registered the callback.
 	   	     
    Returns:
     None.
@@ -542,17 +558,20 @@ typedef int32_t (*SYS_MQTT_CALLBACK)(SYS_MQTT_EVENT_TYPE eEventType, void *data,
 													void *cookie);
 
    Summary:
-        Initializes the System MQTT service.
+        Connects to the configured MQTT Broker.
 
    Description:
-        This function initializes the instance of the System MQTT Service.
+        This function opens a new instance and connects to the configured 
+		MQTT Broker.
 
    Parameters:
-       cfg    		- Configuration based on which the Cloud Service needs to Open
+       cfg    		- Configuration based on which the Cloud Service needs to Open<br>
 
-       MqttFn     	- Function pointer to the Callback to be called in case of an event
+       MqttFn     	- Function pointer to the Callback to be called in case of 
+						an event<br>
 	   
-	   cookie		- Cookie passed as one of the params in the Callback for the user to identify the service instance
+	   cookie		- Cookie passed as one of the params in the Callback for the user 
+						to identify the service instance<br>
 
    Returns:
         If successful, returns a valid handle to an object. Otherwise, it
@@ -565,26 +584,39 @@ typedef int32_t (*SYS_MQTT_CALLBACK)(SYS_MQTT_EVENT_TYPE eEventType, void *data,
 		SYS_MODULE_OBJ 			g_MqttSrvcHandle;
 
 		memset(&g_sMqttSrvcCfg, 0, sizeof(g_sMqttSrvcCfg));
+		
 		g_sMattSrvcCfg.configBitmask |= SYS_MQTT_CONFIG_MASK_MQTT;
-		strcpy(g_sMqttSrvcCfg.mqttConfig.brokerConfig.brokerName, "test.mosquitto.org", strlen("test.mosquitto.org"));
+		
+		strcpy(g_sMqttSrvcCfg.mqttConfig.brokerConfig.brokerName, 
+				"test.mosquitto.org", strlen("test.mosquitto.org"));
+		
 		g_sMqttSrvcCfg.mqttConfig.brokerConfig.serverPort = 1883;
-		strcpy(g_sMqttSrvcCfg.mqttConfig.brokerConfig.clientId, "pic32mzw1", strlen("pic32maw1"));
+		
+		strcpy(g_sMqttSrvcCfg.mqttConfig.brokerConfig.clientId, 
+			"pic32mzw1", strlen("pic32maw1"));
+		
 		g_sMqttSrvcCfg.mqttConfig.brokerConfig.autoConnect = 1;
+		
 		g_sMqttSrvcCfg.mqttConfig.brokerConfig.tlsEnabled = 0;
 		
 		g_sMqttSrvcCfg.mqttConfig.subscribeCount = 1;
-		strcpy(g_sMqttSrvcCfg.mqttConfig.subscribeConfig[0].topicName, "house/temperature/first_floor/kitchen", strlen("house/temperature/first_floor/kitchen"));
+		
+		strcpy(g_sMqttSrvcCfg.mqttConfig.subscribeConfig[0].topicName, 
+				"house/temperature/first_floor/kitchen", 
+				strlen("house/temperature/first_floor/kitchen"));
+		
 		g_sMqttSrvcCfg.mqttConfig.subscribeConfig[0].qos = 1;
 		
 		g_MqttSrvcHandle = SYS_MQTT_Connect(&g_sMqttSrvcCfg, MqttSrvcCallback, 0);                
-        if (g_MqttSrvcHandle == SYS_MODULE_OBJ_INVALID)
+		if (g_MqttSrvcHandle == SYS_MODULE_OBJ_INVALID)
         {
             // Handle error
         }
         </code>
 
   Remarks:
-        This routine should be called only once when the user is configuring the Mqtt service
+        This routine should be called only once when the user is configuring 
+		the Mqtt service
 */
 
 SYS_MODULE_OBJ SYS_MQTT_Connect(SYS_MQTT_Config *cfg, SYS_MQTT_CALLBACK fn, void *cookie);
@@ -603,7 +635,7 @@ SYS_MODULE_OBJ SYS_MQTT_Connect(SYS_MQTT_Config *cfg, SYS_MQTT_CALLBACK fn, void
        SYS_MQTT_Connect should have been called.
 
   Parameters:
-       hdl  		- SYS_MQTT object handle, returned from SYS_MQTT_Connect
+       obj  		- SYS_MQTT object handle, returned from SYS_MQTT_Connect
 	   
   Returns:
 		None
@@ -627,7 +659,9 @@ void SYS_MQTT_Disconnect(SYS_MODULE_OBJ obj);
       Executes the MQTT Service State Machine
 
    Description:
-		This function ensures that the MQTT service is able to execute its state machine to process any messages and invoke the user callback for any events.
+		This function ensures that the MQTT service is able to execute its 
+		state machine to process any messages and invoke the user callback 
+		for any events.
   
   Precondition:
        SYS_MQTT_Connect should have been called before calling this function
@@ -655,7 +689,8 @@ void SYS_MQTT_Task(SYS_MODULE_OBJ obj);
 
 // *****************************************************************************
 /* Function:
-    int32_t SYS_MQTT_Subscribe(SYS_MODULE_OBJ obj, SYS_MQTT_SubscribeConfig  *subConfig);
+    int32_t SYS_MQTT_Subscribe(SYS_MODULE_OBJ obj, 
+				SYS_MQTT_SubscribeConfig  *subConfig);
 
   Summary:
       Returns success/ failure for the subscribing to a Topic by the user.

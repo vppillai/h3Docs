@@ -7,7 +7,7 @@ nav_order: 1
 ---
 
 # MQTT System Service Configuration
-The MQTT System Service library should be configured through the MHC. When user select the MQTT System Service library, all the required dependencies components are added automatically in the MHC configuration.
+The MQTT System Service library should be configured through the MHC. When user selects the MQTT System Service library, all the required dependencies components are added automatically in the MHC configuration.
 
 The following figure shows the MHC configuration window for configuring the MQTT System Service and a brief description of various configuration options.
 - Open the MHC 3
@@ -53,4 +53,4 @@ The following figure shows the MHC configuration window for configuring the MQTT
 | Publish to Topic | Disabled | Publishing a message to Topic has 3 Parameters –   <br>     1. Topic and <br>     2. Qos ( 0 (Atmost Once), 1 (Atleast Once), 2 (Exactly Once))<br>     3. Retain: If the Broker should retain the message<br>     The User can configure these parameters to and use them along with the   message to send it on a particular Topic. |
 | Enable Debug Logs | Disabled | Enabling this flag compiles in debug logs and user can enable them   at runtime. The user can use the following CLI commands to enable/ disable   levels and flows for the MQTT service:<br>     1.	sysmqtt debug level <value> <br>     2.	sysmqtt debug flow <value> |
 
-All of the required files are automatically added into the MPLAB X IDE project by the MHC when the Net Service is selected for use.
+All of the required files are automatically added into the MPLAB X IDE project by the MHC when the MQTT Service is selected for use.

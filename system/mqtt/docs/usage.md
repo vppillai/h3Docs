@@ -72,7 +72,7 @@ By default MHC generated code provides all the functionalities to enable MQTT Cl
 
 The User Application is expected to call SYS_MQTT_Task() API periodically as this API ensures that the MQTT System service is able to execute its state machine to process any messages and invoke the user callback for any events. 
 
-The User Application can call SYS_NET_Publish()/ SYS_NET_Subscribe() API in case it wants to publish message to a topic or receive messages on a topic.
+The User Application can call SYS_MQTT_Publish()/ SYS_MQTT_Subscribe() API in case it wants to publish message to a topic or receive messages on a topic.
 
 ![](./images/MqttPublish.png)
 ![](./images/MqttSubscribe.png)

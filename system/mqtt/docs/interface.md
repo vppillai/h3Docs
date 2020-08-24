@@ -27,8 +27,9 @@ nav_order: 2
 | [SYS_MQTT_BrokerConfig](#SYS_MQTT_BrokerConfig) | Used for passing on the configuration related to the MQTT Broker |
 | [SYS_MQTT_SubscribeConfig](#SYS_MQTT_SubscribeConfig) | Used for passing on the configuration related to the MQTT Subtopics the user |
 | [SYS_MQTT_PublishConfig](#SYS_MQTT_PublishConfig) | Used for Reading the message that has been received on a topic subscribed to. |
-| [SYS_MQTT_EVENT_TYPE](#SYS_MQTT_EVENT_TYPE) | Event Message Type which comes with the Callback SYS_MQTT_CALLBACK() for performing various |
-| [SYS_MQTT_Config](#SYS_MQTT_Config) | Used for passing on the configuration related to the either MQTT Broker, or the Cloud Vendors |
+| [SYS_MQTT_PublishTopicCfg](#SYS_MQTT_PublishTopicCfg) | Used for publishing a message on a topic. It contains the config related to the Topic |
+| [SYS_MQTT_EVENT_TYPE](#SYS_MQTT_EVENT_TYPE) | Event Message Type which comes with the Callback SYS_MQTT_CALLBACK() |
+| [SYS_MQTT_Config](#SYS_MQTT_Config) | Used for passing on the configuration related to the either MQTT Broker, |
 
 ## Initialization functions Summary
 
@@ -47,7 +48,7 @@ nav_order: 2
 
 | Name | Description |
 |-|-|
-| [SYS_MQTT_Connect](#SYS_MQTT_Connect) | Initializes the System MQTT service. |
+| [SYS_MQTT_Connect](#SYS_MQTT_Connect) | Connects to the configured MQTT Broker. |
 | [SYS_MQTT_Disconnect](#SYS_MQTT_Disconnect) | Disconnects from the MQTT Server |
 | [SYS_MQTT_Task](#SYS_MQTT_Task) | Executes the MQTT Service State Machine |
 | [SYS_MQTT_Subscribe](#SYS_MQTT_Subscribe) | Returns success/ failure for the subscribing to a Topic by the user. |
@@ -219,7 +220,7 @@ char	topicName[SYS_MQTT_TOPIC_NAME_MAX_LEN];
 
 **Summary**
 
-Used for Reading the message that has been received on a topic subscribed to.  
+Used for Reading the message that has been received on a topic subscribed to. The structure is also used for passing on the LWT config when connecting to MQTT Broker.  
 
 **Remarks**
 
@@ -247,12 +248,39 @@ uint16_t	topicLength;
 } SYS_MQTT_PublishConfig;
 ```
 
+### SYS_MQTT_PublishTopicCfg
+
+
+**Summary**
+
+Used for publishing a message on a topic. It contains the config related to the Topic  
+
+**Remarks**
+
+This Message is passed from the Application to the MQTT servuce via the SYS_MQTT_Publish() function 
+
+```c
+typedef struct {
+//Qos (0/ 1/ 2)
+uint8_t	qos;
+
+//Retain (0/1) - Message needs to be retained by the Broker till every subscriber receives it
+uint8_t	retain;
+
+//Topic on which to Publish the message
+char	topicName[SYS_MQTT_TOPIC_NAME_MAX_LEN];
+
+//Topic Length
+uint16_t	topicLength;
+} SYS_MQTT_PublishTopicCfg;
+```
+
 ### SYS_MQTT_EVENT_TYPE
 
 
 **Summary**
 
-Event Message Type which comes with the Callback SYS_MQTT_CALLBACK() for performing various MQTT Operations.  
+Event Message Type which comes with the Callback SYS_MQTT_CALLBACK() informing the user of the event that has occured.  
 
 **Remarks**
 
@@ -297,7 +325,7 @@ SYS_MQTT_EVENT_MSG_UNSUBACK_TO,
 
 **Summary**
 
-Used for passing on the configuration related to the either MQTT Broker, or the Cloud Vendors AWS/ Azure.  
+Used for passing on the configuration related to the either MQTT Broker, or the Cloud Vendors AWS/ Azure, etc.  
 
 **Remarks**
 
@@ -357,7 +385,7 @@ if( SYS_MQTT_Initialize() == SYS_MQTT_SUCCESS)
 
 **Remarks**
 
-If the Net system service is enabled using MHC, then auto generated code will take care of system task execution. 
+If the MQTT system service is enabled using MHC, then auto generated code will take care of its initialization. 
 
 ### SYS_MQTT_Deinitialize
 
@@ -383,7 +411,7 @@ SYS_MQTT_Deinitialize()
 
 **Remarks**
 
-If the Net system service is enabled using MHC, then auto generated code will take care of system task execution. 
+None 
 ## Status functions
 
 
@@ -423,7 +451,8 @@ SYS_MQTT_STATUS
 // Handle "objSysMqtt" value must have been returned from SYS_MQTT_Connect.
 if (SYS_MQTT_GetStatus (objSysMqtt) == SYS_MQTT_STATUS_WAIT_FOR_MQTT_CONACK)
 {
-// MQTT system service is initialized, and Waiting for the Connect Ack from the Broker for the Connect Packet sent by DUT to it.
+// MQTT system service is initialized, and Waiting for the Connect Ack
+// from the Broker for the Connect Packet sent by DUT to it.
 }
 ```
 
@@ -447,15 +476,15 @@ void *cookie);
 
 **Summary**
 
-Initializes the System MQTT service.  
+Connects to the configured MQTT Broker.  
 
 **Description**
 
-This function initializes the instance of the System MQTT Service.  
+This function opens a new instance and connects to the configured MQTT Broker.  
 
 **Parameters**
 
-cfg 		- Configuration based on which the Cloud Service needs to Open  MqttFn 	- Function pointer to the Callback to be called in case of an event  cookie		- Cookie passed as one of the params in the Callback for the user to identify the service instance  
+cfg 		- Configuration based on which the Cloud Service needs to Open<br>  MqttFn 	- Function pointer to the Callback to be called in case of an event<br>  cookie		- Cookie passed as one of the params in the Callback for the user to identify the service instance<br>  
 
 **Returns**
 
@@ -468,15 +497,27 @@ SYS_MQTT_Config 	g_sMqttSrvcCfg;
 SYS_MODULE_OBJ 			g_MqttSrvcHandle;
 
 memset(&g_sMqttSrvcCfg, 0, sizeof(g_sMqttSrvcCfg));
+
 g_sMattSrvcCfg.configBitmask |= SYS_MQTT_CONFIG_MASK_MQTT;
-strcpy(g_sMqttSrvcCfg.mqttConfig.brokerConfig.brokerName, "test.mosquitto.org", strlen("test.mosquitto.org"));
+
+strcpy(g_sMqttSrvcCfg.mqttConfig.brokerConfig.brokerName,
+"test.mosquitto.org", strlen("test.mosquitto.org"));
+
 g_sMqttSrvcCfg.mqttConfig.brokerConfig.serverPort = 1883;
-strcpy(g_sMqttSrvcCfg.mqttConfig.brokerConfig.clientId, "pic32mzw1", strlen("pic32maw1"));
+
+strcpy(g_sMqttSrvcCfg.mqttConfig.brokerConfig.clientId,
+"pic32mzw1", strlen("pic32maw1"));
+
 g_sMqttSrvcCfg.mqttConfig.brokerConfig.autoConnect = 1;
+
 g_sMqttSrvcCfg.mqttConfig.brokerConfig.tlsEnabled = 0;
 
 g_sMqttSrvcCfg.mqttConfig.subscribeCount = 1;
-strcpy(g_sMqttSrvcCfg.mqttConfig.subscribeConfig[0].topicName, "house/temperature/first_floor/kitchen", strlen("house/temperature/first_floor/kitchen"));
+
+strcpy(g_sMqttSrvcCfg.mqttConfig.subscribeConfig[0].topicName,
+"house/temperature/first_floor/kitchen",
+strlen("house/temperature/first_floor/kitchen"));
+
 g_sMqttSrvcCfg.mqttConfig.subscribeConfig[0].qos = 1;
 
 g_MqttSrvcHandle = SYS_MQTT_Connect(&g_sMqttSrvcCfg, MqttSrvcCallback, 0);
@@ -512,7 +553,7 @@ SYS_MQTT_Connect should have been called.
 
 **Parameters**
 
-hdl 		- SYS_MQTT object handle, returned from SYS_MQTT_Connect  
+obj 		- SYS_MQTT object handle, returned from SYS_MQTT_Connect  
 
 **Returns**
 
@@ -575,7 +616,8 @@ SYS_MQTT_Task(objSysMqtt);
 **Function**
 
 ```c
-int32_t SYS_MQTT_Subscribe(SYS_MODULE_OBJ obj, SYS_MQTT_SubscribeConfig *subConfig);
+int32_t SYS_MQTT_Subscribe(SYS_MODULE_OBJ obj,
+SYS_MQTT_SubscribeConfig *subConfig);
 ```
 
 **Summary**
@@ -663,16 +705,17 @@ if( SYS_MQTT_Unsubscribe(objSysMqtt, "house/temperature/first_floor/kitchen") ==
 **Function**
 
 ```c
-int32_t SYS_MQTT_Publish(SYS_MODULE_OBJ obj, SYS_MQTT_PublishTopicCfg *psPubCfg, char *message, uint16_t message_len);
+int32_t SYS_MQTT_Publish(SYS_MODULE_OBJ obj,
+SYS_MQTT_PublishTopicCfg *psPubCfg, char *message, uint16_t message_len);
 ```
 
 **Summary**
 
-Returns success/ failure for the publishing of message asked by the user.  
+Returns success/ failure for the publishing of message on a topic by the user.  
 
 **Description**
 
-This function is used for Publishing a message to a Topic.  
+This function is used for Publishing a message on a Topic.  
 
 **Precondition**
 
@@ -713,7 +756,7 @@ if( SYS_MQTT_Publish(objSysMqtt, &sPublishCfg, "80.17", strlen("80.17")) == SYS_
 **Function**
 
 ```c
-int32_t (SYS_MQTT_CALLBACK *)(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, void* cookie);
+int32_t SYS_MQTT_CALLBACK(SYS_MQTT_EVENT_TYPE eEventType, void *data, uint16_t len, void* cookie);
 ```
 
 **Summary**
