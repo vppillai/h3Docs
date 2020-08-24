@@ -56,8 +56,8 @@ nav_order: 2
 
 | Name | Description |
 |-|-|
-| [SYS_NET_Open](#SYS_NET_Open) | Initializes the System NET service. |
-| [SYS_NET_Close](#SYS_NET_Close) | Deinitializes the specific module instance of the SYS NET service |
+| [SYS_NET_Open](#SYS_NET_Open) | Opens a new NET System Service instance. |
+| [SYS_NET_Close](#SYS_NET_Close) | Deinitializes the specific instance of the NET System service |
 | [SYS_NET_Task](#SYS_NET_Task) | Executes the SYS NET service state machine for the instance |
 | [SYS_NET_CtrlMsg](#SYS_NET_CtrlMsg) | Returns success/ failure for the disconnect/ reconnect operation asked by the user. |
 | [SYS_NET_SetConfigParam](#SYS_NET_SetConfigParam) | Returns success on setting a configuration parameter for Net System Service. |
@@ -455,7 +455,7 @@ if( SYS_NET_Initialize() == SYS_NET_SUCCESS)
 
 **Remarks**
 
-If the Net system service is enabled using MHC, then auto generated code will take care of system task execution. 
+If the Net system service is enabled using MHC, then auto generated code will take care of Net System Service initialization. 
 
 ### SYS_NET_Deinitialize
 
@@ -481,7 +481,7 @@ SYS_NET_Deinitialize()
 
 **Remarks**
 
-If the Net system service is enabled using MHC, then auto generated code will take care of system task execution. 
+None 
 ## Status functions
 
 
@@ -509,7 +509,7 @@ SYS_NET_Open should have been called before calling this function
 
 **Parameters**
 
-*object* - SYS NET object handle, returned from SYS_NET_Open  
+*object* - SYS NET object handle, returned from SYS_NET_Open<br>  
 
 **Returns**
 
@@ -545,18 +545,17 @@ void *cookie)
 
 **Summary**
 
-Initializes the System NET service.  
+Opens a new NET System Service instance.  
 
 **Description**
 
-This function initializes the instance of the System NET Service.  
+This function opens the instance of the NET System Service.  
 
 **Parameters**
 
-cfg 		- Configuration for which the NET Socket needs to be opened  Net_cb 	- Function pointer to the Callback to be called in case of an event  cookie		- Cookie passed as one of the params in the Callback which was registered by the user in SYS_NET_Open  **Returns**
+cfg 		- Configuration for which the NET Socket needs to be opened<br> Net_cb	 	- Function pointer to the Callback to be called in case of an event<br> cookie		- Cookie passed as one of the params in the Callback which was registered by the user in SYS_NET_Open<br>  **Returns**
 
-Returns:If successful, returns a valid handle to an object. Otherwise, it
-returns SYS_MODULE_OBJ_INVALID.
+Returns:	If successful, returns a valid handle to an object. Otherwise, it returns SYS_MODULE_OBJ_INVALID.
 
 **Example**
 
@@ -591,7 +590,7 @@ void SYS_NET_Close ( SYS_MODULE_OBJ object )
 
 **Summary**
 
-Deinitializes the specific module instance of the SYS NET service  
+Deinitializes the specific instance of the NET System service  
 
 **Description**
 
@@ -603,7 +602,7 @@ The SYS_NET_Open function should have been called before calling this function.
 
 **Parameters**
 
-*object* - SYS NET object handle, returned from SYS_NET_Open  
+*object* - SYS NET object handle, returned from SYS_NET_Open<br>  
 
 **Returns**
 
@@ -619,7 +618,7 @@ SYS_NET_Close (objSysNet);
 
 **Remarks**
 
-Once the Initialize operation has been called, the De-initialize operation must be called before the Initialize operation can be called again. 
+Once the Open operation has been called, the Close operation must be called before the Open operation can be called again. 
 
 ### SYS_NET_Task
 
@@ -635,7 +634,7 @@ Executes the SYS NET service state machine for the instance
 
 **Description**
 
-This function ensures that the Networking service is able to execute its state machine to process any messages and invoke the user callback for any events.  
+This function ensures that the Net system service is able to execute its state machine to process any messages and invoke the user callback for any events.  
 
 **Precondition**
 
@@ -643,7 +642,7 @@ SYS_NET_Open should have been called before calling this function
 
 **Parameters**
 
-*obj* - SYS NET object handle, returned from SYS_NET_Open  
+*obj* - SYS NET object handle, returned from SYS_NET_Open<br><br>  
 
 **Returns**
 
@@ -684,10 +683,10 @@ SYS_NET_Open should have been called.
 
 **Parameters**
 
-obj 	- SYS NET object handle, returned from SYS_NET_Open  
-*msg_type* - valid Msg Type SYS_NET_CTRL_MSG  
-*data		- valid data buffer pointer based on the Msg Type* - NULL for DISCONNECT, Pointer to SYS_NET_Config for RECONNECT  
-len 	- length of the data buffer the pointer is pointing to  
+obj 	- SYS NET object handle, returned from SYS_NET_Open<br> 
+*msg_type* - valid Msg Type SYS_NET_CTRL_MSG<br> 
+
+*data		- valid data buffer pointer based on the Msg Type* - NULL for DISCONNECT, Pointer to SYS_NET_Config for RECONNECT<br> len		- length of the data buffer the pointer is pointing to<br>  
 
 **Returns**
 
@@ -730,8 +729,8 @@ SYS_NET_Open should have been called.
 
 **Parameters**
 
-obj 	- SYS NET object handle, returned from SYS_NET_Open  
-*paramType* - Reserved for future use  data		- 0/ 1 currently used only for enabling/ disabling the auto reconnect feature  
+obj 	- SYS NET object handle, returned from SYS_NET_Open<br> 
+*paramType* - Reserved for future use<br> data		- 0/ 1 currently used only for enabling/ disabling the auto reconnect feature <br>  
 
 **Returns**
 
@@ -777,7 +776,7 @@ SYS_NET_Open should have been called.
 
 **Parameters**
 
-object 	- SYS NET object handle, returned from SYS_NET_Open  data		- valid data buffer pointer  len		- length of the data to be transmitted  
+object 	- SYS NET object handle, returned from SYS_NET_Open<br>  data		- valid data buffer pointer<br>  len		- length of the data to be transmitted<br>  
 
 **Returns**
 
@@ -822,7 +821,7 @@ SYS_NET_Open should have been called.
 
 **Parameters**
 
-obj 	- SYS NET object handle, returned from SYS_NET_Open  data		- valid data buffer pointer  len		- length of the data to be transmitted  
+obj 	- SYS NET object handle, returned from SYS_NET_Open<br>  data		- valid data buffer pointer<br>  len		- length of the data to be transmitted<br>  
 
 **Returns**
 
@@ -870,8 +869,8 @@ Is a part of the Net service initialization using the SYS_NET_Open function.
 
 **Parameters**
 
-event	- An event (SYS_NET_EVENT) for which the callback was called. data	- Data (if any) related to the Event 
-*cookie* - A context value, returned untouched to the client when the callback occurs. 
+event	- An event (SYS_NET_EVENT) for which the callback was called.<br> data	- Data (if any) related to the Event<br> 
+*cookie* - A context value, returned untouched to the client when the callback occurs.<br>  
 
 **Returns**
 
@@ -912,4 +911,5 @@ break;
 **Remarks**
 
 None. 
+
 

@@ -11,7 +11,9 @@ function: Net System Service
 
 # Net System Service
 
-Net System Service Library provides an application programming interface (API) This library provides simple interfaces to manage TCPIP Networking functionalities. The Net System Service uses the NetPres APIs.
+Net System Service Library provides an application programming interface (API) to manage TCPIP Networking functionalities. The Net System Service uses the NetPres APIs for achieving these functionalities. 
+
+Note that currently Net System Service is supported with WiFi interface only.
 
 Key Features:
 - Supports Client/ Server Mode for IP Network Connectivity
