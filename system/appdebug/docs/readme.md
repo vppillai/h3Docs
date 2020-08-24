@@ -11,7 +11,7 @@ function: App Debug System Service
 
 # App Debug System Service
 
-App Debug System Service Library provides an application programming interface (API) This library provides simple interfaces to manage debug logs at runtime.
+App Debug System Service Library provides an application programming interface (API) to manage debug logs at runtime.
 
 Key Features:
 - Supports Enabling/ Disabling of logs at runtime

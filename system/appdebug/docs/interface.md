@@ -36,8 +36,8 @@ nav_order: 2
 
 | Name | Description |
 |-|-|
-| [SYS_APPDEBUG_Initialize](#SYS_APPDEBUG_Initialize) | Returns success/ failure for initialization of data structures of the App Debug service |
-| [SYS_APPDEBUG_Deinitialize](#SYS_APPDEBUG_Deinitialize) | Returns success/ failure for deinitialization of data structures of the App Debug service |
+| [SYS_APPDEBUG_Initialize](#SYS_APPDEBUG_Initialize) | Returns success/ failure for initialization of data structures of the |
+| [SYS_APPDEBUG_Deinitialize](#SYS_APPDEBUG_Deinitialize) | Returns success/ failure for deinitialization of data structures of the |
 
 ## Setup functions Summary
 
@@ -230,13 +230,13 @@ This function is used for initializing the data structures of the App Debug serv
 
 **Parameters**
 
-index 		- NULL; reserved for future use init 			- NULL; reserved for future use  
+index 		- NULL; reserved for future use<br> init 			- NULL; reserved for future use<br>  
 
 **Returns**
 
 *SYS_APPDEBUG_SUCCESS* - Indicates the data structures were initialized successfully 
 
-*SYS_APPDEBUG_FAILURE* - Indicates that it failed to initialize the data structures.  
+*SYS_APPDEBUG_FAILURE* - Indicates that it failed to initialize the data structures  
 
 **Example**
 
@@ -268,7 +268,7 @@ This function is used for deinitializing the data structures of the App Debug se
 
 **Parameters**
 
-None  
+None<br>  
 
 **Returns**
 
@@ -310,7 +310,7 @@ This function initializes the instance of the System App Debug Service.
 
 **Parameters**
 
-cfg 		- Configuration with which the App Debug Service needs to be opened  **Returns**
+cfg 		- Configuration with which the App Debug Service needs to be opened<br>  **Returns**
 
 Returns:If successful, returns a valid handle to an object. Otherwise, it
 returns SYS_MODULE_OBJ_INVALID.
@@ -359,7 +359,7 @@ The SYS_APPDEBUG_Open function should have been called before calling this funct
 
 **Parameters**
 
-*object* - SYS App Debug object handle, returned from SYS_APPDEBUG_Open  
+*object* - SYS App Debug object handle, returned from SYS_APPDEBUG_Open<br>  
 
 **Returns**
 
@@ -382,7 +382,8 @@ Once the Open operation has been called, the Close operation must be called befo
 **Function**
 
 ```c
-int32_t SYS_APPDEBUG_CtrlMsg(SYS_MODULE_OBJ obj, SYS_APPDEBUG_CtrlMsgType eCtrlMsgType, void *data, uint16_t len)
+int32_t SYS_APPDEBUG_CtrlMsg(SYS_MODULE_OBJ obj,
+SYS_APPDEBUG_CtrlMsgType eCtrlMsgType, void *data, uint16_t len)
 ```
 
 **Summary**
@@ -399,8 +400,8 @@ SYS_APPDEBUG_Open should have been called.
 
 **Parameters**
 
-obj 	- SYS App Debug object handle, returned from SYS_APPDEBUG_Open  
-*eCtrlMsgType* - valid Msg Type  data		- valid data buffer pointer based on the Msg Type  len		- length of the data buffer the pointer is pointing to  
+obj 	- SYS App Debug object handle, returned from SYS_APPDEBUG_Open<br> 
+*eCtrlMsgType* - valid Msg Type data		- valid data buffer pointer based on the Msg Type<br> len		- length of the data buffer the pointer is pointing to<br>  
 
 **Returns**
 
@@ -452,7 +453,7 @@ SYS_APPDEBUG_Open should have been called.
 
 **Parameters**
 
-obj 	- SYS App Debug object handle, returned from SYS_APPDEBUG_Open  flow 	- valid flow defined by the User, log will come only if this flow is enabled  data		- valid string  ...		- any variable arguments if present  
+obj 	- SYS App Debug object handle, returned from SYS_APPDEBUG_Open<br> flow 	- valid flow defined by the User, log will come only if this flow is enabled<br> data		- valid string<br> ...		- any variable arguments if present<br>  
 
 **Returns**
 
@@ -489,7 +490,7 @@ SYS_APPDEBUG_Open should have been called.
 
 **Parameters**
 
-obj 	- SYS App Debug object handle, returned from SYS_APPDEBUG_Open  flow 	- valid flow defined by the User, log will come only if this flow is enabled  data		- valid string  ...		- any variable arguments if present  
+obj 	- SYS App Debug object handle, returned from SYS_APPDEBUG_Open<br> flow 	- valid flow defined by the User, log will come only if this flow is enabled<br> data		- valid string<br> ...		- any variable arguments if present<br>  
 
 **Returns**
 
@@ -526,7 +527,7 @@ SYS_APPDEBUG_Open should have been called.
 
 **Parameters**
 
-obj 	- SYS App Debug object handle, returned from SYS_APPDEBUG_Open  flow 	- valid flow defined by the User, log will come only if this flow is enabled  data		- valid string  ...		- any variable arguments if present  
+obj 	- SYS App Debug object handle, returned from SYS_APPDEBUG_Open<br> flow 	- valid flow defined by the User, log will come only if this flow is enabled<br> data		- valid string<br> ...		- any variable arguments if present<br>  
 
 **Returns**
 
@@ -563,7 +564,7 @@ SYS_APPDEBUG_Open should have been called.
 
 **Parameters**
 
-obj 	- SYS App Debug object handle, returned from SYS_APPDEBUG_Open  flow 	- valid flow defined by the User, log will come only if this flow is enabled  data		- valid string  ...		- any variable arguments if present  
+obj 	- SYS App Debug object handle, returned from SYS_APPDEBUG_Open<br> flow 	- valid flow defined by the User, log will come only if this flow is enabled<br> data		- valid string<br> ...		- any variable arguments if present<br>  
 
 **Returns**
 
@@ -600,7 +601,7 @@ SYS_APPDEBUG_Open should have been called.
 
 **Parameters**
 
-obj 	- SYS App Debug object handle, returned from SYS_APPDEBUG_Open  flow 	- valid flow defined by the User, log will come only if this flow is enabled  data		- valid string  ...		- any variable arguments if present  
+obj 	- SYS App Debug object handle, returned from SYS_APPDEBUG_Open<br> flow 	- valid flow defined by the User, log will come only if this flow is enabled<br> data		- valid string<br> ...		- any variable arguments if present<br>  
 
 **Returns**
 
