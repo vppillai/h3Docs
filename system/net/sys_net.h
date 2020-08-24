@@ -67,27 +67,125 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 
 // *****************************************************************************
+/* SYS_NET_MODE_CLIENT
 
-#define SYS_NET_MAX_NUM_OF_SOCKETS	2		// Number of Instances Supported by the NET System Service
+  Summary:
+    Net Socket Mode - Client
 
-#define SYS_NET_MODE_CLIENT	0				// Client Mode Value
+  Remarks:
+    None.
+*/
+#define SYS_NET_MODE_CLIENT     0			// Client Mode Value
 
-#define SYS_NET_MODE_SERVER	1				// Server Mode Value
+// *****************************************************************************
+/* SYS_NET_MODE_SERVER
 
-#define SYS_NET_MAX_HOSTNAME_LEN   64    	// Max Host Name Length
+  Summary:
+    Net Socket Mode - Server
 
-#define SYS_NET_IP_PROT_UDP     0			// TCP - Ip Protocol Value
+  Remarks:
+    None.
+*/
+#define SYS_NET_MODE_SERVER     1			// Server Mode Value
 
-#define SYS_NET_IP_PROT_TCP     1			// UDP - Ip Protocol Value
+// *****************************************************************************
+/* SYS_NET_MAX_HOSTNAME_LEN
 
+  Summary:
+    Max Host Name Length
+
+  Remarks:
+    None.
+*/
+#define SYS_NET_MAX_HOSTNAME_LEN   	256    	// Max Host Name Length
+
+// *****************************************************************************
+/* SYS_NET_IP_PROT_UDP
+
+  Summary:
+    Ip Protocol Mode - UDP
+
+  Remarks:
+    None.
+*/
+#define SYS_NET_IP_PROT_UDP     0			// UDP - Ip Protocol Value
+
+// *****************************************************************************
+/* SYS_NET_IP_PROT_TCP
+
+  Summary:
+    Ip Protocol Mode - TCP
+
+  Remarks:
+    None.
+*/
+#define SYS_NET_IP_PROT_TCP     1			// TCP - Ip Protocol Value
+
+
+// *****************************************************************************
+/* SYS_NET_IP_PROT_TCP
+
+  Summary:
+    Number of Instances Supported by the NET System Service
+
+  Remarks:
+    None.
+*/
+#define SYS_NET_MAX_NUM_OF_SOCKETS     2			// umber of Instances Supported by the NET System Service
+
+// *****************************************************************************
+/* SYS_NET_DEFAULT_TLS_ENABLE
+
+  Summary:
+    Default Values for TLS - False
+
+  Remarks:
+    None.
+*/
 #define SYS_NET_DEFAULT_TLS_ENABLE      0	// TLS Disabled by default
 
+// *****************************************************************************
+/* SYS_NET_DEFAULT_AUTO_RECONNECT
+
+  Summary:
+    Default Values for Auto Reconnect - True
+
+  Remarks:
+    None.
+*/
 #define SYS_NET_DEFAULT_AUTO_RECONNECT  1	// Auto Reconnect Enabled by default
 
+// *****************************************************************************
+/* SYS_NET_DEFAULT_NET_INTF
+
+  Summary:
+    Default Values for Interface - 0 (Wifi)
+
+  Remarks:
+    None.
+*/
 #define SYS_NET_DEFAULT_NET_INTF        0	// Interface 0 by default
  
+// *****************************************************************************
+/* AppDebug Flows
+
+  Summary:
+    AppDebug Flow for the Logs - Configuration
+
+  Remarks:
+    None.
+*/
 #define NET_CFG         0x1					// App Debug Print Flows - CFG
 
+// *****************************************************************************
+/* AppDebug Flows
+
+  Summary:
+    AppDebug Flow for the Logs - Data
+
+  Remarks:
+    None.
+*/
 #define NET_DATA        0x2					// App Debug Print Flows - DATA
 
 // *****************************************************************************
@@ -288,7 +386,7 @@ typedef enum {
        </code>
 
   Remarks:
-		If the Net system service is enabled using MHC, then auto generated code will take care of system task execution.
+		If the Net system service is enabled using MHC, then auto generated code will take care of Net System Service initialization.
   */
 
 int32_t SYS_NET_Initialize();
@@ -309,7 +407,7 @@ int32_t SYS_NET_Initialize();
        </code>
 
   Remarks:
-		If the Net system service is enabled using MHC, then auto generated code will take care of system task execution.
+		None
 	   */
 void SYS_NET_Deinitialize();
 
@@ -332,7 +430,7 @@ void SYS_NET_Deinitialize();
        SYS_NET_Open should have been called before calling this function
 
   Parameters:
-       object  - SYS NET object handle, returned from SYS_NET_Open
+       object  - SYS NET object handle, returned from SYS_NET_Open<br>
 
   Returns:
 		SYS_NET_STATUS
@@ -375,11 +473,11 @@ SYS_NET_STATUS SYS_NET_GetStatus(SYS_MODULE_OBJ obj);
        SYS_NET_Open should have been called.
 
   Parameters:
-       object  	- SYS NET object handle, returned from SYS_NET_Open
+       object  	- SYS NET object handle, returned from SYS_NET_Open<br>
 	   
-	   data		- valid data buffer pointer
+	   data		- valid data buffer pointer<br>
 	   
-	   len		- length of the data to be transmitted
+	   len		- length of the data to be transmitted<br>
 
   Returns:
 		SYS_NET_SERVICE_DOWN - Indicates that the System NET instance is not connected to the peer
@@ -413,11 +511,11 @@ int32_t SYS_NET_SendMsg(SYS_MODULE_OBJ obj, uint8_t *data, uint16_t len);
        SYS_NET_Open should have been called.
 
   Parameters:
-       obj  	- SYS NET object handle, returned from SYS_NET_Open
+       obj  	- SYS NET object handle, returned from SYS_NET_Open<br>
 	   
-	   data		- valid data buffer pointer
+	   data		- valid data buffer pointer<br>
 	   
-	   len		- length of the data to be transmitted
+	   len		- length of the data to be transmitted<br>
 
   Returns:
 		SYS_NET_SERVICE_DOWN - Indicates that the System NET instance is not connected to the peer
@@ -458,10 +556,11 @@ int32_t SYS_NET_RecvMsg(SYS_MODULE_OBJ obj, void *buffer, uint16_t len);
     function.
 
    Parameters:
-	event	- An event (SYS_NET_EVENT) for which the callback was called.
-	data	- Data (if any) related to the Event
+	event	- An event (SYS_NET_EVENT) for which the callback was called.<br>
+	data	- Data (if any) related to the Event<br>
     cookie  - A context value, returned untouched to the client when the
-                 callback occurs.
+                 callback occurs.<br>
+				 
    Returns:
     None.
 
@@ -512,20 +611,17 @@ typedef void (*SYS_NET_CALLBACK)(uint32_t event, void *data, void* cookie);
 										void *cookie)
 
    Summary:
-        Initializes the System NET service.
+        Opens a new NET System Service instance.
 
    Description:
-        This function initializes the instance of the System NET Service.
+        This function opens the instance of the NET System Service.
 
    Parameters:
-       cfg    		- Configuration for which the NET Socket needs to be opened
+       cfg  		- Configuration for which the NET Socket needs to be opened<br>
+	   Net_cb	 	- Function pointer to the Callback to be called in case of an event<br>
+       cookie		- Cookie passed as one of the params in the Callback which was registered by the user in SYS_NET_Open<br>
 
-       Net_cb     	- Function pointer to the Callback to be called in case of an event
-	   
-	   cookie		- Cookie passed as one of the params in the Callback which was registered by the user in SYS_NET_Open
-
-   Returns:If successful, returns a valid handle to an object. Otherwise, it
-        returns SYS_MODULE_OBJ_INVALID.
+   Returns:	If successful, returns a valid handle to an object. Otherwise, it returns SYS_MODULE_OBJ_INVALID.
 
    Example:
         <code>
@@ -558,19 +654,19 @@ SYS_MODULE_OBJ SYS_NET_Open(SYS_NET_Config *cfg, SYS_NET_CALLBACK Net_cb, void *
    void SYS_NET_Close ( SYS_MODULE_OBJ object )
 
   Summary:
-       Deinitializes the specific module instance of the SYS NET service
+       Deinitializes the specific instance of the NET System service
 
   Description:
        This function deinitializes the specific module instance disabling its
-       operation. Resets all of the internal
-       data structures and fields for the specified instance to the default settings.
+       operation. Resets all of the internal data structures and fields for 
+	   the specified instance to the default settings.
 
   Precondition:
        The SYS_NET_Open function should have been called before calling
        this function.
 
   Parameters:
-       object   - SYS NET object handle, returned from SYS_NET_Open
+       object   - SYS NET object handle, returned from SYS_NET_Open<br>
 
   Returns:
        None.
@@ -583,9 +679,8 @@ SYS_MODULE_OBJ SYS_NET_Open(SYS_NET_Config *cfg, SYS_NET_CALLBACK Net_cb, void *
         </code>
 
   Remarks:
-       Once the Initialize operation has been called, the De-initialize
-       operation must be called before the Initialize operation can be called
-       again.
+       Once the Open operation has been called, the Close operation must be 
+	   called before the Open operation can be called again.
 */
 
 void SYS_NET_Close(SYS_MODULE_OBJ);
@@ -594,14 +689,19 @@ void SYS_NET_Close(SYS_MODULE_OBJ);
 /* Function:
     void SYS_NET_Task(SYS_MODULE_OBJ obj)
 
+  Summary:
+       Executes the SYS NET service state machine for the instance
+
    Description:
-		This function ensures that the Networking service is able to execute its state machine to process any messages and invoke the user callback for any events.
+		This function ensures that the Net system service is able to execute 
+		its state machine to process any messages and invoke the user callback 
+		for any events.
   
   Precondition:
        SYS_NET_Open should have been called before calling this function
 
   Parameters:
-       obj  - SYS NET object handle, returned from SYS_NET_Open
+       obj  - SYS NET object handle, returned from SYS_NET_Open<br><br>
 
    Returns:
         None
@@ -618,11 +718,13 @@ void SYS_NET_Close(SYS_MODULE_OBJ);
         </code>
 
 */
+
 void SYS_NET_Task(SYS_MODULE_OBJ obj);
+
 
 // *****************************************************************************
 /* Function:
-       int32_t SYS_NET_CtrlMsg(SYS_MODULE_OBJ obj, void *data, uint16_t len)
+       int32_t SYS_NET_CtrlMsg(SYS_MODULE_OBJ obj, SYS_NET_CTRL_MSG msg_type, void *data, uint16_t len)
 
   Summary:
       Returns success/ failure for the disconnect/ reconnect operation asked by the user.
@@ -634,13 +736,11 @@ void SYS_NET_Task(SYS_MODULE_OBJ obj);
        SYS_NET_Open should have been called.
 
   Parameters:
-       obj  	- SYS NET object handle, returned from SYS_NET_Open
-	   
-	   msg_type - valid Msg Type - SYS_NET_CTRL_MSG
-      
-       data		- valid data buffer pointer based on the Msg Type - NULL for DISCONNECT, Pointer to SYS_NET_Config for RECONNECT
-	   
-	   len		- length of the data buffer the pointer is pointing to
+       obj  	- SYS NET object handle, returned from SYS_NET_Open<br>
+	   msg_type - valid Msg Type SYS_NET_CTRL_MSG<br>
+       data		- valid data buffer pointer based on the Msg Type - NULL for DISCONNECT, 
+					Pointer to SYS_NET_Config for RECONNECT<br>
+	   len		- length of the data buffer the pointer is pointing to<br>
 
   Returns:
 		SYS_NET_SUCCESS - Indicates that the Request was catered to successfully
@@ -677,11 +777,9 @@ int32_t SYS_NET_CtrlMsg(SYS_MODULE_OBJ obj,
        SYS_NET_Open should have been called.
 
   Parameters:
-       obj  	- SYS NET object handle, returned from SYS_NET_Open
-	   
-	   paramType - Reserved for future use
-      
-       data		- 0/ 1 currently used only for enabling/ disabling the auto reconnect feature 
+       obj  	- SYS NET object handle, returned from SYS_NET_Open<br>
+	   paramType - Reserved for future use<br>
+       data		- 0/ 1 currently used only for enabling/ disabling the auto reconnect feature <br>
 	   
   Returns:
 		SYS_NET_SUCCESS - Indicates that the Request was catered to successfully
