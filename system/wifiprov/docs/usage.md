@@ -16,6 +16,9 @@ nav_order: 1
 {:toc}
 
 ---
+
+The Wi-Fi Provisioning System Service povides below methods to configuring desired Wi-Fi SSID and related security credentials of the Home AP into the device.
+
 # Wi-Fi Provisioning Methods
 
 ## Command line
@@ -49,7 +52,9 @@ Wi-Fi Provisioning commands command parameters information,
 |||
 
 
-Note: Wi-Fi Provisioning using command line method is not recommended in production release due to security concerns. 
+Note: 
+- Wi-Fi Provisioning using command line method is not recommended in production release due to security concerns.
+- All commands the parameters are mandatory, and none are optional except for password in case of "open" authentication. 
 
 ## TCP Socket mode
 

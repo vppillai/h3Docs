@@ -12,7 +12,7 @@ The Wi-Fi Provisioning System Service library should be configured through MHC(M
 
  
 
-The Wi-Fi Provisioning System Service library MHC menu provide option to enable required Wi-Fi Provisioning methods base on user application requirements. User can select Command line and Socket mode as shown in below diagram. 
+The Wi-Fi Provisioning System Service library MHC menu provide option to enable required Wi-Fi Provisioning methods base on user application requirements. User can select Command line , Socket mode and HTTP as shown in below diagram. 
 
 
 ![](./images/SYS_Wi-Fi_Provision_MHC_diagram.png)
@@ -42,7 +42,8 @@ Wi-Fi Provisioning Methods
     -  Enable/Disable Wi-Fi Provision using TCP Socket. 
     -  TCP Socket Number: 
         - User configuration for TCP Server Socket. 
-        - Defult port number is 6666.   
+        - Defult port number is 6666.
+       TCP Socket port number is used by Mobile Applicaiton and JSON.
  
 
 
