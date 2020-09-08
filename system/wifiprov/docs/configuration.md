@@ -43,7 +43,7 @@ Wi-Fi Provisioning Methods
     -  TCP Socket Number: 
         - User configuration for TCP Server Socket. 
         - Defult port number is 6666.
-       TCP Socket port number is used by Mobile Applicaiton and JSON.
+<br>TCP Socket port number is used by Mobile Applicaiton and JSON.
  
 
 
