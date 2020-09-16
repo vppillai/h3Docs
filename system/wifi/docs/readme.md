@@ -19,14 +19,16 @@ Key Features:
         - Open - No security 
         - WPA2 
         - WPAWPA2(Mixed) mode
+        - WPA2WPA3(Mixed) 
         - WPA3 
     - Self Healing<br>
-        - The connection for some reason breaks, the service shall take care of reconnecting the same internally. 
+        - if the connection for some reason breaks, the service shall take care of reconnecting the same internally. 
 - Configuration of Soft Access point mode(AP) 
     - Security Support: 
         - Open - No security 
         - WPA2
         - WPAWPA2(Mixed) 
+        - WPA2WPA3(Mixed) 
         - WPA3
         - Hidden Access Point(AP)  
 

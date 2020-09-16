@@ -23,6 +23,10 @@ The Wi-Fi Provisioning System Service povides below methods to configuring desir
 
 ## Command line
 
+MHC configuration menu for Command line(CLI):
+![](./images/SYS_Wi-Fi_Provision_MHC_diagram_1.png)
+- Enable Check box "Command Line(CLI)" to include CLI Wi-Fi provisioning method.
+
 Wi-Fi Provisioning commands Details 
 
 
@@ -42,11 +46,11 @@ Wi-Fi Provisioning commands command parameters information,
 | ----------------| -----------------------------------------------------  |
 | bootmode        | 0 - Station(STA) mode.<br>1- Access point(AP) mode.        |
 | save config     | 0 - Do not save configuration in NVM(Program Flash Memory).<br> 1- Save configuration in NVM .                                    |
-| country code     | country code configuration:<br> GEN - General <br> USA - North America <br>EMEA - Europe <br> JPN - Japan  |
+| country code     | country code configuration:<br> GEN - General <br> USA - North America <br>EMEA - Europe <br> CUST1,CUST2 - Customer custom regulatory configuration  |
 | Channel         | In Station mode value range from 0-13,<br> 0 - select all the channels.<br>1-13 - select specified channel.<br> In Access point mode value range from 1-13.                                                           |
 |auto connect(only applicable in STA mode)| 0 - Don't connect to AP, wait for client request.<br>1 - Connect to AP.                                      |
 |ssid visibility (only applicable in AP mode)| 0 - Hidden SSID.<br>1 - Broadcast SSID .                                                           |
-|authtype(Security type) | 1 - OPEN Mode.<br> 3 - WPAWPA2 (Mixed) mode.<br> 4 - WPA2 mode.<br>  5 - WPA3                                        |
+|authtype(Security type) | 1 - OPEN Mode.<br> 3 - WPAWPA2 (Mixed) mode.<br> 4 - WPA2 mode.<br>  5 -  WPA2WPA3 (Mixed) mode.<br> 6 - WPA3 mode.  |
 |ssid(ssid name)   | SSID name |
 |psk name(password)| Password/passphrase  |
 |||
@@ -57,6 +61,11 @@ Note:
 - All commands the parameters are mandatory, and none are optional except for password in case of "open" authentication. 
 
 ## TCP Socket mode
+
+MHC configuration menu for TCP Socket:
+![](./images/SYS_Wi-Fi_Provision_MHC_diagram_1.png)
+- Enable Check box "TCP Socket" to include TCP Socket Wi-Fi provisioning method.
+- Modifiy the "Socket Server Port".Defult port number is 6666.
 
 Wi-Fi provisioning service can be configured to use TCP socket, a socket server is activated when the device boots.Use a laptop or mobile phone as a TCP client to connect to the device's socket server. 
 Wi-Fi provisioning service defult TCP server port is 6666.
@@ -87,7 +96,7 @@ Details of JSON Parameters,
 |                 |PWD(password)     | Password/passphrase  |
 | AP              |ch (Channel)      | In Access point mode value range from 1-13   |
 |                 |ssidv(ssid visibility)        | 0 - Hidden SSID.<br> 1 - Broadcast SSID .  |
-|                 |Auth(Security type) | 1 - OPEN Mode.<br> 3 - WPAWPA2 (Mixed) mode.<br> 4 - WPA2 mode.<br> 5 - WPA3 mode. |
+|                 |Auth(Security type) | 1 - OPEN Mode.<br> 3 - WPAWPA2 (Mixed) mode.<br> 4 - WPA2 mode.<br> 5 -  WPA2WPA3 (Mixed) mode.<br> 6 - WPA3 mode. |
 |                 |SSID(ssid name)   | SSID name |
 |                 |PWD(password)     | Password/passphrase  |
 |||
@@ -133,6 +142,15 @@ TCP Data Format : apply,\<ssid\>,\<Auth\>,\<password\>,NULL
 |||
 
 ##  HTTP
+
+### Webpage using HTTP
+
+MHC configuration menu for HTTP (unsecure):
+![](./images/SYS_Wi-Fi_Provision_MHC_diagram_2.png)
+- Enable Check box "HTTP" to include Wi-Fi provisioning using webpage.
+- press "Yes"for components inclusion pop-up.
+- When user enable "HTTP" checkbox, defualt wi-f provising method(unsecure) enable with port number 80.
+
 Follow below steps to provisioning the device using HTTP:
 - Start PIC32MZW1 device in AP mode.
 - Connect Laptop or mobile phone to PIC32MZW1 AP device.
@@ -147,6 +165,55 @@ Follow below steps to provisioning the device using HTTP:
 - Device will reboot and apply configuration in the device.
 
 HTTP functionality is also supported in station(STA) mode.
+
+### Webpage using HTTPNET (Un-Secure)
+
+MHC configuration menu for HTTPNET(Unsecure):
+![](./images/SYS_Wi-Fi_Provision_MHC_diagram_3.png)
+Follow below steps to enable to HTTPNET unsecure
+- Enable Check box "Enable HTTPNET".
+- Configure "Server port".User can configure any valid port number.
+- Enable Check box "HTTP" and press "Yes"for components inclusion pop-up. 
+
+
+Follow below steps to provisioning the device using HTTP:
+- Start PIC32MZW1 device in AP mode.
+- Connect Laptop or mobile phone to PIC32MZW1 AP device.
+- Open the browser and enter the PIC32MZW1 AP IP address with port number(example: http://192.168.1.1:401/).
+
+
+![](./images/SYS_Wi-Fi_Provision_HTTP_HOME.png)
+- Goto "Network Configuratio" page.
+- Update the Configuration details and click on "Apply Wi-Fi Configuration"
+
+![](./images/SYS_Wi-Fi_Provision_HTTP_Networkconfig.png)
+
+- Device will reboot and apply configuration in the device.
+
+### Webpage using HTTPNET (Secure)
+
+MHC configuration menu for HTTPNET(secure):
+![](./images/SYS_Wi-Fi_Provision_MHC_diagram_4.png)
+Follow below steps to enable to HTTPNET unsecure
+- Enable Check box "Enable HTTPNET".
+- Enable check box "Enable Secure Connection with HTTPNET"
+- Configure "Server port".User can configure any valid port number.
+- Enable Check box "HTTP" and press "Yes"for components inclusion pop-up. 
+
+
+Follow below steps to provisioning the device using HTTP:
+- Start PIC32MZW1 device in AP mode.
+- Connect Laptop or mobile phone to PIC32MZW1 AP device.
+- Open the browser and enter the PIC32MZW1 AP IP address with port number(example: https://192.168.1.1:443/).
+
+
+![](./images/SYS_Wi-Fi_Provision_HTTP_HOME.png)
+- Goto "Network Configuratio" page.
+- Update the Configuration details and click on "Apply Wi-Fi Configuration"
+
+![](./images/SYS_Wi-Fi_Provision_HTTP_Networkconfig.png)
+
+- Device will reboot and apply configuration in the device.
 
 # How The Library Works
 
