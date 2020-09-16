@@ -25,7 +25,10 @@ The Wi-Fi Provisioning System Service povides below methods to configuring desir
 
 MHC configuration menu for Command line(CLI):
 ![](./images/SYS_Wi-Fi_Provision_MHC_diagram_1.png)
+
 - Enable Check box "Command Line(CLI)" to include CLI Wi-Fi provisioning method.
+- After making configuration changes, generate the code.
+- Compile the project and load the image into device. 
 
 Wi-Fi Provisioning commands Details 
 
@@ -64,8 +67,11 @@ Note:
 
 MHC configuration menu for TCP Socket:
 ![](./images/SYS_Wi-Fi_Provision_MHC_diagram_1.png)
+
 - Enable Check box "TCP Socket" to include TCP Socket Wi-Fi provisioning method.
 - Modifiy the "Socket Server Port".Defult port number is 6666.
+- After making configuration changes, generate the code.
+- Compile the project and load the image into device. 
 
 Wi-Fi provisioning service can be configured to use TCP socket, a socket server is activated when the device boots.Use a laptop or mobile phone as a TCP client to connect to the device's socket server. 
 Wi-Fi provisioning service defult TCP server port is 6666.
@@ -105,7 +111,7 @@ Details of JSON Parameters,
 
 Follow below steps to provisioning the device using mobile application:
 - Download and install the mobile application "Wi-Fi Provisioning" from Android play store.
-- Start PIC32MZW1 device in AP mode.
+- Start PIC32MZW1 device in AP mode (Configure Wi-Fi Service "Device Mode" as "AP").
 - Using mobile Wi-Fi setting, make a Wi-Fi connection to PIC32MZW1 AP Mode.
 
 ![](./images/SYS_Wi-Fi_Provision_Mobile_connect.png)
@@ -143,16 +149,19 @@ TCP Data Format : apply,\<ssid\>,\<Auth\>,\<password\>,NULL
 
 ##  HTTP
 
-### Webpage using HTTP
+### Webpage using HTTP 
 
 MHC configuration menu for HTTP (unsecure):
 ![](./images/SYS_Wi-Fi_Provision_MHC_diagram_2.png)
+
 - Enable Check box "HTTP" to include Wi-Fi provisioning using webpage.
 - press "Yes"for components inclusion pop-up.
-- When user enable "HTTP" checkbox, defualt wi-f provising method(unsecure) enable with port number 80.
+- When user enable "HTTP" checkbox only, defualt wi-f provising method enable with port number 80.
+- After making configuration changes, generate the code.
+- Compile the project and load the image into device. 
 
 Follow below steps to provisioning the device using HTTP:
-- Start PIC32MZW1 device in AP mode.
+- Start PIC32MZW1 device in AP mode (Configure Wi-Fi Service "Device Mode" as "AP").
 - Connect Laptop or mobile phone to PIC32MZW1 AP device.
 - Open the browser and enter the PIC32MZW1 AP IP address(example: http://192.168.1.1/).
 
@@ -170,14 +179,16 @@ HTTP functionality is also supported in station(STA) mode.
 
 MHC configuration menu for HTTPNET(Unsecure):
 ![](./images/SYS_Wi-Fi_Provision_MHC_diagram_3.png)
-Follow below steps to enable to HTTPNET unsecure
+
+Follow below steps to enable to HTTPNET unsecure,
 - Enable Check box "Enable HTTPNET".
 - Configure "Server port".User can configure any valid port number.
 - Enable Check box "HTTP" and press "Yes"for components inclusion pop-up. 
-
+- After making configuration changes, generate the code.
+- Compile the project and load the image into device. 
 
 Follow below steps to provisioning the device using HTTP:
-- Start PIC32MZW1 device in AP mode.
+- Start PIC32MZW1 device in AP mode (Configure Wi-Fi Service "Device Mode" as "AP").
 - Connect Laptop or mobile phone to PIC32MZW1 AP device.
 - Open the browser and enter the PIC32MZW1 AP IP address with port number(example: http://192.168.1.1:401/).
 
@@ -194,15 +205,18 @@ Follow below steps to provisioning the device using HTTP:
 
 MHC configuration menu for HTTPNET(secure):
 ![](./images/SYS_Wi-Fi_Provision_MHC_diagram_4.png)
-Follow below steps to enable to HTTPNET unsecure
+
+Follow below steps to enable HTTPNET secure,
 - Enable Check box "Enable HTTPNET".
 - Enable check box "Enable Secure Connection with HTTPNET"
 - Configure "Server port".User can configure any valid port number.
-- Enable Check box "HTTP" and press "Yes"for components inclusion pop-up. 
+- Enable Check box "HTTP" and press "Yes"for components inclusion pop-up.
+- After making configuration changes, generate the code.
+- Compile the project and load the image into device. 
 
 
 Follow below steps to provisioning the device using HTTP:
-- Start PIC32MZW1 device in AP mode.
+- Start PIC32MZW1 device in AP mode (Configure Wi-Fi Service "Device Mode" as "AP").
 - Connect Laptop or mobile phone to PIC32MZW1 AP device.
 - Open the browser and enter the PIC32MZW1 AP IP address with port number(example: https://192.168.1.1:443/).
 
