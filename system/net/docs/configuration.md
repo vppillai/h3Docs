@@ -34,7 +34,7 @@ The following figure shows the MHC configuration window for configuring the NET 
 
 8. Server Port - 1-65535. This is a mandatory parameter.
 9. Host Name/ IP Address: Can be a Host Name or an IP Address. By Default, the parameter value is '192.168.1.1'.
-10. Enable Debug Logs in case more prints are required for debugging. By Default, the parameter value is 'False'.
+10. Enable Debug Logs in case more prints are required for debugging. By Default, the parameter value is 'False'.<br>Note: In case the user enables debug logs, he needs to manually add the 'App Debug Service' component from Wireless-> System Service-> App Debug Service.
 
 
 All of the required files are automatically added into the MPLAB X IDE project by the MHC when the Net Service is selected for use.
