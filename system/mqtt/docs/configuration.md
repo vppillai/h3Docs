@@ -23,9 +23,9 @@ The following figure shows the MHC configuration window for configuring the MQTT
 
 | Parameter Name | Default   Value | Description |
 |-|-|-|
-| Broker Name |  | Name of the MQTT   Broker |
+| Broker Name |  | Name of the MQTT   Broker<br>Note: User should ensure that the Broker is UP and running. In case the connection timesout often, the User can modify the value of SYS_MQTT_PERIOIDC_TIMEOUT as per his requirement.  |
 | Server Port |  | Port   number of the MQTT Broker at which the MQTT Client should connect |
-| Enable TLS | FALSE | If   TRUE, the MQTT connection should use TLS while connecting to the broker. If   FALSE, the MQTT connection should not use TLS. |
+| Enable TLS | FALSE | If   TRUE, the MQTT connection should use TLS while connecting to the broker. If   FALSE, the MQTT connection should not use TLS.<br>Note: In case the TLS is enabled, the component 'Presentation Layer' needs to update the CA Certificate location, name, and size. Other parameters can be updated as per the User's requirements. |
 | Client Id |  | MQTT   Client Id should be unique for the Broker. If left empty, the Id will be   generated randomly |
 
 
