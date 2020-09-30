@@ -29,6 +29,12 @@ The following figure shows the MHC configuration window for configuring the MQTT
 | Client Id |  | MQTT   Client Id should be unique for the Broker. If left empty, the Id will be   generated randomly |
 
 
+- Configure the various parameters of Presentation Layer if TLS enabled
+{:refdef: style="text-align: center;"}
+![](./images/presentation_layer.png)
+{: refdef}
+
+
 - Configure the various parameters of Basic Configuration
 {:refdef: style="text-align: center;"}
 ![](./images/Mqtt_Adv_Service.png)
