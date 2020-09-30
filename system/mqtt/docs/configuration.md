@@ -35,7 +35,7 @@ The following figure shows the MHC configuration window for configuring the MQTT
 {: refdef}
 
 
-- Configure the various parameters of Basic Configuration
+- Configure the various parameters of 'Advanced Configuration' of the MQTT Service
 {:refdef: style="text-align: center;"}
 ![](./images/Mqtt_Adv_Service.png)
 {: refdef}
