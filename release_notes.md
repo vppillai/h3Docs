@@ -112,6 +112,13 @@ Symbol 'ARP_HASH_ENTRY' (line 93, file ../project/src/config/pic32mz_w1_curiosit
 9. system/console/src/sys_console.c(340) 530 9.1
 Symbol 'args' (line 320) not initialized [MISRA 2012 Rule 9.1, mandatory]
 
+- PIC32MZW1 System Service
+
+1. RSA 4k certificate verification is not working with MQTT/NET Service as the System goes ‘Out of Memory’.
+
+2. WPA3 feature in wireless system service is un-tested.
+
+
 ### Development Tools
 - WINC: Same as v3.1.1
 - PIC32MZW1: [MPLAB X v5.35 ](https://www.microchip.com/mplab/mplab-x-ide)
