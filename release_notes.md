@@ -118,6 +118,7 @@ Symbol 'args' (line 320) not initialized [MISRA 2012 Rule 9.1, mandatory]
 
 2. WPA3 feature in wireless system service is un-tested.
 
+3. User should increase the UART Tx ring buffer size if output console data size is more than 1K
 
 ### Development Tools
 - WINC: Same as v3.1.1
