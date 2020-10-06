@@ -1,5 +1,4 @@
 ---
-parent: Example Applications
 title: Secured TCP Client
 has_toc: true
 has_children: false

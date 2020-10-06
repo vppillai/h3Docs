@@ -1,5 +1,4 @@
 ---
-parent: Example Applications
 title: STA Bypass mode
 has_toc: true
 has_children: false

@@ -1,5 +1,4 @@
 ---
-parent: Example Applications
 title: TCP Server in SoftAP
 has_toc: true
 has_children: false

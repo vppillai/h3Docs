@@ -1,5 +1,4 @@
 ---
-parent: Example Applications
 title: Wi-Fi Easy Configuration
 has_toc: true
 has_children: false

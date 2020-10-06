@@ -1,5 +1,4 @@
 ---
-parent: Example Applications
 title: Wifi-ethernet dual interface
 has_toc: true
 has_children: false

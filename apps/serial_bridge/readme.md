@@ -1,5 +1,4 @@
 ---
-parent: Example Applications
 title: Serial Bridge
 has_toc: true
 has_children: false

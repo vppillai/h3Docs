@@ -1,5 +1,4 @@
 ---
-parent: Example Applications
 title: AP Scan
 has_toc: true
 has_children: false

@@ -1,5 +1,4 @@
 ---
-parent: Example Applications
 title: Wifi Provisioning via SoftAP
 has_toc: true
 has_children: false
