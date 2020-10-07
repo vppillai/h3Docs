@@ -7,22 +7,16 @@ has_toc: false
 nav_order: 1
 
 family: PIC32MZW1
-family: WINC
-family: SAMD21
-family: SAME54
 function: Secured TCP Client
 ---
 
 # Secured TCP Client 
 
 The PIC32MZW1 example application acts as a TCP Client to connect to Secured TCP Server and exchange data in a non-blocking manner.
-The WINC example application demonstrates as a conventional, open tcp client-server communication.
 
 ## Description
 
 This application demonstrates how a user can use a TLS TCP  client to connect to a TCP server. The user would need to configure the Wi-Fi credentials for the Home AP and the TLS server details. The default application will try to establish a TLS connection with www.google.com and send a POST request to it.
-
-For WINC, please refer to "WINC Driver Demonstrations" for more information.
 
 ## Downloading and building the application
 
@@ -36,10 +30,6 @@ To build the application, refer to the following table and open the project usin
 | Project Name      | Description                                    |
 | ----------------- | ---------------------------------------------- |
 | pic32mz_w1_curiosity_freertos.X | MPLABX project for PIC32MZ W1 Curiosity Board |
-| sam_d21_xpro_winc1500.X | MPLABX project for SAMD21 and WINC1500 Xplained pro |
-| sam_d21_xpro_winc3400.X | MPLABX project for SAMD21 and WINC3400 Xplained pro |
-| sam_e54_xpro_winc1500.X | MPLABX project for SAME54 and WINC1500 Xplained pro |
-| sam_e54_xpro_winc3400.X | MPLABX project for SAME54 and WINC3400 Xplained pro |
 |||
 
 ## Setting up PIC32MZ W1 Curiosity Board
