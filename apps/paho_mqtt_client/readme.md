@@ -1,5 +1,5 @@
 ---
-parent: Example Applications
+parent: Harmony 3 Wireless Package
 title: Paho MQTT Client
 has_toc: true
 has_children: false

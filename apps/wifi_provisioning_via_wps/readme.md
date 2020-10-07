@@ -1,5 +1,5 @@
 ---
-parent: Example Applications
+parent: Harmony 3 Wireless Package
 title: Wifi Provisioning via WPS
 has_toc: true
 has_children: false
