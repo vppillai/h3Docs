@@ -11,7 +11,7 @@ family: SAME54
 function: Power Save Mode
 ---
 
-# Serial Bridge
+# Power Save Mode
 
 This example compiles the Power Save Mode application which is used to demonstrate WINC's low power mode.
 
