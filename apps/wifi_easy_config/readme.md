@@ -84,21 +84,21 @@ To build the application, refer to the following table and open the project usin
 
 ![](images/wifi_easyconfig_tool.png)
 
-- For more details follow the steps available in page: * [Wi-Fi provisioning Using JSON Format](../../services/wifiprov/docs/usage.md#wi-fi-provisioning-with-json-format)
+- For more details follow the steps available in page: * [Wi-Fi provisioning Using JSON Format](../../system/wifiprov/docs/usage.md#wi-fi-provisioning-with-json-format)
 
 ### Provisioning using Mobile Application
 - Connect to the SoftAP from a mobile phone.User may have to enter password on mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.
 
     ![Console](images/wifi_easyconfig_log2.png)
 
-- For more details follow the steps available in page: [Wi-Fi provisioning Using Mobile Application](../../services/wifiprov/docs/usage.md#wi-fi-provisioning-with-mobile-application)
+- For more details follow the steps available in page: [Wi-Fi provisioning Using Mobile Application](../../system/wifiprov/docs/usage.md#wi-fi-provisioning-with-mobile-application)
 
 ### Provisioning using HTTP(webpage)
 - Connect to the SoftAP from a laptop or mobile phone.User may have to enter password on laptop or mobile phone for connecting to device SoftAP based on security type selected in MHC. As soon as the client connects, the device will print the IP address leased to it.
 
     ![Console](images/wifi_easyconfig_log2.png)
 
-- For more details follow the steps available in page:[Wi-Fi provisioning using HTTP](../../services/wifiprov/docs/usage.md#http)
+- For more details follow the steps available in page:[Wi-Fi provisioning using HTTP](../../system/wifiprov/docs/usage.md#http)
 
 
 
@@ -107,7 +107,7 @@ To build the application, refer to the following table and open the project usin
 
 - wifiprov set 0 1 \<country_code\> \<channel\> \<authtype\> \<ssid_name\> \<psk_name\>
 
-- For more details follow the steps available in page: [Wi-Fi provisioning using CLI](../../services/wifiprov/docs/usage.md#command-line)
+- For more details follow the steps available in page: [Wi-Fi provisioning using CLI](../../system/wifiprov/docs/usage.md#command-line)
 
 The device will auto-reboot into STA mode.<br> 
 The device will now connect to the configured AP.<br>
