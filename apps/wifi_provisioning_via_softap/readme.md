@@ -35,7 +35,7 @@ To build the application, refer to the following table and open the project usin
 | sam_e54_xpro_winc1500.X | MPLABX project for SAME54 and WINC1500 Xplained pro |
 |||
 
-## Setting up SAMEXXX Xplained Pro board
+## Setting up SAMXXX Xplained Pro board
 
 - Connect the Debug USB port on the SAMXXX Xplained Pro board to the computer using a micro USB cable
 

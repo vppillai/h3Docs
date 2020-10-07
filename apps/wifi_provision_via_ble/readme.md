@@ -35,7 +35,7 @@ To build the application, refer to the following table and open the project usin
 |||
 
 
-## Setting up SAMEXXX Xplained Pro board
+## Setting up SAMXXX Xplained Pro board
 
 - Connect the Debug USB port on the SAMEXXX Xplained Pro board to the computer using a micro USB cable
 
