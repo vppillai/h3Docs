@@ -85,7 +85,7 @@ The following applications are provided to demonstrate the typical or interestin
 |:---------|:-----------|
 | [AP Scan](apps/ap_scan/readme.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic)|
 | [Power Save Mode](apps/power_save_mode_example/readme.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic)|
-| [Serial Bridge](apps/wifi_winc_sta_bypass/readme.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic)|
+| [Serial Bridge](apps/serial_bridge/readme.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic)|
 | [TCP Client](apps/tcp_client/readme.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic) |
 | [Wi-Fi Provisioning via BLE](apps/wifi_provision_via_ble/readme.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic)|
 | [Wi-Fi Provisioning via Soft-AP](apps/wifi_provisioning_via_softap/readme.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic)|
