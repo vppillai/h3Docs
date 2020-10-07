@@ -1,4 +1,5 @@
 ---
+parent: Example Applications
 title: TCP Server
 has_toc: true
 has_children: false

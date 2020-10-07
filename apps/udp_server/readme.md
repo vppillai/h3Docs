@@ -1,4 +1,5 @@
 ---
+parent: Example Applications
 title: UDP Server
 has_toc: true
 has_children: false

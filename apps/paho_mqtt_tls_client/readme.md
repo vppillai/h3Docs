@@ -1,4 +1,5 @@
 ---
+parent: Example Applications
 title: Paho MQTT TLS Client
 has_toc: true
 has_children: false

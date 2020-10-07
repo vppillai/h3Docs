@@ -1,4 +1,5 @@
 ---
+parent: Example Applications
 title: Power Save Mode
 has_toc: true
 has_children: false

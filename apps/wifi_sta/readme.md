@@ -1,4 +1,5 @@
 ---
+parent: Example Applications
 title: Wi-Fi Station(STA) Mode
 has_toc: true
 has_children: false

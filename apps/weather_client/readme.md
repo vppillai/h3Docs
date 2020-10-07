@@ -1,4 +1,5 @@
 ---
+parent: Example Applications
 title: Weather Client
 has_toc: true
 has_children: false

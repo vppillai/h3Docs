@@ -1,4 +1,5 @@
 ---
+parent: Example Applications
 title: Wifi Provisioning via WPS
 has_toc: true
 has_children: false
