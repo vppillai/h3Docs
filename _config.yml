@@ -20,8 +20,8 @@ lang: en-US
 timezone: America/Phoenix
 
 description: Harmony 3 Wireless package
-url: "https://microchip-mplab-harmony.github.io"
-baseurl: "/wireless"
+url: "https://vppillai.github.io"
+baseurl: "/h3Docs"
 remote_theme: "Microchip-MPLAB-Harmony/just-the-docs@mchp-harmony"
 
 # Build settings
