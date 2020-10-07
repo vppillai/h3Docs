@@ -62,8 +62,8 @@ The following applications are provided to demonstrate the typical or interestin
 
 | Name | Status|
 |:---------|:-----------|
-| [Wi-Fi STA](apps/wifi_sta/readme_driver_usage.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic) |
-| [Wi-Fi Soft-AP](apps/wifi_ap/readme_driver_usage.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic) |
+| [Wi-Fi STA](apps/wifi_sta/config_driver_readme.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic) |
+| [Wi-Fi Soft-AP](apps/wifi_ap/config_driver_readme.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic) |
 | [Wi-Fi STA - Wi-Fi Service Variant](apps/wifi_sta/readme.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic) |
 | [Wi-Fi Soft-AP - Wi-Fi Service Variant](apps/wifi_ap/readme.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic) |
 | [Paho MQTT Client](apps/paho_mqtt_client/readme.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic) |
