@@ -50,6 +50,14 @@ Symbol 'ARP_HASH_ENTRY' (line 93, file ../project/src/config/pic32mz_w1_curiosit
 3. driver/ethmac/src/dynamic/drv_ethmac.c(455) 	530 	9.1
 Symbol 'DRV_ETHMAC_OTP_REC' (line 98) not initialized [MISRA 2012 Rule 9.1, mandatory]
 
+- PIC32MZW1 System Service
+
+1. RSA 4k certificate verification is not working with MQTT/NET Service as the System goes ‘Out of Memory’.
+
+2. WPA3 feature in wireless system service is un-tested.
+
+3. User should increase the UART Tx ring buffer size if output console data size is more than 1K
+
 ### Development Tools
 - WINC: [MPLAB X v5.4 ](https://www.microchip.com/mplab/mplab-x-ide)
 - WINC: [MPLAB® XC32 C/C++ Compiler v2.41](https://www.microchip.com/mplab/compilers)
@@ -111,14 +119,6 @@ Symbol 'ARP_HASH_ENTRY' (line 93, file ../project/src/config/pic32mz_w1_curiosit
 
 9. system/console/src/sys_console.c(340) 530 9.1
 Symbol 'args' (line 320) not initialized [MISRA 2012 Rule 9.1, mandatory]
-
-- PIC32MZW1 System Service
-
-1. RSA 4k certificate verification is not working with MQTT/NET Service as the System goes ‘Out of Memory’.
-
-2. WPA3 feature in wireless system service is un-tested.
-
-3. User should increase the UART Tx ring buffer size if output console data size is more than 1K
 
 ### Development Tools
 - WINC: Same as v3.1.1
