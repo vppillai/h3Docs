@@ -20,6 +20,13 @@ The following figure shows the MHC configuration window for configuring the NET 
 4. Configure the Supported Interface - 'Wifi Only', or 'Wifi and Ethernet Both'
 ![](./images/Net_service_SuppIntf.png)
 
+4. Debug - Enabled by default - has 'CLI Commands' and 'Debug Logs' as sub params
+![](./images/Net_service_config_debug.png.png)
+
+
+    1. Enable CLI Commands - This is enabled by default. This can be used by the user to give commands on the CLI to open/ close/ send message on a socket.
+    9. Enable Debug Logs in case more prints are required for debugging. By Default, the parameter value is 'False'.<br>Note: In case the user enables debug logs, user needs to manually add the 'App Debug Service' component from Wireless-> System Service-> App Debug Service.
+
 5. User can configure 2 intsances of a Net Socket. By default, only the first one is enabled.
 
 6. Instance 0:
@@ -46,8 +53,6 @@ The following figure shows the MHC configuration window for configuring the NET 
     7. Host Name/ IP Address: Can be a Host Name or an IP Address. By Default, the parameter value is '192.168.1.1'.
     
 7. Instance 1 - User can enable this, and use it to give a configuration for another socket. Also, once the user gives this config, he cannot call SYS_NET_Open() API with configuration parameter as NULL since that can be done only when there is a single socket configuration (Instance 0 only) done in the MHC. 
-8. Enable CLI Commands - This is enabled by default. This can be used by the user to give commands on the CLI to open/ close/ send message on a socket.
-9. Enable Debug Logs in case more prints are required for debugging. By Default, the parameter value is 'False'.<br>Note: In case the user enables debug logs, user needs to manually add the 'App Debug Service' component from Wireless-> System Service-> App Debug Service.
 
 
 All of the required files are automatically added into the MPLAB X IDE project by the MHC when the Net Service is selected for use.
