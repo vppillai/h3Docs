@@ -24,7 +24,7 @@ The following figure shows the MHC configuration window for configuring the NET 
 
 6. Instance 0:
 
-    a) Configure the Network Interface as Wifi or Ethernet. Note that Ethernet as an interface can only be chosen if the 'Supported Interaces' param is WIFI_ETHERNET.
+    a. Configure the Network Interface as Wifi or Ethernet. Note that Ethernet as an interface can only be chosen if the 'Supported Interaces' param is WIFI_ETHERNET.
 ![](./images/Net_service_Inst0_Intf.png)
 
     b) Configure the Ip Protocol as either TCP or UDP
@@ -34,18 +34,17 @@ The following figure shows the MHC configuration window for configuring the NET 
 ![](./images/Net_service_config_mode.png)
 
     d) Enable/ Disable "Auto Connect" as per your requirement. This parameter when enabled ensures that if the NET Connection disconnects, the service internally tries to reconnect. By Default, the parameter value is 'True'.
-    
+
     e) Enable/ Disable "Enable TLS" in case the connection needs to be secured. Please note that in case this parameter is Enabled, the User needs to configure the WolfSSL related configuration on his own. Also, this parameter is valid only for TCP Connections. By Default, the parameter value is 'False'.<br>Note: In case the TLS is enabled, the User needs to update the component 'Presentation Layer' with the CA Certificate format, location, name, and size. Other parameters can be updated as per the User's requirements.
 
 - Configure the various parameters of Presentation Layer if TLS enabled
-{:refdef: style="text-align: center;"}
 ![](./images/presentation_layer.png)
-{: refdef}
 
 
     f) Server Port - 1-65535. This is a mandatory parameter.
 
     g) Host Name/ IP Address: Can be a Host Name or an IP Address. By Default, the parameter value is '192.168.1.1'.
+    
 7. Enable CLI Commands - This is enabled by default. This can be used by the user to give commands on the CLI to open/ close/ send message on a socket.
 8. Enable Debug Logs in case more prints are required for debugging. By Default, the parameter value is 'False'.<br>Note: In case the user enables debug logs, user needs to manually add the 'App Debug Service' component from Wireless-> System Service-> App Debug Service.
 
