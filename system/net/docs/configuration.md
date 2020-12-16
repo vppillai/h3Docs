@@ -17,14 +17,22 @@ The following figure shows the MHC configuration window for configuring the NET 
 3. Configure the various parameters
 ![](./images/Net_service_config.png)
 
-4. Configure the Ip Protocol as either TCP or UDP
+4. Configure the Supported Interface - 'Wifi Only', or 'Wifi and Ethernet Both'
+![](./images/Net_service_SuppIntf.png)
+
+5. User can configure 2 intsances of a Net Socket. By default, only the first one is enabled.
+
+6. Configure the Network Interface as Wifi or Ethernet. Note that Ethernet as an interface can only be chosen if the 'Supported Interaces' param is WIFI_ETHERNET.
+![](./images/Net_service_Inst0_Intf.png)
+
+7. Configure the Ip Protocol as either TCP or UDP
 ![](./images/Net_service_config_ipprot.png)
 
-5. Configure the Mode as either Client or Server
+8. Configure the Mode as either Client or Server
 ![](./images/Net_service_config_mode.png)
 
-6. Enable/ Disable "Auto Connect" as per your requirement. This parameter when enabled ensures that if the NET Connection disconnects, the service internally tries to reconnect. By Default, the parameter value is 'True'.
-7. Enable/ Disable "Enable TLS" in case the connection needs to be secured. Please note that in case this parameter is Enabled, the User needs to configure the WolfSSL related configuration on his own. Also, this parameter is valid only for TCP Connections. By Default, the parameter value is 'False'.<br>Note: In case the TLS is enabled, the User needs to update the component 'Presentation Layer' with the CA Certificate format, location, name, and size. Other parameters can be updated as per the User's requirements.
+9. Enable/ Disable "Auto Connect" as per your requirement. This parameter when enabled ensures that if the NET Connection disconnects, the service internally tries to reconnect. By Default, the parameter value is 'True'.
+10. Enable/ Disable "Enable TLS" in case the connection needs to be secured. Please note that in case this parameter is Enabled, the User needs to configure the WolfSSL related configuration on his own. Also, this parameter is valid only for TCP Connections. By Default, the parameter value is 'False'.<br>Note: In case the TLS is enabled, the User needs to update the component 'Presentation Layer' with the CA Certificate format, location, name, and size. Other parameters can be updated as per the User's requirements.
 
 - Configure the various parameters of Presentation Layer if TLS enabled
 {:refdef: style="text-align: center;"}
@@ -32,9 +40,10 @@ The following figure shows the MHC configuration window for configuring the NET 
 {: refdef}
 
 
-8. Server Port - 1-65535. This is a mandatory parameter.
-9. Host Name/ IP Address: Can be a Host Name or an IP Address. By Default, the parameter value is '192.168.1.1'.
-10. Enable Debug Logs in case more prints are required for debugging. By Default, the parameter value is 'False'.<br>Note: In case the user enables debug logs, user needs to manually add the 'App Debug Service' component from Wireless-> System Service-> App Debug Service.
+11. Server Port - 1-65535. This is a mandatory parameter.
+12. Host Name/ IP Address: Can be a Host Name or an IP Address. By Default, the parameter value is '192.168.1.1'.
+13. Enable CLI Commands - This is enabled by default. This can be used by the user to give commands on the CLI to open/ close/ send message on a socket.
+14. Enable Debug Logs in case more prints are required for debugging. By Default, the parameter value is 'False'.<br>Note: In case the user enables debug logs, user needs to manually add the 'App Debug Service' component from Wireless-> System Service-> App Debug Service.
 
 
 All of the required files are automatically added into the MPLAB X IDE project by the MHC when the Net Service is selected for use.
