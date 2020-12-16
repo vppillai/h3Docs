@@ -37,7 +37,7 @@ The following figure shows the MHC configuration window for configuring the NET 
 
     5. Enable/ Disable "Enable TLS" in case the connection needs to be secured. Please note that in case this parameter is Enabled, the User needs to configure the WolfSSL related configuration on his own. Also, this parameter is valid only for TCP Connections. By Default, the parameter value is 'False'.<br>Note: In case the TLS is enabled, the User needs to update the component 'Presentation Layer' with the CA Certificate format, location, name, and size. Other parameters can be updated as per the User's requirements.
 
-        - Configure the various parameters of Presentation Layer if TLS enabled
+        * Configure the various parameters of Presentation Layer if TLS enabled
 ![](./images/presentation_layer.png)
 
 
@@ -45,8 +45,9 @@ The following figure shows the MHC configuration window for configuring the NET 
 
     7. Host Name/ IP Address: Can be a Host Name or an IP Address. By Default, the parameter value is '192.168.1.1'.
     
-7. Enable CLI Commands - This is enabled by default. This can be used by the user to give commands on the CLI to open/ close/ send message on a socket.
-8. Enable Debug Logs in case more prints are required for debugging. By Default, the parameter value is 'False'.<br>Note: In case the user enables debug logs, user needs to manually add the 'App Debug Service' component from Wireless-> System Service-> App Debug Service.
+7. Instance 1 - User can enable this, and use it to give a configuration for another socket. Also, once the user gives this config, he cannot call SYS_NET_Open() API with configuration parameter as NULL since that can be done only when there is a single socket configuration (Instance 0 only) done in the MHC. 
+8. Enable CLI Commands - This is enabled by default. This can be used by the user to give commands on the CLI to open/ close/ send message on a socket.
+9. Enable Debug Logs in case more prints are required for debugging. By Default, the parameter value is 'False'.<br>Note: In case the user enables debug logs, user needs to manually add the 'App Debug Service' component from Wireless-> System Service-> App Debug Service.
 
 
 All of the required files are automatically added into the MPLAB X IDE project by the MHC when the Net Service is selected for use.
