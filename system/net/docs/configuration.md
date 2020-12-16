@@ -37,7 +37,7 @@ The following figure shows the MHC configuration window for configuring the NET 
 
     5. Enable/ Disable "Enable TLS" in case the connection needs to be secured. Please note that in case this parameter is Enabled, the User needs to configure the WolfSSL related configuration on his own. Also, this parameter is valid only for TCP Connections. By Default, the parameter value is 'False'.<br>Note: In case the TLS is enabled, the User needs to update the component 'Presentation Layer' with the CA Certificate format, location, name, and size. Other parameters can be updated as per the User's requirements.
 
-    - Configure the various parameters of Presentation Layer if TLS enabled
+        - Configure the various parameters of Presentation Layer if TLS enabled
 ![](./images/presentation_layer.png)
 
 
