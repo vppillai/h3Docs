@@ -24,10 +24,10 @@ The following figure shows the MHC configuration window for configuring the NET 
 
 6. Instance 0:
 
-    a. Configure the Network Interface as Wifi or Ethernet. Note that Ethernet as an interface can only be chosen if the 'Supported Interaces' param is WIFI_ETHERNET.
+    i. Configure the Network Interface as Wifi or Ethernet. Note that Ethernet as an interface can only be chosen if the 'Supported Interaces' param is WIFI_ETHERNET.
 ![](./images/Net_service_Inst0_Intf.png)
 
-    b) Configure the Ip Protocol as either TCP or UDP
+    ii. Configure the Ip Protocol as either TCP or UDP
 ![](./images/Net_service_config_ipprot.png)
 
     c) Configure the Mode as either Client or Server
