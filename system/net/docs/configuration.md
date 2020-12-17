@@ -17,8 +17,11 @@ The following figure shows the MHC configuration window for configuring the NET 
 3. Configure the various parameters
 ![](./images/Net_service_config.png)
 
-4. Configure the Supported Interface - 'WIFI_ONLY' (Wifi Only), or 'WIFI_ETHERNET' (Wifi and Ethernet Both)
+4. Configure the Supported Interface - 'WIFI_ONLY' (Wifi Only), or 'WIFI_ETHERNET' (Wifi and Ethernet Both). On choosing WIFI_ETHERNET, the MHC will add EthMAC, MIIM, and LAM8740 Components. 
 ![](./images/Net_service_SuppIntf.png)
+
+    The User needs to attach the EthMAC to the NetConfig (in System Component Window) via the MAC parameter in Instance 1 like below:
+![](./images/Net_service_netconfig.png)
 
 4. Debug - Enabled by default - has 'CLI Commands' and 'Debug Logs' as sub parameters
 ![](./images/Net_service_config_debug.png.png)
