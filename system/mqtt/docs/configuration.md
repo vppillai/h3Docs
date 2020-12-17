@@ -28,6 +28,7 @@ The following figure shows the MHC configuration window for configuring the MQTT
 | Enable TLS | FALSE | If   TRUE, the MQTT connection should use TLS while connecting to the broker. If   FALSE, the MQTT connection should not use TLS.<br>Note: In case the TLS is enabled, the User needs to update the component 'Presentation Layer' with the CA Certificate format, location, name, and size. Other parameters can be updated as per the User's requirements. |
 | Client Id |  | MQTT   Client Id should be unique for the Broker. If left empty, the Id will be   generated randomly |
 | Network Interface |  | Network Interface - Wifi or Ethernet on which the MQTT Client should run. On choosing Ethernet, the MHC will add EthMAC, MIIM, and LAM8740 Components. The User needs to attach the EthMAC to the NetConfig (in System Component Window) via the MAC parameter in Instance 1 |
+
 ![](./images/Net_service_netconfig.png)
 
 - Configure the various parameters of Presentation Layer if TLS enabled
