@@ -1,0 +1,21 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: nvm}
+children:
+- type: Attachments
+  children:
+  - type: DirectCapability
+    attributes: {id: NVM_MEMORY}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: appPic32mzw1OtaBtl}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: NVM_OTA_Bootloader_Dependency}
+- type: ElementPosition
+  attributes: {x: '341', y: '17', id: nvm}

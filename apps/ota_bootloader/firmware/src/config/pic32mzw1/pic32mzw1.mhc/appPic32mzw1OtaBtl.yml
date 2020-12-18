@@ -1,0 +1,86 @@
+format_version: v1.0
+type: UniqueComponent
+attributes: {id: appPic32mzw1OtaBtl}
+children:
+- type: Symbols
+  children:
+  - type: String
+    attributes: {id: APP_NVM_PLIB}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: appPic32mzw1OtaBtl, value: NVM}
+  - type: String
+    attributes: {id: APP_SPI_PLIB}
+    children:
+    - type: Values
+      children:
+      - type: Dynamic
+        attributes: {id: appPic32mzw1OtaBtl, value: SPI1}
+  - type: Boolean
+    attributes: {id: OTA_DEBUG_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+  - type: Integer
+    attributes: {id: OTA_DEBUG_LEVEL}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+  - type: String
+    attributes: {id: OTA_DEBUG_PRINT}
+    children:
+    - type: Attributes
+      children:
+      - type: Boolean
+        attributes: {id: visible}
+        children:
+        - {type: Value, value: 'true'}
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: printf}
+  - type: Boolean
+    attributes: {id: OTA_SAFE_BOOT_VALIDATAION_ENABLE}
+    children:
+    - type: Values
+      children:
+      - type: User
+        attributes: {value: 'true'}
+- type: Attachments
+  children:
+  - type: DirectDependency
+    attributes: {id: NVM_OTA_Bootloader_Dependency}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: nvm}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: NVM_MEMORY}
+  - type: DirectDependency
+    attributes: {id: SPI_OTA_Bootloader_Dependency}
+    children:
+    - type: Attributes
+      children:
+      - type: String
+        attributes: {id: targetComponentID}
+        children:
+        - {type: Value, value: spi1}
+      - type: String
+        attributes: {id: targetAttachmentID}
+        children:
+        - {type: Value, value: SPI1_SPI}
+- type: ElementPosition
+  attributes: {x: '536', y: '42', id: appPic32mzw1OtaBtl}
