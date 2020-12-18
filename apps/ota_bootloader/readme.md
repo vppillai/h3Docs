@@ -67,12 +67,10 @@ There are two conditions :
 4. Once the copied image has been validated, the Bootloader updates STATUS field of the image header in the copied image of the Program-Flash area as “Valid” by writing a value "0xF8", then jumps to the Application Image.
 
 6. Header structure (256 bytes) :
-
-    ![](images/ota_header.png)
+![](images/ota_header.png)
 
 7. Flow chart :
-
-    ![flowchart](images/BootSequence_BL2.png)
+![flowchart](images/BootSequence_BL2.png)
 
 ## Downloading and Generating Bootloader Code
 
