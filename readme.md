@@ -75,6 +75,8 @@ The following applications are provided to demonstrate the typical or interestin
 | [Weather Client](apps/weather_client/readme.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic) |
 | [Wi-Fi Easy Config](apps/wifi_easy_config/readme.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic) |
 | [WiFi-Ethernet Dual Interface](apps/wifi_eth_dual_interface/readme.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic) |
+| [Wi-Fi OTA Application Upgrade](apps/wifi_ota_app_upgrade/readme.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic) |
+| [OTA Bootloader](apps/ota_bootloader/readme.md) | ![app-production](https://img.shields.io/badge/application-production-brightgreen?style=plastic) |
 
 <br />
 <br />
