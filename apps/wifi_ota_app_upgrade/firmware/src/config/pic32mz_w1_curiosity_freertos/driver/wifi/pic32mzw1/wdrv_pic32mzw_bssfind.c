@@ -118,7 +118,7 @@ WDRV_PIC32MZW_STATUS WDRV_PIC32MZW_BSSFindFirst
     OSAL_CRITSECT_DATA_TYPE critSect;
 
     /* Ensure the driver handle is valid. */
-    if (NULL == pDcpt)
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pDcpt->pCtrl))
     {
         return WDRV_PIC32MZW_STATUS_INVALID_ARG;
     }
@@ -130,7 +130,7 @@ WDRV_PIC32MZW_STATUS WDRV_PIC32MZW_BSSFindFirst
     }
 
     /* Ensure the driver instance has been opened for use. */
-    if ((false == pDcpt->isOpen) || (NULL == pDcpt->pCtrl) || (DRV_HANDLE_INVALID == pDcpt->pCtrl->handle))
+    if ((false == pDcpt->isOpen) || (DRV_HANDLE_INVALID == pDcpt->pCtrl->handle))
     {
         return WDRV_PIC32MZW_STATUS_NOT_OPEN;
     }
@@ -225,7 +225,7 @@ WDRV_PIC32MZW_STATUS WDRV_PIC32MZW_BSSFindNext
     WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)handle;
 
     /* Ensure the driver handle is valid. */
-    if (NULL == pDcpt)
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pDcpt->pCtrl))
     {
         return WDRV_PIC32MZW_STATUS_INVALID_ARG;
     }
@@ -325,7 +325,7 @@ WDRV_PIC32MZW_STATUS WDRV_PIC32MZW_BSSFindReset
     WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)handle;
 
     /* Ensure the driver handle is valid. */
-    if (NULL == pDcpt)
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pDcpt->pCtrl))
     {
         return WDRV_PIC32MZW_STATUS_INVALID_ARG;
     }
@@ -336,7 +336,7 @@ WDRV_PIC32MZW_STATUS WDRV_PIC32MZW_BSSFindReset
         return WDRV_PIC32MZW_STATUS_NOT_OPEN;
     }
 
-    /* Cannot request results while a scan is in progress. */
+    /* Cannot reset the find operation while a scan is in progress. */
     if (true == pDcpt->pCtrl->scanInProgress)
     {
         return WDRV_PIC32MZW_STATUS_SCAN_IN_PROGRESS;
@@ -381,7 +381,7 @@ WDRV_PIC32MZW_STATUS WDRV_PIC32MZW_BSSFindGetInfo
     DRV_PIC32MZW_11I_MASK dot11iInfo;
 
     /* Ensure the driver handle and user pointer is valid. */
-    if ((NULL == pDcpt) || (NULL == pBSSInfo))
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pDcpt->pCtrl) || (NULL == pBSSInfo))
     {
         return WDRV_PIC32MZW_STATUS_INVALID_ARG;
     }
@@ -526,7 +526,7 @@ WDRV_PIC32MZW_STATUS WDRV_PIC32MZW_BSSFindSetScanParameters
     WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)handle;
 
     /* Ensure the driver handle is valid. */
-    if (NULL == pDcpt)
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pDcpt->pCtrl))
     {
         return WDRV_PIC32MZW_STATUS_INVALID_ARG;
     }
@@ -596,7 +596,7 @@ WDRV_PIC32MZW_STATUS WDRV_PIC32MZW_BSSFindSetEnabledChannels24
     WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)handle;
 
     /* Ensure the driver handle is valid. */
-    if (NULL == pDcpt)
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pDcpt->pCtrl))
     {
         return WDRV_PIC32MZW_STATUS_INVALID_ARG;
     }
@@ -638,7 +638,12 @@ uint8_t WDRV_PIC32MZW_BSSFindGetNumBSSResults(DRV_HANDLE handle)
     WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)handle;
 
     /* Ensure the driver handle is valid and the instance is open. */
-    if ((NULL == pDcpt) || (false == pDcpt->isOpen) || (DRV_HANDLE_INVALID == pDcpt->pCtrl->handle))
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pDcpt->pCtrl))
+    {
+        return 0;
+    }
+
+    if ((false == pDcpt->isOpen) || (DRV_HANDLE_INVALID == pDcpt->pCtrl->handle))
     {
         return 0;
     }
@@ -668,7 +673,12 @@ bool WDRV_PIC32MZW_BSSFindInProgress(DRV_HANDLE handle)
     WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)handle;
 
     /* Ensure the driver handle is valid and the instance is open. */
-    if ((NULL == pDcpt) || (false == pDcpt->isOpen) || (DRV_HANDLE_INVALID == pDcpt->pCtrl->handle))
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pDcpt->pCtrl))
+    {
+        return false;
+    }
+
+    if ((false == pDcpt->isOpen) || (DRV_HANDLE_INVALID == pDcpt->pCtrl->handle))
     {
         return false;
     }

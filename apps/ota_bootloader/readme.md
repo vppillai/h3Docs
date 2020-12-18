@@ -12,15 +12,15 @@ function: OTA Boot Loader
 
 # OTA Boot Loader 
 
-This example application acts as loader of OTA image (downloaded using OTA process) to device memory .
+This example acts as loader of OTA image (downloaded using OTA process) to load it to device memory .
 
 ## Description
 
-This bootloader project can be used by user to program an image , which is downloaded through OTA process. It is required to build this project first using its IDE (MPLABX) before building OTA application, as the image of the bootloader will be integrated with the "ota_update_app" application image. 
+This bootloader project can be used by user to program an image , which is downloaded through OTA process. It is required to build this project first using its IDE (MPLABX) before building OTA application, as the image of the bootloader will be integrated with the "wifi_ota_app_upgrade" application image. 
 
 During boot-up, bootloader will check if any new valid image available in the external flash. If available, it chooses the newly (latest downloaded) available image in the External flash (sst26vf) and program it to Program-Flash area of the device. Bootloader uses SPI protocol to program the image from the external flash. 
 
-IF there is no new downloaded image present in the external flash, bootloader will handover the control to current application present in the program-flash area and application will start executing.
+If there is no new downloaded image present in the external flash, bootloader will handover the control to current application present in the program-flash area and application will start executing.
 
 The External flash will be configured for 3 slots for storing upto 3 OTA images. Each slot is of size 4KB. Each OTA image will also include 256 bytes long header to maintain the image status and SHA-256 Digest signature. Bootloader is having the logic to choose the best suitable valid image, based on the header status of the images and program it to the device. 
 
@@ -30,22 +30,27 @@ The External flash will be configured for 3 slots for storing upto 3 OTA images.
 
 1. Abstraction Model:
 
-    ![abstraction_model](images/abstraction_model.png)
+    ![abstractionmodel](images/abstraction_model.png)
 
     - Bootloader is responsible to start the OTA process and download new image to Image Store in the external flash (sst26vf).
     - Image downloading is done through HTTP protocol.
     - Bootloader is responsible for the programming process, which loads and copies the best image from Image Store to Program area and jumps to the Application. The bootloader also supports ‘Fail-Safe’ boot scheme which the firmware automatically rolls back if the image has not been run correctly at the previous boot.
     - Image-Store can have multiple images, including the default image for factory reset.
 
-1. During each system boot-up, bootloader checks if it needs to program any image from the external flash. Bootloader goes to program mode , a) if any newly downloaded image present in the external flash, b) if the already present image in the program flash is identified as "not safe" during previous boot. 
+1. During each system boot-up, bootloader checks if it needs to program any image from the external flash. Bootloader goes to program mode, if-
 
-    There are two conditions : 
-    - whether the Application Image in Program-Flash area is valid (indicated by the STATUS field (of image Header) value of 0xF8) and
-    - whether it has been confirmed that no errors were present during the previous boot (indicated by the STATUS field (of image Header) value of 0xF8 in the original image located in the external flash).
+    a) any newly downloaded image present in the external flash, 
+   
+    b) if the already present image in the program flash is identified as "not safe" during previous boot. 
+
+There are two conditions :
+
+ - whether the Application Image in Program-Flash area is valid (indicated by the STATUS field, value of 0xF8 in image Header), and
+ - whether it has been confirmed that no errors were present during the previous boot (indicated by the STATUS field (of image Header) value of 0xF8 in the original image located in the external flash).
   
     According to bootloader logic if these two conditions are satisfied it will not go to "Program Mode" and the bootloader immediately jumps to the application image present in the program-flash area of the device.
 
-2. If two conditions mentioned in the step 2 are not satisfied, the Bootloader switches to Image Program Mode. In Image Program Mode boot loader follows Image Programming sequence, which finds the highest ranked image in Image-Store(external flash), erases the Program-Flash area and copies the selected image to the Program-Flash area, if the image is successfully verified. As the newly downloaded image is set as the highest rank, during the first boot time after the Image-downloading, the Bootloader attempts to load the newly downloaded image at the first try.
+2. If two conditions mentioned in the step 2 are not satisfied, the Bootloader switches to Image Program Mode. In Image Program Mode bootloader follows Image Programming sequence, which finds the highest ranked image in Image-Store(external flash), erases the Program-Flash area and copies the selected image to the Program-Flash area if the image is successfully verified. As the newly downloaded image is set as the highest rank, during the first boot time after the Image-downloading, the Bootloader attempts to load the newly downloaded image at the first try.
 
     Bootloader choses the highest ranked image to boot. The images are ranked in following order:
 
@@ -63,11 +68,11 @@ The External flash will be configured for 3 slots for storing upto 3 OTA images.
 
 6. Header structure (256 bytes) :
 
-    ![Ota_Header](images/ota_header.png)
+    ![otaheader](images/ota_header.png)
 
 7. Flow chart :
 
-    ![flow_chart](images/BootSequence_BL2.png)
+    ![flowchart](images/BootSequence_BL2.png)
 
 ## Downloading and Generating Bootloader Code
 

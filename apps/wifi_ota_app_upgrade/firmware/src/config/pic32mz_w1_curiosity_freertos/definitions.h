@@ -62,6 +62,7 @@
 #include "net_pres/pres/net_pres_socketapi.h"
 #include "peripheral/spi/spi_master/plib_spi1_master.h"
 #include "system/int/sys_int.h"
+#include "system/reset/sys_reset.h"
 #include "osal/osal.h"
 #include "system/debug/sys_debug.h"
 #include "library/tcpip/tcpip.h"

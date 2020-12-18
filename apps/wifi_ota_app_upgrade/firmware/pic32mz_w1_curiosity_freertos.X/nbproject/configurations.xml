@@ -236,6 +236,9 @@
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/int/sys_int.h</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/int/sys_int_mapping.h</itemPath>
             </logicalFolder>
+            <logicalFolder name="f8" displayName="reset" projectFiles="true">
+              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/reset/sys_reset.h</itemPath>
+            </logicalFolder>
             <logicalFolder name="f2" displayName="time" projectFiles="true">
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/time/sys_time.h</itemPath>
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/time/sys_time_definitions.h</itemPath>
@@ -576,6 +579,9 @@
             <logicalFolder name="f4" displayName="int" projectFiles="true">
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/int/src/sys_int.c</itemPath>
             </logicalFolder>
+            <logicalFolder name="f8" displayName="reset" projectFiles="true">
+              <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/reset/sys_reset.c</itemPath>
+            </logicalFolder>
             <logicalFolder name="f2" displayName="time" projectFiles="true">
               <itemPath>../src/config/pic32mz_w1_curiosity_freertos/system/time/src/sys_time.c</itemPath>
             </logicalFolder>
@@ -858,7 +864,7 @@
         <makeUseCleanTarget>false</makeUseCleanTarget>
         <makeCustomizationPreStep></makeCustomizationPreStep>
         <makeCustomizationPostStepEnabled>true</makeCustomizationPostStepEnabled>
-        <makeCustomizationPostStep>python ../../utilities_sta_1/pic32mzw1/ota/post_process.py -d ${Device} -p ${ProjectDir} -c ${ConfName} -i ${ImagePath} ${ImageDir} ${ImageName} ${IsDebug}</makeCustomizationPostStep>
+        <makeCustomizationPostStep>python ../../utilities/pic32mzw1/ota/post_process.py -d ${Device} -p ${ProjectDir} -c ${ConfName} -i ${ImagePath} ${ImageDir} ${ImageName} ${IsDebug}</makeCustomizationPostStep>
         <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
@@ -900,9 +906,9 @@
         <property key="exclude-floating-point-library" value="false"/>
         <property key="expand-macros" value="false"/>
         <property key="extra-include-directories-for-assembler"
-                  value="../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ;../src/third_party/rtos/FreeRTOS/Source/include;../src/config/pic32mz_w1_curiosity_freertos;"/>
+                  value="../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ;../src/third_party/rtos/FreeRTOS/Source/include;../src/config/pic32mz_w1_curiosity_freertos"/>
         <property key="extra-include-directories-for-preprocessor"
-                  value="../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ;../src/third_party/rtos/FreeRTOS/Source/include;../src/config/pic32mz_w1_curiosity_freertos;"/>
+                  value="../src/third_party/rtos/FreeRTOS/Source/portable/MPLAB/PIC32MZ;../src/third_party/rtos/FreeRTOS/Source/include;../src/config/pic32mz_w1_curiosity_freertos"/>
         <property key="false-conditionals" value="false"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
@@ -1126,6 +1132,7 @@
         <property key="communication.interface.jtag" value="2wire"/>
         <property key="communication.speed" value="${communication.speed.default}"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="freeze.timers" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>
         <property key="memories.configurationmemory" value="true"/>
@@ -1139,8 +1146,7 @@
                   value="${memories.instruction.ram.ranges}"/>
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="10000000-100fffff"/>
-        <property key="programmerToGoFilePath"
-                  value="E:/ota_example_application/wifi_ota_app_upgrade/firmware/pic32mz_w1_curiosity_freertos.X/debug/pic32mz_w1_curiosity_freertos/pic32mz_w1_curiosity_freertos_ptg"/>
+        <property key="memories.rww" value="true"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
         <property key="programoptions.pgmentry.voltage" value="low"/>
@@ -1155,7 +1161,6 @@
         <property key="programoptions.programcalmem" value="false"/>
         <property key="programoptions.programuserotp" value="false"/>
         <property key="programoptions.testmodeentrymethod" value="VDDFirst"/>
-        <property key="programoptionsedbg.eraseb4program" value="true"/>
         <property key="toolpack.updateoptions"
                   value="toolpack.updateoptions.uselatestoolpack"/>
         <property key="toolpack.updateoptions.packversion"

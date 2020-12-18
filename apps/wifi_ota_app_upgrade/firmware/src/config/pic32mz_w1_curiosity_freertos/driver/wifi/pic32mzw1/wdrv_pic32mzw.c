@@ -45,17 +45,16 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include <stdint.h>
 #include <stdbool.h>
 
-#include "system_config.h"
-#include "system_definitions.h"
+#include "wdrv_pic32mzw.h"
+#include "wdrv_pic32mzw_common.h"
+#include "wdrv_pic32mzw_mac.h"
+#include "wdrv_pic32mzw_cfg.h"
 #include "tcpip/tcpip_mac_object.h"
 #include "tcpip/src/link_list.h"
 #include "tcpip/src/tcpip_manager_control.h"
-#include "wdrv_pic32mzw_api.h"
-#include "wdrv_pic32mzw.h"
-#include "wdrv_pic32mzw_debug.h"
-#include "wdrv_pic32mzw_mac.h"
-#include "wdrv_pic32mzw_cfg.h"
 #include <sys/kmem.h>
+
+#pragma region name="wlan_mem" origin=0xa0040000 size=0x10000
 
 extern uint8_t g_macaddress[6];
 extern pktmem_priority_t g_pktmem_pri[NUM_MEM_PRI_LEVELS];
@@ -71,8 +70,6 @@ bool DRV_PIC32MZW1_Crypto_Random_Init(CRYPT_RNG_CTX *pRngCtx);
 
 #define TCPIP_THIS_MODULE_ID TCPIP_MODULE_MAC_PIC32MZW1
 
-#define NUM_HIGH_PRI_PKTS                   5
-
 #define SHARED_PKT_MEM_BUFFER_SIZE          1596
 
 #define ETHERNET_HDR_LEN                    14
@@ -80,7 +77,9 @@ bool DRV_PIC32MZW1_Crypto_Random_Init(CRYPT_RNG_CTX *pRngCtx);
 
 #define ZERO_CP_MIN_MAC_FRAME_OFFSET       (ETH_ETHERNET_HDR_OFFSET + 4)
 
-#define PIC32MZW_CACHE_LINE_SIZE            16
+#define PIC32MZW_CACHE_LINE_SIZE            CACHE_LINE_SIZE
+
+#define PIC32MZW_RSR_PKT_NUM                40
 
 // *****************************************************************************
 // *****************************************************************************
@@ -89,46 +88,57 @@ bool DRV_PIC32MZW1_Crypto_Random_Init(CRYPT_RNG_CTX *pRngCtx);
 // *****************************************************************************
 
 /* This is user configurable function pointer for printf style output from driver. */
+#ifndef WDRV_PIC32MZW1_DEVICE_USE_SYS_DEBUG
 WDRV_PIC32MZW_DEBUG_PRINT_CALLBACK pfPIC32MZWDebugPrintCb;
+#endif
 
 /* This is the driver instance structure. */
 static WDRV_PIC32MZW_DCPT pic32mzwDescriptor[2] =
 {
     {
-        .isInit = false,
+        .isInit  = false,
         .sysStat = SYS_STATUS_UNINITIALIZED,
+        .isOpen  = false,
+        .pCtrl   = NULL,
+        .pMac    = NULL,
     },
     {
-        .isInit = false,
+        .isInit  = false,
         .sysStat = SYS_STATUS_UNINITIALIZED,
+        .isOpen  = false,
+        .pCtrl   = NULL,
+        .pMac    = NULL,
     }
 };
 
 /* This is the PIC32MZW1 MAC Object. */
 const TCPIP_MAC_OBJECT WDRV_PIC32MZW1_MACObject =
 {
-    TCPIP_MODULE_MAC_PIC32MZW1,
-    "PIC32MZW1",
-    WDRV_PIC32MZW_Initialize,
-    WDRV_PIC32MZW_Deinitialize,
-    WDRV_PIC32MZW_Reinitialize,
-    WDRV_PIC32MZW_Status,
-    WDRV_PIC32MZW_MACTasks,
-    WDRV_PIC32MZW_Open,
-    WDRV_PIC32MZW_Close,
-    WDRV_PIC32MZW_MACLinkCheck,
-    WDRV_PIC32MZW_MACRxFilterHashTableEntrySet,
-    WDRV_PIC32MZW_MACPowerMode,
-    WDRV_PIC32MZW_MACPacketTx,
-    WDRV_PIC32MZW_MACPacketRx,
-    WDRV_PIC32MZW_MACProcess,
-    WDRV_PIC32MZW_MACStatisticsGet,
-    WDRV_PIC32MZW_MACParametersGet,
-    WDRV_PIC32MZW_MACRegisterStatisticsGet,
-    WDRV_PIC32MZW_MACConfigGet,
-    WDRV_PIC32MZW_MACEventMaskSet,
-    WDRV_PIC32MZW_MACEventAcknowledge,
-    WDRV_PIC32MZW_MACEventPendingGet,
+    .macId                                  = TCPIP_MODULE_MAC_PIC32MZW1,
+#if TCPIP_STACK_VERSION_MAJOR != 7
+    .macType                                = TCPIP_MAC_TYPE_WLAN,
+#endif
+    .macName                                = "PIC32MZW1",
+    .TCPIP_MAC_Initialize                   = WDRV_PIC32MZW_Initialize,
+    .TCPIP_MAC_Deinitialize                 = WDRV_PIC32MZW_Deinitialize,
+    .TCPIP_MAC_Reinitialize                 = WDRV_PIC32MZW_Reinitialize,
+    .TCPIP_MAC_Status                       = WDRV_PIC32MZW_Status,
+    .TCPIP_MAC_Tasks                        = WDRV_PIC32MZW_MACTasks,
+    .TCPIP_MAC_Open                         = WDRV_PIC32MZW_Open,
+    .TCPIP_MAC_Close                        = WDRV_PIC32MZW_Close,
+    .TCPIP_MAC_LinkCheck                    = WDRV_PIC32MZW_MACLinkCheck,
+    .TCPIP_MAC_RxFilterHashTableEntrySet    = WDRV_PIC32MZW_MACRxFilterHashTableEntrySet,
+    .TCPIP_MAC_PowerMode                    = WDRV_PIC32MZW_MACPowerMode,
+    .TCPIP_MAC_PacketTx                     = WDRV_PIC32MZW_MACPacketTx,
+    .TCPIP_MAC_PacketRx                     = WDRV_PIC32MZW_MACPacketRx,
+    .TCPIP_MAC_Process                      = WDRV_PIC32MZW_MACProcess,
+    .TCPIP_MAC_StatisticsGet                = WDRV_PIC32MZW_MACStatisticsGet,
+    .TCPIP_MAC_ParametersGet                = WDRV_PIC32MZW_MACParametersGet,
+    .TCPIP_MAC_RegisterStatisticsGet        = WDRV_PIC32MZW_MACRegisterStatisticsGet,
+    .TCPIP_MAC_ConfigGet                    = WDRV_PIC32MZW_MACConfigGet,
+    .TCPIP_MAC_EventMaskSet                 = WDRV_PIC32MZW_MACEventMaskSet,
+    .TCPIP_MAC_EventAcknowledge             = WDRV_PIC32MZW_MACEventAcknowledge,
+    .TCPIP_MAC_EventPendingGet              = WDRV_PIC32MZW_MACEventPendingGet,
 };
 
 /* Table to convert auth types to 11i info for DRV_WIFI_WID_11I_INFO. */
@@ -190,6 +200,14 @@ typedef struct
     uint8_t                     pkt[SHARED_PKT_MEM_BUFFER_SIZE];
 } WDRV_PIC32MZW_PKT_LIST_NODE;
 
+/* This is a structure for maintaining a list of queued packets. */
+typedef struct
+{
+    OSAL_SEM_HANDLE_TYPE            semaphore;
+    WDRV_PIC32MZW_PKT_LIST_NODE     *pHead;
+    WDRV_PIC32MZW_PKT_LIST_NODE     *pTail;
+} WDRV_PIC32MZW_PKT_LIST;
+
 // *****************************************************************************
 // *****************************************************************************
 // Section: PIC32MZW MAC Driver Global Data
@@ -202,14 +220,14 @@ static WDRV_PIC32MZW_CTRLDCPT pic32mzwCtrlDescriptor;
 /* This is the MAC driver instance descriptor. */
 static WDRV_PIC32MZW_MACDCPT pic32mzwMACDescriptor;
 
-/* This is the queue for high priority receive packets. */
-static PROTECTED_SINGLE_LIST pic32mzwHighPriRxQueue;
-
 /* This is the queue to hold discarded receive TCP/IP packets. */
 static PROTECTED_SINGLE_LIST pic32mzwDiscardQueue;
 
-/* This is the high priority receive packet storage. */
-static WDRV_PIC32MZW_PKT_LIST_NODE pic32mzwHighPriPktList[NUM_HIGH_PRI_PKTS] __attribute__((coherent, aligned(PIC32MZW_CACHE_LINE_SIZE)));
+/* This is the reserved packet store. */
+static WDRV_PIC32MZW_PKT_LIST_NODE pic32mzwRsrvPkts[PIC32MZW_RSR_PKT_NUM] __attribute__((coherent, aligned(PIC32MZW_CACHE_LINE_SIZE))) __attribute__((region("wlan_mem")));
+
+/* This is the queue of reserved packets. */
+static WDRV_PIC32MZW_PKT_LIST pic32mzwRsrvPktList;
 
 /* This is the firmware to driver receive WID queue. */
 static PROTECTED_SINGLE_LIST pic32mzwWIDRxQueue;
@@ -230,6 +248,235 @@ static WDRV_PIC32MZW_MAC_MEM_STATISTICS pic32mzMemStatistics;
 
 // *****************************************************************************
 // *****************************************************************************
+// Section: PIC32MZW Driver Packet List Implementation
+// *****************************************************************************
+// *****************************************************************************
+
+//*******************************************************************************
+/*
+  Function:
+    static bool _DRV_PIC32MZW_PktListInit(WDRV_PIC32MZW_PKT_LIST *pPktList)
+
+  Summary:
+    Initialises a packet list.
+
+  Description:
+    Initialises a packet list to contain no packets.
+
+  Precondition:
+    None.
+
+  Parameters:
+    pPktList - Pointer to a packet list structure.
+
+  Returns:
+    true or false - Indicating success or failure of the operation.
+
+  Remarks:
+    None.
+
+*/
+
+static bool _DRV_PIC32MZW_PktListInit(WDRV_PIC32MZW_PKT_LIST *pPktList)
+{
+    if (NULL == pPktList)
+    {
+        return false;
+    }
+
+    pPktList->pHead = NULL;
+    pPktList->pTail = NULL;
+
+    OSAL_SEM_Create(&pPktList->semaphore, OSAL_SEM_TYPE_BINARY, 1, 1);
+
+    WDRV_DBG_VERBOSE_PRINT("PktList[%08x] init\r\n", pPktList);
+
+    return true;
+}
+
+//*******************************************************************************
+/*
+  Function:
+    static bool _DRV_PIC32MZW_PktListAdd
+    (
+        WDRV_PIC32MZW_PKT_LIST *pPktList,
+        WDRV_PIC32MZW_PKT_LIST_NODE *pNode
+    )
+
+  Summary:
+    Adds a packet to a packet list.
+
+  Description:
+    Adds a packet to the end of a packet list.
+
+  Precondition:
+    _DRV_PIC32MZW_PktListInit must have been called to initialise the list.
+
+  Parameters:
+    pPktList - Pointer to a packet list structure.
+    pNode    - Pointer to packet list node to add.
+
+  Returns:
+    true or false - Indicating success or failure of the operation.
+
+  Remarks:
+    None.
+
+*/
+
+static bool _DRV_PIC32MZW_PktListAdd
+(
+    WDRV_PIC32MZW_PKT_LIST *pPktList,
+    WDRV_PIC32MZW_PKT_LIST_NODE *pNode
+)
+{
+    if ((NULL == pPktList) || (NULL == pNode))
+    {
+        return false;
+    }
+
+    if (OSAL_SEM_Pend(&pPktList->semaphore, OSAL_WAIT_FOREVER) != OSAL_RESULT_TRUE)
+    {
+        return false;
+    }
+
+    if (NULL == pPktList->pHead)
+    {
+        pPktList->pHead = pNode;
+    }
+
+    if (NULL != pPktList->pTail)
+    {
+        pPktList->pTail->hdr.pNext = (DRV_PIC32MZW_MEM_ALLOC_HDR*)pNode;
+    }
+
+    pPktList->pTail = pNode;
+
+    pNode->hdr.pNext = NULL;
+
+    if (OSAL_SEM_Post(&pPktList->semaphore) != OSAL_RESULT_TRUE)
+    {
+        return false;
+    }
+
+    WDRV_DBG_VERBOSE_PRINT("PktList[%08x] +%08x\r\n", pPktList, pNode);
+
+    return true;
+}
+
+//*******************************************************************************
+/*
+  Function:
+    static WDRV_PIC32MZW_PKT_LIST_NODE* _DRV_PIC32MZW_PktListRemove
+    (
+        WDRV_PIC32MZW_PKT_LIST *pPktList
+    )
+
+  Summary:
+    Removes a packet from a packet list.
+
+  Description:
+    Removes a packet from the head of a packet list.
+
+  Precondition:
+    _DRV_PIC32MZW_PktListInit must have been called to initialise the list.
+
+  Parameters:
+    pPktList - Pointer to a packet list structure.
+
+  Returns:
+    Pointer to removed packet node or NULL for failure.
+
+  Remarks:
+    None.
+
+*/
+
+static WDRV_PIC32MZW_PKT_LIST_NODE* _DRV_PIC32MZW_PktListRemove
+(
+    WDRV_PIC32MZW_PKT_LIST *pPktList
+)
+{
+    WDRV_PIC32MZW_PKT_LIST_NODE *pNode;
+
+    if (NULL == pPktList)
+    {
+        return NULL;
+    }
+
+    if (OSAL_SEM_Pend(&pPktList->semaphore, OSAL_WAIT_FOREVER) != OSAL_RESULT_TRUE)
+    {
+        return false;
+    }
+
+    pNode = pPktList->pHead;
+
+    if (NULL != pPktList->pHead)
+    {
+        pPktList->pHead = (WDRV_PIC32MZW_PKT_LIST_NODE*)pPktList->pHead->hdr.pNext;
+    }
+
+    if (NULL == pPktList->pHead)
+    {
+        pPktList->pTail = NULL;
+    }
+
+    if (OSAL_SEM_Post(&pPktList->semaphore) != OSAL_RESULT_TRUE)
+    {
+        return false;
+    }
+
+    WDRV_DBG_VERBOSE_PRINT("PktList[%08x] -%08x\r\n", pPktList, pNode);
+
+    return pNode;
+}
+
+//*******************************************************************************
+/*
+  Function:
+    static bool _DRV_PIC32MZW_PktListDeinit(WDRV_PIC32MZW_PKT_LIST *pPktList)
+
+  Summary:
+    Deinitialises a packet list.
+
+  Description:
+    Deinitialises a packet list.
+
+  Precondition:
+    _DRV_PIC32MZW_PktListInit must have been called to initialise the list.
+
+  Parameters:
+    pPktList - Pointer to a packet list structure.
+
+  Returns:
+    true or false - Indicating success or failure of the operation.
+
+  Remarks:
+    None.
+
+*/
+
+static bool _DRV_PIC32MZW_PktListDeinit(WDRV_PIC32MZW_PKT_LIST *pPktList)
+{
+    if (NULL == pPktList)
+    {
+        return false;
+    }
+
+    while (NULL != pPktList->pHead)
+    {
+        _DRV_PIC32MZW_PktListRemove(pPktList);
+    }
+
+    OSAL_SEM_Delete(&pPktList->semaphore);
+
+    WDRV_DBG_VERBOSE_PRINT("PktList[%08x] deinit\r\n", pPktList);
+
+    return true;
+}
+
+// *****************************************************************************
+// *****************************************************************************
 // Section: PIC32MZW Driver Internal Implementation
 // *****************************************************************************
 // *****************************************************************************
@@ -237,7 +484,7 @@ static WDRV_PIC32MZW_MAC_MEM_STATISTICS pic32mzMemStatistics;
 //*******************************************************************************
 /*
   Function:
-    DRV_PIC32MZW_MEM_ALLOC_HDR* _DRV_PIC32MZW_MemHdr(void *pBufferAddr)
+    static DRV_PIC32MZW_MEM_ALLOC_HDR* _DRV_PIC32MZW_MemHdr(void *pBufferAddr)
 
   Summary:
     Returns the memory allocation header for an allocation.
@@ -256,9 +503,10 @@ static WDRV_PIC32MZW_MAC_MEM_STATISTICS pic32mzMemStatistics;
 
   Remarks:
     None.
+
 */
 
-DRV_PIC32MZW_MEM_ALLOC_HDR* _DRV_PIC32MZW_MemHdr(void *pBufferAddr)
+static DRV_PIC32MZW_MEM_ALLOC_HDR* _DRV_PIC32MZW_MemHdr(void *pBufferAddr)
 {
     DRV_PIC32MZW_MEM_ALLOC_HDR *pAllocHdr;
 
@@ -301,6 +549,7 @@ DRV_PIC32MZW_MEM_ALLOC_HDR* _DRV_PIC32MZW_MemHdr(void *pBufferAddr)
 
   Remarks:
     None.
+
 */
 
 static WDRV_PIC32MZW_ASSOC_INFO* _WDRV_PIC32MZW_FindAssocInfoAP
@@ -363,6 +612,7 @@ static WDRV_PIC32MZW_ASSOC_INFO* _WDRV_PIC32MZW_FindAssocInfoAP
 
   Remarks:
     See wdrv_pic32mzw.h for usage information.
+
 */
 
 WDRV_PIC32MZW_STATUS WDRV_PIC32MZW_InfoRfMacConfigGet
@@ -374,7 +624,7 @@ WDRV_PIC32MZW_STATUS WDRV_PIC32MZW_InfoRfMacConfigGet
     const WDRV_PIC32MZW_DCPT *const pDcpt = (const WDRV_PIC32MZW_DCPT *const)handle;
 
     /* Ensure the driver handle and user pointer is valid. */
-    if ((NULL == pDcpt) || (NULL == pRfMacConfig))
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pRfMacConfig))
     {
         return WDRV_PIC32MZW_STATUS_INVALID_ARG;
     }
@@ -481,9 +731,10 @@ SYS_MODULE_OBJ WDRV_PIC32MZW_Initialize
         {
             return (SYS_MODULE_OBJ)pDcpt;
         }
-
+        
+#ifndef WDRV_PIC32MZW1_DEVICE_USE_SYS_DEBUG
         pfPIC32MZWDebugPrintCb = NULL;
-
+#endif
         pic32mzwCtrlDescriptor.handle = DRV_HANDLE_INVALID;
 
         OSAL_SEM_Create(&pic32mzwCtrlDescriptor.drvAccessSemaphore, OSAL_SEM_TYPE_BINARY, 1, 1);
@@ -499,21 +750,24 @@ SYS_MODULE_OBJ WDRV_PIC32MZW_Initialize
 
         OSAL_MUTEX_Create(&pic32mzwMemMutex);
 
-        DRV_PIC32MZW1_Crypto_Random_Init(pInitData->pCryptRngCtx);
-
         pic32mzwCtrlDescriptor.rfMacConfigStatus = 0;
+        pic32mzwCtrlDescriptor.regDomNameLength  = 0;
 
-        pic32mzwCtrlDescriptor.regDomNameLength = 0;
         memset(pic32mzwCtrlDescriptor.regDomName, 0, WDRV_PIC32MZW_REGDOMAIN_MAX_NAME_LEN);
-
-        if (NULL != pInitData->pRegDomName)
+        
+        if (NULL != pInitData)
         {
-            int length = strlen(pInitData->pRegDomName);
+            DRV_PIC32MZW1_Crypto_Random_Init(pInitData->pCryptRngCtx);
 
-            if ((length > 0) && (length < WDRV_PIC32MZW_REGDOMAIN_MAX_NAME_LEN+1))
+            if (NULL != pInitData->pRegDomName)
             {
-                pic32mzwCtrlDescriptor.regDomNameLength = length;
-                memcpy(pic32mzwCtrlDescriptor.regDomName, pInitData->pRegDomName, length);
+                int length = strlen(pInitData->pRegDomName);
+
+                if ((length > 0) && (length < WDRV_PIC32MZW_REGDOMAIN_MAX_NAME_LEN+1))
+                {
+                    pic32mzwCtrlDescriptor.regDomNameLength = length;
+                    memcpy(pic32mzwCtrlDescriptor.regDomName, pInitData->pRegDomName, length);
+                }
             }
         }
 
@@ -525,9 +779,16 @@ SYS_MODULE_OBJ WDRV_PIC32MZW_Initialize
     else if (TCPIP_MODULE_MAC_PIC32MZW1 == index)
     {
         int i;
-        const TCPIP_MAC_MODULE_CTRL* const stackData = ((TCPIP_MAC_INIT*)init)->macControl;
+        const TCPIP_MAC_MODULE_CTRL *pStackInitData;
+        
+        if (NULL == init)
+        {
+            return SYS_MODULE_OBJ_INVALID;
+        }
 
-        if (NULL == stackData)
+        pStackInitData = ((TCPIP_MAC_INIT *)init)->macControl;
+
+        if (NULL == pStackInitData)
         {
             return SYS_MODULE_OBJ_INVALID;
         }
@@ -539,40 +800,32 @@ SYS_MODULE_OBJ WDRV_PIC32MZW_Initialize
             return (SYS_MODULE_OBJ)pDcpt;
         }
 
-        if (NULL != stackData)
+        if (NULL != pStackInitData)
         {
-            if (TCPIP_MODULE_MAC_PIC32MZW1 != stackData->moduleId)
+            if (TCPIP_MODULE_MAC_PIC32MZW1 != pStackInitData->moduleId)
             {
                 return SYS_MODULE_OBJ_INVALID;
             }
 
             TCPIP_Helper_ProtectedSingleListInitialize(&pic32mzwMACDescriptor.ethRxPktList);
 
-            TCPIP_Helper_ProtectedSingleListInitialize(&pic32mzwHighPriRxQueue);
-
             TCPIP_Helper_ProtectedSingleListInitialize(&pic32mzwDiscardQueue);
 
-            for (i=0; i<NUM_HIGH_PRI_PKTS; i++)
+            if (true == _DRV_PIC32MZW_PktListInit(&pic32mzwRsrvPktList))
             {
-                SGL_LIST_NODE* pListNode;
-
-                pListNode = (SGL_LIST_NODE*)&pic32mzwHighPriPktList[i];
-
-                if (IS_KVA0(pListNode))
+                for (i=0; i<PIC32MZW_RSR_PKT_NUM; i++)
                 {
-                    pListNode = KVA0_TO_KVA1(pListNode);
+                    _DRV_PIC32MZW_PktListAdd(&pic32mzwRsrvPktList, &pic32mzwRsrvPkts[i]);
                 }
-
-                TCPIP_Helper_ProtectedSingleListTailAdd(&pic32mzwHighPriRxQueue, pListNode);
             }
 
             pic32mzwMACDescriptor.handle       = DRV_HANDLE_INVALID;
 
-            pic32mzwMACDescriptor.eventF       = stackData->eventF;
-            pic32mzwMACDescriptor.pktAllocF    = stackData->pktAllocF;
-            pic32mzwMACDescriptor.pktFreeF     = stackData->pktFreeF;
-            pic32mzwMACDescriptor.pktAckF      = stackData->pktAckF;
-            pic32mzwMACDescriptor.eventParam   = stackData->eventParam;
+            pic32mzwMACDescriptor.eventF       = pStackInitData->eventF;
+            pic32mzwMACDescriptor.pktAllocF    = pStackInitData->pktAllocF;
+            pic32mzwMACDescriptor.pktFreeF     = pStackInitData->pktFreeF;
+            pic32mzwMACDescriptor.pktAckF      = pStackInitData->pktAckF;
+            pic32mzwMACDescriptor.eventParam   = pStackInitData->eventParam;
             pic32mzwMACDescriptor.eventMask    = 0;
             pic32mzwMACDescriptor.events       = 0;
             OSAL_SEM_Create(&pic32mzwMACDescriptor.eventSemaphore, OSAL_SEM_TYPE_BINARY, 1, 1);
@@ -580,7 +833,7 @@ SYS_MODULE_OBJ WDRV_PIC32MZW_Initialize
     }
     else
     {
-        return (SYS_MODULE_OBJ)NULL;
+        return SYS_MODULE_OBJ_INVALID;
     }
 
     /* Set initial state. */
@@ -613,6 +866,11 @@ SYS_MODULE_OBJ WDRV_PIC32MZW_Initialize
 void WDRV_PIC32MZW_Deinitialize(SYS_MODULE_OBJ object)
 {
     WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)object;
+    
+    if ((SYS_MODULE_OBJ_INVALID == object) || (NULL == pDcpt))
+    {
+        return;
+    }
 
     pDcpt->sysStat = SYS_STATUS_UNINITIALIZED;
 
@@ -632,10 +890,12 @@ void WDRV_PIC32MZW_Deinitialize(SYS_MODULE_OBJ object)
         pic32mzwMACDescriptor.pktAllocF    = NULL;
         pic32mzwMACDescriptor.pktFreeF     = NULL;
         pic32mzwMACDescriptor.pktAckF      = NULL;
+
+        _DRV_PIC32MZW_PktListDeinit(&pic32mzwRsrvPktList);
     }
 
     /* Clear internal state. */
-    pDcpt->isOpen  = false;
+    pDcpt->isOpen = false;
 }
 
 //*******************************************************************************
@@ -685,7 +945,14 @@ void WDRV_PIC32MZW_Reinitialize
 
 SYS_STATUS WDRV_PIC32MZW_Status(SYS_MODULE_OBJ object)
 {
-    return ((WDRV_PIC32MZW_DCPT *)object)->sysStat;
+    WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)object;
+
+    if ((SYS_MODULE_OBJ_INVALID == object) || (NULL == pDcpt))
+    {
+        return SYS_STATUS_ERROR;
+    }
+
+    return pDcpt->sysStat;
 }
 
 //*******************************************************************************
@@ -709,7 +976,7 @@ WDRV_PIC32MZW_SYS_STATUS WDRV_PIC32MZW_StatusExt(SYS_MODULE_OBJ object)
 {
     WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)object;
 
-    if (NULL == pDcpt)
+    if ((SYS_MODULE_OBJ_INVALID == object) || (NULL == pDcpt))
     {
         return SYS_STATUS_ERROR;
     }
@@ -748,6 +1015,11 @@ void WDRV_PIC32MZW_MACTasks(SYS_MODULE_OBJ object)
 {
     WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)object;
 
+    if ((SYS_MODULE_OBJ_INVALID == object) || (NULL == pDcpt))
+    {
+        return;
+    }
+
     switch (pDcpt->sysStat)
     {
         /* Uninitialised state. */
@@ -763,7 +1035,10 @@ void WDRV_PIC32MZW_MACTasks(SYS_MODULE_OBJ object)
 
         case SYS_STATUS_BUSY:
         {
-            pDcpt->sysStat = SYS_STATUS_READY;
+            if (SYS_STATUS_READY == pic32mzwDescriptor[0].sysStat)
+            {
+                pDcpt->sysStat = SYS_STATUS_READY;
+            }
             break;
         }
 
@@ -806,6 +1081,11 @@ void WDRV_PIC32MZW_MACTasks(SYS_MODULE_OBJ object)
 void WDRV_PIC32MZW_Tasks(SYS_MODULE_OBJ object)
 {
     WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)object;
+
+    if ((SYS_MODULE_OBJ_INVALID == object) || (NULL == pDcpt) || (NULL == pDcpt->pCtrl) || (NULL == pDcpt->pMac))
+    {
+        return;
+    }
 
     switch (pDcpt->sysStat)
     {
@@ -914,9 +1194,9 @@ void WDRV_PIC32MZW_Tasks(SYS_MODULE_OBJ object)
                 {
                     if (0 == (ptrPacket->pktFlags & TCPIP_MAC_PKT_FLAG_QUEUED))
                     {
-                        if (NULL != pic32mzwMACDescriptor.pktFreeF)
+                        if (NULL != pDcpt->pMac->pktFreeF)
                         {
-                            pic32mzwMACDescriptor.pktFreeF(ptrPacket);
+                            pDcpt->pMac->pktFreeF(ptrPacket);
                         }
                     }
                     else
@@ -970,6 +1250,7 @@ void WDRV_PIC32MZW_Tasks(SYS_MODULE_OBJ object)
 
  */
 
+#ifndef WDRV_PIC32MZW1_DEVICE_USE_SYS_DEBUG
 void WDRV_PIC32MZW_DebugRegisterCallback
 (
     WDRV_PIC32MZW_DEBUG_PRINT_CALLBACK const pfDebugPrintCallback
@@ -977,6 +1258,7 @@ void WDRV_PIC32MZW_DebugRegisterCallback
 {
     pfPIC32MZWDebugPrintCb = pfDebugPrintCallback;
 }
+#endif
 
 //*******************************************************************************
 /*
@@ -1002,10 +1284,20 @@ DRV_HANDLE WDRV_PIC32MZW_Open(const SYS_MODULE_INDEX index, const DRV_IO_INTENT 
     if (WDRV_PIC32MZW_SYS_IDX_0 == index)
     {
         pDcpt = &pic32mzwDescriptor[0];
+
+        if (NULL == pDcpt->pCtrl)
+        {
+            return DRV_HANDLE_INVALID;
+        }
     }
     else if (TCPIP_MODULE_MAC_PIC32MZW1 == index)
     {
         pDcpt = &pic32mzwDescriptor[1];
+
+        if (NULL == pDcpt->pMac)
+        {
+            return DRV_HANDLE_INVALID;
+        }
     }
     else
     {
@@ -1018,46 +1310,47 @@ DRV_HANDLE WDRV_PIC32MZW_Open(const SYS_MODULE_INDEX index, const DRV_IO_INTENT 
         return DRV_HANDLE_INVALID;
     }
 
-    if (false == pDcpt->isOpen)
+    /* Check if the driver has already been opened. */
+    if (true == pDcpt->isOpen)
     {
-        pDcpt->isOpen = true;
+        return DRV_HANDLE_INVALID;
+    }
+    
+    pDcpt->isOpen = true;
 
-        if (WDRV_PIC32MZW_SYS_IDX_0 == index)
+    if (WDRV_PIC32MZW_SYS_IDX_0 == index)
+    {
+        int i;
+
+        pDcpt->pCtrl->handle                = (DRV_HANDLE)pDcpt;
+        pDcpt->pCtrl->isAP                  = false;
+        pDcpt->pCtrl->connectedState        = WDRV_PIC32MZW_CONN_STATE_DISCONNECTED;
+        pDcpt->pCtrl->scanInProgress        = false;
+        pDcpt->pCtrl->scanActiveScanTime    = DRV_PIC32MZW_DEFAULT_ACTIVE_SCAN_TIME;
+        pDcpt->pCtrl->scanPassiveListenTime = DRV_PIC32MZW_DEFAULT_PASSIVE_SCAN_TIME;
+        pDcpt->pCtrl->opChannel             = WDRV_PIC32MZW_CID_ANY;
+        pDcpt->pCtrl->scanChannelMask24     = WDRV_PIC32MZW_CM_2_4G_DEFAULT;
+        pDcpt->pCtrl->pfBSSFindNotifyCB     = NULL;
+        pDcpt->pCtrl->pfConnectNotifyCB     = NULL;
+        pDcpt->pCtrl->pfAssociationRSSICB   = NULL;
+        pDcpt->pCtrl->pfRegDomCB            = NULL;
+
+        pDcpt->pCtrl->assocInfoSTA.handle = DRV_HANDLE_INVALID;
+        pDcpt->pCtrl->assocInfoSTA.rssi   = 0;
+        pDcpt->pCtrl->assocInfoSTA.peerAddress.valid = false;
+
+        for (i=0; i<WDRV_PIC32MZW_NUM_ASSOCS; i++)
         {
-            int i;
-
-            pDcpt->pCtrl->handle                = (DRV_HANDLE)pDcpt;
-            pDcpt->pCtrl->isAP                  = false;
-            pDcpt->pCtrl->connectedState        = WDRV_PIC32MZW_CONN_STATE_DISCONNECTED;
-            pDcpt->pCtrl->scanInProgress        = false;
-            pDcpt->pCtrl->scanActiveScanTime    = DRV_PIC32MZW_DEFAULT_ACTIVE_SCAN_TIME;
-            pDcpt->pCtrl->scanPassiveListenTime = DRV_PIC32MZW_DEFAULT_PASSIVE_SCAN_TIME;
-            pDcpt->pCtrl->opChannel             = WDRV_PIC32MZW_CID_ANY;
-            pDcpt->pCtrl->scanChannelMask24     = WDRV_PIC32MZW_CM_2_4G_DEFAULT;
-            pDcpt->pCtrl->pfBSSFindNotifyCB     = NULL;
-            pDcpt->pCtrl->pfConnectNotifyCB     = NULL;
-            pDcpt->pCtrl->pfAssociationRSSICB   = NULL;
-            pDcpt->pCtrl->pfRegDomCB            = NULL;
-
-            pDcpt->pCtrl->assocInfoSTA.handle = DRV_HANDLE_INVALID;
-            pDcpt->pCtrl->assocInfoSTA.rssi   = 0;
-            pDcpt->pCtrl->assocInfoSTA.peerAddress.valid = false;
-
-            for (i=0; i<WDRV_PIC32MZW_NUM_ASSOCS; i++)
-            {
-                pDcpt->pCtrl->assocInfoAP[i].handle = DRV_HANDLE_INVALID;
-                pDcpt->pCtrl->assocInfoAP[i].peerAddress.valid = false;
-            }
+            pDcpt->pCtrl->assocInfoAP[i].handle = DRV_HANDLE_INVALID;
+            pDcpt->pCtrl->assocInfoAP[i].peerAddress.valid = false;
         }
-        else
-        {
-            pDcpt->pMac->handle = (DRV_HANDLE)pDcpt;
-        }
-
-        return (DRV_HANDLE)pDcpt;
+    }
+    else
+    {
+        pDcpt->pMac->handle = (DRV_HANDLE)pDcpt;
     }
 
-    return DRV_HANDLE_INVALID;
+    return (DRV_HANDLE)pDcpt;
 }
 
 //*******************************************************************************
@@ -1084,7 +1377,7 @@ void WDRV_PIC32MZW_Close(DRV_HANDLE handle)
     int i;
 
     /* Ensure the driver handle is valid. */
-    if (NULL == pDcpt)
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pDcpt->pCtrl))
     {
         return;
     }
@@ -1132,7 +1425,7 @@ WDRV_PIC32MZW_STATUS WDRV_PIC32MZW_GetStatistics
 {
     WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)handle;
 
-    if ((NULL == pDcpt) || (NULL == pStats))
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pStats))
     {
         return WDRV_PIC32MZW_STATUS_INVALID_ARG;
     }
@@ -1156,7 +1449,7 @@ WDRV_PIC32MZW_STATUS WDRV_PIC32MZW_GetStatistics
 //*******************************************************************************
 /*
   Function:
-    bool WDRV_PIC32MZW_MACLinkCheck(DRV_HANDLE hMac)
+    bool WDRV_PIC32MZW_MACLinkCheck(DRV_HANDLE handle)
 
   Summary:
     Indicates the state of the network link.
@@ -1169,11 +1462,12 @@ WDRV_PIC32MZW_STATUS WDRV_PIC32MZW_GetStatistics
 
 */
 
-bool WDRV_PIC32MZW_MACLinkCheck(DRV_HANDLE hMac)
+bool WDRV_PIC32MZW_MACLinkCheck(DRV_HANDLE handle)
 {
-    WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)hMac;
+    WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)handle;
 
-    if ((NULL == pDcpt) || (NULL == pDcpt->pCtrl))
+    /* Ensure the driver handle is valid. */
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pDcpt->pCtrl))
     {
         return false;
     }
@@ -1186,7 +1480,7 @@ bool WDRV_PIC32MZW_MACLinkCheck(DRV_HANDLE hMac)
   Function:
     TCPIP_MAC_RES WDRV_PIC32MZW_MACRxFilterHashTableEntrySet
     (
-        DRV_HANDLE hMac,
+        DRV_HANDLE handle,
         const TCPIP_MAC_ADDR* DestMACAddr
     )
 
@@ -1202,17 +1496,22 @@ bool WDRV_PIC32MZW_MACLinkCheck(DRV_HANDLE hMac)
 
 TCPIP_MAC_RES WDRV_PIC32MZW_MACRxFilterHashTableEntrySet
 (
-    DRV_HANDLE hMac,
+    DRV_HANDLE handle,
     const TCPIP_MAC_ADDR* DestMACAddr
 )
 {
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == DestMACAddr))
+    {
+        return TCPIP_MAC_RES_OP_ERR;
+    }
+
     return TCPIP_MAC_RES_OK;
 }
 
 //*******************************************************************************
 /*
   Function:
-    bool WDRV_PIC32MZW_MACPowerMode(DRV_HANDLE hMac, TCPIP_MAC_POWER_MODE pwrMode)
+    bool WDRV_PIC32MZW_MACPowerMode(DRV_HANDLE handle, TCPIP_MAC_POWER_MODE pwrMode)
 
   Summary:
     Change the power mode.
@@ -1225,7 +1524,7 @@ TCPIP_MAC_RES WDRV_PIC32MZW_MACRxFilterHashTableEntrySet
 
 */
 
-bool WDRV_PIC32MZW_MACPowerMode(DRV_HANDLE hMac, TCPIP_MAC_POWER_MODE pwrMode)
+bool WDRV_PIC32MZW_MACPowerMode(DRV_HANDLE handle, TCPIP_MAC_POWER_MODE pwrMode)
 {
     return true;
 }
@@ -1233,7 +1532,7 @@ bool WDRV_PIC32MZW_MACPowerMode(DRV_HANDLE hMac, TCPIP_MAC_POWER_MODE pwrMode)
 //*******************************************************************************
 /*
   Function:
-    TCPIP_MAC_RES WDRV_PIC32MZW_MACPacketTx(DRV_HANDLE hMac, TCPIP_MAC_PACKET* ptrPacket)
+    TCPIP_MAC_RES WDRV_PIC32MZW_MACPacketTx(DRV_HANDLE handle, TCPIP_MAC_PACKET* ptrPacket)
 
   Summary:
     Send an Ethernet frame via the PIC32MZW.
@@ -1247,19 +1546,24 @@ bool WDRV_PIC32MZW_MACPowerMode(DRV_HANDLE hMac, TCPIP_MAC_POWER_MODE pwrMode)
 
 */
 
-TCPIP_MAC_RES WDRV_PIC32MZW_MACPacketTx(DRV_HANDLE hMac, TCPIP_MAC_PACKET* ptrPacket)
+TCPIP_MAC_RES WDRV_PIC32MZW_MACPacketTx(DRV_HANDLE handle, TCPIP_MAC_PACKET* ptrPacket)
 {
-    WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)hMac;
+    WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)handle;
     uint8_t *payLoadPtr;
     int pktLen = 0;
     uint8_t pktTos = 0;
 
-    if ((NULL == pDcpt) || (NULL == pDcpt->pMac))
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pDcpt->pMac))
     {
-        return false;
+        return TCPIP_MAC_RES_PACKET_ERR;
     }
 
-    if (NULL == ptrPacket)
+    if ((NULL == ptrPacket) || (NULL == ptrPacket->pDSeg))
+    {
+        return TCPIP_MAC_RES_PACKET_ERR;
+    }
+
+    if (NULL == pDcpt->pMac->pktAckF)
     {
         return TCPIP_MAC_RES_PACKET_ERR;
     }
@@ -1312,7 +1616,7 @@ TCPIP_MAC_RES WDRV_PIC32MZW_MACPacketTx(DRV_HANDLE hMac, TCPIP_MAC_PACKET* ptrPa
     WDRV_PIC32MZW_MAC_TX_PKT_INSPECT_HOOK(ptrPacket);
 #endif
 
-    if ((NULL == ptrPacket->pDSeg->next) && (ptrPacket->pDSeg->segLoadOffset >= ZERO_CP_MIN_MAC_FRAME_OFFSET))
+    if ((NULL == ptrPacket->pDSeg->next) && (ptrPacket->pDSeg->segLoadOffset == ZERO_CP_MIN_MAC_FRAME_OFFSET))
     {
         uint32_t* p = (uint32_t*)(ptrPacket->pDSeg->segLoad - ptrPacket->pDSeg->segLoadOffset);
 
@@ -1327,25 +1631,20 @@ TCPIP_MAC_RES WDRV_PIC32MZW_MACPacketTx(DRV_HANDLE hMac, TCPIP_MAC_PACKET* ptrPa
     else
     {
         uint8_t *pktbuf;
-        TCPIP_MAC_DATA_SEGMENT* pDseg;
+        TCPIP_MAC_DATA_SEGMENT *pDSeg;
 
-        pktLen = 0;
-        pDseg  = ptrPacket->pDSeg;
+        pDSeg = ptrPacket->pDSeg;
 
-        while (NULL != pDseg)
+        while (NULL != pDSeg)
         {
-            pktLen += pDseg->segLen;
+            pktLen += pDSeg->segLen;
 
-            pDseg = pDseg->next;
-        };
+            pDSeg = pDSeg->next;
+        }
 
         if (pktLen > SHARED_PKT_MEM_BUFFER_SIZE)
         {
-            if (NULL != pDcpt->pMac->pktAckF)
-            {
-                pDcpt->pMac->pktAckF(ptrPacket,
-                    TCPIP_MAC_PKT_ACK_MAC_REJECT_ERR, TCPIP_THIS_MODULE_ID);
-            }
+            pDcpt->pMac->pktAckF(ptrPacket, TCPIP_MAC_PKT_ACK_MAC_REJECT_ERR, TCPIP_THIS_MODULE_ID);
 
             WDRV_DBG_TRACE_PRINT("MAC TX: payload too big (%d)\r\n", pktLen);
 
@@ -1357,11 +1656,7 @@ TCPIP_MAC_RES WDRV_PIC32MZW_MACPacketTx(DRV_HANDLE hMac, TCPIP_MAC_PACKET* ptrPa
 
         if (NULL == pktbuf)
         {
-            if (NULL != pDcpt->pMac->pktAckF)
-            {
-                pDcpt->pMac->pktAckF(ptrPacket,
-                    TCPIP_MAC_PKT_ACK_MAC_REJECT_ERR, TCPIP_THIS_MODULE_ID);
-            }
+            pDcpt->pMac->pktAckF(ptrPacket, TCPIP_MAC_PKT_ACK_MAC_REJECT_ERR, TCPIP_THIS_MODULE_ID);
 
             WDRV_DBG_TRACE_PRINT("MAC TX: malloc fail\r\n");
 
@@ -1370,21 +1665,18 @@ TCPIP_MAC_RES WDRV_PIC32MZW_MACPacketTx(DRV_HANDLE hMac, TCPIP_MAC_PACKET* ptrPa
 
         pktbuf += ETH_ETHERNET_HDR_OFFSET;
 
-        pDseg = ptrPacket->pDSeg;
+        pDSeg = ptrPacket->pDSeg;
 
-        while (NULL != pDseg)
+        while (NULL != pDSeg)
         {
-            memcpy(pktbuf, pDseg->segLoad, pDseg->segLen);
+            memcpy(pktbuf, pDSeg->segLoad, pDSeg->segLen);
 
-            pktbuf += pDseg->segLen;
+            pktbuf += pDSeg->segLen;
 
-            pDseg = pDseg->next;
-        };
-
-        if (NULL != pDcpt->pMac->pktAckF)
-        {
-            pDcpt->pMac->pktAckF(ptrPacket, TCPIP_MAC_PKT_ACK_TX_OK, TCPIP_THIS_MODULE_ID);
+            pDSeg = pDSeg->next;
         }
+
+        pDcpt->pMac->pktAckF(ptrPacket, TCPIP_MAC_PKT_ACK_TX_OK, TCPIP_THIS_MODULE_ID);
     }
 
     if (OSAL_RESULT_TRUE == OSAL_SEM_Pend(&pic32mzwCtrlDescriptor.drvAccessSemaphore, OSAL_WAIT_FOREVER))
@@ -1414,7 +1706,7 @@ TCPIP_MAC_RES WDRV_PIC32MZW_MACPacketTx(DRV_HANDLE hMac, TCPIP_MAC_PACKET* ptrPa
   Function:
     TCPIP_MAC_PACKET* WDRV_PIC32MZW_MACPacketRx
     (
-        DRV_HANDLE hMac,
+        DRV_HANDLE handle,
         TCPIP_MAC_RES* pRes,
         const TCPIP_MAC_PACKET_RX_STAT** ppPktStat
     )
@@ -1432,14 +1724,20 @@ TCPIP_MAC_RES WDRV_PIC32MZW_MACPacketTx(DRV_HANDLE hMac, TCPIP_MAC_PACKET* ptrPa
 
 TCPIP_MAC_PACKET* WDRV_PIC32MZW_MACPacketRx
 (
-    DRV_HANDLE hMac,
+    DRV_HANDLE handle,
     TCPIP_MAC_RES* pRes,
     const TCPIP_MAC_PACKET_RX_STAT** ppPktStat
 )
 {
+    WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)handle;
     TCPIP_MAC_PACKET* ptrPacket;
 
-    ptrPacket = (TCPIP_MAC_PACKET*)TCPIP_Helper_ProtectedSingleListHeadRemove(&pic32mzwMACDescriptor.ethRxPktList);
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pDcpt->pMac))
+    {
+        return NULL;
+    }
+
+    ptrPacket = (TCPIP_MAC_PACKET*)TCPIP_Helper_ProtectedSingleListHeadRemove(&pDcpt->pMac->ethRxPktList);
 
     if (NULL != ptrPacket)
     {
@@ -1464,7 +1762,7 @@ TCPIP_MAC_PACKET* WDRV_PIC32MZW_MACPacketRx
 //*******************************************************************************
 /*
   Function:
-    TCPIP_MAC_RES WDRV_PIC32MZW_MACProcess(DRV_HANDLE hMac)
+    TCPIP_MAC_RES WDRV_PIC32MZW_MACProcess(DRV_HANDLE handle)
 
   Summary:
     Regular update to MAC state machine.
@@ -1477,8 +1775,13 @@ TCPIP_MAC_PACKET* WDRV_PIC32MZW_MACPacketRx
 
 */
 
-TCPIP_MAC_RES WDRV_PIC32MZW_MACProcess(DRV_HANDLE hMac)
+TCPIP_MAC_RES WDRV_PIC32MZW_MACProcess(DRV_HANDLE handle)
 {
+    if (DRV_HANDLE_INVALID == handle)
+    {
+        return TCPIP_MAC_RES_OP_ERR;
+    }
+
     return TCPIP_MAC_RES_OK;
 }
 
@@ -1487,7 +1790,7 @@ TCPIP_MAC_RES WDRV_PIC32MZW_MACProcess(DRV_HANDLE hMac)
   Function:
     TCPIP_MAC_RES WDRV_PIC32MZW_MACStatisticsGet
     (
-        DRV_HANDLE hMac,
+        DRV_HANDLE handle,
         TCPIP_MAC_RX_STATISTICS* pRxStatistics,
         TCPIP_MAC_TX_STATISTICS* pTxStatistics
     )
@@ -1504,11 +1807,16 @@ TCPIP_MAC_RES WDRV_PIC32MZW_MACProcess(DRV_HANDLE hMac)
 
 TCPIP_MAC_RES WDRV_PIC32MZW_MACStatisticsGet
 (
-    DRV_HANDLE hMac,
+    DRV_HANDLE handle,
     TCPIP_MAC_RX_STATISTICS* pRxStatistics,
     TCPIP_MAC_TX_STATISTICS* pTxStatistics
 )
 {
+    if (DRV_HANDLE_INVALID == handle)
+    {
+        return TCPIP_MAC_RES_OP_ERR;
+    }
+
     if (NULL != pRxStatistics)
     {
         memset(pRxStatistics, 0, sizeof(TCPIP_MAC_RX_STATISTICS));
@@ -1529,7 +1837,7 @@ TCPIP_MAC_RES WDRV_PIC32MZW_MACStatisticsGet
   Function:
     TCPIP_MAC_RES WDRV_PIC32MZW_MACParametersGet
     (
-        DRV_HANDLE hMac,
+        DRV_HANDLE handle,
         TCPIP_MAC_PARAMETERS* pMacParams
     )
 
@@ -1545,14 +1853,14 @@ TCPIP_MAC_RES WDRV_PIC32MZW_MACStatisticsGet
 
 TCPIP_MAC_RES WDRV_PIC32MZW_MACParametersGet
 (
-    DRV_HANDLE hMac,
+    DRV_HANDLE handle,
     TCPIP_MAC_PARAMETERS* pMacParams
 )
 {
-    WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)hMac;
+    WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)handle;
 
     /* Ensure the driver handle and user pointer is valid. */
-    if ((NULL == pDcpt) || (NULL == pMacParams))
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pMacParams))
     {
         return TCPIP_MAC_RES_IS_BUSY;
     }
@@ -1583,7 +1891,7 @@ TCPIP_MAC_RES WDRV_PIC32MZW_MACParametersGet
   Function:
     TCPIP_MAC_RES WDRV_PIC32MZW_MACRegisterStatisticsGet
     (
-        DRV_HANDLE hMac,
+        DRV_HANDLE handle,
         TCPIP_MAC_STATISTICS_REG_ENTRY* pRegEntries,
         int nEntries,
         int* pHwEntries
@@ -1600,7 +1908,7 @@ TCPIP_MAC_RES WDRV_PIC32MZW_MACParametersGet
 
 TCPIP_MAC_RES WDRV_PIC32MZW_MACRegisterStatisticsGet
 (
-    DRV_HANDLE hMac,
+    DRV_HANDLE handle,
     TCPIP_MAC_STATISTICS_REG_ENTRY* pRegEntries,
     int nEntries,
     int* pHwEntries
@@ -1614,7 +1922,7 @@ TCPIP_MAC_RES WDRV_PIC32MZW_MACRegisterStatisticsGet
   Function:
     size_t WDRV_PIC32MZW_MACConfigGet
     (
-        TCPIP_MODULE_MAC_ID modId,
+        DRV_HANDLE handle,
         void* configBuff,
         size_t buffSize,
         size_t* pConfigSize
@@ -1631,7 +1939,7 @@ TCPIP_MAC_RES WDRV_PIC32MZW_MACRegisterStatisticsGet
 
 size_t WDRV_PIC32MZW_MACConfigGet
 (
-    TCPIP_MODULE_MAC_ID modId,
+    DRV_HANDLE handle,
     void* configBuff,
     size_t buffSize,
     size_t* pConfigSize
@@ -1655,7 +1963,7 @@ size_t WDRV_PIC32MZW_MACConfigGet
   Function:
     bool WDRV_PIC32MZW_MACEventMaskSet
     (
-        DRV_HANDLE hMac,
+        DRV_HANDLE handle,
         TCPIP_MAC_EVENT macEvents,
         bool enable
     )
@@ -1673,23 +1981,31 @@ size_t WDRV_PIC32MZW_MACConfigGet
 
 bool WDRV_PIC32MZW_MACEventMaskSet
 (
-    DRV_HANDLE hMac,
+    DRV_HANDLE handle,
     TCPIP_MAC_EVENT macEvents,
     bool enable
 )
 {
-    if (OSAL_RESULT_TRUE == OSAL_SEM_Pend(&pic32mzwMACDescriptor.eventSemaphore, OSAL_WAIT_FOREVER))
+    WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)handle;
+
+    /* Ensure the driver handle is valid. */
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pDcpt->pMac))
+    {
+        return false;
+    }
+
+    if (OSAL_RESULT_TRUE == OSAL_SEM_Pend(&pDcpt->pMac->eventSemaphore, OSAL_WAIT_FOREVER))
     {
         if (true == enable)
         {
-            pic32mzwMACDescriptor.eventMask |= macEvents;
+            pDcpt->pMac->eventMask |= macEvents;
         }
         else
         {
-            pic32mzwMACDescriptor.eventMask &= ~macEvents;
+            pDcpt->pMac->eventMask &= ~macEvents;
         }
 
-        OSAL_SEM_Post(&pic32mzwMACDescriptor.eventSemaphore);
+        OSAL_SEM_Post(&pDcpt->pMac->eventSemaphore);
 
         return true;
     }
@@ -1704,7 +2020,7 @@ bool WDRV_PIC32MZW_MACEventMaskSet
 //*******************************************************************************
 /*
   Function:
-    bool WDRV_PIC32MZW_MACEventAcknowledge(DRV_HANDLE hMac, TCPIP_MAC_EVENT macEvents)
+    bool WDRV_PIC32MZW_MACEventAcknowledge(DRV_HANDLE handle, TCPIP_MAC_EVENT macEvents)
 
   Summary:
     Acknowledge an event.
@@ -1717,12 +2033,20 @@ bool WDRV_PIC32MZW_MACEventMaskSet
 
 */
 
-bool WDRV_PIC32MZW_MACEventAcknowledge(DRV_HANDLE hMac, TCPIP_MAC_EVENT macEvents)
+bool WDRV_PIC32MZW_MACEventAcknowledge(DRV_HANDLE handle, TCPIP_MAC_EVENT macEvents)
 {
-    if (OSAL_RESULT_TRUE == OSAL_SEM_Pend(&pic32mzwMACDescriptor.eventSemaphore, OSAL_WAIT_FOREVER))
+    WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)handle;
+
+    /* Ensure the driver handle is valid. */
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pDcpt->pMac))
     {
-        pic32mzwMACDescriptor.events &= ~macEvents;
-        OSAL_SEM_Post(&pic32mzwMACDescriptor.eventSemaphore);
+        return false;
+    }
+
+    if (OSAL_RESULT_TRUE == OSAL_SEM_Pend(&pDcpt->pMac->eventSemaphore, OSAL_WAIT_FOREVER))
+    {
+        pDcpt->pMac->events &= ~macEvents;
+        OSAL_SEM_Post(&pDcpt->pMac->eventSemaphore);
 
         return true;
     }
@@ -1737,7 +2061,7 @@ bool WDRV_PIC32MZW_MACEventAcknowledge(DRV_HANDLE hMac, TCPIP_MAC_EVENT macEvent
 //*******************************************************************************
 /*
   Function:
-    TCPIP_MAC_EVENT WDRV_PIC32MZW_MACEventPendingGet(DRV_HANDLE hMac)
+    TCPIP_MAC_EVENT WDRV_PIC32MZW_MACEventPendingGet(DRV_HANDLE handle)
 
   Summary:
     Retrieve the current events.
@@ -1750,14 +2074,21 @@ bool WDRV_PIC32MZW_MACEventAcknowledge(DRV_HANDLE hMac, TCPIP_MAC_EVENT macEvent
 
 */
 
-TCPIP_MAC_EVENT WDRV_PIC32MZW_MACEventPendingGet(DRV_HANDLE hMac)
+TCPIP_MAC_EVENT WDRV_PIC32MZW_MACEventPendingGet(DRV_HANDLE handle)
 {
+    WDRV_PIC32MZW_DCPT *const pDcpt = (WDRV_PIC32MZW_DCPT *const)handle;
     TCPIP_MAC_EVENT events;
 
-    if (OSAL_RESULT_TRUE == OSAL_SEM_Pend(&pic32mzwMACDescriptor.eventSemaphore, OSAL_WAIT_FOREVER))
+    /* Ensure the driver handle is valid. */
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pDcpt->pMac))
     {
-        events = pic32mzwMACDescriptor.events;
-        OSAL_SEM_Post(&pic32mzwMACDescriptor.eventSemaphore);
+        return 0;
+    }
+
+    if (OSAL_RESULT_TRUE == OSAL_SEM_Pend(&pDcpt->pMac->eventSemaphore, OSAL_WAIT_FOREVER))
+    {
+        events = pDcpt->pMac->events;
+        OSAL_SEM_Post(&pDcpt->pMac->eventSemaphore);
 
         return events;
     }
@@ -1804,7 +2135,7 @@ WDRV_PIC32MZW_STATUS WDRV_PIC32MZW_InfoDeviceMACAddressGet
     const WDRV_PIC32MZW_DCPT *const pDcpt = (const WDRV_PIC32MZW_DCPT *const)handle;
 
     /* Ensure the driver handle and user pointer is valid. */
-    if ((NULL == pDcpt) || (NULL == pMACAddress))
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pMACAddress))
     {
         return WDRV_PIC32MZW_STATUS_INVALID_ARG;
     }
@@ -1853,7 +2184,7 @@ WDRV_PIC32MZW_STATUS WDRV_PIC32MZW_InfoOpChanGet
     const WDRV_PIC32MZW_DCPT *const pDcpt = (const WDRV_PIC32MZW_DCPT *const)handle;
 
     /* Ensure the driver handle and user pointer is valid. */
-    if ((NULL == pDcpt) || (NULL == pOpChan))
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pOpChan))
     {
         return WDRV_PIC32MZW_STATUS_INVALID_ARG;
     }
@@ -1902,6 +2233,11 @@ void WDRV_PIC32MZW_WIDProcess(uint16_t wid, uint16_t length, const uint8_t *cons
     WDRV_PIC32MZW_DCPT *pDcpt = &pic32mzwDescriptor[0];
     WDRV_PIC32MZW_CTRLDCPT *pCtrl;
     DRV_PIC32MZW_WIDCTX wids;
+    
+    if ((NULL == pData) || (NULL == pDcpt->pCtrl))
+    {
+        return;
+    }
 
     if (false == pDcpt->isInit)
     {
@@ -2563,7 +2899,7 @@ void* DRV_PIC32MZW_MemAlloc(uint16_t size)
 //*******************************************************************************
 /*
   Function:
-    int8_t DRV_PIC32MZW_MemFree(void *buffer_addr)
+    int8_t DRV_PIC32MZW_MemFree(void *pBufferAddr)
 
   Summary:
     Free general memory back to packet pool.
@@ -2587,6 +2923,11 @@ void* DRV_PIC32MZW_MemAlloc(uint16_t size)
 int8_t DRV_PIC32MZW_MemFree(void *pBufferAddr)
 {
     DRV_PIC32MZW_MEM_ALLOC_HDR *pAllocHdr;
+    
+    if (NULL == pBufferAddr)
+    {
+        return 0;
+    }
 
     pAllocHdr = _DRV_PIC32MZW_MemHdr(pBufferAddr);
 
@@ -2623,9 +2964,9 @@ int8_t DRV_PIC32MZW_MemFree(void *pBufferAddr)
         }
 #endif
 
-        if (MEM_PRI_HPRX == pAllocHdr->priLevel)
+        if (((void*)pAllocHdr >= (void*)0xa0040000) && ((void*)pAllocHdr <= (void*)0xa0050000))
         {
-            TCPIP_Helper_ProtectedSingleListTailAdd(&pic32mzwHighPriRxQueue, (SGL_LIST_NODE*)pAllocHdr);
+            _DRV_PIC32MZW_PktListAdd(&pic32mzwRsrvPktList, (WDRV_PIC32MZW_PKT_LIST_NODE*)pAllocHdr);
 
             OSAL_MUTEX_Unlock(&pic32mzwMemMutex);
             return 1;
@@ -2678,6 +3019,11 @@ int8_t DRV_PIC32MZW_MemFree(void *pBufferAddr)
 int8_t DRV_PIC32MZW_MemAddUsers(void *pBufferAddr, int count)
 {
     DRV_PIC32MZW_MEM_ALLOC_HDR *pAllocHdr;
+    
+    if (NULL == pBufferAddr)
+    {
+        return 0;
+    }
 
     pAllocHdr = _DRV_PIC32MZW_MemHdr(pBufferAddr);
 
@@ -2729,6 +3075,7 @@ void* DRV_PIC32MZW_PacketMemAlloc(uint16_t size, MEM_PRIORITY_LEVEL_T priLevel)
 {
     void *pBufferAddr;
     DRV_PIC32MZW_MEM_ALLOC_HDR *pAllocHdr;
+    WDRV_PIC32MZW_PKT_LIST_NODE *pNode = NULL;
 
     if (priLevel >= NUM_MEM_PRI_LEVELS)
     {
@@ -2736,38 +3083,13 @@ void* DRV_PIC32MZW_PacketMemAlloc(uint16_t size, MEM_PRIORITY_LEVEL_T priLevel)
         return NULL;
     }
 
-    if (MEM_PRI_HPRX == priLevel)
+    if (size <= SHARED_PKT_MEM_BUFFER_SIZE)
     {
-        WDRV_PIC32MZW_PKT_LIST_NODE *pNode;
+        pNode = _DRV_PIC32MZW_PktListRemove(&pic32mzwRsrvPktList);
+    }
 
-        if (size > SHARED_PKT_MEM_BUFFER_SIZE)
-        {
-            return NULL;
-        }
-
-        pNode = (WDRV_PIC32MZW_PKT_LIST_NODE*)TCPIP_Helper_ProtectedSingleListHeadRemove(&pic32mzwHighPriRxQueue);
-
-        if (NULL == pNode)
-        {
-#ifdef WDRV_PIC32MZW_STATS_ENABLE
-            if (OSAL_RESULT_TRUE == OSAL_MUTEX_Lock(&pic32mzwMemStatsMutex, OSAL_WAIT_FOREVER))
-            {
-                uint32_t hprx;
-
-                hprx = ++pic32mzMemStatistics.err.hprx;
-                OSAL_MUTEX_Unlock(&pic32mzwMemStatsMutex);
-
-                /* Rate limit error output */
-                if (hprx > 10)
-                {
-                    return NULL;
-                }
-            }
-#endif
-            WDRV_DBG_ERROR_PRINT("PktMemAlloc: HPRX NULL\r\n");
-            return NULL;
-        }
-
+    if (NULL != pNode)
+    {
         pBufferAddr = pNode->hdr.memory;
 
         pNode->hdr.pNext     = NULL;
@@ -2914,6 +3236,11 @@ void DRV_PIC32MZW_WIDRxQueuePush(void *pPktBuff)
 {
     DRV_PIC32MZW_MEM_ALLOC_HDR *pAllocHdr;
 
+    if (NULL == pPktBuff)
+    {
+        return;
+    }
+
     pAllocHdr = _DRV_PIC32MZW_MemHdr(pPktBuff);
 
     if (NULL == pAllocHdr)
@@ -2952,6 +3279,11 @@ void DRV_PIC32MZW_WIDRxQueuePush(void *pPktBuff)
 void DRV_PIC32MZW_WIDTxQueuePush(void *pPktBuff)
 {
     DRV_PIC32MZW_MEM_ALLOC_HDR *pAllocHdr;
+
+    if (NULL == pPktBuff)
+    {
+        return;
+    }
 
     pAllocHdr = _DRV_PIC32MZW_MemHdr(pPktBuff);
 

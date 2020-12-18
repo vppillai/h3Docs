@@ -124,7 +124,7 @@ extern "C" {
 // *****************************************************************************
 // *****************************************************************************
 /*** WiFi PIC32MZW1 Driver Configuration ***/
-#define WDRV_PIC32MZW_DEBUG_LEVEL               WDRV_PIC32MZW_DEBUG_TYPE_TRACE
+#define WDRV_PIC32MZW1_DEVICE_USE_SYS_DEBUG
 #define WDRV_PIC32MZW_WPA3_SUPPORT
 #define WDRV_PIC32MZW_BA414E_SUPPORT
 

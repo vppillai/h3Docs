@@ -101,13 +101,13 @@ WDRV_PIC32MZW_STATUS WDRV_PIC32MZW_BSSConnect
     OSAL_CRITSECT_DATA_TYPE critSect;
 
     /* Ensure the driver handle and user pointer is valid. */
-    if ((NULL == pDcpt) || (NULL == pBSSCtx))
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pDcpt->pCtrl) || (NULL == pBSSCtx))
     {
         return WDRV_PIC32MZW_STATUS_INVALID_ARG;
     }
 
     /* Ensure the driver instance has been opened for use. */
-    if ((false == pDcpt->isOpen) || (NULL == pDcpt->pCtrl))
+    if (false == pDcpt->isOpen)
     {
         return WDRV_PIC32MZW_STATUS_NOT_OPEN;
     }
@@ -260,7 +260,7 @@ WDRV_PIC32MZW_STATUS WDRV_PIC32MZW_BSSDisconnect(DRV_HANDLE handle)
     DRV_PIC32MZW_WIDCTX wids;
 
     /* Ensure the driver handle is valid. */
-    if (NULL == pDcpt)
+    if ((DRV_HANDLE_INVALID == handle) || (NULL == pDcpt) || (NULL == pDcpt->pCtrl))
     {
         return WDRV_PIC32MZW_STATUS_INVALID_ARG;
     }

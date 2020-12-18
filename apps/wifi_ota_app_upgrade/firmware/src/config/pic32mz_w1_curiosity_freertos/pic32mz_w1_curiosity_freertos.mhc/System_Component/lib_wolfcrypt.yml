@@ -19,15 +19,6 @@ children:
       - type: Dynamic
         attributes: {id: lib_wolfcrypt, value: 'false'}
   - type: Boolean
-    attributes: {id: wolfcrypt_aes_hw}
-    children:
-    - type: Attributes
-      children:
-      - type: Boolean
-        attributes: {id: visible}
-        children:
-        - {type: Value, value: 'true'}
-  - type: Boolean
     attributes: {id: wolfcrypt_hkdf}
     children:
     - type: Attributes
@@ -52,50 +43,5 @@ children:
       children:
       - type: Dynamic
         attributes: {id: sysWifiPic32mzw1, value: 'true'}
-  - type: Boolean
-    attributes: {id: wolfcrypt_md5_hw}
-    children:
-    - type: Attributes
-      children:
-      - type: Boolean
-        attributes: {id: visible}
-        children:
-        - {type: Value, value: 'true'}
-  - type: Boolean
-    attributes: {id: wolfcrypt_sha1_hw}
-    children:
-    - type: Attributes
-      children:
-      - type: Boolean
-        attributes: {id: visible}
-        children:
-        - {type: Value, value: 'true'}
-  - type: Boolean
-    attributes: {id: wolfcrypt_sha224}
-    children:
-    - type: Attributes
-      children:
-      - type: Boolean
-        attributes: {id: visible}
-        children:
-        - {type: Value, value: 'true'}
-  - type: Boolean
-    attributes: {id: wolfcrypt_sha264_hw}
-    children:
-    - type: Attributes
-      children:
-      - type: Boolean
-        attributes: {id: visible}
-        children:
-        - {type: Value, value: 'true'}
-  - type: Boolean
-    attributes: {id: wolfcrypt_tdes_hw}
-    children:
-    - type: Attributes
-      children:
-      - type: Boolean
-        attributes: {id: visible}
-        children:
-        - {type: Value, value: 'true'}
 - type: ElementPosition
   attributes: {x: '680', y: '20', id: lib_wolfcrypt}

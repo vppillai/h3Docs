@@ -5,7 +5,7 @@ frameworkPath: ..\..\rio2_ofc_repo
 processor: PIC32MZ1025W104132
 projectName: wifi_ota_app_upgrade_pic32mz_w1_curiosity_freertos
 settings:
-  PackageFilter: bsp;core;crypto;csp;csp_apps_pic32mz_w1;net;quick_docs;usb;wireless;wsg_dev;wsg_dev;wsg_dev;wsg_dev;wsg_dev;
+  PackageFilter: bsp;core;crypto;csp;csp_apps_pic32mz_w1;net;quick_docs;usb;wireless;wireless;wsg_dev;wsg_dev;wsg_dev;wsg_dev;wsg_dev;
   FORCE_OPTIMIZATION: 'false'
   GENERATE_BACKUP: 'true'
   TRUSTZONE: 'false'

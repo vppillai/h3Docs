@@ -46,8 +46,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include <stdbool.h>
 #include <stdio.h>
 
-#include "system_config.h"
-#include "system_definitions.h"
+#include "wdrv_pic32mzw_common.h"
 #include "drv_pic32mzw1.h"
 #include "drv_pic32mzw1_crypto.h"
 #include "crypto/crypto.h"
