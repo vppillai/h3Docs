@@ -30,7 +30,7 @@ The External flash will be configured for 3 slots for storing upto 3 OTA images.
 
 1. Abstraction Model:
 
-    ![](images/abstraction_model.png)
+    ![](images/abstraction_model.PNG)
 
     - Bootloader is responsible to start the OTA process and download new image to Image Store in the external flash (sst26vf).
     - Image downloading is done through HTTP protocol.
@@ -68,7 +68,7 @@ There are two conditions :
 
 6. Header structure (256 bytes) :
 
-    ![](images/ota_header.PNG)
+    ![ota_header](images/ota_header.PNG)
 
 7. Flow chart :
 
