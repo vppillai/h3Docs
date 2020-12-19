@@ -44,7 +44,7 @@ Abstraction model:
 
 OTA application image structure is organised as shown in below picture. Total application length includes 256 bytes header as well. 
 
-![image_structure](images/Application_image2.png)
+![image_structure](images/Application_Image2.png)
 
 Bootloader copies `Application Image Length` bytes from Image-Store to Program-flash area.
 
@@ -162,7 +162,7 @@ To build the application, refer to the following table and open the project usin
 6.  It is required to perform a "post-build" step to create ota image with file extension ".ota" (which can be placed in the server and downloaded during OTA process) and factory reset image. During "post-build" a defined header will be included to the image using python script.
     -   All required files for post-build process are present in "utilities" folder which is present in the path **apps/wifi_ota_app_upgrade/**.
     -   Right click on the "wifi_ota_app_upgrade" project and click on properties.
-    
+
         ![imageloading](images/project_loading.PNG)
 
     -   Select "building", insert below command and click "OK":
