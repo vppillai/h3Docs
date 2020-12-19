@@ -95,7 +95,7 @@ To genearte code, refer to the following table and open the project using its ID
 
 ## Generating BootLoader Code
 
-1.  Open "OTA_bootloader" project and launch Harmony3 configurator. Path of the application within the repository is **apps/wifi_sta/firmware**.
+1.  Open "ota_bootloader" project and launch Harmony3 configurator. Path of the application within the repository is **apps/ota_bootloader/firmware**.
 2.  Generate code via MHC.
 
 
