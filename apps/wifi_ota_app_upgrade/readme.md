@@ -44,7 +44,7 @@ Abstraction model:
 
 OTA application image structure is organised as shown in below picture. Total application length includes 256 bytes header as well. 
 
-![abstractionmodel](images/application_image2.png)
+![image_structure](images/application_image2.png)
 
 Bootloader copies `Application Image Length` bytes from Image-Store to Program-flash area.
 
@@ -70,7 +70,7 @@ OTA application follows below steps while downloading an image from HTTP server:
 
 1.  **Allocating slot**: When OTA process is initiated, the OTA framework  will try to allocate a slot for the new image in the external flash. This slot will either be a blank slot, the lowest ranked or invalidated application firmware image slot. The External flash will be configured for 3 slots for, storing upto 3 OTA images. Slot 0 is reserved for the factory image and can not be replaced with an image obtained through OTA process. Only slot 1 and slot 2 will be used for storing new OTA images. Application allocates the slots in sequential order, meaning ota image downloaded during first OTA process will be stored in slot1 and 2nd OTA image downloaded during 2nd OTA process will be stored in the slot2. If the highest slot (slot 2) is already filled with the latest OTA image and user initiates OTA in this situation again, then the slot1 will be allocated for the new OTA image.
 
-    ![externalflashlayout](images/ext_flash.png)
+    ![externalflashlayout](images/ext_flash.PNG)
 
 2.  The transport layer (HTTP protocol) starts downloading the image.
 
@@ -122,15 +122,18 @@ To build the application, refer to the following table and open the project usin
                 
 
       - Open command prompt and change driectory to the folder where ota image is present.
-                    ![directory](images/change_dir.png)
+
+        ![directory](images/change_dir.PNG)
+
       - Use below python command in command prompt:
                         
         `python -m SimpleHTTPServer 8000`    
                     
                     
-        ![server](images/http_server.png) 
+        ![server](images/http_server.PNG) 
 
-3.  Configure HTTP server address and ota image name in "app.h" file using macro "#define SYS_OTA_URL". 
+3.  Configure HTTP server address and ota image name in "app.h" file using macro "#define SYS_OTA_URL".
+
     ![MHC](images/server_configure.png)
 
 4.  User need to disable "Add linker file" option to exclude MHC generated default linker file, and add the required custom linker file present in path `..\wifi_ota_app_upgrade\firmware\src\ota`
@@ -147,16 +150,19 @@ To build the application, refer to the following table and open the project usin
 5.  It is required to integrate the bootloader and ota application image and create a single unified HEX file. To integrate 2 images we can use hexmate tool, which is readily available with MPLABX package as part of the standard installation. To combine the hex files -
 
     -  User should load the "ota_bootloader" project located in the "wireless" apps folder of this repo and include it into "wifi_ota_app_upgrade" project as a "Loadable" component. For this, right click on the "wifi_ota_app_upgrade" project, click on "properties" and  select "ota_bootloader" project. User need to make sure that the steps mentioned in "ota_bootloader" reference document is followed, before this step.
+
         ![imageloading](images/project_loading.PNG)
+
         ![imageloading](images/project_loading_1.PNG)
 
     -  Click on "Apply" button to make the applied changes effective:
+    
         ![imageloading](images/project_loading_2.PNG)
 
 6.  It is required to perform a "post-build" step to create ota image with file extension ".ota" (which can be placed in the server and downloaded during OTA process) and factory reset image. During "post-build" a defined header will be included to the image using python script.
     -   All required files for post-build process are present in "utilities" folder which is present in the path **apps/wifi_ota_app_upgrade/**.
     -   Right click on the "wifi_ota_app_upgrade" project and click on properties.
-        ![imageloading](images/project_loading.png)
+        ![imageloading](images/project_loading.PNG)
 
     -   Select "building", insert below command and click "OK":
 
