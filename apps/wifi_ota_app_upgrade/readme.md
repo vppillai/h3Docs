@@ -34,7 +34,7 @@ Over the Air (OTA) firmware upgrade feature is designed with a two step process,
 
 Abstraction model:
 
-![abstractionmodel](images/abstraction_model.png)
+![abstractionmodel](images/abstraction_model.PNG)
 - Application is responsible to start the OTA process by calling `OTA_start()` function to download the new image into the Image Store in the external flash (sst26vf).
 - Image downloading is done through HTTP protocol.
 - Bootloader is responsible for the programming process, which loads and copies the best image from Image Store to Program area and jumps to the Application. The bootloader also supports ‘Fail-Safe’ boot scheme which the firmware automatically rolls back if the image has not been run correctly at the previous boot.
@@ -52,11 +52,11 @@ Bootloader copies `Application Image Length` bytes from Image-Store to Program-f
 
 Every ota image includes a header to keep track of image status as shown in below table:
 
-![applicationheader](images/ota_header.png)
+![applicationheader](images/ota_header.PNG)
 
 
 
-![applicationheader](images/ota_header1.png)
+![applicationheader](images/ota_header1.PNG)
 
 - **order** - it will be incremented for every image downloaded using OTA. If this value reaches 15 and then OTA process downloads a new image , value will 1.
 
@@ -147,11 +147,11 @@ To build the application, refer to the following table and open the project usin
 5.  It is required to integrate the bootloader and ota application image and create a single unified HEX file. To integrate 2 images we can use hexmate tool, which is readily available with MPLABX package as part of the standard installation. To combine the hex files -
 
     -  User should load the "ota_bootloader" project located in the "wireless" apps folder of this repo and include it into "wifi_ota_app_upgrade" project as a "Loadable" component. For this, right click on the "wifi_ota_app_upgrade" project, click on "properties" and  select "ota_bootloader" project. User need to make sure that the steps mentioned in "ota_bootloader" reference document is followed, before this step.
-        ![imageloading](images/project_loading.png)
-        ![imageloading](images/project_loading_1.png)
+        ![imageloading](images/project_loading.PNG)
+        ![imageloading](images/project_loading_1.PNG)
 
     -  Click on "Apply" button to make the applied changes effective:
-        ![imageloading](images/project_loading_2.png)
+        ![imageloading](images/project_loading_2.PNG)
 
 6.  It is required to perform a "post-build" step to create ota image with file extension ".ota" (which can be placed in the server and downloaded during OTA process) and factory reset image. During "post-build" a defined header will be included to the image using python script.
     -   All required files for post-build process are present in "utilities" folder which is present in the path **apps/wifi_ota_app_upgrade/**.
