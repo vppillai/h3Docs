@@ -32,21 +32,21 @@ The External flash will be configured for 3 slots for storing upto 3 OTA images.
 
     ![](images/abstraction_model.PNG)
 
-    - Bootloader is responsible to start the OTA process and download new image to Image Store in the external flash (sst26vf).
+    - OTA application is responsible to start the OTA process and download new image to Image Store in the external flash (sst26vf).
     - Image downloading is done through HTTP protocol.
     - Bootloader is responsible for the programming process, which loads and copies the best image from Image Store to Program area and jumps to the Application. The bootloader also supports ‘Fail-Safe’ boot scheme which the firmware automatically rolls back if the image has not been run correctly at the previous boot.
     - Image-Store can have multiple images, including the default image for factory reset.
 
-1. During each system boot-up, bootloader checks if it needs to program any image from the external flash. Bootloader goes to program mode, if-
+2. During each system boot-up, bootloader checks if it needs to program any image from the external flash. Bootloader goes to program mode, if-
 
     a) any newly downloaded image present in the external flash, 
    
     b) if the already present image in the program flash is identified as "not safe" during previous boot. 
 
-There are two conditions :
+    There are two conditions :
 
- - whether the Application Image in Program-Flash area is valid (indicated by the STATUS field, value of 0xF8 in image Header), and
- - whether it has been confirmed that no errors were present during the previous boot (indicated by the STATUS field (of image Header) value of 0xF8 in the original image located in the external flash).
+    - whether the Application Image in Program-Flash area is valid (indicated by the STATUS field, value of 0xF8 in image Header), and
+    - whether it has been confirmed that no errors were present during the previous boot (indicated by the STATUS field (of image Header) value of 0xF8 in the original image located in the external flash).
   
     According to bootloader logic if these two conditions are satisfied it will not go to "Program Mode" and the bootloader immediately jumps to the application image present in the program-flash area of the device.
 
@@ -64,7 +64,11 @@ There are two conditions :
 
 3. If the image is not valid, the bootloader invalidates the image by setting “Invalidate” 0xF0 in STATUS field of header present in the external flash and restarts the Image-Programming sequence.
 
-4. Once the copied image has been validated, the Bootloader updates STATUS field of the image header in the copied image of the Program-Flash area as “Valid” by writing a value "0xF8", then jumps to the Application Image.
+4. If image is verfied successfully, Bootloader updates STATUS field of the image header in external flash-
+
+   a)  checks the header-status field, if it is "Downloaded" (0xFE) updates it as "Unbooted"(0xFC) and jumps to application image.
+
+   b)  if already a validated image (header-status value is "0xF8"), it starts running application image ignoring above mentioned step a).
 
 6. Header structure (256 bytes) :
 
