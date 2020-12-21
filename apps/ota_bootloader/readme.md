@@ -72,7 +72,7 @@ There are two conditions :
 
 7. Flow chart :
 
-    ![flowchart](images/BootSequence_BL2.png)
+    ![flowchart](images/bootloader_chart.png)
 
 ## Downloading and Generating Bootloader Code
 
