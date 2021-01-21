@@ -18,7 +18,7 @@ This example application shows how TNGTLS manifest file can be generated, establ
 
 This application demonstrates how a user can establish I2C communication with ECC608 - slave, to generate TNGTLS manifest file. USB_HID acts as communication protocol between PIC32MZW1 and PC, where 'TrustPlatform Design Suite' is installed, to extract the required information from ECC608 and generate the manifest file.   
 
-![](images/image1.png)
+![](images/image1.PNG)
 
 
 ## Downloading and building the application
@@ -63,12 +63,12 @@ To build the application, refer to the following table and open the project usin
 
 7.  Click on "TrustnGo" on opened page in the browser:
 
-    ![](images/image3.png)
+    ![](images/image3.PNG)
 
     
 8.  Click on "resource_generation" on opened page of the browser:
 
-    ![](images/image4.png)   
+    ![](images/image4.PNG)   
 
 9.  Follow step as shown in below image:
 
@@ -76,18 +76,18 @@ To build the application, refer to the following table and open the project usin
 
 10.  Click "Run" button and follow the instructions, as displayed on page , till manifest file is generated.
 
-    ![](images/image6.png)   
+    ![](images/image6.PNG)   
 
 11.  User can see message as shown in below image, if manifest file is generated without any error. 
-    ![](images/image7.png)   
+    ![](images/image7.PNG)   
 
 12.  Generated Manifest file can be found in local folder:
 
-    ![](images/image8.png)  
+    ![](images/image8.PNG)  
 
 13.  Some of the expected message on UART terminal while generating Manifest file :
 
-    ![](images/image10.png)  
+    ![](images/image10.PNG)  
 
 
 
