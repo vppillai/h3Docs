@@ -56,7 +56,7 @@ To build the application, refer to the following table and open the project usin
 
 5.  User may see messages on opened Terminal, as shown in below image :
 
-    ![](images/image9.png)
+    ![](images/image9.PNG)
 6.  Open "Trust Platform" and follow steps, as shown in below image:
 
     ![](images/image2.png)
@@ -74,19 +74,16 @@ To build the application, refer to the following table and open the project usin
 
     ![](images/image5.png)
 
-10.  Click "Run" button and follow the instructions, as displayed on page , till manifest file is generated.
-
+10.  Click "Run" button and follow the instructions, as displayed on page , till manifest file is generated:
     ![](images/image6.PNG)   
 
 11.  User can see message as shown in below image, if manifest file is generated without any error. 
     ![](images/image7.PNG)   
 
 12.  Generated Manifest file can be found in local folder:
-
     ![](images/image8.PNG)  
 
 13.  Some of the expected message on UART terminal while generating Manifest file :
-
     ![](images/image10.PNG)  
 
 
