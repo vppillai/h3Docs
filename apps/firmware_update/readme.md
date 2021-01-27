@@ -167,7 +167,7 @@ onto the ATWINC1500 as well as the previously installed firmware version.
 
 The serial bridge example application for any supported HostMCU can be taken as a reference for implementing serial bridge for custom HostMCU.
 
-* Serial bridge applicaiton can be found in the wireless/apps/ path inside Harmony3 repository. 
+<!---* Serial bridge applicaiton can be found in the wireless/apps/ path inside Harmony3 repository. -->
 * Intergrate the serial bridge applicaiton in your development environment.
 * Build the project.
 * Copy the built elf binary file to the /src/firmware/Tools/serial_bridge path inside the "WINCXXXX_FIRMWARE_UPDATE_PROJECT" project.
