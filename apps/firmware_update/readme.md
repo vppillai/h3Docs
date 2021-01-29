@@ -12,7 +12,7 @@ function: Firmware update
 ### Table of contents
 {: .no_toc .text-delta }
 
-1. TOC
+TOC
 {:toc}
 
 # [1. Introduction](#1-Introduction)
