@@ -15,30 +15,30 @@ function: Firmware update
 1. TOC
 {:toc}
 
-# Introdcution 
+# 1. Introdcution 
 
 ATWINC1500/ATWINC3400 features an on-chip microcontroller and integrated SPI Flash memory for system firmware. The serial flash memory also stores the root certificate required for TLS/SSL connection and the gain table values used by transceiver. This document explains in detail downloading procedure of firmware, certificate and gain values into WINC serial flash through different supported interfaces like UART/I2C. This document also covers some useful troubleshooting tips for downloading failures.
 
-The document guide informtion: 
+The document guide information: 
 * Firmware update project: 
     * User can verify .bat file for required HostMCU in /src folder of "WINCXXXX_FIRMWARE_UPDATE_PROJECT" project.
     * For supported HostMCU user can follow the instruction available in section [Firmware update project](#firmware-update-project)
 
 * Serial Bridge Application: 
     * When user could not find the required HostMCU support batch file in /src folder of "WINCXXXX_FIRMWARE_UPDATE_PROJECT" project.
-    * User can create the serial bridge application for the required HostMCU and add the generated elf into "WINCXXXX_FIRMWARE_UPDATE_PROJECT" project.
+    * User can run the serial bridge application for the required HostMCU and add the generated elf into "WINCXXXX_FIRMWARE_UPDATE_PROJECT" project.
     * User can follow the instruction available in section [Serial Bridge Application](#serial-bridge-application)
 
 * General Information on Firmware Update
-    * User can refer to this section for understanding how the binary tools can be used for building and programming the firmeare image.
+    * User can refer to this section for understanding how the binary tools can be used for building and programming the firmware image.
     * User can follow the instruction available in section [General Information on Firmware Update](#general-information-on-firmware-update)
 
 * Download Failure Troubleshooting
-    * When customer face issue while programming / updating the firmware, user can refer this section [Download Failure Troubleshooting](#download-failure-troubleshooting)
+    * When user faces issue while programming / updating the firmware, user can refer this section [Download Failure Troubleshooting](#download-failure-troubleshooting)
 
 
 
-# Firmware update project
+# 2. Firmware update project
 
 The ATWINC1500 and ATWINC3400 WiFi devices require firmware to be loaded into flash memory. The ATWINC1500 and ATWINC3400 devices are preloaded with the firmware, however it would be useful to update the latest firmware to take advantage of fixes and new features.
 
@@ -99,14 +99,13 @@ The binary elf files which are available in the /src/firmware/Tools/serial_bridg
 
 #### Serial Bridge Application for Microchip Studio
 
-* For Microchip Studio, Serial Bridge applicaition can be imported in the same way how firmware update project is imported. 
+* For Microchip Studio, Serial Bridge applicaition can be imported in the same way how firmware update project is imported.
+![MHC](images/serial_bridge_ASF.png) 
 * Build the project.
 * Copy the elf binary file to the /src/firmware/Tools/serial_bridge path inside the "WINCXXXX_FIRMWARE_UPDATE_PROJECT" project.
 * Create a copy of batch file samxxx_xplained_pro_firmware_update.bat and rename according to your HostMCU name.
 * In the created batch file replace the samxxx_xplained_pro_serial_bridge.elf with your generated elf file.
 * Run the newly created batch file.
-
-![MHC](images/serial_bridge_ASF.png)
 
 <!---#### Serial Bridge Application for MPLAB Harmony3
 
@@ -187,7 +186,7 @@ The "WINCXXXX_FIRMWARE_UPDATE_PROJECT" contains,
 
 The "src" folder inside "WINCXXXX_FIRMWARE_UPDATE_PROJECT" contains a list of batch (.bat) files which internally calls the following scripts.
 
-- samxxx_xplained_pro_firmware_update.bat scripts perform the following actions:
+- samxxx_xplained_pro_firmware_update.bat script performs the following actions:
     - Program the Serial Bridge application 
     - Prepare compound programmable binary image
     - Program the prepared binary image in to WINC device.
@@ -195,35 +194,35 @@ The "src" folder inside "WINCXXXX_FIRMWARE_UPDATE_PROJECT" contains a list of ba
 Execution flow of the scripts: 
 * samxxx_xplained_pro_firmware_update.bat -> download_all_sb -> download_all -> update_pll_table
 
-- download_all_sb script perform the following actions:
+- download_all_sb script performs the following actions:
     - Erase the HostMCU
     - Program the Serial bridge application 
     - Reset the HostMCU
     - Find COM port where the device is connected
     - Calls download_all batch file
 
-- download_all script perform the following actions:
-    - calls update_pll_table to prepare the image
+- download_all script performs the following actions:
+    - Calls update_pll_table to prepare the image
     - Program the ATWINC1500 device using winc_programmer_uart.exe utility
     - winc_programmer_uart program the built firmware binary image to the WILC device.
 
-- update_pll_table script perform the following actions:
+- update_pll_table script performs the following actions:
     - Calculating PLL lookup table using the xo offset from efuse at flash time. 
     - Prepare compound binary image using image_tool utility
     - It uses the binary image_tool to buildd firmware binary image
 
 
-An additional script "prepare_image" binary is available inside "src\firmware" directory which can perform the following actions:
+An additional script "prepare_image" binary is available inside "src\firmware" directory which can performs the following actions:
 * Prepare programmable image along with gain table using image_tool utility
 * Prepare OTA image along with gain table using image_tool utility
 
 The differences between prepare_image and update_pll_table are:
 
-| prepare_image | update_pll_table |
+| Prepare_image | Update_pll_table |
 | ----------- | ----------- |
 | Does not update PLL table based on xo offset | Updates PLL lookup table using the xo offset from efuse at flash time. |
-| prepares OTA image | Does not prepare OTA image |
-| includes Gain table to create binary image | Does not includes Gain table to create binary image |
+| Prepares OTA image | Does not prepare OTA image |
+| Includes Gain table to create binary image | Does not includes Gain table to create binary image |
 | Not for production line | Created for production level purpose |
 
 
@@ -349,7 +348,7 @@ Expected output log for the command:</br> winc_programmer_UART.exe -p \.\COM16 -
 # Download Failure Troubleshooting
 Here are the troubleshooting tips for a specific error while downloading using batch script.
 
-## Failed To Find Any COM Port
+## The script Failed To Find Any COM Port
 
 The winc_programmer_uart.exe expects a COM port as an argument. If the expected COM port is not found then it wil provides the below error.
 ![MHC](images/cannot_find_edbg_board.png)
@@ -364,7 +363,7 @@ How to fix it:
 
 
 
-## Found More Than One Matching Tool
+## The script Found More Than One Matching Tool
 
 ![MHC](images/more_than_one_comport.png)
 
@@ -373,7 +372,7 @@ Xplained Pro board serial bridge with sam_xplained_pro_firmware_update.bat batch
 How to fix it:
 * All the Xplained Pro boards are enumerated with “EDBG Virtual COM Port”. Make sure to connect one Xplained Pro board at a time on PC.
 
-## Listing More Than One COM Port
+## The script Listing More Than One COM Port
 
 More than one COM port could be listed when downloading using download_all.bat where the
 HostMCU already has the serial bridge firmware or download through built-in UART. The winc_programmer_UART tool used to perform a serial bridge or a built-in UART download will try to look for available COM ports and try to match each COM port name with “EDBG” string or a port number “COM” string. If one of the two conditions is true, the program will then try to send a 0x12 char on each UART line. The other side is then expected to answer 0x5A for a built-in UART update or 0x5B for a serial bridge update.
