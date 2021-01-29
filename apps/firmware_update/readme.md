@@ -12,10 +12,10 @@ function: Firmware update
 ### Table of contents
 {: .no_toc .text-delta }
 
-TOC
+1. TOC
 {:toc}
 
-# [1. Introduction](#1-Introduction)
+# Introduction
 
 ATWINC1500/ATWINC3400 features an on-chip microcontroller and integrated SPI Flash memory for system firmware. The serial flash memory also stores the root certificate required for TLS/SSL connection and the gain table values used by transceiver. This document explains in detail downloading procedure of firmware, certificate and gain values into WINC serial flash through different supported interfaces like UART/I2C. This document also covers some useful troubleshooting tips for downloading failures.
 
@@ -38,7 +38,7 @@ The document guide information:
 
 
 
-# 2. Firmware update project
+# Firmware update project
 
 The ATWINC1500 and ATWINC3400 WiFi devices require firmware to be loaded into flash memory. The ATWINC1500 and ATWINC3400 devices are preloaded with the firmware, however it would be useful to update the latest firmware to take advantage of fixes and new features.
 
