@@ -15,7 +15,7 @@ function: Firmware update
 1. TOC
 {:toc}
 
-# 1. Introdcution 
+# [1. Introdcution](#1-Introdcution)
 
 ATWINC1500/ATWINC3400 features an on-chip microcontroller and integrated SPI Flash memory for system firmware. The serial flash memory also stores the root certificate required for TLS/SSL connection and the gain table values used by transceiver. This document explains in detail downloading procedure of firmware, certificate and gain values into WINC serial flash through different supported interfaces like UART/I2C. This document also covers some useful troubleshooting tips for downloading failures.
 
