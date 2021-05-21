@@ -21,7 +21,7 @@ timezone: America/Phoenix
 
 description: Harmony 3 Wireless application examples for PIC32MZ W1 family
 url: "https://vppillai.github.io"
-baseurl: "/h3docs"
+baseurl: "/h3Docs"
 remote_theme: "Microchip-MPLAB-Harmony/just-the-docs@mchp-harmony"
 
 # Build settings
