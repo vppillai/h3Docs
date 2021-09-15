@@ -83,7 +83,7 @@ IFTTT is a free web platform, and one can create an applet of his/her own. More 
 10. Every time the button/ switch (SW1) is pressed
 
     
-    ![Switch](images/Curiosity_Board.jpg), 
+    ![Switch](images/Curiosity_Board.png), 
     
     it shall connect to maker.ifttt.com and send the trigger.
 
